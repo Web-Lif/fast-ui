@@ -1,33 +1,6 @@
-# rc-components
+# fast-ui
 
-## Getting Started
+基于 `antd` 组件的快速开发的组件库, 让 `antd` 更加适用于开发
 
-Install dependencies,
 
-```bash
-$ npm i
-```
 
-Start the dev server,
-
-```bash
-$ npm start
-```
-
-Build documentation,
-
-```bash
-$ npm run docs:build
-```
-
-Run test,
-
-```bash
-$ npm test
-```
-
-Build library via `father-build`,
-
-```bash
-$ npm run build
-```
