@@ -41,7 +41,6 @@ export default () => {
         <Table
             width={500}
             height={200}
-
             rowSelection={{
                 model: 'multiple'
             }}
