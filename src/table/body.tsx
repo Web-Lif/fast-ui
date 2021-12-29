@@ -34,17 +34,11 @@ function useBody<T>({
                     value: value as string,
                 }
 
-
-                if (value === true) {
-                    className = styles.selectRow
-                }
-
                 if (col.name === '$select') {
                     cell.selectd = false
                     cell.className = styles.cellSelect
-
                     if (value === true) {
-                        row
+                        className = styles.selectRow
                     }
                     if (rowSelection?.model === 'multiple') {
                         cell.value = (
