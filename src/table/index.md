@@ -36,10 +36,15 @@ const mockData = () => {
 }
 
 export default () => {
+    const [data, setData] = useState(mockData())
     return (
         <Table
             width={500}
             height={200}
+
+            rowSelection={{
+                model: 'multiple'
+            }}
             columns={[{
                 name: 'username',
                 title: '人员名称'
@@ -53,7 +58,8 @@ export default () => {
                 name: 'tags',
                 title: '标签'
             }]}
-            rows={mockData()}
+            rows={data}
+            onChange={setData}
         />
     )
 }

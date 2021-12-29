@@ -1,9 +1,18 @@
 import React, { ReactElement, useMemo } from 'react'
 import { Row, Table as RCTable } from '@weblif/rc-table'
+import { Checkbox, Radio } from 'antd'
 import { Cell } from '@weblif/rc-table/es/types'
+import produce from 'immer'
+
 import styles from './styles/index.less'
 
 type AlignType = 'left' | 'right' | 'center'
+
+
+interface RowSelectType {
+    /** 选择模式, 是单选还是多选模式 */
+    model: 'single' | 'multiple'
+}
 
 interface Column<T> {
 
@@ -15,12 +24,6 @@ interface Column<T> {
 
     /** 列的宽度信息 */
     width?: number
-
-    /** 列的最小宽度 */
-    minWidth?: number
-
-    /** 列的最大宽度 */
-    maxWidth?: number
 
     /** 固定列的方向 */
     fixed?: 'left' | 'right'
@@ -56,25 +59,47 @@ interface TableProps<T> {
     /** 列信息 */
     columns: Column<T>[]
     
+    /** 选择配置 */
+    rowSelection: RowSelectType
+
     /** 表格单击行触发的事件 */
     onRowClick?: (row: T) => void
 
     /** 表格双击行触发的事件 */
     onRowDoubleClick?: (row: T) => void
-}
 
+    /** 改变表格数据触发的事件 */
+    onChange?: (rows: T[]) => void
+
+}
 
 function Table<T> ({
     width,
     height,
     columns = [],
     rows = [],
+    rowSelection,
+    onChange,
     onRowClick,
     onRowDoubleClick
 }: TableProps<T>)  {
 
+    
+    const colsProcess = useMemo(() => {
+        if (rowSelection && rowSelection.model) {
+            columns.splice(0, 0, {
+                name: '$select',
+                title: '',
+                width: 35,
+                fixed: 'left',
+    
+            })
+        }
+        return columns
+    }, [columns])
+
     const headers: Row[] = useMemo(() => {
-        const cells: Cell[] = columns.map(col => ({
+        const cells: Cell[] = colsProcess.map(col => ({
             width: col.width || 120,
             selectd: false,
             key: col.name,
@@ -87,17 +112,65 @@ function Table<T> ({
             key: 'header',
             className: styles.header
         }]
-    }, [columns])
+    }, [colsProcess])
 
     const bodys: Row[] = useMemo(() => {
         return rows.map((row, rowIndex) => {
             const cells: Cell[] = [] 
-            columns.forEach(col => {
-                cells.push({
+            colsProcess.forEach(col => {
+                const value = (row as any)[col.name]
+                const cell: Cell = {
                     width: col.width || 120,
                     key: `${col.name}-${rowIndex}`,
-                    value: (row as any)[col.name] as string,
-                })
+                    value: value as string,
+                }
+
+                if (col.name === '$select') {
+                    cell.selectd = false
+                    cell.className = styles.cellSelect
+                    if (rowSelection?.model === 'multiple') {
+                        cell.value = (
+                            <Checkbox
+                                checked={value === true}
+                                onChange={(e) => {
+                                    const checked = e.target.checked
+                                    const changeData = produce<T[], T[]>(rows, draft => {
+                                        draft.some((ele, index) => {
+                                            if (index === rowIndex) {
+                                                (ele as any)['$select'] = checked
+                                                return true
+                                            }
+                                            return false
+                                        })
+                                    })
+                                    onChange?.(changeData)
+                                }}
+                            />
+                        ) 
+                    } else if (rowSelection?.model === 'single') {
+                        cell.value = (
+                            <Radio
+                                checked={value === true}
+                                onChange={(e) => {
+                                    const checked = e.target.checked
+                                    const changeData = produce<T[], T[]>(rows, draft => {
+                                        draft.forEach((ele, index) => {
+                                            if (index === rowIndex) {
+                                                (ele as any)['$select'] = checked
+                                            } else {
+                                                (ele as any)['$select'] = false
+                                            }
+                                        })
+                                    })
+                                    onChange?.(changeData)
+    
+                                }}
+                            />
+                        )
+                    }
+
+                }
+                cells.push(cell)
             })
             return {
                 height: 35,

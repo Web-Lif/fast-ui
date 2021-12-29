@@ -1,5 +1,4 @@
 {
-    "private": true,
     "name": "@weblif/fast-ui",
     "version": "1.0.0",
     "scripts": {
@@ -44,7 +43,9 @@
         "yorkie": "^2.0.0"
     },
     "dependencies": {
-        "@weblif/rc-table": "^0.0.5-canary",
+        "@ant-design/icons": "^4.7.0",
+        "@weblif/rc-table": "^0.0.8-canary",
+        "immer": "^9.0.7",
         "react-draggable": "^4.4.4"
     }
 }
