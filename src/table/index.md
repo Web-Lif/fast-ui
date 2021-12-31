@@ -53,7 +53,9 @@ export default () => {
             }}
             columns={[{
                 name: 'username',
-                title: '人员名称'
+                title: '人员名称',
+                fixed: 'right',
+
             },{
                 name: 'email',
                 title: '邮箱地址'

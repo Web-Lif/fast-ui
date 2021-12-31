@@ -2,7 +2,6 @@ import React, { ReactElement, useMemo } from 'react'
 import { Row, Table as RCTable } from '@weblif/rc-table'
 import { Cell } from '@weblif/rc-table/es/types'
 
-import styles from './styles/index.less'
 import { Column, RowSelectType } from './type'
 import useBody from './body'
 import useHeader from './header'
@@ -21,7 +20,7 @@ interface TableProps<T> {
 
     /** 列信息 */
     columns: Column<T>[]
-    
+
     /** 选择配置 */
     rowSelection: RowSelectType
 
@@ -36,7 +35,7 @@ interface TableProps<T> {
 
 }
 
-function Table<T> ({
+function Table<T>({
     width,
     height,
     columns = [],
@@ -45,8 +44,8 @@ function Table<T> ({
     onChange,
     onRowClick,
     onRowDoubleClick
-}: TableProps<T>)  {
-    
+}: TableProps<T>) {
+
     const colsProcess = useMemo(() => {
         if (rowSelection && rowSelection.model) {
             columns.splice(0, 0, {
@@ -54,23 +53,24 @@ function Table<T> ({
                 title: '',
                 width: 35,
                 fixed: 'left',
-    
             })
         }
         return columns
     }, [columns])
 
-   const headers = useHeader<T>({
+    const headers = useHeader<T>({
         columns: colsProcess,
-   }) 
+    })
 
-   const bodys = useBody<T>({
+    const bodys = useBody<T>({
         rows,
         columns: colsProcess,
         rowSelection,
         onChange
-   })
+    })
 
+    console.log('headers', headers)
+    console.log('bodys', bodys)
     return (
         <RCTable
             width={width}

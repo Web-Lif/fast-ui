@@ -5,8 +5,7 @@ import produce from 'immer'
 import { Checkbox, Radio } from 'antd'
 
 import { Column, RowSelectType } from './type'
-import styles from './styles/index.less'
-
+import { processColumns } from './utils/column'
 
 interface BodyParam<T> {
     rows: T[]
@@ -17,10 +16,15 @@ interface BodyParam<T> {
 
 function useBody<T>({
     rows,
-    columns,
+    columns: tempColumns,
     rowSelection,
     onChange
 }: BodyParam<T>) {
+
+    const columns = useMemo(() => {
+        return processColumns<T>(tempColumns)
+    }, [tempColumns])
+
     const bodys: Row[] = useMemo(() => {
         return rows.map((row, rowIndex) => {
             const cells: Cell[] = [] 
@@ -36,10 +40,6 @@ function useBody<T>({
 
                 if (col.name === '$select') {
                     cell.selectd = false
-                    cell.className = styles.cellSelect
-                    if (value === true) {
-                        className = styles.selectRow
-                    }
                     if (rowSelection?.model === 'multiple') {
                         cell.value = (
                             <Checkbox
@@ -81,7 +81,10 @@ function useBody<T>({
                         )
                         cell.sticky = 'left'
                     }
+                }
 
+                if (col.fixed) {
+                    cell.sticky = col.fixed
                 }
                 cells.push(cell)
             })
@@ -89,11 +92,10 @@ function useBody<T>({
                 height: 35,
                 cells,
                 key: rowIndex,
-                
                 className
             }
         })
-    }, [rows, columns])
+    }, [rows, processColumns])
     return bodys
 }
 
