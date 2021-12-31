@@ -29,7 +29,14 @@ const mockData = () => {
             username: 'zhangj',
             email: 'zhang@xx.com',
             age: '25',
-            tags: '人类'
+            tags: '人类',
+            col0: `col0 - ${i}`,
+            col1: `col1 - ${i}`,
+            col2: `col2 - ${i}`,
+            col3: `col3 - ${i}`,
+            col4: `col4 - ${i}`,
+            col5: `col5 - ${i}`,
+            col6: `col6 - ${i}`,
         })
     }
     return data
@@ -39,8 +46,8 @@ export default () => {
     const [data, setData] = useState(mockData())
     return (
         <Table
-            width={500}
-            height={200}
+            width={1200}
+            height={600}
             rowSelection={{
                 model: 'multiple'
             }}
@@ -55,6 +62,27 @@ export default () => {
                 title: '年龄'
             },{
                 name: 'tags',
+                title: '标签'
+            },{
+                name: 'col0',
+                title: '标签'
+            },{
+                name: 'col1',
+                title: '标签'
+            },{
+                name: 'col2',
+                title: '标签'
+            },{
+                name: 'col3',
+                title: '标签'
+            },{
+                name: 'col4',
+                title: '标签'
+            },{
+                name: 'col5',
+                title: '标签'
+            },{
+                name: 'col6',
                 title: '标签'
             }]}
             rows={data}
