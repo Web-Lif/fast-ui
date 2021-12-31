@@ -19,6 +19,7 @@ function useHeader<T>({
             selectd: false,
             key: col.name,
             value: col.title,
+            sticky: col.name === '$select' ? 'left' : undefined
         }));
         return [{
             height: 35,

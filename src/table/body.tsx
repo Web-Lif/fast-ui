@@ -59,6 +59,7 @@ function useBody<T>({
                                 }}
                             />
                         ) 
+                        cell.sticky = 'left'
                     } else if (rowSelection?.model === 'single') {
                         cell.value = (
                             <Radio
@@ -78,6 +79,7 @@ function useBody<T>({
                                 }}
                             />
                         )
+                        cell.sticky = 'left'
                     }
 
                 }
@@ -87,6 +89,7 @@ function useBody<T>({
                 height: 35,
                 cells,
                 key: rowIndex,
+                
                 className
             }
         })
