@@ -44,8 +44,9 @@
     },
     "dependencies": {
         "@ant-design/icons": "^4.7.0",
-        "@weblif/rc-table": "^0.0.17-canary",
+        "@weblif/rc-table": "^0.0.19-canary",
         "immer": "^9.0.7",
+        "jsonata": "^1.8.5",
         "react-draggable": "^4.4.4"
     }
 }

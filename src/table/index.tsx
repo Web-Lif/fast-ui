@@ -1,6 +1,5 @@
-import React, { ReactElement, useMemo } from 'react'
-import { Row, Table as RCTable } from '@weblif/rc-table'
-import { Cell } from '@weblif/rc-table/es/types'
+import React, { useMemo } from 'react'
+import { Table as RCTable } from '@weblif/rc-table'
 
 import { Column, RowSelectType } from './type'
 import useBody from './body'
@@ -32,7 +31,6 @@ interface TableProps<T> {
 
     /** 改变表格数据触发的事件 */
     onChange?: (rows: T[]) => void
-
 }
 
 function Table<T>({
@@ -69,16 +67,24 @@ function Table<T>({
         onChange
     })
 
-    console.log('headers', headers)
-    console.log('bodys', bodys)
     return (
-        <RCTable
+        <RCTable<T>
             width={width}
             height={height}
             rows={headers.concat(bodys)}
-            onRowClick={() => {
+            onRowClick={({
+                row
+            }) => {
+                if (row.object) {
+                    onRowClick?.(row.object)
+                }
             }}
-            onRowDoubleClick={() => {
+            onRowDoubleClick={({
+                row
+            }) => {
+                if (row.object) {
+                    onRowDoubleClick?.(row.object)
+                }
             }}
         />
     )

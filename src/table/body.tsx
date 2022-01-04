@@ -3,6 +3,7 @@ import { Row } from '@weblif/rc-table'
 import { Cell } from '@weblif/rc-table/es/types'
 import produce from 'immer'
 import { Checkbox, Radio } from 'antd'
+import jsonata from 'jsonata'
 
 import { Column, RowSelectType } from './type'
 import { processColumns } from './utils/column'
@@ -25,13 +26,13 @@ function useBody<T>({
         return processColumns<T>(tempColumns)
     }, [tempColumns])
 
-    const bodys: Row[] = useMemo(() => {
+    const bodys: Row<T>[] = useMemo(() => {
         return rows.map((row, rowIndex) => {
             const cells: Cell[] = [] 
 
             let className = ''
             columns.forEach(col => {
-                const value = (row as any)[col.name]
+                const value = jsonata(col.name).evaluate(row)
                 const cell: Cell = {
                     width: col.width || 120,
                     key: `${col.name}-${rowIndex}`,
@@ -92,7 +93,8 @@ function useBody<T>({
                 height: 35,
                 cells,
                 key: rowIndex,
-                className
+                className,
+                object: row
             }
         })
     }, [rows, processColumns])

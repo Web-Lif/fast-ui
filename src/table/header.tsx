@@ -18,7 +18,7 @@ function useHeader<T>({
         return processColumns<T>(tempColumns)
     }, [tempColumns])
 
-    const headers: Row[] = useMemo(() => {
+    const headers: Row<T>[] = useMemo(() => {
         const cells: Cell[] = columns.map(col => ({
             width: col.width || 120,
             selectd: false,
