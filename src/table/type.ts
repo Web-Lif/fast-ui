@@ -12,7 +12,7 @@ export interface Column<T> {
 
     /** 对应的字段名称 */
     name: string
-
+    
     /** 标题显示的名称 */
     title: string
 

@@ -51,9 +51,6 @@ export default () => {
             rowSelection={{
                 model: 'multiple'
             }}
-            onRowClick={(row) => {
-                console.log(row)
-            }}
             columns={[{
                 name: 'username',
                 title: '人员名称',

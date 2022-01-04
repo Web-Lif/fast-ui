@@ -32,7 +32,9 @@ function useBody<T>({
 
             let className = ''
             columns.forEach(col => {
-                const value = jsonata(col.name).evaluate(row)
+
+                let value = (row as any)[col.name]
+                
                 const cell: Cell = {
                     width: col.width || 120,
                     key: `${col.name}-${rowIndex}`,
