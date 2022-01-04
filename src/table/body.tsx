@@ -3,7 +3,6 @@ import { Row } from '@weblif/rc-table'
 import { Cell } from '@weblif/rc-table/es/types'
 import produce from 'immer'
 import { Checkbox, Radio } from 'antd'
-import jsonata from 'jsonata'
 
 import { Column, RowSelectType } from './type'
 import { processColumns } from './utils/column'
