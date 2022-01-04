@@ -46,6 +46,7 @@
         "@ant-design/icons": "^4.7.0",
         "@weblif/rc-table": "^0.0.19-canary",
         "immer": "^9.0.7",
+        "qrcode.react": "^1.0.1",
         "react-draggable": "^4.4.4"
     }
 }
