@@ -3,12 +3,11 @@ nav:
     title: Components
     path: /components
 group:
-    path: /components/table
-    title: 表格
+    path: /components/data
+    title: 数据
 ---
 
 ## Table 表格
-
 
 
 ```tsx

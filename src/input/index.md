@@ -3,8 +3,8 @@ nav:
     title: Components
     path: /components
 group:
-    path: /components/input
-    title: 数据录入
+    path: /components/data
+    title: 数据
 ---
 
 ## InputNumber 数字输入框

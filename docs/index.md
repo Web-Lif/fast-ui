@@ -1,6 +1,6 @@
 ---
 hero:
-    title: AntPro
+    title: Fast UI
     desc: 提供高级便捷的组件库, 让 `antd` 更加易用
     actions:
         - text: 快速开始
