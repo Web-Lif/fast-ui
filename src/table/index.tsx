@@ -1,36 +1,34 @@
-import React, { useMemo } from 'react'
-import { Table as RCTable } from '@weblif/rc-table'
+import React, { useMemo } from 'react';
+import { Table as RCTable } from '@weblif/rc-table';
 
-import { Column, RowSelectType } from './type'
-import useBody from './body'
-import useHeader from './header'
-
-
+import { Column, RowSelectType } from './type';
+import useBody from './body';
+import useHeader from './header';
 
 interface TableProps<T> {
     /** 表格的宽度 */
-    width: number
+    width: number;
 
     /** 表格的高度信息 */
-    height: number
+    height: number;
 
     /** 实际表格的内容信息 */
-    rows: T[]
+    rows: T[];
 
     /** 列信息 */
-    columns: Column<T>[]
+    columns: Column<T>[];
 
     /** 选择配置 */
-    rowSelection: RowSelectType
+    rowSelection: RowSelectType;
 
     /** 表格单击行触发的事件 */
-    onRowClick?: (row: T) => void
+    onRowClick?: (row: T) => void;
 
     /** 表格双击行触发的事件 */
-    onRowDoubleClick?: (row: T) => void
+    onRowDoubleClick?: (row: T) => void;
 
     /** 改变表格数据触发的事件 */
-    onChange?: (rows: T[]) => void
+    onChange?: (rows: T[]) => void;
 }
 
 function Table<T>({
@@ -41,9 +39,8 @@ function Table<T>({
     rowSelection,
     onChange,
     onRowClick,
-    onRowDoubleClick
+    onRowDoubleClick,
 }: TableProps<T>) {
-
     const colsProcess = useMemo(() => {
         if (rowSelection && rowSelection.model) {
             columns.splice(0, 0, {
@@ -51,43 +48,39 @@ function Table<T>({
                 title: '',
                 width: 35,
                 fixed: 'left',
-            })
+            });
         }
-        return columns
-    }, [columns])
+        return columns;
+    }, [columns]);
 
     const headers = useHeader<T>({
         columns: colsProcess,
-    })
+    });
 
     const bodys = useBody<T>({
         rows,
         columns: colsProcess,
         rowSelection,
-        onChange
-    })
+        onChange,
+    });
 
     return (
         <RCTable<T>
             width={width}
             height={height}
             rows={headers.concat(bodys)}
-            onRowClick={({
-                row
-            }) => {
+            onRowClick={({ row }) => {
                 if (row.object) {
-                    onRowClick?.(row.object)
+                    onRowClick?.(row.object);
                 }
             }}
-            onRowDoubleClick={({
-                row
-            }) => {
+            onRowDoubleClick={({ row }) => {
                 if (row.object) {
-                    onRowDoubleClick?.(row.object)
+                    onRowDoubleClick?.(row.object);
                 }
             }}
         />
-    )
+    );
 }
 
-export default Table
+export default Table;
