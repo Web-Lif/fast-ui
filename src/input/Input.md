@@ -55,6 +55,8 @@ export default () => {
     return (
         <>
             <Input.TextArea
+                maxLength={100}
+                showCount
                 onChange={(value) => {
                     console.log(value);
                 }}

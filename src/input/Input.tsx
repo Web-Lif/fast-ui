@@ -1,40 +1,47 @@
-import React, { ChangeEvent, FC } from 'react'
-import { Input as AntInput, InputProps as AntInputProps} from 'antd'
+import React, { ChangeEvent, FC } from 'react';
+import { Input as AntInput, InputProps as AntInputProps } from 'antd';
+import { TextAreaProps as AntTextAreaProps } from 'antd/lib/input';
+
+import './styles/input.less';
 
 interface InputProps extends Omit<AntInputProps, 'onChange'> {
-    onChange?: (value: string, event: ChangeEvent<HTMLInputElement>) => void
+    onChange?: (value: string, event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-
-const InternalInput: FC<InputProps> = ({
-    onChange,
-    ...restProps
-}) => {
+const InternalInput: FC<InputProps> = ({ onChange, className, ...restProps }) => {
     return (
         <AntInput
+            className={`fu-input-count ${className}`}
             {...restProps}
             onChange={(event) => {
-                const value: string = event.currentTarget.value as string
-                onChange?.(value, event)
+                const value: string = event.currentTarget.value as string;
+                onChange?.(value, event);
             }}
         />
-    )
-}
+    );
+};
 
 type InternalInputType = typeof InternalInput;
 
+interface TextAreaProps extends AntTextAreaProps {}
+
+const TextArea: FC<TextAreaProps> = ({ className, ...restProps }) => {
+    return <AntInput.TextArea className="fu-input-count" {...restProps} />;
+};
+
 interface InputInterface extends InternalInputType {
-    Group: typeof AntInput.Group
-    Search: typeof AntInput.Search
-    TextArea: typeof AntInput.TextArea
-    Password: typeof AntInput.Password
+    Group: typeof AntInput.Group;
+    Search: typeof AntInput.Search;
+    TextArea: typeof TextArea;
+    Password: typeof AntInput.Password;
 }
 
 const Input = InternalInput as InputInterface;
 
-Input.Group = AntInput.Group
-Input.Search = AntInput.Search
-Input.TextArea = AntInput.TextArea
-Input.Password = AntInput.Password
+Input.Group = AntInput.Group;
+Input.Search = AntInput.Search;
 
-export default Input
+Input.TextArea = TextArea;
+Input.Password = AntInput.Password;
+
+export default Input;
