@@ -1,4 +1,4 @@
-<h1 align="center">FastUI</h1>
+<h1 align="center">Fast UI</h1>
 
 <div align="center">
     企业级的UI组件库，适合在大数据处理，或经常使用 CURD 的场景
