@@ -1,9 +1,10 @@
-export { default as Button } from './button'
-export type { ButtonProps } from './button'
-export { default as Modal } from './modal'
-export type { ModalProps, ModalInstance } from './modal'
-export { default as Spin} from './spin'
-export { default as InputNumber} from './input/InputNumber'
-export { default as Table } from './table/index'
-export { default as Form} from './form/index'
-export { default as Input} from './input/Input'
+export { default as Button } from './button';
+export type { ButtonProps } from './button';
+export { default as Modal } from './modal';
+export type { ModalProps, ModalInstance } from './modal';
+export { default as Spin } from './spin';
+export { default as InputNumber } from './input/InputNumber';
+export { default as Table } from './table/index';
+export { default as Form } from './form/index';
+export { default as Input } from './input/Input';
+export { getHolidayInformation } from './utils/holiday';

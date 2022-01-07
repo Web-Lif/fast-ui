@@ -51,6 +51,7 @@
     "dependencies": {
         "@ant-design/icons": "^4.7.0",
         "@weblif/rc-table": "^0.0.19-canary",
+        "date-fns": "^2.28.0",
         "immer": "^9.0.7",
         "react-draggable": "^4.4.4"
     }
