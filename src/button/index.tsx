@@ -1,4 +1,4 @@
-import React,  { useEffect, useState } from 'react'
+import React,  { useState } from 'react'
 import { Button as AButton, ButtonProps as AButtonProps} from 'antd'
 
 export interface ButtonProps extends Omit<AButtonProps, 'onClick'> {
