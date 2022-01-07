@@ -53,7 +53,7 @@ import 'antd/dist/antd.css';
 export default () => {
     return (
         <>
-            <Input
+            <Input.TextArea
                 onChange={(value) => {
                     console.log(value)
                 }}
