@@ -1,0 +1,5 @@
+.fu-half-inline-block {
+    width: calc(50% - 2rem);
+    display:inline-block;
+    margin: 1rem;
+}

@@ -17,6 +17,12 @@
     "gitHooks": {
         "pre-commit": "lint-staged"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Web-Lif/fast-ui.git",
+        "branch": "canary",
+        "platform": "github"
+    },
     "lint-staged": {
         "*.{js,jsx,less,md,json}": [
             "prettier --write"

@@ -15,10 +15,12 @@ group:
 
 例子: 
 
+<div class="fu-half-inline-block">
+
 ```tsx
 /**
- * title: 执行耗时任务
- * desc: 执行耗时任务可以自动进行防止多次点击按钮, 当执行成功后才让继续点击
+ * title: 基础使用
+ * desc: 这是一个简单使用的例子
  */
 import React, { useState, useRef} from 'react';
 import { Input } from '@weblif/fast-ui';
@@ -36,3 +38,29 @@ export default () => {
     )
 }
 ```
+</div>
+<div class="fu-half-inline-block">
+
+```tsx
+/**
+ * title: 文本域
+ * desc: 用于多行输入。
+ */
+import React, { useState, useRef} from 'react';
+import { Input } from '@weblif/fast-ui';
+import 'antd/dist/antd.css';
+
+export default () => {
+    return (
+        <>
+            <Input
+                onChange={(value) => {
+                    console.log(value)
+                }}
+            />
+        </>
+    )
+}
+```
+
+</div>
