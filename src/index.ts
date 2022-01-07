@@ -8,3 +8,5 @@ export { default as Table } from './table/index';
 export { default as Form } from './form/index';
 export { default as Input } from './input/Input';
 export { getHolidayInformation } from './utils/holiday';
+export { default as Rate } from './rate/index';
+export { default as Avatar } from './avatar/index';
