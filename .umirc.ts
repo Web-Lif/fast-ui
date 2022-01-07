@@ -11,5 +11,14 @@ export default defineConfig({
     outputPath: 'docs-dist',
     mode: 'site',
     locales: [['zh-CN', '中文']],
-    styles: [globalCss.toString('utf-8')]
+    styles: [globalCss.toString('utf-8')],
+    navs: {
+        'zh-CN': [
+            null,
+            {
+                title: 'GitHub',
+                path: 'https://github.com/Web-Lif/fast-ui',
+            },
+        ],
+    },
 });

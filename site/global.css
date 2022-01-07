@@ -3,3 +3,7 @@
     display:inline-block;
     margin: 1rem;
 }
+
+.__dumi-default-layout-hero.__dumi-default-layout-hero button {
+    border-radius: 2px;
+}
