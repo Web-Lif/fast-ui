@@ -23,7 +23,7 @@
 ```bash
 npm install @weblif/fast-ui --save
 # or 
-yarn add antd
+yarn add @weblif/fast-ui
 ```
 
 ## 🔨 示例
