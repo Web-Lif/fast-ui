@@ -18,8 +18,10 @@ const InternalForm: FC<FormProps> = ({
         let cell: ReactElement[] = []
         children.forEach((element, index) => {
             const { colSpan, rowSpan } = element.props
+            const { key } = element
             cell.push(
                 <td
+                    key={`td-${key}`}
                     colSpan={colSpan}
                     rowSpan={rowSpan}
                 >
@@ -28,15 +30,17 @@ const InternalForm: FC<FormProps> = ({
             )
             if ((index + 1) % cols === 0) {
                 rows.push(
-                    <tr>
+                    <tr key={`tr-${key}`}>
                         {cell}
                     </tr>
                 )
                 cell = []
             }
         })
+
+        const lastKey = children[children.length - 1].key
         rows.push(
-            <tr>
+            <tr key={`tr-${lastKey}`}>
                 {cell}
             </tr>
         )
@@ -45,7 +49,9 @@ const InternalForm: FC<FormProps> = ({
                 <table
                     className="fu-form"
                 >
-                    {rows}
+                    <tbody>
+                        {rows}
+                    </tbody>
                 </table>
             </AntForm>
 
