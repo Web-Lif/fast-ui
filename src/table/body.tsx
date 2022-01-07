@@ -6,7 +6,7 @@ import { Checkbox, Radio } from 'antd';
 
 import { Column, RowSelectType } from './type';
 import { processColumns } from './utils/column';
-import styles from './styles/index.less';
+import './styles/index.less'
 
 interface BodyParam<T> {
     rows: T[];
@@ -57,7 +57,7 @@ function useBody<T>({ rows, columns: tempColumns, rowSelection, onChange }: Body
                     cell.value = (
                         <Radio
                             checked={value === true}
-                            className={styles.removeSinglePadding}
+                            className='fu-form-select-radio'
                             onChange={(e) => {
                                 const checked = e.target.checked;
                                 const changeData = produce<T[], T[]>(rows, (draft) => {

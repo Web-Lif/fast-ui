@@ -1,6 +1,6 @@
 import React, { FC, ReactElement } from 'react'
 import { FormProps as AntFormProps, Form as AntForm, FormItemProps as AntFormItemProps} from 'antd'
-import styles from './styles/index.less'
+import './styles/index.less'
 
 interface FormProps extends AntFormProps {
     cols?: number
@@ -43,7 +43,7 @@ const InternalForm: FC<FormProps> = ({
         return (
             <AntForm {...restProps}>
                 <table
-                    className={styles.form}
+                    className="fu-form"
                 >
                     {rows}
                 </table>
