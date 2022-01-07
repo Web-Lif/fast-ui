@@ -5,7 +5,7 @@ import { join } from 'path'
 const globalCss = readFileSync(join(__dirname, 'site', 'global.css'))
 
 export default defineConfig({
-    title: 'FastUI',
+    title: 'Fast UI',
     favicon: 'https://avatars.githubusercontent.com/u/91562499?s=200&v=4',
     logo: 'https://avatars.githubusercontent.com/u/91562499?s=200&v=4',
     outputPath: 'docs-dist',
