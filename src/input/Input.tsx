@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC } from 'react';
 import { Input as AntInput, InputProps as AntInputProps } from 'antd';
 import { TextAreaProps as AntTextAreaProps } from 'antd/lib/input';
-
+import { classNames } from '../utils/css';
 import './styles/input.less';
 
 interface InputProps extends Omit<AntInputProps, 'onChange'> {
@@ -11,7 +11,7 @@ interface InputProps extends Omit<AntInputProps, 'onChange'> {
 const InternalInput: FC<InputProps> = ({ onChange, className, ...restProps }) => {
     return (
         <AntInput
-            className={`fu-input-count ${className}`}
+            className={`fu-input-count ${className || ''}`}
             {...restProps}
             onChange={(event) => {
                 const value: string = event.currentTarget.value as string;
@@ -26,7 +26,14 @@ type InternalInputType = typeof InternalInput;
 interface TextAreaProps extends AntTextAreaProps {}
 
 const TextArea: FC<TextAreaProps> = ({ className, ...restProps }) => {
-    return <AntInput.TextArea className="fu-input-count" {...restProps} />;
+    return (
+        <AntInput.TextArea
+            className={classNames({
+                'fu-input-count': true,
+            })}
+            {...restProps}
+        />
+    );
 };
 
 interface InputInterface extends InternalInputType {

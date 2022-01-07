@@ -1,6 +1,6 @@
 .fu-half-inline-block {
+    display: inline-block;
     width: calc(50% - 2rem);
-    display:inline-block;
     margin: 1rem;
     vertical-align: top;
 }
