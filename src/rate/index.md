@@ -56,8 +56,8 @@ export default () => {
 
 ```tsx
 /**
- * title: 半星
- * desc: 支持选中半星。
+ * title: 只读
+ * desc: 只读，无法进行鼠标交互。
  */
 import React from 'react';
 import { Rate } from '@weblif/fast-ui';
