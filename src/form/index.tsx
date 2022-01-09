@@ -6,6 +6,7 @@ import {
 } from 'antd';
 import { classNames } from '../utils/css';
 import './styles/index.less';
+import 'antd/es/form/style/index';
 
 interface FormProps extends AntFormProps {
     cols?: number;

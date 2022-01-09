@@ -1,36 +1,37 @@
-import React,  { useState } from 'react'
-import { Button as AButton, ButtonProps as AButtonProps} from 'antd'
+import React, { useState } from 'react';
+import { Button as AButton, ButtonProps as AButtonProps } from 'antd';
+import 'antd/es/button/style/index';
 
 export interface ButtonProps extends Omit<AButtonProps, 'onClick'> {
     /** 点击按钮触发的事件, 返回一个 `Promise<void>` 对象 */
-    onClick?: (event:  React.MouseEvent<HTMLElement, MouseEvent>) => Promise<void> | void | boolean
+    onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => Promise<void> | void | boolean;
 }
 
 const Button = (props: ButtonProps) => {
-    const {onClick, disabled: dis, ...restProps} = props
+    const { onClick, disabled: dis, ...restProps } = props;
 
-    const [disabled, setDisabled] = useState(dis)
+    const [disabled, setDisabled] = useState(dis);
 
     return (
         <AButton
             {...restProps}
             disabled={dis ? dis : disabled}
             onClick={(e) => {
-                setDisabled(true)
-                const res = onClick?.(e)
+                setDisabled(true);
+                const res = onClick?.(e);
                 if (res instanceof Promise) {
                     res?.then(() => {
-                        setDisabled(false)
+                        setDisabled(false);
                     }).catch((error) => {
-                        console.error(error)
-                        setDisabled(false)
-                    })
+                        console.error(error);
+                        setDisabled(false);
+                    });
                 } else {
-                    setDisabled(false)
+                    setDisabled(false);
                 }
             }}
         />
-    )
-}
+    );
+};
 
-export default Button
+export default Button;

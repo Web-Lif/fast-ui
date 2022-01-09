@@ -23,8 +23,6 @@ group:
  */
 import React from 'react';
 import { Button, getHolidayInformation } from '@weblif/fast-ui';
-import { message } from 'antd';
-import 'antd/dist/antd.css';
 
 /** Mock 请求数据, 或则一些耗时操作 */
 const requestData = () => {
@@ -40,7 +38,7 @@ export default () => {
         <Button
             onClick={async () => {
                 const msg = await requestData();
-                message.info(msg);
+                console.log(msg);
             }}
         >
             async 请求远程数据

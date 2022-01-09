@@ -43,7 +43,6 @@ export default () => {
  */
 import React from 'react';
 import { Rate } from '@weblif/fast-ui';
-import 'antd/dist/antd.css';
 
 export default () => {
     return <Rate allowHalf defaultValue={2.5} />;
@@ -61,7 +60,6 @@ export default () => {
  */
 import React from 'react';
 import { Rate } from '@weblif/fast-ui';
-import 'antd/dist/antd.css';
 
 export default () => {
     return <Rate disabled defaultValue={2} />;

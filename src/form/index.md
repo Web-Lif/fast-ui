@@ -21,9 +21,7 @@ group:
  * desc: 通过 `cols` 和 `colSpan` 以及 `rowSpan` 作为表单的简单布局
  */
 import React, { useState, useRef } from 'react';
-import { Form } from '@weblif/fast-ui';
-import { Input } from 'antd';
-import 'antd/dist/antd.css';
+import { Form, Input } from '@weblif/fast-ui';
 
 export default () => {
     return (
