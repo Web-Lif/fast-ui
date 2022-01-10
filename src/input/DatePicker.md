@@ -11,6 +11,8 @@ group:
 
 输入或选择日期的控件。
 
+
+
 <br />
 
 例子:
@@ -18,6 +20,7 @@ group:
 <div class="fu-code-block-row">
 
 <div class="fu-code-block-col-2-1">
+
 
 ```tsx
 /**
@@ -102,6 +105,7 @@ export default () => {
 
 ### API
 
+
 日期类组件包括以下五种形式。
 
 - DatePicker
@@ -110,6 +114,7 @@ export default () => {
 - DatePicker[picker="year"]
 - DatePicker[picker="quarter"]
 - RangePicker
+
 
 国际化配置
 
@@ -257,3 +262,8 @@ import locale from 'antd/lib/locale/zh_CN';
 |value                |日期                  | `Date[]`
 |onCalendarChange     |待选日期发生变化的回调   |`function(dates: [Date, Date], dateStrings: [string, string], info: { range:start|end })`
 |onChange             |日期范围发生变化的回调   |`function(dates: [Date, Date], dateStrings: [string, string])`
+
+
+<br />
+
+- 字符串格式化 [https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)
