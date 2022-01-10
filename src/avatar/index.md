@@ -11,7 +11,9 @@ group:
 
 用来代表用户或事物，支持图片、图标或字符展示。
 
-<div class="fu-half-inline-block">
+<div class="fu-code-block-row">
+
+<div class="fu-code-block-col-2-1">
 
 ```tsx
 /**
@@ -37,7 +39,7 @@ export default () => {
 
 </div>
 
-<div class="fu-half-inline-block">
+<div class="fu-code-block-col-2-1">
 
 ```tsx
 /**
@@ -75,6 +77,7 @@ export default () => {
 };
 ```
 
+</div>
 </div>
 
 ### Avatar

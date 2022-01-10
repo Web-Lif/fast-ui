@@ -16,7 +16,9 @@ group:
 -   对评价进行展示。
 -   对事物进行快速的评级操作。
 
-<div class="fu-half-inline-block">
+<div class="fu-code-block-row">
+
+<div class="fu-code-block-col-2-1">
 
 ```tsx
 /**
@@ -32,9 +34,24 @@ export default () => {
 };
 ```
 
+```tsx
+/**
+ * title: 只读
+ * desc: 只读，无法进行鼠标交互。
+ */
+import React from 'react';
+import { Rate } from '@weblif/fast-ui';
+
+export default () => {
+    return <Rate disabled defaultValue={2} />;
+};
+```
+
 </div>
 
-<div class="fu-half-inline-block">
+
+<div class="fu-code-block-col-2-1">
+
 
 ```tsx
 /**
@@ -51,22 +68,9 @@ export default () => {
 
 </div>
 
-<div class="fu-half-inline-block">
-
-```tsx
-/**
- * title: 只读
- * desc: 只读，无法进行鼠标交互。
- */
-import React from 'react';
-import { Rate } from '@weblif/fast-ui';
-
-export default () => {
-    return <Rate disabled defaultValue={2} />;
-};
-```
-
 </div>
+
+<br />
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
