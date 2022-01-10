@@ -16,3 +16,7 @@
 .__dumi-default-search-input.__dumi-default-search-input {
     border-radius: 2px;
 }
+
+.__dumi-default-navbar-logo.__dumi-default-navbar-logo {
+    cursor: pointer;
+}
