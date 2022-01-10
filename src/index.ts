@@ -13,3 +13,4 @@ export { default as Rate } from './rate';
 export { default as Avatar } from './avatar';
 export { default as Pagination } from './pagination';
 export { default as DatePicker } from './input/DatePicker'
+export { default as Checkbox } from './input/Checkbox'

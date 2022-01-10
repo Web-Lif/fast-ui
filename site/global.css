@@ -1,8 +1,12 @@
-.fu-half-inline-block {
-    display: inline-block;
-    width: calc(50% - 2rem);
-    margin: 1rem;
+.fu-code-block-row {
+    display: flex;
     vertical-align: top;
+}
+
+.fu-code-block-col-2-1 {
+    flex: 0 0 50%;
+    max-width: calc(50% - 2rem);
+    margin: 1rem;
 }
 
 .__dumi-default-layout-hero.__dumi-default-layout-hero button {

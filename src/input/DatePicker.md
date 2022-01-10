@@ -15,7 +15,9 @@ group:
 
 例子:
 
-<div class="fu-half-inline-block">
+<div class="fu-code-block-row">
+
+<div class="fu-code-block-col-2-1">
 
 ```tsx
 /**
@@ -37,6 +39,62 @@ export default () => {
     );
 };
 ```
+
+```tsx
+/**
+ * title: 定制日期单元格
+ * desc: 使用 `dateRender` 可以自定义日期单元格的内容和样式。
+ */
+import React, { useState, useRef } from 'react';
+import { DatePicker } from '@weblif/fast-ui';
+import { getDate } from 'date-fns'
+
+export default () => {
+    return (
+        <DatePicker
+            dateRender={current => {
+                const style = {};
+                if (getDate(current) === 1) {
+                    style.border = '1px solid #1890ff';
+                    style.borderRadius = '50%';
+                } 
+                return (
+                    <div className="ant-picker-cell-inner" style={style}>
+                        {getDate(current)}
+                    </div>
+                );
+            }}
+        />
+    );
+};
+```
+
+</div>
+
+
+<div class="fu-code-block-col-2-1">
+
+```tsx
+/**
+ * title: 范围选择器
+ * desc: 通过设置 `picker` 属性，指定范围选择器类型。
+ */
+import React, { useState, useRef } from 'react';
+import { DatePicker } from '@weblif/fast-ui';
+
+export default () => {
+    return (
+        <DatePicker.RangePicker
+            onChange={(e) => {
+                console.log(e)
+            }}
+        />
+    );
+};
+```
+
+</div>
+
 
 </div>
 
