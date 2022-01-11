@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="https://avatars.githubusercontent.com/u/91562499?s=200&amp;v=4"
+    />
+    <style>
+      .fu-code-block-row {
+        display: flex;
+        vertical-align: top;
+      }
+
+      .fu-code-block-col-2-1 {
+        flex: 0 0 50%;
+        max-width: calc(50% - 2rem);
+        margin: 1rem;
+      }
+
+      .__dumi-default-layout-hero.__dumi-default-layout-hero button {
+        border-radius: 2px;
+      }
+
+      .__dumi-default-search-input.__dumi-default-search-input {
+        border-radius: 2px;
+      }
+
+      .__dumi-default-navbar-logo.__dumi-default-navbar-logo {
+        cursor: pointer;
+      }
+    </style>
+    <link rel="stylesheet" href="/umi.css" />
+    <script>
+      window.routerBase = "/";
+    </script>
+    <script>
+      //! umi version: 3.5.20
+    </script>
+    <script>
+      !(function () {
+        var e = localStorage.getItem("dumi:prefers-color"),
+          t = window.matchMedia("(prefers-color-scheme: dark)").matches,
+          r = ["light", "dark", "auto"];
+        document.documentElement.setAttribute(
+          "data-prefers-color",
+          e === r[2] ? (t ? r[1] : r[0]) : r.indexOf(e) > -1 ? e : r[0]
+        );
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="/umi.js"></script>
+  </body>
+</html>
