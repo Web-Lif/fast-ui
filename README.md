@@ -24,7 +24,7 @@
 
 ```bash
 npm install @weblif/fast-ui --save
-# or
+# or 
 yarn add @weblif/fast-ui
 ```
 
