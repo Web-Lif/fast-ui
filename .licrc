@@ -10,7 +10,7 @@ accepted = ["MIT", "MSC", "BSD"]
 
 [dependencies]
 # This will allow users to flag some dependencies so that Licensebat will not check for their license.
-ignored=["ignored_dep1", "ignored_dep2"]
+ignored=[]
 
 [behavior]
 # False by default, if true, it will only run the checks when one of the dependency files or the .licrc file has been modified.
