@@ -1,1 +1,1 @@
-export { Print } from '@weblif/rc-print';
+export { Print, printSnapshotDom } from '@weblif/rc-print';

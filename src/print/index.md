@@ -35,6 +35,7 @@ export default () => {
         <>
             <Button
                 onClick={async () => {
+                    console.log('print.current.print()')
                     await print.current.print()
                 }}
             >
@@ -74,7 +75,7 @@ export default () => {
  * desc: 打印指定的元素
  */
 import React, { useState, useRef } from 'react';
-import { Print, Button } from '@weblif/fast-ui';
+import { printSnapshotDom, Button } from '@weblif/fast-ui';
 
 export default () => {
     const print = useRef()
@@ -83,17 +84,14 @@ export default () => {
             <Button
                 onClick={async () => {
                     const table = document.querySelector('#table')
-                    await print.current.print(table)
+                    await printSnapshotDom(table)
                 }}
             >
                 点击打印指定的网页元素
             </Button>
             <br />
             <br />
-            <Print
-                print={print}
-            />
-                
+
             <table border="1" id="table">
                 <tbody>
                     <tr>
@@ -125,6 +123,4 @@ export default () => {
 
 | 名称  | 类型
 |----  |-------
-|print |`(element?: HTMLElement) => Promise<void>`
-
-> 如果有参数表示打印对应的 `HTMLElement` 如果没有表示打印子元素信息
+|print |`() => Promise<void>`

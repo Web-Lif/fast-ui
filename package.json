@@ -52,7 +52,7 @@
         "yorkie": "^2.0.0"
     },
     "dependencies": {
-        "@weblif/rc-print": "^0.0.3-canary",
+        "@weblif/rc-print": "^0.0.5-canary",
         "@weblif/rc-table": "^0.0.19-canary",
         "react-draggable": "^4.4.4"
     }
