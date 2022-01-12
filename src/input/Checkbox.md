@@ -34,7 +34,9 @@ export default () => {
                onChange={(value) => {
                    console.log(value)
                }}
-            />
+            >
+                Checkbox
+            </Checkbox>
         </>
     );
 };
@@ -57,7 +59,9 @@ export default () => {
         <>
             <Checkbox
                 disabled
-            />
+            >
+                Checkbox
+            </Checkbox>
         </>
     );
 };
