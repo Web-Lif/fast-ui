@@ -15,7 +15,9 @@ group:
 
 例子:
 
+<div class="fu-code-block-row">
 
+<div class="fu-code-block-col-2-1">
 
 ```tsx
 /**
@@ -37,6 +39,32 @@ export default () => {
     );
 };
 ```
+
+</div>
+
+<div class="fu-code-block-col-2-1">
+
+```tsx
+/**
+ * title: 不可用
+ * desc: Checkbox 不可用
+ */
+import React, { useState, useRef } from 'react';
+import { Checkbox } from '@weblif/fast-ui';
+
+export default () => {
+    return (
+        <>
+            <Checkbox
+                disabled
+            />
+        </>
+    );
+};
+```
+
+</div>
+
 
 </div>
 
