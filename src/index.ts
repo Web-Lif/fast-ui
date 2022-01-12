@@ -15,3 +15,4 @@ export { default as Pagination } from './pagination';
 export { default as DatePicker } from './input/DatePicker'
 export { default as Checkbox } from './input/Checkbox'
 export { default as Radio } from './input/Radio'
+export { Print } from './print'

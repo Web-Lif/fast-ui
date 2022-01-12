@@ -1,0 +1,1 @@
+export { Print } from '@weblif/rc-print';
