@@ -1,6 +1,6 @@
 ---
 nav:
-    title: Components
+    title: 组件
     path: /components
 group:
     path: /components/data
@@ -31,9 +31,9 @@ export default () => {
     return (
         <>
             <Checkbox
-               onChange={(value) => {
-                   console.log(value)
-               }}
+                onChange={(value) => {
+                    console.log(value);
+                }}
             >
                 Checkbox
             </Checkbox>
@@ -57,11 +57,7 @@ import { Checkbox } from '@weblif/fast-ui';
 export default () => {
     return (
         <>
-            <Checkbox
-                disabled
-            >
-                Checkbox
-            </Checkbox>
+            <Checkbox disabled>Checkbox</Checkbox>
         </>
     );
 };

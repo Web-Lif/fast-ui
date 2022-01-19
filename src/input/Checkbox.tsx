@@ -1,32 +1,26 @@
-import React, { FC } from 'react'
-import { Checkbox as AntCheckbox, CheckboxProps as AntCheckboxProps } from 'antd'
-import { CheckboxChangeEvent } from 'antd/es/checkbox'
-import 'antd/es/checkbox/style/index'
+import React, { FC } from 'react';
+import { Checkbox as AntCheckbox, CheckboxProps as AntCheckboxProps } from 'antd';
+import { CheckboxChangeEvent } from 'antd/es/checkbox';
+import 'antd/es/checkbox/style/index';
 
 interface CheckboxProps extends Omit<AntCheckboxProps, 'value' | 'checked' | 'onChange'> {
-    value?: boolean 
-    onChange?: (value: boolean, event: CheckboxChangeEvent) => void
+    value?: boolean;
+    onChange?: (value: boolean, event: CheckboxChangeEvent) => void;
 }
 
-const InternalCheckbox: FC<CheckboxProps>= ({
-    value,
-    onChange,
-    ...restProps
-}) => {
-
+const InternalCheckbox: FC<CheckboxProps> = ({ value, onChange, ...restProps }) => {
     return (
         <AntCheckbox
             onChange={(e) => {
-                onChange?.(e.target.checked, e)
+                onChange?.(e.target.checked, e);
             }}
             {...{
-                value
+                value,
             }}
             {...restProps}
         />
-    )
-}
-
+    );
+};
 
 type InternalCheckboxType = typeof InternalCheckbox;
 
@@ -36,9 +30,6 @@ interface CheckboxInterface extends InternalCheckboxType {
 
 const Checkbox = InternalCheckbox as CheckboxInterface;
 
-Checkbox.Group = AntCheckbox.Group
+Checkbox.Group = AntCheckbox.Group;
 
-export default Checkbox
-
-
-
+export default Checkbox;

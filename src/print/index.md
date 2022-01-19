@@ -1,6 +1,6 @@
 ---
 nav:
-    title: Components
+    title: 组件
     path: /components
 group:
     path: /components/other
@@ -30,22 +30,20 @@ import React, { useState, useRef } from 'react';
 import { Print, Button } from '@weblif/fast-ui';
 
 export default () => {
-    const print = useRef()
+    const print = useRef();
     return (
         <>
             <Button
                 onClick={async () => {
-                    console.log('print.current.print()')
-                    await print.current.print()
+                    console.log('print.current.print()');
+                    await print.current.print();
                 }}
             >
                 点击打印
             </Button>
             <br />
             <br />
-            <Print
-                print={print}
-            >
+            <Print print={print}>
                 <table border="1">
                     <tbody>
                         <tr>
@@ -77,13 +75,13 @@ import React, { useState, useRef } from 'react';
 import { printSnapshotDom, Button } from '@weblif/fast-ui';
 
 export default () => {
-    const print = useRef()
+    const print = useRef();
     return (
         <>
             <Button
                 onClick={async () => {
-                    const table = document.querySelector('#table')
-                    await printSnapshotDom(table)
+                    const table = document.querySelector('#table');
+                    await printSnapshotDom(table);
                 }}
             >
                 点击打印指定的网页元素
