@@ -17,7 +17,6 @@ group:
 import React, { useState, useRef } from 'react';
 import { Table, Button } from '@weblif/fast-ui';
 import { message, Input } from 'antd';
-import 'antd/dist/antd.css';
 
 /** Mock 数据 */
 const mockData = () => {

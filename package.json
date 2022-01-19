@@ -17,6 +17,7 @@
     "gitHooks": {
         "pre-commit": "lint-staged"
     },
+    "license": "MIT",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Web-Lif/fast-ui.git",
@@ -54,6 +55,10 @@
     "dependencies": {
         "@weblif/rc-print": "^0.0.5-canary",
         "@weblif/rc-table": "^0.0.19-canary",
-        "react-draggable": "^4.4.4"
+        "react-draggable": "^4.4.4",
+        "rich-markdown-editor": "^11.21.3"
+    },
+    "overrides": {
+        "prosemirror-tables": "^1.1.1"
     }
 }

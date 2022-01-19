@@ -12,7 +12,7 @@ export default defineConfig({
     mode: 'site',
     locales: [['zh-CN', '中文']],
     styles: [globalCss.toString('utf-8')],
-    mfsu: {},
+    // mfsu: {},
     navs: {
         'zh-CN': [
             null,
