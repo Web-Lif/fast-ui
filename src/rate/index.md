@@ -1,6 +1,6 @@
 ---
 nav:
-    title: Components
+    title: 组件
     path: /components
 group:
     path: /components/data
@@ -49,9 +49,7 @@ export default () => {
 
 </div>
 
-
 <div class="fu-code-block-col-2-1">
-
 
 ```tsx
 /**
