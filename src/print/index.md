@@ -66,7 +66,6 @@ export default () => {
 
 </div>
 
-
 <div class="fu-code-block-col-2-1">
 
 ```tsx
@@ -107,20 +106,16 @@ export default () => {
 
 </div>
 
-
 </div>
-
-
 
 <br />
 
-| 属性 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-|print |调用打印的方法 | `PrintInstance` | -
-
+| 属性  | 说明           | 类型            | 默认值 |
+| ----- | -------------- | --------------- | ------ |
+| print | 调用打印的方法 | `PrintInstance` | -      |
 
 ### PrintInstance 方法
 
-| 名称  | 类型
-|----  |-------
-|print |`() => Promise<void>`
+| 名称  | 类型                  |
+| ----- | --------------------- |
+| print | `() => Promise<void>` |
