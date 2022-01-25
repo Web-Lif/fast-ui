@@ -26,7 +26,6 @@ group:
  */
 import React, { useState, useRef } from 'react';
 import { Input } from '@weblif/fast-ui';
-import 'antd/dist/antd.css';
 
 export default () => {
     return (
@@ -48,7 +47,6 @@ export default () => {
  */
 import React, { useState, useRef } from 'react';
 import { Input } from '@weblif/fast-ui';
-import 'antd/dist/antd.css';
 
 export default () => {
     return (
@@ -70,7 +68,6 @@ export default () => {
  */
 import React, { useState, useRef } from 'react';
 import { Input } from '@weblif/fast-ui';
-import 'antd/dist/antd.css';
 
 export default () => {
     return (
@@ -97,7 +94,6 @@ export default () => {
  */
 import React, { useState, useRef } from 'react';
 import { Input } from '@weblif/fast-ui';
-import 'antd/dist/antd.css';
 
 export default () => {
     return (
@@ -121,7 +117,6 @@ export default () => {
  */
 import React, { useState, useRef } from 'react';
 import { Input } from '@weblif/fast-ui';
-import 'antd/dist/antd.css';
 
 export default () => {
     return (

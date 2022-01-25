@@ -3,7 +3,6 @@ import { Input as AntInput, InputProps as AntInputProps } from 'antd';
 import { TextAreaProps as AntTextAreaProps } from 'antd/lib/input';
 import { classNames } from '../utils/css';
 import './styles/input.less';
-import 'antd/es/input/style/index';
 
 interface InputProps extends Omit<AntInputProps, 'onChange'> {
     onChange?: (value: string, event: ChangeEvent<HTMLInputElement>) => void;

@@ -1,7 +1,6 @@
 import React, { MutableRefObject, useState, useEffect, useRef } from 'react';
 import { Modal as AntModal, ModalProps as AntModalProps, notification } from 'antd';
 import Draggable from 'react-draggable';
-import 'antd/es/modal/style/index';
 
 export interface ModalInstance {
     show: () => void;
