@@ -24,6 +24,8 @@ const Modal = ({
     onOk,
     onCancel,
     modal,
+    okText = "确定",
+    cancelText = "取消",
     title,
     destroyOnClose = true,
     ...restProps
@@ -51,6 +53,8 @@ const Modal = ({
         <AntModal
             visible={visible}
             confirmLoading={loading}
+            okText={okText}
+            cancelText={cancelText}
             title={
                 <div
                     style={{
