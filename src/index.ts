@@ -1,3 +1,4 @@
+import 'antd/dist/antd.variable.min.css';
 export { default as Button } from './button';
 export type { ButtonProps } from './button';
 export { default as Modal } from './modal';
