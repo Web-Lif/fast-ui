@@ -2,6 +2,7 @@
 nav:
     title: 组件
     path: /components
+    order: 10
 group:
     path: /components/data
     title: 数据
@@ -93,7 +94,7 @@ export default () => {
 | crossOrigin | CORS 属性设置 | `anonymous` \| `use-credentials` \| `''` | - |
 | onError | 图片加载失败的事件，返回 false 会关闭组件默认的 fallback 行为 | `() => boolean` | - |
 
-### Avatar.Group (4.5.0+)
+### Avatar.Group 
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
