@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { Checkbox as AntCheckbox, CheckboxProps as AntCheckboxProps } from 'antd';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
-import 'antd/es/checkbox/style/index';
 
 interface CheckboxProps extends Omit<AntCheckboxProps, 'value' | 'checked' | 'onChange'> {
     value?: boolean;

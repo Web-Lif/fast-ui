@@ -26,7 +26,6 @@ group:
  */
 import React, { useState, useRef } from 'react';
 import { Radio } from '@weblif/fast-ui';
-import 'antd/dist/antd.css';
 
 export default () => {
     return (

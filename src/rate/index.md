@@ -27,7 +27,6 @@ group:
  */
 import React from 'react';
 import { Rate } from '@weblif/fast-ui';
-import 'antd/dist/antd.css';
 
 export default () => {
     return <Rate />;

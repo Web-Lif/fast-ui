@@ -23,7 +23,6 @@ group:
 import React from 'react';
 import { Avatar } from '@weblif/fast-ui';
 import { UserOutlined } from '@ant-design/icons';
-import 'antd/dist/antd.css';
 
 export default () => {
     return (
@@ -50,7 +49,6 @@ import React from 'react';
 import { Avatar } from '@weblif/fast-ui';
 import { UserOutlined } from '@ant-design/icons';
 import { Image } from 'antd';
-import 'antd/dist/antd.css';
 
 export default () => {
     return (

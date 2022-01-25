@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import dateFnsGenerateConfig from 'rc-picker/es/generate/dateFns';
 import generatePicker, { PickerDateProps, PickerProps, RangePickerProps } from 'antd/es/date-picker/generatePicker';
 import locale from 'antd/es/date-picker/locale/zh_CN';
-import 'antd/es/date-picker/style/index';
 
 const InternalDatePicker = generatePicker<Date>(dateFnsGenerateConfig);
 
