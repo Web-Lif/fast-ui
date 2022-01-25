@@ -9,16 +9,20 @@ group:
 
 ## InputNumber 数字输入框
 
-相对于原生的 `antd` 的组件, 有以下功能点优化
+通过鼠标或键盘，输入范围内的数值。
 
 <br />
 
 例子:
 
+<div class="fu-code-block-row">
+
+<div class="fu-code-block-col-2-1">
+
 ```tsx
 /**
- * title: 执行耗时任务
- * desc: 执行耗时任务可以自动进行防止多次点击按钮, 当执行成功后才让继续点击
+ * title: 基本
+ * desc: 数字输入框。
  */
 import React, { useState, useRef } from 'react';
 import { InputNumber } from '@weblif/fast-ui';
@@ -35,6 +39,34 @@ export default () => {
     );
 };
 ```
+</div>
+
+<div class="fu-code-block-col-2-1">
+
+```tsx
+/**
+ * title: 禁用
+ * desc: 禁用数字输入框。
+ */
+import React, { useState, useRef } from 'react';
+import { InputNumber } from '@weblif/fast-ui';
+
+export default () => {
+    return (
+        <>
+            <InputNumber
+                disabled
+                onChange={(value) => {
+                    console.log(value);
+                }}
+            />
+        </>
+    );
+};
+```
+</div>
+
+</div>
 
 <br />
 
