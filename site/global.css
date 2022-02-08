@@ -28,3 +28,7 @@
 .__dumi-default-previewer-desc {
     margin-top: 1rem;
 }
+
+.markdown.markdown p {
+    margin: 8px 0px;
+}
