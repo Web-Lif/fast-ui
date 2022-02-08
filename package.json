@@ -43,6 +43,7 @@
         "@testing-library/jest-dom": "^5.15.1",
         "@testing-library/react": "^12.1.2",
         "@types/jest": "^27.0.3",
+        "@types/react-color": "^3.0.6",
         "@umijs/fabric": "^2.8.1",
         "@umijs/test": "^3.0.5",
         "dumi": "^1.1.0",
@@ -55,6 +56,7 @@
     "dependencies": {
         "@weblif/rc-print": "^0.0.5-canary",
         "@weblif/rc-table": "^0.0.19-canary",
+        "react-color": "^2.19.3",
         "react-draggable": "^4.4.4",
         "rich-markdown-editor": "^11.21.3"
     },
