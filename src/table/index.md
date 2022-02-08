@@ -9,10 +9,23 @@ group:
 
 ## Table 表格
 
+展示行列数据。
+
+### 何时使用
+
+- 当有大量结构化的数据需要展现时；
+- 当需要对数据进行排序、搜索、分页、自定义操作等复杂行为时。
+
+
+> 注意: 固定列的功能在火狐浏览器中存在闪动的问题 (包括默认的头部固定)
+
+
+例子:
+
 ```tsx
 /**
  * title: 基础表格
- * desc: 基础的表格信息, 显示列和行
+ * desc: 基础的表格信息, 显示列和行, 实现 10 万条数据的高性能表格
  */
 import React, { useState, useRef } from 'react';
 import { Table, Button } from '@weblif/fast-ui';
@@ -21,7 +34,7 @@ import { message, Input } from 'antd';
 /** Mock 数据 */
 const mockData = () => {
     const data = [];
-    for (let i = 0; i < 1000; i += 1) {
+    for (let i = 0; i < 100000; i += 1) {
         data.push({
             username: 'zhangj',
             email: 'zhang@xx.com',
