@@ -20,3 +20,11 @@
 .__dumi-default-navbar-logo.__dumi-default-navbar-logo {
     cursor: pointer;
 }
+
+.__dumi-default-previewer-demo {
+    overflow: auto;
+}
+
+.__dumi-default-previewer-desc {
+    margin-top: 1rem;
+}
