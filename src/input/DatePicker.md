@@ -173,7 +173,7 @@ import locale from 'antd/lib/locale/zh_CN';
 ### DatePicker
 
 | 属性 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- |
 | defaultPickerValue | 默认面板日期 | `Date` | - |
 | defaultValue | 默认日期，如果开始时间或结束时间为 null 或者 undefined，日期范围将是一个开区间 | `Date` | - |
 | disabledTime | 不可选择的时间 | `string` | - |
