@@ -55,7 +55,7 @@
     },
     "dependencies": {
         "@weblif/rc-print": "^0.0.5-canary",
-        "@weblif/rc-table": "^0.0.19-canary",
+        "@weblif/rc-table": "^0.0.21-canary",
         "react-color": "^2.19.3",
         "react-draggable": "^4.4.4",
         "rich-markdown-editor": "^11.21.3"

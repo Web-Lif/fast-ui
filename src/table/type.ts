@@ -8,6 +8,19 @@ export interface RowSelectType {
     model: 'single' | 'multiple'
 }
 
+interface RenderType<T> {
+    column: Column<T>
+    row: T
+    value: string
+}
+
+interface EditRenderType<T> extends RenderType<T> {
+    /** 编辑完成后调用的方法 */
+    onFinish: () => void
+    /** 表格改变后触发的事件 */
+    onChange: (value: string) => void
+}
+
 export interface Column<T> {
 
     /** 对应的字段名称 */
@@ -36,5 +49,8 @@ export interface Column<T> {
     }
 
     /** 编辑器 */
-    editor?: ReactElement
+    editor?: (renderType: EditRenderType<T>) => ReactElement
+
+    /** 渲染单元格触发的事件 */
+    render?: (renderType: RenderType<T>) => ReactElement
 }

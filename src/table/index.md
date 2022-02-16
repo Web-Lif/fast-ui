@@ -25,19 +25,20 @@ group:
 ```tsx
 /**
  * title: 基础表格
- * desc: 基础的表格信息, 显示列和行, 实现 10 万条数据的高性能表格
+ * desc: 基础的表格信息, 显示列和行,
  */
 import React, { useState, useRef } from 'react';
-import { Table, Button } from '@weblif/fast-ui';
-import { message, Input } from 'antd';
+import { Table, Button, Input } from '@weblif/fast-ui';
+import { message, Space } from 'antd';
 
 /** Mock 数据 */
 const mockData = () => {
     const data = [];
-    for (let i = 0; i < 100000; i += 1) {
+    for (let i = 0; i < 1000; i += 1) {
         data.push({
             username: 'zhangj',
             email: 'zhang@xx.com',
+            id: i,
             age: '25',
             tags: '人类',
             col0: `col0 - ${i}`,
@@ -64,40 +65,55 @@ export default () => {
 
     return (
         <>
-            <Button
-                onClick={() => {
-                    setModal(!modal);
-                }}
-            >
-                切换单选/多选
-            </Button>
+            <Space>
+                <Button
+                    onClick={() => {
+                        setModal(!modal);
+                    }}
+                >
+                    切换单选/多选
+                </Button>
+                <Button
+                    onClick={() => {
+                        alert(data.filter(ele => ele.$state === 'update'))
+                    }}
+                >
+                    获取修改的内容
+                </Button>
+            </Space>
             <br />
             <br />
             <Table
                 width={1200}
                 height={600}
                 rowSelection={rowSelection}
+                rowKey="id"
+                mode="cell"
                 columns={[
                     {
                         name: 'username',
                         title: '人员名称',
-                        fixed: 'right',
+                        fixed: 'right'
                     },
                     {
                         name: 'email',
                         title: '邮箱地址',
+                        editor: ({ onFinish, value, onChange }) => <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
                     },
                     {
                         name: 'age',
                         title: '年龄',
+                        editor: ({ onFinish, value, onChange }) => <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
                     },
                     {
                         name: 'tags',
                         title: '标签',
+                        editor: ({ onFinish, value, onChange }) => <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
                     },
                     {
                         name: 'col0',
                         title: '标签',
+                        editor: ({ onFinish, value, onChange }) => <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
                     },
                     {
                         name: 'col1',
@@ -134,13 +150,4 @@ export default () => {
 
 <br />
 
-| 属性             | 说明                   | 类型                  | 默认值 |
-| ---------------- | ---------------------- | --------------------- | ------ |
-| width            | 表格的宽度             | `number`              | -      |
-| height           | 表格的高度信息         | `number`              | -      |
-| rows             | 表格的数据             | `T[]`                 | -      |
-| columns          | 列信息                 | `Column<T>[]`         | -      |
-| rowSelection     | 选择框的配置项         | `RowSelectType`       | -      |
-| onRowClick       | 表格单击行触发的事件   | `(row: T) => void`    | -      |
-| onRowDoubleClick | 表格双击行触发的事件   | `row: T) => void`     | -      |
-| onChange         | 改变表格数据触发的事件 | `(rows: T[]) => void` | -      |
+<API></API>

@@ -1,10 +1,9 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useReducer, useState } from 'react';
 import { Table as RCTable } from '@weblif/rc-table';
 
 import { Column, RowSelectType } from './type';
 import useBody from './body';
 import useHeader from './header';
-
 interface TableProps<T> {
     /** 表格的宽度 */
     width: number;
@@ -14,6 +13,12 @@ interface TableProps<T> {
 
     /** 实际表格的内容信息 */
     rows: T[];
+
+    /** 编辑模式 Cell 表示单元格编辑, Row 表示行编辑 */
+    mode: 'cell' | 'row'
+
+    /** 数据的唯一Key */
+    rowKey: string
 
     /** 列信息 */
     columns: Column<T>[];
@@ -36,11 +41,18 @@ function Table<T>({
     height,
     columns = [],
     rows = [],
+    rowKey,
+    mode,
     rowSelection,
     onChange,
     onRowClick,
     onRowDoubleClick,
 }: TableProps<T>) {
+
+    if (typeof rowKey !== 'string') {
+        throw new Error('FAST-UI: 表格 [rowKey] 属性要是一个字符串。')
+    }
+
     const colsProcess = useMemo(() => {
         if (rowSelection && rowSelection.model) {
             columns.splice(0, 0, {
@@ -61,7 +73,9 @@ function Table<T>({
         rows,
         columns: colsProcess,
         rowSelection,
-        onChange,
+        rowKey,
+        mode,
+        onChange
     });
 
     return (
@@ -73,6 +87,9 @@ function Table<T>({
                 if (row.object) {
                     onRowClick?.(row.object);
                 }
+            }}
+            onCellRender={(element, cell) => {
+                return element
             }}
             onRowDoubleClick={({ row }) => {
                 if (row.object) {
