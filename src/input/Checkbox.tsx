@@ -13,9 +13,7 @@ const InternalCheckbox: FC<CheckboxProps> = ({ value, onChange, ...restProps }) 
             onChange={(e) => {
                 onChange?.(e.target.checked, e);
             }}
-            {...{
-                value,
-            }}
+            checked={value}
             {...restProps}
         />
     );
