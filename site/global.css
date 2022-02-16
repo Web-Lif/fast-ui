@@ -36,3 +36,11 @@
 .markdown.markdown p {
     margin: 8px 0px;
 }
+
+.__dumi-default-menu-inner.__dumi-default-menu-inner{
+    overflow: unset;
+}
+
+.__dumi-default-menu-inner.__dumi-default-menu-inner:hover {
+    overflow: auto;
+}
