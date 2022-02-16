@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { cloneElement, useContext, useMemo, useState } from 'react';
 import { Row } from '@weblif/rc-table';
 import { Cell } from '@weblif/rc-table/es/types';
 import produce from 'immer';
@@ -13,11 +13,22 @@ import './styles/index.less';
 interface BodyParam<T> {
     rows: T[];
     columns: Column<T>[];
+    rowKey: string,
     rowSelection?: RowSelectType;
+    mode?: 'cell' | 'row';
     onChange?: (data: T[]) => void;
 }
 
-function useBody<T>({ rows, columns: tempColumns, rowSelection, onChange }: BodyParam<T>) {
+function useBody<T>({
+    rows,
+    columns: tempColumns,
+    rowSelection,
+    mode,
+    rowKey,
+    onChange
+}: BodyParam<T>) {
+    const [editCells, setEditCells] = useState<string[]>([])
+    
     const columns = useMemo(() => {
         return processColumns<T>(tempColumns);
     }, [tempColumns]);
@@ -29,12 +40,13 @@ function useBody<T>({ rows, columns: tempColumns, rowSelection, onChange }: Body
             let value = (row as any)[col.name];
             const cell: Cell = {
                 width: col.width || 120,
-                key: `${col.name}-${rowIndex}`,
+                key: `${col.name}-${(row as any)[rowKey]}`,
                 value: value as string,
             };
 
             if (col.name === '$select') {
                 cell.selectd = false;
+                cell.className = 'fu-table-row-cell-padding'
                 if (rowSelection?.model === 'multiple') {
                     cell.value = (
                         <Checkbox
@@ -42,8 +54,8 @@ function useBody<T>({ rows, columns: tempColumns, rowSelection, onChange }: Body
                             onChange={(e) => {
                                 const checked = e.target.checked;
                                 const changeData = produce<T[], T[]>(rows, (draft) => {
-                                    draft.some((ele, index) => {
-                                        if (index === rowIndex) {
+                                    draft.some((ele) => {
+                                        if (`${col.name}-${(ele as any)[rowKey]}` === cell.key) {
                                             (ele as any)['$select'] = checked;
                                             return true;
                                         }
@@ -65,11 +77,13 @@ function useBody<T>({ rows, columns: tempColumns, rowSelection, onChange }: Body
                             onChange={(e) => {
                                 const checked = e.target.checked;
                                 const changeData = produce<T[], T[]>(rows, (draft) => {
-                                    draft.forEach((ele, index) => {
-                                        if (index === rowIndex) {
+                                    draft.some((ele) => {
+                                        if (`${col.name}-${(ele as any)[rowKey]}` === cell.key) {
                                             (ele as any)['$select'] = checked;
+                                            return true
                                         } else {
                                             (ele as any)['$select'] = false;
+                                            return false
                                         }
                                     });
                                 });
@@ -79,6 +93,81 @@ function useBody<T>({ rows, columns: tempColumns, rowSelection, onChange }: Body
                     );
                     cell.sticky = 'left';
                 }
+            } else {
+                const renderCell = () => {
+                    if (editCells.includes(cell.key as string) && col.editor) {
+                        const editorElement = col.editor({
+                            column: col,
+                            row,
+                            value,
+                            onChange: (value: string) => {
+                                const changeRowsData = produce<T[], T[]>(rows, (draft) => {
+                                    draft.some((ele) => {
+                                        if (`${col.name}-${(ele as any)[rowKey]}` === cell.key) {
+                                            (ele as any)[col.name] = value;
+                                            (ele as any)['$state'] = 'update'
+                                            return true
+                                        } else {
+                                            return false
+                                        }
+                                    });
+                                });
+                                onChange?.(changeRowsData)
+                            },
+                            onFinish: () => {
+                                const index = editCells.indexOf(cell.key as string)
+                                const changeData = produce<string[], string[]>(editCells, (draft) => {
+                                    draft.splice(index, 1)
+                                })
+
+                                setEditCells(changeData)
+                            }
+                        })
+                        const { style, ...restProps} = editorElement.props
+                        return cloneElement(editorElement, {
+                            ...restProps,
+                            style: {
+                                width: '100%',
+                                height: '100%',
+                                ...(style || {}),
+                            }
+                        })
+                    }
+                    if (col.render) {
+                        return col.render({
+                            column: col, row, value
+                        })
+                    }
+                    return value
+                }
+
+                cell.value = (
+                    <div
+                        className={classNames({
+                            'fu-table-row-cell': true,
+                            'fu-table-row-cell-padding': !editCells.includes(cell.key as string)
+                        })} 
+                        onDoubleClick={() => {
+                            // 如果是单元格编辑
+                            if (mode === 'cell' && col.editor) {
+                                const index = editCells.indexOf(cell.key as string)
+                                if (index !== -1){
+                                    const changeData = produce<string[], string[]>(editCells, (draft) => {
+                                        draft.splice(index, 1)
+                                    })
+                                    setEditCells(changeData)
+                                } else {
+                                    const changeData = produce<string[], string[]>(editCells, (draft) => {
+                                        draft.push(cell.key as string)
+                                    })
+                                    setEditCells(changeData)
+                                }
+                            }
+                        }}
+                    >
+                        {renderCell()}
+                    </div>
+                )
             }
 
             if (col.fixed) {

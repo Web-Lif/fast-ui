@@ -1,19 +1,19 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, createContext as reactCreateContext, Dispatch } from 'react'
 import { Column } from './type';
 import { Row } from '@weblif/rc-table';
 import { Cell } from '@weblif/rc-table/es/types';
 
 import { processColumns } from './utils/column'
+import './styles/index.less';
+import { classNames } from '../utils/css';
 
 interface HeaderParam<T> {
     columns: Column<T>[]
 }
 
-
 function useHeader<T>({
     columns: tempColumns
 }: HeaderParam<T>) {
-
     const columns = useMemo(() => {
         return processColumns<T>(tempColumns)
     }, [tempColumns])
@@ -24,7 +24,11 @@ function useHeader<T>({
             selectd: false,
             key: col.name,
             value: col.title,
-            sticky: col.fixed
+            sticky: col.fixed,
+            className: classNames({
+                'fu-table-header': true,
+                'fu-table-row-cell-padding': true
+            })
         }));
         return [{
             height: 35,
