@@ -19,6 +19,10 @@ nav:
 - 🆕 支持动态主题
 - Modal
     - 🐞 修复确认和取消默认显示英文
+- 🆕 添加 ColorPicker 颜色选择器
+- 🆕 添加 Space 间距 
+- 🆕 添加 Flex 布局
+- 🆕 添加 Divider 分割线
 
 ## 0.1.2-canary
 
