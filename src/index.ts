@@ -22,3 +22,4 @@ export { default as ColorPicker } from './input/ColorPicker';
 export { Space } from './layout/Space'
 export type { SpaceProps } from './layout/Space'
 export { default as Flex} from './layout/Flex'
+export { Divider } from './layout/Divider'
