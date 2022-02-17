@@ -24,3 +24,5 @@ export type { SpaceProps } from './layout/Space'
 export { default as Flex} from './layout/Flex'
 export { Divider } from './layout/Divider'
 export { Badge } from './badge'
+export { Tag } from './tag'
+
