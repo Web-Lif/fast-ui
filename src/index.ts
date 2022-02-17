@@ -19,5 +19,6 @@ export { default as Radio } from './input/Radio';
 export { Print, printSnapshotDom } from './print';
 export { default as RichEditor } from './rich/RichEditor';
 export { default as ColorPicker } from './input/ColorPicker';
-export { Space } from './space'
-export type { SpaceProps } from './space'
+export { Space } from './layout/Space'
+export type { SpaceProps } from './layout/Space'
+export { default as Flex} from './layout/Flex'
