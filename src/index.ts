@@ -25,4 +25,5 @@ export { default as Flex} from './layout/Flex'
 export { Divider } from './layout/Divider'
 export { Badge } from './badge'
 export { Tag } from './tag'
+export { Card } from './layout/Card'
 
