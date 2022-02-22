@@ -27,4 +27,5 @@ export { Badge } from './badge'
 export { Tag } from './tag'
 export { Card } from './layout/Card'
 export { Layout } from './layout/Layout'
+export { Row, Col  } from './layout/Grid'
 
