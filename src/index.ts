@@ -31,4 +31,4 @@ export { Row, Col  } from './layout/Grid'
 export { Dropdown } from './dropdown/Dropdown'
 export { Menu } from './menu/Menu'
 export { Typography } from './typography'
-
+export { Switch } from './input/Switch'
