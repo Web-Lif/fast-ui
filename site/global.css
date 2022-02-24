@@ -44,16 +44,3 @@
 .__dumi-default-menu-inner.__dumi-default-menu-inner:hover {
     overflow: auto;
 }
-
-::-webkit-scrollbar {
-	width: 6px;
-	background-color: #FFF;
-}
-
-::-webkit-scrollbar-thumb {
-	background-color: #505050;
-}
-
-::-webkit-scrollbar-track {
-	background-color: #FFF;
-}

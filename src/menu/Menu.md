@@ -17,8 +17,8 @@ group:
 
 ```tsx
 /**
- * title: 执行耗时任务
- * desc: 执行耗时任务可以自动进行防止多次点击按钮, 当执行成功后才让继续点击
+ * title: 顶部导航
+ * desc: 水平的顶部导航菜单。
  */
 import React, { useState } from 'react';
 import { Menu, Dropdown } from '@weblif/fast-ui';
