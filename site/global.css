@@ -38,7 +38,7 @@
 }
 
 .__dumi-default-menu-inner.__dumi-default-menu-inner{
-    overflow: unset;
+    overflow: hidden;
 }
 
 .__dumi-default-menu-inner.__dumi-default-menu-inner:hover {

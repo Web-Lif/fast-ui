@@ -30,6 +30,9 @@ nav:
 - 🆕 添加 Grid 布局
 - 🆕 添加 Menu 导航菜单
 - 🆕 添加 Dropdown 下拉菜单
+- 🆕 添加 Typography 排版
+- 🆕 添加 Switch 开关
+- 🆕 添加 Empty 空状态
 
 ## 0.1.2-canary
 
