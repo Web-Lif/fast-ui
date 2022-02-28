@@ -38,6 +38,7 @@ nav:
 - 🆕 添加 TimePicker 时间选择器
 - 🆕 添加 Affix 固钉
 - 🆕 添加 Steps 步骤条
+- 🆕 添加 Skeleton 骨架屏
 
 ## 0.1.2-canary
 
