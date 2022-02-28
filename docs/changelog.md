@@ -41,6 +41,7 @@ nav:
 - 🆕 添加 Skeleton 骨架屏
 - 🆕 添加 PageHeader 页头
 - 🆕 添加 Breadcrumb 面包屑
+- 🆕 添加 BackTop 回到顶部
 
 ## 0.1.2-canary
 

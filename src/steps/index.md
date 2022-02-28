@@ -5,7 +5,6 @@ nav:
 group:
     path: /components/navigation
     title: 导航
-    order: 10
 ---
 
 ## Steps 步骤条

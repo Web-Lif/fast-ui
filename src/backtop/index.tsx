@@ -1,0 +1,1 @@
+export { BackTop } from 'antd'
