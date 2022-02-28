@@ -39,7 +39,7 @@ export default () => {
 
 ---
 
-```jsx | pure
+```tsx | pure
 <TimePicker defaultValue={new Date()} />;
 ```
 
