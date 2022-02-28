@@ -5,7 +5,6 @@ nav:
 group:
     path: /components/navigation
     title: 导航
-    order: 10
 ---
 
 ## Affix 固钉

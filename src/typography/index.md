@@ -5,7 +5,6 @@ nav:
 group:
     path: /components/universal
     title: 通用
-    order: 10
 ---
 
 ## Typography 排版
