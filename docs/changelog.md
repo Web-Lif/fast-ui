@@ -44,6 +44,7 @@ nav:
 - 🆕 添加 BackTop 回到顶部
 - 🆕 添加 Alert 警告提示
 - 🆕 添加 Anchor 锚点
+- 🆕 添加 Timeline 时间轴
 
 ## 0.1.2-canary
 
