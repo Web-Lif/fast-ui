@@ -35,9 +35,6 @@ export default () => {
             <Form.Item label="Field 2" name="field2" key="field2">
                 <Input />
             </Form.Item>
-            <Form.Item label="Field 3" name="field3" key="field3">
-                <Input />
-            </Form.Item>
             <Form.Item label="Field 4" name="field4" key="field4" colSpan={4}>
                 <Input />
             </Form.Item>
