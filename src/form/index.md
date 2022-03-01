@@ -35,7 +35,22 @@ export default () => {
             <Form.Item label="Field 2" name="field2" key="field2">
                 <Input />
             </Form.Item>
-            <Form.Item label="Field 4" name="field4" key="field4" colSpan={4}>
+             <Form.Item label="Field 3" name="field2" key="field3">
+                <Input />
+            </Form.Item>
+            <Form.Item label="Field 4" key="field0" name="field4">
+                <Input />
+            </Form.Item>
+            <Form.Item label="Field 5" name="field1" key="field5">
+                <Input />
+            </Form.Item>
+            <Form.Item label="Field 6" name="field2" key="field6">
+                <Input />
+            </Form.Item>
+             <Form.Item label="Field 7" name="field2" key="field7">
+                <Input />
+            </Form.Item>
+            <Form.Item label="Field 8" name="field4" key="field8" colSpan={4}>
                 <Input />
             </Form.Item>
         </Form>
@@ -43,6 +58,34 @@ export default () => {
 };
 ```
 
+
+```tsx
+/**
+ * title: 强制换行
+ * desc: 可通过 Form.Item 属性中的 `br` 进行强制换行
+ */
+import React, { useState, useRef } from 'react';
+import { Form, Input } from '@weblif/fast-ui';
+
+export default () => {
+    return (
+        <Form cols={4}>
+            <Form.Item label="Field 0" key="field0" name="field0" br>
+                <Input />
+            </Form.Item>
+            <Form.Item label="Field 1" name="field1" key="field1" br>
+                <Input />
+            </Form.Item>
+            <Form.Item label="Field 2" name="field2" key="field2" br>
+                <Input />
+            </Form.Item>
+            <Form.Item label="Field 4" name="field4" key="field4" colSpan={4}>
+                <Input />
+            </Form.Item>
+        </Form>
+    );
+};
+```
 <br />
 
 ## Form
