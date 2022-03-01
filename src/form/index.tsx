@@ -18,28 +18,36 @@ const InternalForm: FC<FormProps> = ({ cols, ...restProps }) => {
     if (cols && cols > 0 && children instanceof Array) {
         const rows: ReactElement[] = [];
         let cell: ReactElement[] = [];
+
+        let before: number = 0
         children.forEach((element, index) => {
+            debugger
             const { colSpan, rowSpan, br } = element.props;
             const { key } = element
-            let realIndex = index
+
+            before +=  (colSpan || 0) + 1
+
             cell.push(
-                <td key={`td-${key}`} colSpan={colSpan} rowSpan={rowSpan}>
+                <td key={`td-${key}-${index}`} colSpan={colSpan} rowSpan={rowSpan}>
                     {element}
                 </td>,
             );
 
-            const remainder = (index + 1) % cols
+            const remainder = before % cols
             if (br) {
-                realIndex += cols - remainder
+                before += cols - remainder
                 cell.push(
-                    <td key={`td-${key}-br`} colSpan={cols - remainder}>
+                    <td key={`td-${key}-${index}-br`} colSpan={cols - remainder}>
                     </td>
                 )
             }
 
-            if ((realIndex + 1) % cols === 0) {
-                rows.push(<tr key={`tr-${key}`}>{cell}</tr>);
+            if (
+                before >= cols
+            ) {
+                rows.push(<tr key={`tr-${key}-${index}`}>{cell}</tr>);
                 cell = [];
+                before = 0;
             }
         });
 
