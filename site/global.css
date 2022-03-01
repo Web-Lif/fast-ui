@@ -39,8 +39,19 @@
 
 .__dumi-default-menu-inner.__dumi-default-menu-inner{
     overflow: hidden;
+    padding-top: 40px;
 }
 
 .__dumi-default-menu-inner.__dumi-default-menu-inner:hover {
     overflow: auto;
+}
+
+.__dumi-default-menu.__dumi-default-menu.__dumi-default-menu  {
+    padding-top: 0px;
+}
+
+@media only screen and (min-width: 768px) {
+    .__dumi-default-menu.__dumi-default-menu[data-mode='site'] {
+        padding-top: 0px;
+   }
 }
