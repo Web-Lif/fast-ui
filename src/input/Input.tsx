@@ -23,14 +23,21 @@ const InternalInput: FC<InputProps> = ({ onChange, className, ...restProps }) =>
 
 type InternalInputType = typeof InternalInput;
 
-interface TextAreaProps extends AntTextAreaProps {}
+interface TextAreaProps extends Omit<AntTextAreaProps, 'onChange'> {
+    onChange?: (value: string, event: ChangeEvent<HTMLTextAreaElement>) => void;
+}
 
-const TextArea: FC<TextAreaProps> = ({ className, ...restProps }) => {
+
+const TextArea: FC<TextAreaProps> = ({ className, onChange, ...restProps }) => {
     return (
         <AntInput.TextArea
             className={classNames({
                 'fu-input-count': true,
             })}
+            onChange={(event) => {
+                const value: string = event.currentTarget.value as string;
+                onChange?.(value, event);
+            }}
             {...restProps}
         />
     );
