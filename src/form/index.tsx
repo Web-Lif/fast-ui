@@ -3,6 +3,7 @@ import {
     FormProps as AntFormProps,
     Form as AntForm,
     FormItemProps as AntFormItemProps,
+    Row
 } from 'antd';
 import { classNames } from '../utils/css';
 import './styles/index.less';
@@ -18,14 +19,25 @@ const InternalForm: FC<FormProps> = ({ cols, ...restProps }) => {
         const rows: ReactElement[] = [];
         let cell: ReactElement[] = [];
         children.forEach((element, index) => {
-            const { colSpan, rowSpan } = element.props;
-            const { key } = element;
+            const { colSpan, rowSpan, br } = element.props;
+            const { key } = element
+            let realIndex = index
             cell.push(
                 <td key={`td-${key}`} colSpan={colSpan} rowSpan={rowSpan}>
                     {element}
                 </td>,
             );
-            if ((index + 1) % cols === 0) {
+
+            const remainder = (index + 1) % cols
+            if (br) {
+                realIndex += cols - remainder
+                cell.push(
+                    <td key={`td-${key}-br`} colSpan={cols - remainder}>
+                    </td>
+                )
+            }
+
+            if ((realIndex + 1) % cols === 0) {
                 rows.push(<tr key={`tr-${key}`}>{cell}</tr>);
                 cell = [];
             }
@@ -53,6 +65,7 @@ const InternalForm: FC<FormProps> = ({ cols, ...restProps }) => {
 interface FormItemProps extends AntFormItemProps {
     colSpan?: number;
     rowSpan?: number;
+    br?: boolean;
 }
 
 const FormItem: FC<FormItemProps> = (props) => {
