@@ -8,6 +8,7 @@ export type { SpinProps } from './spin';
 export { default as InputNumber } from './input/InputNumber';
 export { default as Table } from './table';
 export { default as Form } from './form';
+export type { JSONFormsData } from './form'
 export { default as Input } from './input/Input';
 export { getHolidayInformation } from './utils/holiday';
 export { default as Rate } from './rate';

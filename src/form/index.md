@@ -86,6 +86,86 @@ export default () => {
     );
 };
 ```
+
+```tsx
+/**
+ * title: JSON Form
+ * desc: 通过 `JSON` 数据动态生成表单
+ */
+import React, { useState, useEffect, useRef } from 'react';
+import { Form, Modal, Input, Button, JSONFormsData, ModalInstance } from '@weblif/fast-ui';
+
+const JSON_DATA = {
+    cols: 4,
+    fields: [{
+        name: 'field0',
+        label: 'Field 0'
+    },{
+        name: 'field1',
+        label: 'Field 1'
+    },{
+        name: 'field2',
+        label: 'Field 2'
+    },{
+        name: 'field3',
+        label: 'Field 3'
+    },{
+        name: 'field4',
+        label: 'Field 4'
+    },{
+        name: 'field5',
+        label: 'Field 5'
+    },{
+        name: 'field6',
+        label: 'Field 6'
+    },{
+        name: 'field7',
+        label: 'Field 7'
+    }]
+}
+
+export default () => {
+    const [loading, setLoading] = useState<boolean>(true)
+    const [data, setData] = useState<string>(JSON_DATA);
+
+    const modal = useRef<ModalInstance>();
+
+    return (
+        <>
+            <Button
+                onClick={() => {
+                    modal.current.show()
+                }}
+            >
+                修改 JSON 数据进行动态加载
+            </Button>
+            
+            <br />
+            <br />
+            <Form.JSONForm
+                data={data}
+            />
+            <Modal
+                title="输入的JSON数据"
+                modal={modal}
+            >
+                <Input.TextArea
+                    defaultValue={JSON.stringify(data, null, 2)}
+                    style={{
+                        height: 400
+                    }}
+                    onChange={value => {
+                        try{
+                            setData(JSON.parse(value))
+                        }catch(e) {
+                        }
+                    }}
+                />
+            </Modal>
+        </>
+    )
+};
+```
 <br />
 
 ## Form

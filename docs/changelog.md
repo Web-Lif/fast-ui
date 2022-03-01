@@ -21,6 +21,8 @@ nav:
     - 🐞 修复确认和取消默认显示英文
 - Form
     - 🔥 Form.Item 添加 br 属性支持换行
+    - 🔥 添加 JSONForm 支持 JSON 动态创建表单
+- 🐞 Input.TextArea 的 `onChange` 第一个参数就是 `value`
 - 🆕 添加 ColorPicker 颜色选择器
 - 🆕 添加 Space 间距 
 - 🆕 添加 Flex 布局
