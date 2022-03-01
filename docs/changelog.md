@@ -47,6 +47,7 @@ nav:
 - 🆕 添加 Timeline 时间轴
 - 🆕 添加 Progress 进度条
 - 🆕 添加 Descriptions 描述列表
+- 🆕 添加 Statistic 统计数值 
 
 ## 0.1.2-canary
 
