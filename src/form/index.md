@@ -38,19 +38,19 @@ export default () => {
              <Form.Item label="Field 3" name="field2" key="field3">
                 <Input />
             </Form.Item>
-            <Form.Item label="Field 4" key="field0" name="field4">
+            <Form.Item label="Field 4" key="field4" name="field4">
                 <Input />
             </Form.Item>
-            <Form.Item label="Field 5" name="field1" key="field5">
+            <Form.Item label="Field 5" name="field5" key="field5">
                 <Input />
             </Form.Item>
-            <Form.Item label="Field 6" name="field2" key="field6">
+            <Form.Item label="Field 6" name="field6" key="field6">
                 <Input />
             </Form.Item>
-             <Form.Item label="Field 7" name="field2" key="field7">
+             <Form.Item label="Field 7" name="field7" key="field7">
                 <Input />
             </Form.Item>
-            <Form.Item label="Field 8" name="field4" key="field8" colSpan={4}>
+            <Form.Item label="Field 8" name="field8" key="field8" colSpan={4}>
                 <Input />
             </Form.Item>
         </Form>
