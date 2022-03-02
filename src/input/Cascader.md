@@ -9,7 +9,7 @@ group:
 
 ## Cascader 级联选择
 
-用于选择中国地区
+级联选择框。
 
 <br />
 
@@ -18,7 +18,7 @@ group:
 ```tsx
 /**
  * title: 基本
- * desc: 基础的地区选择区
+ * desc: 基本的级联使用
  */
 import React, { useState, useRef } from 'react';
 import { Cascader } from '@weblif/fast-ui';
