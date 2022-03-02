@@ -70,7 +70,7 @@ export default () => {
 
 ## API
 
-```jsx
+```jsx | pure
 <Cascader options={options} onChange={onChange} />
 ```
 
