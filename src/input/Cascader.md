@@ -7,7 +7,7 @@ group:
     title: 数据
 ---
 
-## ChinaRegion 地区选择
+## Cascader 级联选择
 
 用于选择中国地区
 
@@ -18,14 +18,50 @@ group:
 ```tsx
 /**
  * title: 基本
- * desc: 基础的颜色选择器
+ * desc: 基础的地区选择区
  */
 import React, { useState, useRef } from 'react';
-import { ChinaRegion } from '@weblif/fast-ui';
+import { Cascader } from '@weblif/fast-ui';
+
+
+const options = [
+  {
+    value: 'zhejiang',
+    label: 'Zhejiang',
+    children: [
+      {
+        value: 'hangzhou',
+        label: 'Hangzhou',
+        children: [
+          {
+            value: 'xihu',
+            label: 'West Lake',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    value: 'jiangsu',
+    label: 'Jiangsu',
+    children: [
+      {
+        value: 'nanjing',
+        label: 'Nanjing',
+        children: [
+          {
+            value: 'zhonghuamen',
+            label: 'Zhong Hua Men',
+          },
+        ],
+      },
+    ],
+  },
+];
 
 export default () => {
     return (
-        <ChinaRegion  />
+        <Cascader options={options} onChange={(e) => { console.log(e) }}  />
     );
 };
 ```
@@ -33,6 +69,10 @@ export default () => {
 <br />
 
 ## API
+
+```jsx
+<Cascader options={options} onChange={onChange} />
+```
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -43,30 +83,32 @@ export default () => {
 | className | 自定义类名 | string | - |  |
 | defaultValue | 默认的选中项 | string\[] \| number\[] | \[] |  |
 | disabled | 禁用 | boolean | false |  |
-| displayRender | 选择后展示的渲染函数 | (label, selectedOptions) => ReactNode | label => label.join(`/`) |  |
-| dropdownClassName | 自定义浮层类名 | string | - |  |
-| dropdownRender | 自定义下拉框内容 | (menus: ReactNode) => ReactNode | - |  |
-| expandIcon | 自定义次级菜单展开图标 | ReactNode | - |  |
+| displayRender | 选择后展示的渲染函数 | (label, selectedOptions) => ReactNode | label => label.join(`/`) | `multiple`: 4.18.0 |
+| dropdownClassName | 自定义浮层类名 | string | - | 4.17.0 |
+| dropdownRender | 自定义下拉框内容 | (menus: ReactNode) => ReactNode | - | 4.4.0 |
+| expandIcon | 自定义次级菜单展开图标 | ReactNode | - | 4.4.0 |
 | expandTrigger | 次级菜单的展开方式，可选 'click' 和 'hover' | string | `click` |  |
 | fieldNames | 自定义 options 中 label value children 的字段 | object | { label: `label`, value: `value`, children: `children` } |  |
 | getPopupContainer | 菜单渲染父节点。默认渲染到 body 上，如果你遇到菜单滚动定位问题，试试修改为滚动的区域，并相对其定位。[示例](https://codepen.io/afc163/pen/zEjNOy?editors=0010) | function(triggerNode) | () => document.body |  |
-| maxTagCount | 最多显示多少个 tag，响应式模式会对性能产生损耗 | number \| `responsive` | - |  |
-| maxTagPlaceholder | 隐藏 tag 时显示的内容 | ReactNode \| function(omittedValues) | - |  |
+| loadData | 用于动态加载选项，无法与 `showSearch` 一起使用 | (selectedOptions) => void | - |  |
+| maxTagCount | 最多显示多少个 tag，响应式模式会对性能产生损耗 | number \| `responsive` | - | 4.17.0 |
+| maxTagPlaceholder | 隐藏 tag 时显示的内容 | ReactNode \| function(omittedValues) | - | 4.17.0 |
 | notFoundContent | 当下拉列表为空时显示的内容 | string | `Not Found` |  |
-| open | 控制浮层显隐 | boolean | - |  |
+| open | 控制浮层显隐 | boolean | - | 4.17.0 |
+| options | 可选项数据源 | [Option](#Option)\[] | - |  |
 | placeholder | 输入框占位文本 | string | `请选择` |  |
-| placement | 浮层预设位置：`bottomLeft` `bottomRight` `topLeft` `topRight` | string | `bottomLeft` |  |
+| placement | 浮层预设位置：`bottomLeft` `bottomRight` `topLeft` `topRight` | string | `bottomLeft` | 4.17.0 |
 | showSearch | 在选择框中显示搜索框 | boolean \| [Object](#showSearch) | false |  |
 | size | 输入框大小 | `large` \| `middle` \| `small` | - |  |
 | style | 自定义样式 | CSSProperties | - |  |
 | suffixIcon | 自定义的选择框后缀图标 | ReactNode | - |  |
-| tagRender | 自定义 tag 内容，多选时生效 | (props) => ReactNode | - |  |
+| tagRender | 自定义 tag 内容，多选时生效 | (props) => ReactNode | - | 4.17.0 |
 | value | 指定选中项 | string\[] \| number\[] | - |  |
 | onChange | 选择完成后的回调 | (value, selectedOptions) => void | - |  |
-| onDropdownVisibleChange | 显示/隐藏浮层的回调 | (value) => void | - |  |
-| multiple | 支持多选节点 | boolean | - |  |
-| searchValue | 设置搜索的值，需要与 `showSearch` 配合使用 | string | - |  |
-| onSearch | 监听搜索，返回输入的值 | (search: string) => void | - |  |
+| onDropdownVisibleChange | 显示/隐藏浮层的回调 | (value) => void | - | 4.17.0 |
+| multiple | 支持多选节点 | boolean | - | 4.17.0 |
+| searchValue | 设置搜索的值，需要与 `showSearch` 配合使用 | string | - | 4.17.0 |
+| onSearch | 监听搜索，返回输入的值 | (search: string) => void | - | 4.17.0 |
 | dropdownMenuColumnStyle | 下拉菜单列的样式 | CSSProperties | - |  |
 
 ### showSearch
@@ -83,7 +125,7 @@ export default () => {
 
 ### Option
 
-```typescript | pure
+```typescript
 interface Option {
   value: string | number;
   label?: React.ReactNode;
