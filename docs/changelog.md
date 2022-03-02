@@ -60,6 +60,7 @@ nav:
 - 🆕 添加 Popconfirm 气泡确认框
 - 🆕 添加 Tooltip 文字提示
 - 🆕 添加 Notification 通知提醒框
+- 🆕 添加 Drawer 抽屉
 
 ## 0.1.2-canary
 
