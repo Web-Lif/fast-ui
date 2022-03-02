@@ -59,6 +59,7 @@ nav:
 - 🆕 添加 Popover 气泡卡片
 - 🆕 添加 Popconfirm 气泡确认框
 - 🆕 添加 Tooltip 文字提示
+- 🆕 添加 Notification 通知提醒框
 
 ## 0.1.2-canary
 
