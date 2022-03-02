@@ -62,6 +62,7 @@ nav:
 - 🆕 添加 Notification 通知提醒框
 - 🆕 添加 Drawer 抽屉
 - 🆕 添加 Tabs 标签页
+- 🆕 添加 ChinaRegion 地区选择
 
 ## 0.1.2-canary
 
