@@ -47,7 +47,8 @@ export interface UploadProps {
 
     /** 点击 Action 触发的事件*/
     onActionClick?: (name: string) =>  void
-}
+
+ }
 
 /**
  * 图片上传
@@ -101,8 +102,15 @@ const Upload: FC<UploadProps> = ({
         }
 
         if (!multiple && files.length > 0) {
+
             const file = files[0]
-            border = '1px solid #d9d9d9'
+
+            if (file.state === 'success') {
+                border = '1px solid #d9d9d9'
+            } else if (file.state === 'error') {
+                border = '1px solid #ff4d4f'
+            }
+
             if (renderPreview) {
                 return renderPreview(file)
             }

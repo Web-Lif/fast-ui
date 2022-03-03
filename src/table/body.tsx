@@ -165,7 +165,7 @@ function useBody<T>({
                             },
                             {
                                 [css`
-                                    padding: '0 8px';
+                                    padding: 0 8px;
                                 `]: !editCells.includes(cell.key as string)
                             }
                         )} 
