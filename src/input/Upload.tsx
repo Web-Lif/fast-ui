@@ -68,6 +68,8 @@ const Upload: FC<UploadProps> = ({
 
     let border = '1px dashed #d9d9d9';
 
+
+    let hoverBorderColor = '#1890ff'
     const renderContent = () => {
         const addFileDom = (
             <div
@@ -107,8 +109,10 @@ const Upload: FC<UploadProps> = ({
 
             if (file.state === 'success') {
                 border = '1px solid #d9d9d9'
+                hoverBorderColor = '#1890ff'
             } else if (file.state === 'error') {
                 border = '1px solid #ff4d4f'
+                hoverBorderColor = '#ff4d4f'
             }
 
             if (renderPreview) {
@@ -199,7 +203,7 @@ const Upload: FC<UploadProps> = ({
                     cursor: pointer;
                     transition: border-color .3s;
                     &:hover {
-                        border-color: #1890ff;
+                        border-color: ${hoverBorderColor};
                     }
                     
                 `}
