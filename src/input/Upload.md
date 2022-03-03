@@ -35,7 +35,7 @@ export default () => {
                             name: '1.jpg',
                             type: 'type',
                             url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-                            state: 'success'
+                            state: 'error'
                         }])
                     }, 1000)
                 })
