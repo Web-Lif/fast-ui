@@ -1,7 +1,7 @@
 import React, { CSSProperties, FC, useState } from 'react';
 import { Color, SketchPicker, ColorChangeHandler, ColorResult, RGBColor } from 'react-color';
 import { Dropdown } from 'antd'
-import './styles/color-picker.less'
+import { css } from '@emotion/css';
 
 export interface ColorPickerProps {
     /**
@@ -61,10 +61,24 @@ const ColorPicker: FC<ColorPickerProps> = ({
             )}
             onVisibleChange={onVisibleChange}
         >
-            <div className='fu-input-color-picker'>
+            <div
+                className={css`
+                    padding: 5px;
+                    background: rgb(255, 255, 255);
+                    border-radius: 1px;
+                    box-shadow: rgba(0,0,0,10%) 0px 0px 0px 1px;
+                    display: inline-block;
+                    cursor: pointer;   
+                `}
+            >
                 <div
                     style={style}
-                    className='fu-input-color-picker-value'
+                    className={css`
+                        width: 36px;
+                        height: 14px;
+                        border-radius: 2px;
+                        background: #fff;
+                    `}
                 />
             </div>
         </Dropdown>

@@ -1,4 +1,6 @@
-import React, { cloneElement, useContext, useMemo, useState } from 'react';
+import React, { cloneElement, useMemo, useState } from 'react';
+
+import { css, cx } from '@emotion/css'
 import { Row } from '@weblif/rc-table';
 import { Cell } from '@weblif/rc-table/es/types';
 import produce from 'immer';
@@ -6,9 +8,6 @@ import { Checkbox, Radio } from 'antd';
 
 import { Column, RowSelectType } from './type';
 import { processColumns } from './utils/column';
-import { classNames } from '../utils/css';
-
-import './styles/index.less';
 
 interface BodyParam<T> {
     rows: T[];
@@ -18,6 +17,14 @@ interface BodyParam<T> {
     mode?: 'cell' | 'row';
     onChange?: (data: T[]) => void;
 }
+
+const RowCellStyle = css`
+    width: 100%;
+    height: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+`
 
 function useBody<T>({
     rows,
@@ -46,7 +53,9 @@ function useBody<T>({
 
             if (col.name === '$select') {
                 cell.selectd = false;
-                cell.className = 'fu-table-row-cell-padding'
+                cell.className = css`
+                    padding: 0 8px;
+                `;
                 if (rowSelection?.model === 'multiple') {
                     cell.value = (
                         <Checkbox
@@ -71,9 +80,9 @@ function useBody<T>({
                     cell.value = (
                         <Radio
                             checked={value === true}
-                            className={classNames({
-                                'fu-form-select-radio': true,
-                            })}
+                            className={css`
+                                margin-right: 0px;
+                            `}
                             onChange={(e) => {
                                 const checked = e.target.checked;
                                 const changeData = produce<T[], T[]>(rows, (draft) => {
@@ -143,10 +152,23 @@ function useBody<T>({
 
                 cell.value = (
                     <div
-                        className={classNames({
-                            'fu-table-row-cell': true,
-                            'fu-table-row-cell-padding': !editCells.includes(cell.key as string)
-                        })} 
+                        
+                        className={cx(
+                            {
+                                [css`
+                                    width: 100%;
+                                    height: 100%;
+                                    white-space: nowrap;
+                                    text-overflow: ellipsis;
+                                    overflow: hidden;
+                                `]: true
+                            },
+                            {
+                                [css`
+                                    padding: '0 8px';
+                                `]: !editCells.includes(cell.key as string)
+                            }
+                        )} 
                         onDoubleClick={() => {
                             // 如果是单元格编辑
                             if (mode === 'cell' && col.editor) {
