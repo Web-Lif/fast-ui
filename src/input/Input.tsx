@@ -1,8 +1,6 @@
 import React, { ChangeEvent, FC } from 'react';
 import { Input as AntInput, InputProps as AntInputProps } from 'antd';
 import { TextAreaProps as AntTextAreaProps } from 'antd/lib/input';
-import { classNames } from '../utils/css';
-import './styles/input.less';
 
 interface InputProps extends Omit<AntInputProps, 'onChange'> {
     onChange?: (value: string, event: ChangeEvent<HTMLInputElement>) => void;
@@ -31,9 +29,6 @@ interface TextAreaProps extends Omit<AntTextAreaProps, 'onChange'> {
 const TextArea: FC<TextAreaProps> = ({ className, onChange, ...restProps }) => {
     return (
         <AntInput.TextArea
-            className={classNames({
-                'fu-input-count': true,
-            })}
             onChange={(event) => {
                 const value: string = event.currentTarget.value as string;
                 onChange?.(value, event);

@@ -10,7 +10,6 @@ export { default as Table } from './table';
 export { default as Form } from './form';
 export type { JSONFormsData } from './form'
 export { default as Input } from './input/Input';
-export { getHolidayInformation } from './utils/holiday';
 export { default as Rate } from './rate';
 export { default as Avatar } from './avatar';
 export { default as Pagination } from './pagination';
@@ -60,3 +59,4 @@ export { notification } from './notification'
 export { Drawer } from './drawer'
 export { Tabs } from './tabs'
 export { Cascader } from './input/Cascader'
+export { default as Upload } from './input/Upload'

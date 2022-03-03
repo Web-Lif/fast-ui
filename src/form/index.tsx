@@ -6,8 +6,8 @@ import {
     FormItemProps as AntFormItemProps,
     FormInstance
 } from 'antd';
-import { classNames } from '../utils/css';
-import './styles/index.less';
+import { css } from '@emotion/css';
+
 
 interface FormProps<T = any> extends AntFormProps<T> {
     cols?: number;
@@ -56,9 +56,16 @@ const InternalForm: FC<FormProps> = ({ cols, ...restProps }) => {
         return (
             <AntForm {...restProps}>
                 <table
-                    className={classNames({
-                        'fu-form': true,
-                    })}
+                    className={css`
+                        width: 100%;
+                        table-layout: fixed;
+                        td {
+                            padding-left: .5rem;
+                        }
+                        .ant-form-item {
+                            margin: 0 0 1em;
+                        }
+                    `}
                 >
                     <tbody>{rows}</tbody>
                 </table>
