@@ -18,7 +18,7 @@ group:
 ```tsx
 /**
  * title: 基础使用
- * desc: 这是基础的图片上传例子
+ * desc: 这是基础的图片上传例子, 单个文件上传
  */
 import React, { useState, useRef } from 'react';
 import { Upload } from '@weblif/fast-ui';
@@ -30,13 +30,66 @@ export default () => {
             files={files}
             onUpload={() => {
                 return new Promise((res) => {
+                    setFiles([{
+                        name: '1.jpg',
+                        type: 'type',
+                        url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+                        state: 'progress',
+                        
+                    }])
                     setTimeout(() => {
-                        res([{
+                        setFiles([{
                             name: '1.jpg',
                             type: 'type',
                             url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-                            state: 'error'
+                            state: 'success'
                         }])
+                    }, 10000)
+                })
+            }}
+            onActionClick={(name) => {
+                if (name === 'delete') {
+                    setFiles([])
+                }
+            }}
+            onChange={setFiles}
+        />
+    );
+};
+```
+
+```tsx
+/**
+ * title: 多文件上传
+ * desc: 这是一次性选择上传多个文件
+ */
+import React, { useState, useRef } from 'react';
+import { Upload } from '@weblif/fast-ui';
+
+export default () => {
+    const [files, setFiles] = useState([]);
+    return (
+        <Upload
+            files={files}
+            multiple
+            onUpload={(data) => {
+                return new Promise((res) => {
+                    const addFIle = []
+                    data.forEach((ele,index) => {
+                        addFIle.push({
+                            name: `${files.length + index + 1}.jpg`,
+                            type: res.type,
+                            url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+                            state: 'progress', 
+                        })
+                    })
+
+                    const result = [...files, ...addFIle]
+                    setFiles(result)
+
+                    // 模拟上传
+                    setTimeout(() => {
+                        setFiles(result.map(file => ({...file, state: 'success'})))
                     }, 1000)
                 })
             }}
