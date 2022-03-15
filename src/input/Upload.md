@@ -22,7 +22,7 @@ group:
  */
 import React, { useState, useRef } from 'react';
 import { Upload } from '@weblif/fast-ui';
-
+  
 export default () => {
     const [files, setFiles] = useState([]);
     return (
@@ -83,7 +83,7 @@ export default () => {
                             state: 'progress', 
                         })
                     })
-
+                    
                     const result = [...files, ...addFIle]
                     setFiles(result)
 
@@ -93,9 +93,9 @@ export default () => {
                     }, 1000)
                 })
             }}
-            onActionClick={(name) => {
-                if (name === 'delete') {
-                    setFiles([])
+            onActionClick={(type, { name }) => {
+                if (type === 'delete') {
+                    setFiles([...files.filter(file => file.name !== name)])
                 }
             }}
             onChange={setFiles}

@@ -148,6 +148,7 @@ export default () => {
 | disabled | 是否禁用状态，默认为 false | `boolean` |
 | id | 输入框的 id | `string` |
 | maxLength | 最大长度 | `number` |
+| status    | 设置校验状态 | `'error'` \| `'warning'` | 
 | showCount | 是否展示字数 | `boolean` \| `{ formatter: ({ count: number, maxLength?: number }) => ReactNode }` |
 | prefix | 带有前缀图标的 input | `ReactNode` |
 | size | 控件大小。注：标准表单内的输入框大小限制为 large | `large` \| `middle` \| `small` |
@@ -165,7 +166,7 @@ Input 的其他属性和 React 自带的 input 一致。
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| allowClear | 可以点击清除图标删除内容 | `boolean` |
+| allowClear | 可以点击清除图标删除内容 | `boolean` \| `{ clearIcon: ReactNode }` |
 | autoSize | 自适应内容高度，可设置为 true \|`false` 或对象：`{ minRows: 2, maxRows: 6 }` \|`boolean` \| `object` |
 | bordered | 是否有边框 | `boolean` |
 | defaultValue | 输入框默认内容 | `string` |

@@ -1,8 +1,6 @@
 import { css } from '@emotion/css'
-import React, { CSSProperties, FC, ReactNode, useRef, useState } from 'react'
+import React, { CSSProperties, FC, ReactNode, useRef } from 'react'
 import { PlusOutlined, LoadingOutlined, DeleteOutlined } from '@ant-design/icons'
-import { Spin } from 'antd'
-import { produce } from 'immer'
 
 type FileType = {
 
@@ -40,7 +38,7 @@ export interface UploadProps {
     renderPreview?: (file: FileType) => ReactNode
 
     /** 渲染 Action Icon */
-    renderActionIcon?: (file: FileType, action: ReactNode, clickAction: (name: string) => void) => ReactNode
+    renderActionIcon?: (file: FileType, action: ReactNode, clickAction: (name: string, file: FileType) => void) => ReactNode
 
     /** 上传文件执行的方法 */
     onUpload?: (files: FileList | null) => void
@@ -49,7 +47,7 @@ export interface UploadProps {
     onChange?: (files: FileType[]) => void
 
     /** 点击 Action 触发的事件*/
-    onActionClick?: (name: string) => void
+    onActionClick?: (name: string, file: FileType) => void
 
 }
 
@@ -117,6 +115,7 @@ const UploadWrap: FC<UploadWrapProps> = ({
             border: ${border};
             border-radius: 2px;
             cursor: pointer;
+            pointer-events: ${state === 'progress' ? 'none' : 'auto'};
             transition: border-color .3s;
             user-select: none;
             &:hover {
@@ -190,7 +189,7 @@ const Upload: FC<UploadProps> = ({
                 <span>
                     <DeleteOutlined
                         onClick={(e) => {
-                            onActionClick('delete')
+                            onActionClick('delete', file)
                             e.stopPropagation()
                         }}
                     />
