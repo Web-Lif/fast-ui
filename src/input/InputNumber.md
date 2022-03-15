@@ -93,6 +93,7 @@ export default () => {
 | okButtonProps | ok 按钮 props | `ButtonProps` | - |
 | okText | 确认按钮文字 | `ReactNode` | `确定` |
 | okType | 确认按钮类型 | `string` | `primary` |
+| status    | 设置校验状态 | `'error'` \| `'warning'` | 
 | style | 可用于设置浮层的样式，调整浮层位置等 | `CSSProperties` | - |
 | title | 标题 | `ReactNode` | - |
 | visible | 对话框是否可见 | `boolean` | - |

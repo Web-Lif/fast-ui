@@ -157,6 +157,7 @@ import locale from 'antd/lib/locale/zh_CN';
 | prevIcon | 自定义上一个图标 | `ReactNode` | - |
 | size | 输入框大小，large 高度为 40px，small 为 24px，默认是 32px | `large` \| `middle` \| `small` | - |
 | style | 自定义输入框样式 | `CSSProperties` | `{}` |
+| status    | 设置校验状态 | `'error'` \| `'warning'` | 
 | suffixIcon | 自定义的选择框后缀图标 | `ReactNode` | - |
 | superNextIcon | 自定义 << 切换图标 | `ReactNode` | - |
 | superPrevIcon | 自定义 >> 切换图标 | `ReactNode` | - |

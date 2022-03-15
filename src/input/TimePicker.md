@@ -68,6 +68,7 @@ export default () => {
 | popupStyle | 弹出层样式对象 | object | - |  |
 | renderExtraFooter | 选择框底部显示自定义的内容 | () => ReactNode | - |  |
 | secondStep | 秒选项间隔 | number | 1 |  |
+| status    | 设置校验状态 | `'error'` \| `'warning'` | 
 | showNow | 面板是否显示“此刻”按钮 | boolean | - | 4.4.0 |
 | suffixIcon | 自定义的选择框后缀图标 | ReactNode | - |  |
 | use12Hours | 使用 12 小时制，为 true 时 `format` 默认为 `h:mm:ss a` | boolean | false |  |
