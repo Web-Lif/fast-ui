@@ -12,15 +12,8 @@ interface MenuType {
 }
 
 
-interface TreeInstance {
-    /** 展开指定的节点 */
-    expand: (keys: string) => void
-}
 
 interface TreeProps extends Omit<AntTreeProps, 'loadData' | 'loadedKeys' | 'treeData'> {
-
-    /** 树节点的方法 */
-    tree: TreeInstance
 
     /** 装载数据 */
     loadData: (treeNode: DataNode | null)  => Promise<DataNode[]>
@@ -77,12 +70,11 @@ const Tree = ({
             setTreeData(data)
         })
     }, [])
-    
+
     return (
         <AntTree
             loadData={async (treeNode) => {
                 const datas = await loadData?.(treeNode);
-
                 const newTreeNode = produce(treeData, draft => {
                     changeTreeDataChildren(draft, treeNode.key, datas)
                 })
@@ -116,7 +108,6 @@ const Tree = ({
                                         changeTreeDataChildren(draft, node.key, data)
                                     })
                                     setTreeData(newTreeNode)
-
                                     if (node.children) {
                                         const childrens = getChildrenFlatList(node.children).map(data => data.key)
                                         const newLoadedKeys = loadedKeys.filter(key => !childrens.includes(key) && expandedKeys.includes(key))
