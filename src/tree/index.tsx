@@ -7,11 +7,9 @@ import { produce } from 'immer'
 
 interface MenuType {
     key: string
-    title: string
+    title: ReactNode
     icon?: ReactNode
 }
-
-
 
 interface TreeProps extends Omit<AntTreeProps, 'loadData' | 'loadedKeys' | 'treeData'> {
 
@@ -37,8 +35,6 @@ const changeTreeDataChildren = (draft: DataNode[], key: string | number, childre
         return false
     })
 }
-
-
 
 const getChildrenFlatList = (node: DataNode[]): DataNode[] => {
     let result: DataNode[] = []
