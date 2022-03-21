@@ -17,7 +17,6 @@ export { default as DatePicker } from './input/DatePicker';
 export { default as Checkbox } from './input/Checkbox';
 export { default as Radio } from './input/Radio';
 export { Print, printSnapshotDom } from './print';
-export { default as RichEditor } from './rich/RichEditor';
 export { default as ColorPicker } from './input/ColorPicker';
 export { Space } from './layout/Space'
 export type { SpaceProps } from './layout/Space'
