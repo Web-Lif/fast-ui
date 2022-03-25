@@ -27,12 +27,47 @@
         border-radius: 2px;
       }
 
+      .__dumi-default-navbar.__dumi-default-navbar {
+        z-index: 1000;
+      }
+
       .__dumi-default-search-input.__dumi-default-search-input {
         border-radius: 2px;
       }
 
       .__dumi-default-navbar-logo.__dumi-default-navbar-logo {
         cursor: pointer;
+      }
+
+      .__dumi-default-previewer-demo {
+        overflow: auto;
+      }
+
+      .__dumi-default-previewer-desc {
+        margin-top: 1rem;
+      }
+
+      .markdown.markdown p {
+        margin: 8px 0px;
+      }
+
+      .__dumi-default-menu-inner.__dumi-default-menu-inner {
+        overflow: hidden;
+        padding-top: 40px;
+      }
+
+      .__dumi-default-menu-inner.__dumi-default-menu-inner:hover {
+        overflow: auto;
+      }
+
+      .__dumi-default-menu.__dumi-default-menu.__dumi-default-menu {
+        padding-top: 0px;
+      }
+
+      @media only screen and (min-width: 768px) {
+        .__dumi-default-menu.__dumi-default-menu[data-mode="site"] {
+          padding-top: 0px;
+        }
       }
     </style>
     <link rel="stylesheet" href="/umi.css" />
