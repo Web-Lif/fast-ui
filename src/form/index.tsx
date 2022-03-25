@@ -161,14 +161,13 @@ interface JSONFormsProps {
     extendEditors?: ExtendEditors[]
 }
 
-const JSONForm = ({
+const DynamicJSONForm = ({
     data,
     form,
     extendEditors = []
 }: JSONFormsProps) => {
-    debugger
     const getFormItemEditor = (editor?: string) => {
-        
+
         let edit = extendEditors?.find(ele => ele.name === editor)
         if (edit === undefined) {
             return <Input />
@@ -215,7 +214,7 @@ interface FormInterface extends InternalFormType {
     List: typeof AntForm.List;
     ErrorList: typeof AntForm.ErrorList;
     Provider: typeof AntForm.Provider;
-    JSONForm: typeof JSONForm;
+    DynamicJSONForm: typeof DynamicJSONForm;
 }
 
 const Form = InternalForm as FormInterface;
@@ -225,6 +224,6 @@ Form.Item = FormItem;
 Form.List = AntForm.List;
 Form.ErrorList = AntForm.ErrorList;
 Form.Provider = AntForm.Provider;
-Form.JSONForm = JSONForm
+Form.DynamicJSONForm = DynamicJSONForm
 
 export default Form;

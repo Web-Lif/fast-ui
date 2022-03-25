@@ -142,7 +142,7 @@ export default () => {
             
             <br />
             <br />
-            <Form.JSONForm
+            <Form.DynamicJSONForm
                 data={data}
             />
             <Modal
