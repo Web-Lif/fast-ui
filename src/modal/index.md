@@ -21,7 +21,7 @@ group:
  * desc: 执行耗时任务可以自动进行防止多次点击按钮, 当执行成功后才让继续点击
  */
 import React, { useState, useRef } from 'react';
-import { Modal, Button, ModalInstance } from '@weblif/fast-ui';
+import { Modal, Button } from '@weblif/fast-ui';
 import { message, Input } from 'antd';
 
 /** Mock 请求数据, 或则一些耗时操作 */
@@ -34,23 +34,24 @@ const requestData = () => {
 };
 
 export default () => {
-    const modal = useRef<ModalInstance>();
+    const [visible, setVisible] = useState<boolean>(false)
     return (
         <>
             <Button
                 onClick={() => {
-                    modal.current.show();
+                    setVisible(true)
                 }}
             >
                 点击显示弹出框
             </Button>
             <Modal
                 title="这是一个弹出框"
-                modal={modal}
+                visible={visible}
                 onOk={async () => {
                     const msg = await requestData();
                     message.info(msg);
                 }}
+                changeVisible={setVisible}
             >
                 async 请求远程数据
             </Modal>

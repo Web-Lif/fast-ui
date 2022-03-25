@@ -2,7 +2,7 @@ import 'antd/dist/antd.variable.min.css';
 export { default as Button } from './button';
 export type { ButtonProps } from './button';
 export { default as Modal } from './modal';
-export type { ModalProps, ModalInstance } from './modal';
+export type { ModalProps } from './modal';
 export { default as Spin } from './spin';
 export type { SpinProps } from './spin';
 export { default as InputNumber } from './input/InputNumber';

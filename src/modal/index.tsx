@@ -1,54 +1,70 @@
-import React, { MutableRefObject, useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { Modal as AntModal, ModalProps as AntModalProps, notification } from 'antd';
 import Draggable from 'react-draggable';
 
-export interface ModalInstance {
-    show: () => void;
-    hide: () => void;
-}
+export interface ModalProps extends Omit<AntModalProps, 'onOk' | 'confirmLoading'> {
 
-export interface ModalProps extends Omit<AntModalProps, 'onOk' | 'confirmLoading' | 'visible'> {
+    /** 改变状态触发的事件 */
+    changeVisible: (disabled: boolean) => void
+
     /** 点击完成按钮触发的事件, 返回一个 `Promise<void>` 对象 */
     onOk?: (
-        event: React.MouseEvent<HTMLElement, MouseEvent>,
+        event: React.MouseEvent<HTMLElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>,
     ) => Promise<boolean | void> | boolean | void;
+
     /** 点击取消按钮后触发的事件 */
     onCancel?: (
         event: React.MouseEvent<HTMLElement, MouseEvent>,
     ) => Promise<boolean | void> | boolean | void;
-    /** 改变显示状态 */
-    modal?: MutableRefObject<ModalInstance>;
+
+    /** 键盘按键的时候触发的事件 */
+    onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>
 }
 
 const Modal = ({
-    onOk,
-    onCancel,
-    modal,
     okText = "确定",
     cancelText = "取消",
+    visible,
     title,
     destroyOnClose = true,
+    onOk,
+    onCancel,
+    changeVisible,
     ...restProps
 }: ModalProps) => {
     const [loading, setLoading] = useState(false);
-    const [visible, setVisible] = useState(false);
-    const [bounds, setBounds] = useState({ left: 0, top: 0, bottom: 0, right: 0 });
     const [disabled, setDisabled] = useState(true);
+    const [bounds, setBounds] = useState({ left: 0, top: 0, bottom: 0, right: 0 });
     const draggleRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        if (modal) {
-            modal.current = {
-                hide: () => {
-                    setVisible(false);
-                },
-                show: () => {
-                    setVisible(true);
-                },
-            };
+    const onOkFunction = (
+        event: React.MouseEvent<HTMLElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>
+    ) => {
+        setLoading(true);
+        const res = onOk?.(event);
+        if (res instanceof Promise) {
+            res!
+                .then((isVisible) => {
+                    if (isVisible !== false) {
+                        changeVisible(false);
+                    }
+                    setLoading(false);
+                })
+                .catch((error) => {
+                    console.error(error);
+                    notification.error({
+                        message: '系统消息',
+                        description: error.message,
+                    });
+                    setLoading(false);
+                });
+        } else {
+            if (res !== false) {
+                changeVisible(false);
+            }
+            setLoading(false);
         }
-    }, []);
-
+    }
     return (
         <AntModal
             visible={visible}
@@ -57,6 +73,7 @@ const Modal = ({
             cancelText={cancelText}
             title={
                 <div
+                    tabIndex={0}
                     style={{
                         width: '100%',
                         cursor: 'move',
@@ -97,30 +114,7 @@ const Modal = ({
                 );
             }}
             onOk={(event) => {
-                setLoading(true);
-                const res = onOk?.(event);
-                if (res instanceof Promise) {
-                    res!
-                        .then((isVisible) => {
-                            if (isVisible !== false) {
-                                setVisible(false);
-                            }
-                            setLoading(false);
-                        })
-                        .catch((error) => {
-                            console.error(error);
-                            notification.error({
-                                message: '系统消息',
-                                description: error.message,
-                            });
-                            setLoading(false);
-                        });
-                } else {
-                    if (res !== false) {
-                        setVisible(false);
-                    }
-                    setLoading(false);
-                }
+                onOkFunction(event)
             }}
             onCancel={(event) => {
                 const res = onCancel?.(event);
@@ -128,7 +122,7 @@ const Modal = ({
                     res!
                         .then((isVisible) => {
                             if (isVisible !== false) {
-                                setVisible(false);
+                                changeVisible(false);
                             }
                         })
                         .catch((error) => {
@@ -140,7 +134,7 @@ const Modal = ({
                         });
                 } else {
                     if (res !== false) {
-                        setVisible(false);
+                        changeVisible(false);
                     }
                 }
             }}
