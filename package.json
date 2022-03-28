@@ -52,7 +52,6 @@
     },
     "dependencies": {
         "@emotion/css": "^11.7.1",
-        "@weblif/rc-print": "^0.0.5-canary",
         "@weblif/rc-table": "^0.0.21-canary",
         "antd": "^4.19.2",
         "date-fns": "^2.28.0",
