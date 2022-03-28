@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
 import { Modal as AntModal, ModalProps as AntModalProps, notification } from 'antd';
 import Draggable from 'react-draggable';
 
@@ -18,7 +18,10 @@ export interface ModalProps extends Omit<AntModalProps, 'onOk' | 'confirmLoading
     ) => Promise<boolean | void> | boolean | void;
 
     /** 键盘按键的时候触发的事件 */
-    onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>
+    onKeyDown?: (
+        e: React.KeyboardEvent<HTMLDivElement>,
+        onOkFunction: (event: React.MouseEvent<HTMLElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>) => void
+    ) => void
 }
 
 const Modal = ({
@@ -30,6 +33,7 @@ const Modal = ({
     onOk,
     onCancel,
     changeVisible,
+    onKeyDown,
     ...restProps
 }: ModalProps) => {
     const [loading, setLoading] = useState(false);
@@ -65,6 +69,15 @@ const Modal = ({
             setLoading(false);
         }
     }
+
+    useLayoutEffect(() => {
+        if (visible) {
+            setTimeout(() => {
+                draggleRef.current?.focus()
+            }, 0)
+        }
+    }, [visible])
+
     return (
         <AntModal
             visible={visible}
@@ -109,7 +122,19 @@ const Modal = ({
                             });
                         }}
                     >
-                        <div ref={draggleRef}>{dom}</div>
+                        <div
+                            ref={draggleRef}
+                            tabIndex={-1}
+                            onKeyDown={(e) => {
+                                if (onKeyDown) {
+                                    onKeyDown(e, onOkFunction)
+                                } else if (!e.ctrlKey && e.key === 'Enter' && loading === false) {
+                                    onOkFunction(e)
+                                }
+                            }}
+                        >
+                            {dom}
+                        </div>
                     </Draggable>
                 );
             }}

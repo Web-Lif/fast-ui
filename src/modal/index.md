@@ -48,8 +48,10 @@ export default () => {
                 title="这是一个弹出框"
                 visible={visible}
                 onOk={async () => {
+                    console.count('modal -> test')
                     const msg = await requestData();
                     message.info(msg);
+
                 }}
                 changeVisible={setVisible}
             >
