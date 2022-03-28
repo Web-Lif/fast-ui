@@ -9,5 +9,8 @@
         "strict": true,
         "skipLibCheck": true,
         "declaration": true,
-    }
+    },
+    "exclude": [
+        "src/app.ts"
+    ]
 }
