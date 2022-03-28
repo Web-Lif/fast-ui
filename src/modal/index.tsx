@@ -1,4 +1,4 @@
-import React, { useState, useRef, useLayoutEffect } from 'react';
+import React, { useState, useRef, useLayoutEffect, FC } from 'react';
 import { Modal as AntModal, ModalProps as AntModalProps, notification } from 'antd';
 import Draggable from 'react-draggable';
 
@@ -24,7 +24,7 @@ export interface ModalProps extends Omit<AntModalProps, 'onOk' | 'confirmLoading
     ) => void
 }
 
-const Modal = ({
+const Modal: FC<ModalProps> = ({
     okText = "确定",
     cancelText = "取消",
     visible,
@@ -35,7 +35,7 @@ const Modal = ({
     changeVisible,
     onKeyDown,
     ...restProps
-}: ModalProps) => {
+}) => {
     const [loading, setLoading] = useState(false);
     const [disabled, setDisabled] = useState(true);
     const [bounds, setBounds] = useState({ left: 0, top: 0, bottom: 0, right: 0 });

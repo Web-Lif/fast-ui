@@ -47,6 +47,7 @@ export default () => {
             <Modal
                 title="这是一个弹出框"
                 visible={visible}
+                mask={false}
                 onOk={async () => {
                     console.count('modal -> test')
                     const msg = await requestData();
