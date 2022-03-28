@@ -56,7 +56,7 @@ const mockData = () => {
 export default () => {
     const [data, setData] = useState(mockData());
     const [modal, setModal] = useState(true);
-
+    const [sortColumns, setSortColumns] = useState([])
     const rowSelection = {
         model: modal === false ? 'single' : 'multiple',
     };
@@ -89,6 +89,8 @@ export default () => {
                 rowSelection={rowSelection}
                 rowKey="id"
                 mode="cell"
+                sortColumns={sortColumns}
+                onSortColumnsChange={setSortColumns}
                 columns={[
                     {
                         name: 'username',

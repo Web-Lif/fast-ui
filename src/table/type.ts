@@ -25,7 +25,7 @@ export interface Column<T> {
 
     /** 对应的字段名称 */
     name: string
-    
+
     /** 标题显示的名称 */
     title: string
 
@@ -40,7 +40,7 @@ export interface Column<T> {
 
     /** 设置列的对齐方式 */
     align?: {
-        
+
         /** 默认为 left */
         header?: AlignType,
 
@@ -53,4 +53,9 @@ export interface Column<T> {
 
     /** 渲染单元格触发的事件 */
     render?: (renderType: RenderType<T>) => ReactElement
+}
+
+export interface SortDirection {
+    name: string
+    direction?: 'ASC' | 'DESC'
 }

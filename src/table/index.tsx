@@ -1,9 +1,10 @@
-import React, { useMemo, useReducer, useState } from 'react';
+import React, { useMemo } from 'react';
 import { Table as RCTable } from '@weblif/rc-table';
 
-import { Column, RowSelectType } from './type';
+import { Column, RowSelectType, SortDirection } from './type';
 import useBody from './body';
 import useHeader from './header';
+
 interface TableProps<T> {
     /** 表格的宽度 */
     width: number;
@@ -26,6 +27,9 @@ interface TableProps<T> {
     /** 选择配置 */
     rowSelection: RowSelectType;
 
+    /** 排序字段 */
+    sortColumns: SortDirection[]
+
     /** 表格单击行触发的事件 */
     onRowClick?: (row: T) => void;
 
@@ -34,6 +38,9 @@ interface TableProps<T> {
 
     /** 改变表格数据触发的事件 */
     onChange?: (rows: T[]) => void;
+
+    /** 排序字段改变触发的事件 */
+    onSortColumnsChange: (change: SortDirection[]) => void
 }
 
 function Table<T>({
@@ -43,10 +50,12 @@ function Table<T>({
     rows = [],
     rowKey,
     mode,
+    sortColumns,
     rowSelection,
     onChange,
     onRowClick,
     onRowDoubleClick,
+    onSortColumnsChange,
 }: TableProps<T>) {
 
     if (typeof rowKey !== 'string') {
@@ -67,6 +76,8 @@ function Table<T>({
 
     const headers = useHeader<T>({
         columns: colsProcess,
+        onSortColumnsChange,
+        sortColumns
     });
 
     const bodys = useBody<T>({
