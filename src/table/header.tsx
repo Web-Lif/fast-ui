@@ -30,6 +30,9 @@ function HeaderTitle<T> ({
 
     return (
         <div
+            className={css`
+                cursor: pointer;
+            `}
             onClick={() => {
                 if (sc?.direction === 'ASC') {
                     onSortColumnsChange?.([{

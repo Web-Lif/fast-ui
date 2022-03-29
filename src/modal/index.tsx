@@ -5,7 +5,7 @@ import Draggable from 'react-draggable';
 export interface ModalProps extends Omit<AntModalProps, 'onOk' | 'confirmLoading'> {
 
     /** 改变状态触发的事件 */
-    changeVisible: (disabled: boolean) => void
+    onChangeVisible: (disabled: boolean) => void
 
     /** 点击完成按钮触发的事件, 返回一个 `Promise<void>` 对象 */
     onOk?: (
@@ -32,7 +32,7 @@ const Modal: FC<ModalProps> = ({
     destroyOnClose = true,
     onOk,
     onCancel,
-    changeVisible,
+    onChangeVisible,
     onKeyDown,
     ...restProps
 }) => {
@@ -50,7 +50,7 @@ const Modal: FC<ModalProps> = ({
             res!
                 .then((isVisible) => {
                     if (isVisible !== false) {
-                        changeVisible(false);
+                        onChangeVisible(false);
                     }
                     setLoading(false);
                 })
@@ -64,7 +64,7 @@ const Modal: FC<ModalProps> = ({
                 });
         } else {
             if (res !== false) {
-                changeVisible(false);
+                onChangeVisible(false);
             }
             setLoading(false);
         }
@@ -147,7 +147,7 @@ const Modal: FC<ModalProps> = ({
                     res!
                         .then((isVisible) => {
                             if (isVisible !== false) {
-                                changeVisible(false);
+                                onChangeVisible(false);
                             }
                         })
                         .catch((error) => {
@@ -159,7 +159,7 @@ const Modal: FC<ModalProps> = ({
                         });
                 } else {
                     if (res !== false) {
-                        changeVisible(false);
+                        onChangeVisible(false);
                     }
                 }
             }}

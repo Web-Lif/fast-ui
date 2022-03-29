@@ -54,7 +54,7 @@ export default () => {
                     message.info(msg);
 
                 }}
-                changeVisible={setVisible}
+                onChangeVisible={setVisible}
             >
                 async 请求远程数据
             </Modal>
