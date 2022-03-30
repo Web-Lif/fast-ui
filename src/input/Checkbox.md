@@ -22,7 +22,7 @@ group:
 ```tsx
 /**
  * title: 基本
- * desc: 最简单的用法，在浮层中可以选择或者输入日期。
+ * desc: 最简单的用法
  */
 import React, { useState, useRef } from 'react';
 import { Checkbox } from '@weblif/fast-ui';

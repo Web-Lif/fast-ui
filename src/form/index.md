@@ -128,13 +128,13 @@ export default () => {
     const [loading, setLoading] = useState<boolean>(true)
     const [data, setData] = useState<string>(JSON_DATA);
 
-    const modal = useRef<ModalInstance>();
+    const [visible, setVisible] = useState<boolean>(false);
 
     return (
         <>
             <Button
                 onClick={() => {
-                    modal.current.show()
+                    setVisible(true)
                 }}
             >
                 修改 JSON 数据进行动态加载
@@ -147,7 +147,9 @@ export default () => {
             />
             <Modal
                 title="输入的JSON数据"
-                modal={modal}
+                visible={visible}
+                onChangeVisible={setVisible}
+
             >
                 <Input.TextArea
                     defaultValue={JSON.stringify(data, null, 2)}
