@@ -11,8 +11,17 @@ export interface ColorPickerProps {
 
     /**
      * 颜色值
+     *
+     * @default "#fff"
      */
-    color?: Color
+    value?: Color
+
+    /**
+     * 宽度信息
+     *
+     * @default "250px"
+     */
+    width?: string
 
     /**
      * 改变颜色触发的事件
@@ -26,7 +35,8 @@ export interface ColorPickerProps {
 }
 
 const ColorPicker: FC<ColorPickerProps> = ({
-    color,
+    value: color,
+    width = '250px',
     onChange,
     onVisibleChange
 }) => {
@@ -47,7 +57,7 @@ const ColorPicker: FC<ColorPickerProps> = ({
             overlay={(
                 <>
                     <SketchPicker
-                        width="250px"
+                        width={width}
                         color={color === undefined ? value : color}
                         onChange={(colorChange: ColorResult, event: React.ChangeEvent<HTMLInputElement>) => {
                             setColorValue(colorChange.rgb)
@@ -68,7 +78,7 @@ const ColorPicker: FC<ColorPickerProps> = ({
                     border-radius: 1px;
                     box-shadow: rgba(0,0,0,10%) 0px 0px 0px 1px;
                     display: inline-block;
-                    cursor: pointer;   
+                    cursor: pointer;
                 `}
             >
                 <div
