@@ -71,8 +71,10 @@ const Tree = ({
         <AntTree
             loadData={async (treeNode) => {
                 const datas = await loadData?.(treeNode);
-                changeTreeDataChildren(treeData, treeNode.key, datas)
-                setTreeData([...treeData])
+                const newTreeNode = produce(treeData, draft => {
+                    changeTreeDataChildren(draft, treeNode.key, datas)
+                })
+                setTreeData(newTreeNode)
 
                 const newLoadedKeys = produce(loadedKeys, draft => {
                     draft.push(treeNode.key as string)
@@ -97,8 +99,10 @@ const Tree = ({
                             icon={<ReloadOutlined />}
                             onClick={() => {
                                 loadData?.(node).then((data) => {
-                                    changeTreeDataChildren(treeData, node.key, data)
-                                    setTreeData([...treeData])
+                                    const newTreeData = produce(treeData, (draft) => {
+                                        changeTreeDataChildren(draft, node.key, data)
+                                    })
+                                    setTreeData(newTreeData)
                                     if (node.children) {
                                         const childrens = getChildrenFlatList(node.children).map(data => data.key)
                                         const newLoadedKeys = loadedKeys.filter(key => !childrens.includes(key) && expandedKeys.includes(key))
