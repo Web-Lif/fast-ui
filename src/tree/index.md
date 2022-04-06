@@ -11,10 +11,76 @@ group:
 
 多层次的结构列表。
 
+
+<div class="fu-code-block-row">
+
+<div class="fu-code-block-col-2-1">
+
 ```tsx
 /**
- * title: 基础
- * desc: 异步加载树的信息
+ * title: 全部加载
+ * desc: 一次性加载节点数据，在数据量大的时候存在性能问题
+ */
+import React, { useState } from 'react';
+import { Tree } from '@weblif/fast-ui';
+
+const treeData = [
+  {
+    title: 'parent 1',
+    key: '0-0',
+    children: [
+      {
+        title: 'parent 1-0',
+        key: '0-0-0',
+        disabled: true,
+        children: [
+          {
+            title: 'leaf',
+            key: '0-0-0-0',
+            disableCheckbox: true,
+          },
+          {
+            title: 'leaf',
+            key: '0-0-0-1',
+          },
+        ],
+      },
+      {
+        title: 'parent 1-1',
+        key: '0-0-1',
+        children: [{ title: <span style={{ color: '#1890ff' }}>sss</span>, key: '0-0-1-0' }],
+      },
+    ],
+  },
+];
+
+
+export default () => {
+    return (
+        <Tree
+            loadData={treeData}
+            onMenuClick={(type, node) => {
+                console.log(type, node)
+            }}
+            contextMenuRender={() => {
+                return [{
+                    key: 'delete',
+                    title: '删除'
+                }]
+            }}
+        />
+    );
+};
+```
+
+</div>
+
+<div class="fu-code-block-col-2-1">
+
+```tsx
+/**
+ * title: 懒加载
+ * desc: 异步加载树的信息, 可极大的优化加载效率
  */
 import React, { useState } from 'react';
 import { Tree } from '@weblif/fast-ui';
@@ -55,6 +121,11 @@ export default () => {
     );
 };
 ```
+
+</div>
+
+</div>
+
 
 ## API
 

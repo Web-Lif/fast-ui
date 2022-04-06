@@ -1,9 +1,8 @@
-import React, { Key, ReactNode, useEffect, useState } from 'react'
+import React, { Key, ReactNode, useCallback, useEffect, useMemo, useState } from 'react'
 import { Tree as AntTree, TreeProps as AntTreeProps, Dropdown, Menu } from 'antd'
 import { ReloadOutlined } from '@ant-design/icons'
-import { DataNode } from 'antd/lib/tree'
+import { DataNode, EventDataNode } from 'antd/lib/tree'
 import { produce } from 'immer'
-
 
 interface MenuType {
     key: string
@@ -14,7 +13,7 @@ interface MenuType {
 interface TreeProps extends Omit<AntTreeProps, 'loadData' | 'loadedKeys' | 'treeData'> {
 
     /** 装载数据 */
-    loadData: (treeNode: DataNode | null)  => Promise<DataNode[]>
+    loadData: ((treeNode: DataNode | null)  => Promise<DataNode[]>) | DataNode[]
 
     /** 渲染右键菜单 */
     contextMenuRender?: (node: DataNode) => MenuType[]
@@ -62,14 +61,17 @@ const Tree = ({
     const [expandedKeys, setExpandedKeys] = useState<Key[]>([])
 
     useEffect(() => {
-        loadData?.(null).then(data => {
-            setTreeData(data)
-        })
+        if (typeof loadData === 'function') {
+            loadData?.(null).then(data => {
+                setTreeData(data)
+            })
+        }
     }, [])
 
-    return (
-        <AntTree
-            loadData={async (treeNode) => {
+
+    const loadDataFunction = () => {
+        if (typeof loadData === 'function') {
+            return async (treeNode: EventDataNode) => {
                 const datas = await loadData?.(treeNode);
                 const newTreeNode = produce(treeData, draft => {
                     changeTreeDataChildren(draft, treeNode.key, datas)
@@ -80,9 +82,16 @@ const Tree = ({
                     draft.push(treeNode.key as string)
                 })
                 setLoadedKeys(newLoadedKeys)
-            }}
+            }
+        }
+        return undefined
+    }
+
+    return (
+        <AntTree
+            loadData={loadDataFunction()}
             loadedKeys={loadedKeys}
-            treeData={treeData}
+            treeData={typeof loadData === 'function' ? treeData : loadData}
             expandedKeys={expandedKeys}
             onContextMenu={(e) => {
                 e.preventDefault();
@@ -93,26 +102,38 @@ const Tree = ({
             }}
             titleRender={(node) => {
                 const menuItems = contextMenuRender?.(node) || []
+
+                const renderReloadMenu = () => {
+                    if (typeof loadData === 'function') {
+                        return (
+                            <Menu.Item
+                                icon={<ReloadOutlined />}
+                                onClick={() => {
+                                    if (typeof loadData === 'function') {
+                                        loadData?.(node).then((data) => {
+                                            const newTreeData = produce(treeData, (draft) => {
+                                                changeTreeDataChildren(draft, node.key, data)
+                                            })
+                                            setTreeData(newTreeData)
+                                            if (node.children) {
+                                                const childrens = getChildrenFlatList(node.children).map(data => data.key)
+                                                const newLoadedKeys = loadedKeys.filter(key => !childrens.includes(key) && expandedKeys.includes(key))
+                                                setLoadedKeys(newLoadedKeys)
+                                            }
+                                        })
+                                    }
+                                }}
+                            >
+                                刷新节点
+                            </Menu.Item>
+                        )
+                    }
+                    return null
+                }
+
                 const menu = (
                     <Menu>
-                        <Menu.Item
-                            icon={<ReloadOutlined />}
-                            onClick={() => {
-                                loadData?.(node).then((data) => {
-                                    const newTreeData = produce(treeData, (draft) => {
-                                        changeTreeDataChildren(draft, node.key, data)
-                                    })
-                                    setTreeData(newTreeData)
-                                    if (node.children) {
-                                        const childrens = getChildrenFlatList(node.children).map(data => data.key)
-                                        const newLoadedKeys = loadedKeys.filter(key => !childrens.includes(key) && expandedKeys.includes(key))
-                                        setLoadedKeys(newLoadedKeys)
-                                    }
-                                })
-                            }}
-                        >
-                            刷新节点
-                        </Menu.Item>
+                        {renderReloadMenu()}
                         {menuItems?.map(menu => (
                             <Menu.Item
                                 key={`${node.key}-${menu.key}`}
