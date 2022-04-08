@@ -29,7 +29,7 @@ const requestData = () => {
     return new Promise<void>((resolve) => {
         setTimeout(() => {
             resolve('模拟任务执行完成.');
-        }, 3000);
+        }, 0);
     });
 };
 
@@ -47,11 +47,11 @@ export default () => {
             <Modal
                 title="这是一个弹出框"
                 visible={visible}
-                mask={false}
-                onOk={async () => {
-                    console.count('modal -> test')
-                    const msg = await requestData();
-                    message.info(msg);
+                // mask={false}
+                onOk={() => {
+                    console.log('modal -> test')
+                    // const msg = await requestData();
+                    // message.info(msg);
 
                 }}
                 onChangeVisible={setVisible}
@@ -62,6 +62,8 @@ export default () => {
     );
 };
 ```
+
+
 
 <br />
 
