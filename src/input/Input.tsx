@@ -26,7 +26,7 @@ interface TextAreaProps extends Omit<AntTextAreaProps, 'onChange'> {
 }
 
 
-const TextArea: FC<TextAreaProps> = ({ className, onChange, ...restProps }) => {
+const TextArea: FC<TextAreaProps> = ({ onChange, ...restProps }) => {
     return (
         <AntInput.TextArea
             onChange={(event) => {
