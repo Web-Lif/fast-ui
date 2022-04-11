@@ -1,4 +1,5 @@
 // import 'antd/dist/antd.variable.min.css';
+export type { ReflexElementProps, ReflexContainerProps, ReflexSplitterProps } from 'react-reflex'
 export { default as Button } from './button';
 export type { ButtonProps } from './button';
 export { default as Modal } from './modal';
