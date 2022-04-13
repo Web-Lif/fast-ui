@@ -84,8 +84,11 @@ interface FormItemProps extends AntFormItemProps {
     br?: boolean;
 }
 
-const FormItem: FC<FormItemProps> = (props) => {
-    return <AntForm.Item {...props} />;
+const FormItem: FC<FormItemProps> = ({
+    br,
+    ...restProps
+}) => {
+    return <AntForm.Item {...restProps} />;
 };
 
 type JSONFormsDataFieldRule = {
