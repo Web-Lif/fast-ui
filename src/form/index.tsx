@@ -8,12 +8,12 @@ import {
 } from 'antd';
 import { css } from '@emotion/css';
 
-
 interface FormProps<T = any> extends AntFormProps<T> {
     cols?: number;
+    children?: ReactNode
 }
 
-const InternalForm: FC<FormProps> = ({ cols, ...restProps }) => {
+function InternalForm<T> ({ cols, ...restProps }: FormProps<T>)  {
     const { children } = restProps;
     /** 采用 Form 的方式进行布局 */
     if (cols && cols > 0 && children instanceof Array) {
@@ -54,7 +54,7 @@ const InternalForm: FC<FormProps> = ({ cols, ...restProps }) => {
         const lastKey = children[children.length - 1].key;
         rows.push(<tr key={`tr-${lastKey}`}>{cell}</tr>);
         return (
-            <AntForm {...restProps}>
+            <AntForm<T> {...restProps}>
                 <table
                     className={css`
                         width: 100%;
