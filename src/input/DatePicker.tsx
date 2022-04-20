@@ -2,13 +2,22 @@ import React, { FC } from 'react';
 import dateFnsGenerateConfig from 'rc-picker/es/generate/dateFns';
 import generatePicker, { PickerDateProps, PickerProps, RangePickerProps } from 'antd/es/date-picker/generatePicker';
 import locale from 'antd/es/date-picker/locale/zh_CN';
+import { css } from '@emotion/css';
 
 const InternalDatePicker = generatePicker<Date>(dateFnsGenerateConfig);
 
 function InternalDatePickerWrapper({
     ...restProps
 }: PickerProps<Date>) {
-    return <InternalDatePicker locale={locale} {...restProps} /> 
+    return (
+        <InternalDatePicker
+            className={css`
+                width: 100%;
+            `}
+            locale={locale}
+            {...restProps}
+        />
+    )
 }
 
 type InternalDatePickerType = typeof InternalDatePickerWrapper;
@@ -68,5 +77,5 @@ DatePicker.RangePicker = RangePicker
 DatePicker.TimePicker = TimePicker
 DatePicker.QuarterPicker = QuarterPicker
 
- 
+
 export default DatePicker;
