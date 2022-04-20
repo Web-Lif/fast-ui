@@ -16,7 +16,7 @@ interface TableProps<T> {
     rows: T[];
 
     /** 编辑模式 Cell 表示单元格编辑, Row 表示行编辑 */
-    mode: 'cell' | 'row'
+    mode?: 'cell' | 'row'
 
     /** 数据的唯一Key */
     rowKey: string
@@ -25,10 +25,10 @@ interface TableProps<T> {
     columns: Column<T>[];
 
     /** 选择配置 */
-    rowSelection: RowSelectType;
+    rowSelection?: RowSelectType;
 
     /** 排序字段 */
-    sortColumns: SortDirection[]
+    sortColumns?: SortDirection[]
 
     /** 表格单击行触发的事件 */
     onRowClick?: (row: T) => void;
@@ -50,7 +50,7 @@ function Table<T>({
     rows = [],
     rowKey,
     mode,
-    sortColumns,
+    sortColumns = [],
     rowSelection,
     onChange,
     onRowClick,
