@@ -34,7 +34,7 @@ function InternalForm<T> ({ cols, ...restProps }: FormProps<T>)  {
             );
 
             const remainder = before % cols
-            if (br) {
+            if (br && remainder !== 0) {
                 before += cols - remainder
                 cell.push(
                     <td key={`td-${key}-${index}-br`} colSpan={cols - remainder}>
