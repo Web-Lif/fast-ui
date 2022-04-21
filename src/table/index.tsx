@@ -40,7 +40,7 @@ interface TableProps<T> {
     onChange?: (rows: T[]) => void;
 
     /** 排序字段改变触发的事件 */
-    onSortColumnsChange: (change: SortDirection[]) => void
+    onSortColumnsChange?: (change: SortDirection[]) => void
 }
 
 function Table<T>({
@@ -55,7 +55,7 @@ function Table<T>({
     onChange,
     onRowClick,
     onRowDoubleClick,
-    onSortColumnsChange,
+    onSortColumnsChange = () => {},
 }: TableProps<T>) {
 
     if (typeof rowKey !== 'string') {
