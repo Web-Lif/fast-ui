@@ -15,16 +15,56 @@ group:
 
 例子:
 
+
 ```tsx
 /**
  * title: 基本
  * desc: 基础分页。
  */
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { Pagination } from '@weblif/fast-ui';
 
 export default () => {
     return <Pagination defaultCurrent={1} total={50} />;
+};
+```
+
+```tsx
+/**
+ * title: 迷你
+ * desc: 迷你版本的分页信息
+ */
+import React from 'react';
+import { Pagination } from '@weblif/fast-ui';
+
+export default () => {
+    return (
+        <>
+            <Pagination
+                size="small"
+                total={50}
+                pageSize={10}
+                pageSizeOptions={[10]}
+            />
+            <br />
+            <Pagination
+                size="small"
+                total={50}
+                pageSize={10}
+                pageSizeOptions={[10]}
+                showSizeChanger
+                showQuickJumper
+            />
+            <br />
+            <Pagination
+                size="small"
+                total={50}
+                disabled
+                showSizeChanger
+                showQuickJumper
+            />
+        </>
+    );
 };
 ```
 
