@@ -165,3 +165,21 @@ export default () => {
 <br />
 
 <API></API>
+
+
+## Column 
+
+| 属性名  | 描述       | 类型     | 默认值
+|------  |------     |-----     |--------
+|name    | 字段名称    | `string`    | `必选`
+|title   | 显示的标题  | `string`     | `必选`
+|width   | 列的宽度信息| `number`     |-
+|fixed   | 固定列的方向| `'left'` \| `'right'` | -
+|readOnly| 是否只读    | `boolean` | -
+|align   | 列的对齐方式 | `{ header?: AlignType, body?: AlignType \| ((row: T) => AlignType) }` | -
+|editor  | 编辑器 | `(renderType: EditRenderType<T>) => ReactElement` | -
+|render  | 渲染单元格 | `(renderType: RenderType<T>) => ReactElement`
+
+
+
+
