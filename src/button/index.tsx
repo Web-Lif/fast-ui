@@ -14,7 +14,7 @@ const Button = (props: ButtonProps) => {
     return (
         <AButton
             {...restProps}
-            disabled={dis ? dis : disabled}
+            disabled={(dis === false || dis === true) ? dis : disabled}
             onClick={(e) => {
                 setDisabled(true);
                 const res = onClick?.(e);
