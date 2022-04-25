@@ -93,7 +93,7 @@ export default () => {
  * desc: 通过 `JSON` 数据动态生成表单
  */
 import React, { useState, useEffect, useRef } from 'react';
-import { Form, Modal, Input, Button, JSONFormsData, ModalInstance } from '@weblif/fast-ui';
+import { Form, Modal, Input, Button, InputNumber,JSONFormsData, ModalInstance } from '@weblif/fast-ui';
 
 const JSON_DATA = {
     cols: 4,
@@ -120,7 +120,8 @@ const JSON_DATA = {
         label: 'Field 6'
     },{
         name: 'field7',
-        label: 'Field 7'
+        label: 'Field 7',
+        editor: 'number'
     }]
 }
 
@@ -144,6 +145,10 @@ export default () => {
             <br />
             <Form.DynamicJSONForm
                 data={data}
+                extendEditors={[{
+                    name: 'number',
+                    editor: <InputNumber />
+                }]}
             />
             <Modal
                 title="输入的JSON数据"

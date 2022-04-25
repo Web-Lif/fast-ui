@@ -175,7 +175,7 @@ const DynamicJSONForm = ({
         if (edit === undefined) {
             return <Input />
         }
-        return edit;
+        return edit.editor;
     }
 
     return (
