@@ -16,7 +16,7 @@ interface FormProps<T = any> extends AntFormProps<T> {
 function InternalForm<T> ({ cols, ...restProps }: FormProps<T>)  {
     const { children } = restProps;
     /** 采用 Form 的方式进行布局 */
-    if (cols && cols > 0 && children instanceof Array) {
+    if (cols && cols > 0 && children instanceof Array && children.length > 0) {
         const rows: ReactElement[] = [];
         let cell: ReactElement[] = [];
 
