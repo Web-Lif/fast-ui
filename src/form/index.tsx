@@ -33,7 +33,7 @@ function InternalForm<T>({ cols, ...restProps }: FormProps<T>) {
                     colSpan={colSpan}
                     rowSpan={rowSpan}
                     className={css`
-                        vertical-align: baseline;
+                        vertical-align: top;
                     `}
                 >
                     {element}
