@@ -53,19 +53,10 @@ function useBody<T>({
         columns.forEach((col) => {
             let value = (row as any)[col.name];
 
-            let selectd = true;
-
-            if (typeof col.allowCellSelectBorder === 'function') {
-                selectd = col.allowCellSelectBorder(row);
-            } else if (typeof col.allowCellSelectBorder === 'boolean') {
-                selectd = col.allowCellSelectBorder;
-            }
-
             const cell: Cell = {
                 width: col.width || 120,
                 key: `${col.name}-${(row as any)[rowKey]}`,
                 value: value as string,
-                selectd,
             };
 
             if (col.name === '$select') {
@@ -222,6 +213,18 @@ function useBody<T>({
             if (col.fixed) {
                 cell.sticky = col.fixed;
             }
+
+            let selectd = cell.selectd;
+            if (typeof col.allowCellSelectBorder === 'function') {
+                selectd = col.allowCellSelectBorder({
+                    row,
+                    selectd: cell.selectd,
+                });
+            } else if (typeof col.allowCellSelectBorder === 'boolean') {
+                selectd = col.allowCellSelectBorder;
+            }
+
+            cell.selectd = selectd;
             cells.push(cell);
         });
         return {

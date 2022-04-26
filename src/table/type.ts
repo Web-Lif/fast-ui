@@ -7,6 +7,11 @@ export interface RowSelectType {
     model: 'single' | 'multiple';
 }
 
+export type AllowCellSelectBorderParam<T> = {
+    row: T;
+    selectd?: boolean;
+};
+
 interface RenderType<T> {
     column: Column<T>;
     row: T;
@@ -52,7 +57,7 @@ export interface Column<T> {
     render?: (renderType: RenderType<T>) => ReactElement;
 
     /** 是否允许显示选择的边框 */
-    allowCellSelectBorder?: ((row: T) => boolean) | boolean;
+    allowCellSelectBorder?: ((param: AllowCellSelectBorderParam<T>) => boolean) | boolean;
 }
 
 export interface SortDirection {
