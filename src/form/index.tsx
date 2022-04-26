@@ -28,7 +28,14 @@ function InternalForm<T>({ cols, ...restProps }: FormProps<T>) {
             before += (colSpan || 0) + 1;
 
             cell.push(
-                <td key={`td-${key}-${index}`} colSpan={colSpan} rowSpan={rowSpan}>
+                <td
+                    key={`td-${key}-${index}`}
+                    colSpan={colSpan}
+                    rowSpan={rowSpan}
+                    className={css`
+                        vertical-align: baseline;
+                    `}
+                >
                     {element}
                 </td>,
             );
@@ -47,16 +54,7 @@ function InternalForm<T>({ cols, ...restProps }: FormProps<T>) {
         });
 
         const lastKey = children[children.length - 1].key;
-        rows.push(
-            <tr
-                key={`tr-${lastKey}`}
-                className={css`
-                    vertical-align: baseline;
-                `}
-            >
-                {cell}
-            </tr>,
-        );
+        rows.push(<tr key={`tr-${lastKey}`}>{cell}</tr>);
         return (
             <AntForm<T> {...restProps}>
                 <table
