@@ -66,6 +66,6 @@
         "react-viewer": "^3.2.2"
     },
     "resolutions": {
-        "**/react": "^18.0.0"
+        "**/react": "^17.0.0"
     }
 }
