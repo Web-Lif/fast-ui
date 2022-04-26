@@ -32,7 +32,7 @@ export interface ModalProps extends Omit<AntModalProps, 'onOk' | 'confirmLoading
     ) => void;
 }
 
-const Modal: FC<ModalProps> = ({
+const InternalModal: FC<ModalProps> = ({
     okText = '确定',
     cancelText = '取消',
     visible,
@@ -176,5 +176,23 @@ const Modal: FC<ModalProps> = ({
         />
     );
 };
+
+type InternalModalType = typeof InternalModal;
+
+interface ModalInterface extends InternalModalType {
+    info: typeof AntModal.info;
+    success: typeof AntModal.success;
+    warning: typeof AntModal.warning;
+    error: typeof AntModal.error;
+    confirm: typeof AntModal.confirm;
+}
+
+const Modal = InternalModal as ModalInterface;
+
+Modal.info = AntModal.info;
+Modal.warning = AntModal.warning;
+Modal.success = AntModal.success;
+Modal.error = AntModal.error;
+Modal.confirm = AntModal.confirm;
 
 export default Modal;

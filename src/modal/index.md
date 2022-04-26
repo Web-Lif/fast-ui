@@ -34,12 +34,12 @@ const requestData = () => {
 };
 
 export default () => {
-    const [visible, setVisible] = useState<boolean>(false)
+    const [visible, setVisible] = useState<boolean>(false);
     return (
         <>
             <Button
                 onClick={() => {
-                    setVisible(true)
+                    setVisible(true);
                 }}
             >
                 点击显示弹出框
@@ -49,10 +49,9 @@ export default () => {
                 visible={visible}
                 // mask={false}
                 onOk={() => {
-                    console.log('modal -> test')
+                    console.log('modal -> test');
                     // const msg = await requestData();
                     // message.info(msg);
-
                 }}
                 onChangeVisible={setVisible}
             >
@@ -63,7 +62,36 @@ export default () => {
 };
 ```
 
+```tsx
+/**
+ * title: 快速创建提示
+ * desc: 可采用 `Modal` 的方法快速创建对话框
+ */
+import React, { useState, useRef } from 'react';
+import { Modal, Button, Space } from '@weblif/fast-ui';
 
+export default () => {
+    return (
+        <Space>
+            <Button
+                onClick={() => {
+                    Modal.info({
+                        title: '系统消息',
+                        content: (
+                            <div>
+                                <p>some messages...some messages...</p>
+                            </div>
+                        ),
+                        onOk() {},
+                    });
+                }}
+            >
+                消息
+            </Button>
+        </Space>
+    );
+};
+```
 
 <br />
 
