@@ -13,12 +13,10 @@ group:
 
 ### 何时使用
 
-- 当有大量结构化的数据需要展现时；
-- 当需要对数据进行排序、搜索、分页、自定义操作等复杂行为时。
-
+-   当有大量结构化的数据需要展现时；
+-   当需要对数据进行排序、搜索、分页、自定义操作等复杂行为时。
 
 > 注意: 固定列的功能在火狐浏览器中存在闪动的问题 (包括默认的头部固定)
-
 
 例子:
 
@@ -55,7 +53,7 @@ const mockData = () => {
 export default () => {
     const [data, setData] = useState(mockData());
     const [modal, setModal] = useState(true);
-    const [sortColumns, setSortColumns] = useState([])
+    const [sortColumns, setSortColumns] = useState([]);
     const rowSelection = {
         model: modal === false ? 'single' : 'multiple',
     };
@@ -72,7 +70,7 @@ export default () => {
                 </Button>
                 <Button
                     onClick={() => {
-                        alert(data.filter(ele => ele.$state === 'update'))
+                        alert(data.filter((ele) => ele.$state === 'update'));
                     }}
                 >
                     获取修改的内容
@@ -83,13 +81,10 @@ export default () => {
             <AutoSize
                 style={{
                     width: '100%',
-                    height: 600
+                    height: 600,
                 }}
             >
-                {({
-                    width,
-                    height
-                }) => (
+                {({ width, height }) => (
                     <Table
                         width={width}
                         height={height}
@@ -102,27 +97,55 @@ export default () => {
                             {
                                 name: 'username',
                                 title: '人员名称',
-                                fixed: 'right'
+                                fixed: 'right',
                             },
                             {
                                 name: 'email',
                                 title: '邮箱地址',
-                                editor: ({ onFinish, value, onChange }) => <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
+                                editor: ({ onFinish, value, onChange }) => (
+                                    <Input
+                                        value={value}
+                                        onChange={onChange}
+                                        autoFocus
+                                        onBlur={onFinish}
+                                    />
+                                ),
                             },
                             {
                                 name: 'age',
                                 title: '年龄',
-                                editor: ({ onFinish, value, onChange }) => <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
+                                editor: ({ onFinish, value, onChange }) => (
+                                    <Input
+                                        value={value}
+                                        onChange={onChange}
+                                        autoFocus
+                                        onBlur={onFinish}
+                                    />
+                                ),
                             },
                             {
                                 name: 'tags',
                                 title: '标签',
-                                editor: ({ onFinish, value, onChange }) => <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
+                                editor: ({ onFinish, value, onChange }) => (
+                                    <Input
+                                        value={value}
+                                        onChange={onChange}
+                                        autoFocus
+                                        onBlur={onFinish}
+                                    />
+                                ),
                             },
                             {
                                 name: 'col0',
                                 title: '标签',
-                                editor: ({ onFinish, value, onChange }) => <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
+                                editor: ({ onFinish, value, onChange }) => (
+                                    <Input
+                                        value={value}
+                                        onChange={onChange}
+                                        autoFocus
+                                        onBlur={onFinish}
+                                    />
+                                ),
                             },
                             {
                                 name: 'col1',
@@ -154,12 +177,10 @@ export default () => {
                     />
                 )}
             </AutoSize>
-            
         </>
     );
 };
 ```
-
 
 ```tsx
 /**
@@ -194,7 +215,7 @@ const mockData = () => {
 export default () => {
     const [data, setData] = useState(mockData());
     const [modal, setModal] = useState(true);
-    const [sortColumns, setSortColumns] = useState([])
+    const [sortColumns, setSortColumns] = useState([]);
     const rowSelection = {
         model: modal === false ? 'single' : 'multiple',
     };
@@ -213,7 +234,7 @@ export default () => {
                 </Button>
                 <Button
                     onClick={() => {
-                        alert(data.filter(ele => ele.$state === 'update'))
+                        alert(data.filter((ele) => ele.$state === 'update'));
                     }}
                 >
                     获取修改的内容
@@ -224,13 +245,10 @@ export default () => {
             <AutoSize
                 style={{
                     width: '100%',
-                    height: 600
+                    height: 600,
                 }}
             >
-                {({
-                    width,
-                    height
-                }) => (
+                {({ width, height }) => (
                     <Table
                         width={width}
                         height={height}
@@ -243,27 +261,56 @@ export default () => {
                             {
                                 name: 'username',
                                 title: '人员名称',
-                                fixed: 'right'
+                                fixed: 'right',
+                                allowCellSelectBorder: false,
                             },
                             {
                                 name: 'email',
                                 title: '邮箱地址',
-                                editor: ({ onFinish, value, onChange }) => <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
+                                editor: ({ onFinish, value, onChange }) => (
+                                    <Input
+                                        value={value}
+                                        onChange={onChange}
+                                        autoFocus
+                                        onBlur={onFinish}
+                                    />
+                                ),
                             },
                             {
                                 name: 'age',
                                 title: '年龄',
-                                editor: ({ onFinish, value, onChange }) => <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
+                                editor: ({ onFinish, value, onChange }) => (
+                                    <Input
+                                        value={value}
+                                        onChange={onChange}
+                                        autoFocus
+                                        onBlur={onFinish}
+                                    />
+                                ),
                             },
                             {
                                 name: 'tags',
                                 title: '标签',
-                                editor: ({ onFinish, value, onChange }) => <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
+                                editor: ({ onFinish, value, onChange }) => (
+                                    <Input
+                                        value={value}
+                                        onChange={onChange}
+                                        autoFocus
+                                        onBlur={onFinish}
+                                    />
+                                ),
                             },
                             {
                                 name: 'col0',
                                 title: '标签',
-                                editor: ({ onFinish, value, onChange }) => <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
+                                editor: ({ onFinish, value, onChange }) => (
+                                    <Input
+                                        value={value}
+                                        onChange={onChange}
+                                        autoFocus
+                                        onBlur={onFinish}
+                                    />
+                                ),
                             },
                             {
                                 name: 'col1',
@@ -295,7 +342,6 @@ export default () => {
                     />
                 )}
             </AutoSize>
-            
         </>
     );
 };
@@ -305,20 +351,15 @@ export default () => {
 
 <API></API>
 
+## Column
 
-## Column 
-
-| 属性名  | 描述       | 类型     | 默认值
-|------  |------     |-----     |--------
-|name    | 字段名称    | `string`    | `必选`
-|title   | 显示的标题  | `string`     | `必选`
-|width   | 列的宽度信息| `number`     |-
-|fixed   | 固定列的方向| `'left'` \| `'right'` | -
-|readOnly| 是否只读    | `boolean` | -
-|align   | 列的对齐方式 | `{ header?: AlignType, body?: AlignType \| ((row: T) => AlignType) }` | -
-|editor  | 编辑器 | `(renderType: EditRenderType<T>) => ReactElement` | -
-|render  | 渲染单元格 | `(renderType: RenderType<T>) => ReactElement`
-
-
-
-
+| 属性名 | 描述 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| name | 字段名称 | `string` | `必选` |
+| title | 显示的标题 | `string` | `必选` |
+| width | 列的宽度信息 | `number` | - |
+| fixed | 固定列的方向 | `'left'` \| `'right'` | - |
+| readOnly | 是否只读 | `boolean` | - |
+| align | 列的对齐方式 | `{ header?: AlignType, body?: AlignType \| ((row: T) => AlignType) }` | - |
+| editor | 编辑器 | `(renderType: EditRenderType<T>) => ReactElement` | - |
+| render | 渲染单元格 | `(renderType: RenderType<T>) => ReactElement` |

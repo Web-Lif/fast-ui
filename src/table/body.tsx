@@ -1,30 +1,23 @@
 import React, { cloneElement, useMemo, useState } from 'react';
 
-import { css, cx } from '@emotion/css'
+import { css, cx } from '@emotion/css';
 import { Row } from '@weblif/rc-table';
 import { Cell } from '@weblif/rc-table/es/types';
 import produce from 'immer';
 import { Checkbox, Radio } from 'antd';
 
-import { Column, RowSelectType } from './type';
+import { Column, RowClassNameParam, RowSelectType } from './type';
 import { processColumns } from './utils/column';
 
 interface BodyParam<T> {
     rows: T[];
     columns: Column<T>[];
-    rowKey: string,
+    rowKey: string;
     rowSelection?: RowSelectType;
     mode?: 'cell' | 'row';
     onChange?: (data: T[]) => void;
+    rowClassName?: (param: RowClassNameParam<T>) => string;
 }
-
-const RowCellStyle = css`
-    width: 100%;
-    height: 100%;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-`
 
 function useBody<T>({
     rows,
@@ -32,23 +25,47 @@ function useBody<T>({
     rowSelection,
     mode,
     rowKey,
-    onChange
+    rowClassName,
+    onChange,
 }: BodyParam<T>) {
-    const [editCells, setEditCells] = useState<string[]>([])
-    
+    const [editCells, setEditCells] = useState<string[]>([]);
+
     const columns = useMemo(() => {
         return processColumns<T>(tempColumns);
     }, [tempColumns]);
 
     const bodys: Row<T>[] = rows.map((row, rowIndex) => {
         const cells: Cell[] = [];
-        let className = '';
+
+        let className = rowClassName?.({
+            className: css`
+                width: 100%;
+                height: 100%;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                :hover {
+                    --rc-table-background-color: #f5f5f5;
+                }
+            `,
+            row,
+        });
         columns.forEach((col) => {
             let value = (row as any)[col.name];
+
+            let selectd = true;
+
+            if (typeof col.allowCellSelectBorder === 'function') {
+                selectd = col.allowCellSelectBorder(row);
+            } else if (typeof col.allowCellSelectBorder === 'boolean') {
+                selectd = col.allowCellSelectBorder;
+            }
+
             const cell: Cell = {
                 width: col.width || 120,
                 key: `${col.name}-${(row as any)[rowKey]}`,
                 value: value as string,
+                selectd,
             };
 
             if (col.name === '$select') {
@@ -89,10 +106,10 @@ function useBody<T>({
                                     draft.some((ele) => {
                                         if (`${col.name}-${(ele as any)[rowKey]}` === cell.key) {
                                             (ele as any)['$select'] = checked;
-                                            return true
+                                            return true;
                                         } else {
                                             (ele as any)['$select'] = false;
-                                            return false
+                                            return false;
                                         }
                                     });
                                 });
@@ -114,45 +131,49 @@ function useBody<T>({
                                     draft.some((ele) => {
                                         if (`${col.name}-${(ele as any)[rowKey]}` === cell.key) {
                                             (ele as any)[col.name] = value;
-                                            (ele as any)['$state'] = 'update'
-                                            return true
+                                            (ele as any)['$state'] = 'update';
+                                            return true;
                                         } else {
-                                            return false
+                                            return false;
                                         }
                                     });
                                 });
-                                onChange?.(changeRowsData)
+                                onChange?.(changeRowsData);
                             },
                             onFinish: () => {
-                                const index = editCells.indexOf(cell.key as string)
-                                const changeData = produce<string[], string[]>(editCells, (draft) => {
-                                    draft.splice(index, 1)
-                                })
+                                const index = editCells.indexOf(cell.key as string);
+                                const changeData = produce<string[], string[]>(
+                                    editCells,
+                                    (draft) => {
+                                        draft.splice(index, 1);
+                                    },
+                                );
 
-                                setEditCells(changeData)
-                            }
-                        })
-                        const { style, ...restProps} = editorElement.props
+                                setEditCells(changeData);
+                            },
+                        });
+                        const { style, ...restProps } = editorElement.props;
                         return cloneElement(editorElement, {
                             ...restProps,
                             style: {
                                 width: '100%',
                                 height: '100%',
                                 ...(style || {}),
-                            }
-                        })
+                            },
+                        });
                     }
                     if (col.render) {
                         return col.render({
-                            column: col, row, value
-                        })
+                            column: col,
+                            row,
+                            value,
+                        });
                     }
-                    return value
-                }
+                    return value;
+                };
 
                 cell.value = (
                     <div
-                        
                         className={cx(
                             {
                                 [css`
@@ -161,35 +182,41 @@ function useBody<T>({
                                     white-space: nowrap;
                                     text-overflow: ellipsis;
                                     overflow: hidden;
-                                `]: true
+                                `]: true,
                             },
                             {
                                 [css`
                                     padding: 0 8px;
-                                `]: !editCells.includes(cell.key as string)
-                            }
-                        )} 
+                                `]: !editCells.includes(cell.key as string),
+                            },
+                        )}
                         onDoubleClick={() => {
                             // 如果是单元格编辑
                             if (mode === 'cell' && col.editor) {
-                                const index = editCells.indexOf(cell.key as string)
-                                if (index !== -1){
-                                    const changeData = produce<string[], string[]>(editCells, (draft) => {
-                                        draft.splice(index, 1)
-                                    })
-                                    setEditCells(changeData)
+                                const index = editCells.indexOf(cell.key as string);
+                                if (index !== -1) {
+                                    const changeData = produce<string[], string[]>(
+                                        editCells,
+                                        (draft) => {
+                                            draft.splice(index, 1);
+                                        },
+                                    );
+                                    setEditCells(changeData);
                                 } else {
-                                    const changeData = produce<string[], string[]>(editCells, (draft) => {
-                                        draft.push(cell.key as string)
-                                    })
-                                    setEditCells(changeData)
+                                    const changeData = produce<string[], string[]>(
+                                        editCells,
+                                        (draft) => {
+                                            draft.push(cell.key as string);
+                                        },
+                                    );
+                                    setEditCells(changeData);
                                 }
                             }
                         }}
                     >
                         {renderCell()}
                     </div>
-                )
+                );
             }
 
             if (col.fixed) {

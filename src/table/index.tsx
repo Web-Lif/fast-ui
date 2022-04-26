@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Table as RCTable } from '@weblif/rc-table';
 
-import { Column, RowSelectType, SortDirection } from './type';
+import { Column, RowClassNameParam, RowSelectType, SortDirection } from './type';
 import useBody from './body';
 import useHeader from './header';
 
@@ -16,10 +16,10 @@ interface TableProps<T> {
     rows: T[];
 
     /** 编辑模式 Cell 表示单元格编辑, Row 表示行编辑 */
-    mode?: 'cell' | 'row'
+    mode?: 'cell' | 'row';
 
     /** 数据的唯一Key */
-    rowKey: string
+    rowKey: string;
 
     /** 列信息 */
     columns: Column<T>[];
@@ -27,8 +27,11 @@ interface TableProps<T> {
     /** 选择配置 */
     rowSelection?: RowSelectType;
 
+    /** 设置行的 className */
+    rowClassName?: (param: RowClassNameParam<T>) => string;
+
     /** 排序字段 */
-    sortColumns?: SortDirection[]
+    sortColumns?: SortDirection[];
 
     /** 表格单击行触发的事件 */
     onRowClick?: (row: T) => void;
@@ -40,7 +43,7 @@ interface TableProps<T> {
     onChange?: (rows: T[]) => void;
 
     /** 排序字段改变触发的事件 */
-    onSortColumnsChange?: (change: SortDirection[]) => void
+    onSortColumnsChange?: (change: SortDirection[]) => void;
 }
 
 function Table<T>({
@@ -55,11 +58,11 @@ function Table<T>({
     onChange,
     onRowClick,
     onRowDoubleClick,
+    rowClassName = ({ className }) => className,
     onSortColumnsChange = () => {},
 }: TableProps<T>) {
-
     if (typeof rowKey !== 'string') {
-        throw new Error('FAST-UI: 表格 [rowKey] 属性要是一个字符串。')
+        throw new Error('FAST-UI: 表格 [rowKey] 属性要是一个字符串。');
     }
 
     const colsProcess = useMemo(() => {
@@ -77,7 +80,7 @@ function Table<T>({
     const headers = useHeader<T>({
         columns: colsProcess,
         onSortColumnsChange,
-        sortColumns
+        sortColumns,
     });
 
     const bodys = useBody<T>({
@@ -86,7 +89,8 @@ function Table<T>({
         rowSelection,
         rowKey,
         mode,
-        onChange
+        onChange,
+        rowClassName,
     });
 
     return (
@@ -100,7 +104,7 @@ function Table<T>({
                 }
             }}
             onCellRender={(element, cell) => {
-                return element
+                return element;
             }}
             onRowDoubleClick={({ row }) => {
                 if (row.object) {
