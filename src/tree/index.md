@@ -11,7 +11,6 @@ group:
 
 多层次的结构列表。
 
-
 <div class="fu-code-block-row">
 
 <div class="fu-code-block-col-2-1">
@@ -19,54 +18,58 @@ group:
 ```tsx
 /**
  * title: 全部加载
- * desc: 一次性加载节点数据，在数据量大的时候存在性能问题
+ * desc: 一次性加载节点数据, 可通过 `directoryTree` 来设置树的类型，在数据量大的时候存在性能问题
  */
 import React, { useState } from 'react';
 import { Tree } from '@weblif/fast-ui';
 
 const treeData = [
-  {
-    title: 'parent 1',
-    key: '0-0',
-    children: [
-      {
-        title: 'parent 1-0',
-        key: '0-0-0',
-        disabled: true,
+    {
+        title: 'parent 1',
+        key: '0-0',
         children: [
-          {
-            title: 'leaf',
-            key: '0-0-0-0',
-            disableCheckbox: true,
-          },
-          {
-            title: 'leaf',
-            key: '0-0-0-1',
-          },
+            {
+                title: 'parent 1-0',
+                key: '0-0-0',
+                disabled: true,
+                children: [
+                    {
+                        title: 'leaf',
+                        key: '0-0-0-0',
+                        disableCheckbox: true,
+                    },
+                    {
+                        title: 'leaf',
+                        key: '0-0-0-1',
+                    },
+                ],
+            },
+            {
+                title: 'parent 1-1',
+                key: '0-0-1',
+                children: [
+                    { title: <span style={{ color: '#1890ff' }}>sss</span>, key: '0-0-1-0' },
+                ],
+            },
         ],
-      },
-      {
-        title: 'parent 1-1',
-        key: '0-0-1',
-        children: [{ title: <span style={{ color: '#1890ff' }}>sss</span>, key: '0-0-1-0' }],
-      },
-    ],
-  },
+    },
 ];
-
 
 export default () => {
     return (
         <Tree
+            directoryTree
             loadData={treeData}
             onMenuClick={(type, node) => {
-                console.log(type, node)
+                console.log(type, node);
             }}
             contextMenuRender={() => {
-                return [{
-                    key: 'delete',
-                    title: '删除'
-                }]
+                return [
+                    {
+                        key: 'delete',
+                        title: '删除',
+                    },
+                ];
             }}
         />
     );
@@ -85,7 +88,6 @@ export default () => {
 import React, { useState } from 'react';
 import { Tree } from '@weblif/fast-ui';
 
-
 export default () => {
     return (
         <Tree
@@ -96,7 +98,7 @@ export default () => {
                             { title: 'Expand to load', key: '0' },
                             { title: 'Expand to load', key: '1' },
                             { title: 'Tree Node', key: '2', isLeaf: true },
-                        ])
+                        ]);
                         return;
                     }
 
@@ -104,18 +106,20 @@ export default () => {
                         resolve([
                             { title: `Child Node - ${treeNode.key}`, key: `${treeNode.key}-0` },
                             { title: `Child Node - ${treeNode.key}-1`, key: `${treeNode.key}-1` },
-                        ])
-                    }, 1000)
-                }) 
+                        ]);
+                    }, 1000);
+                });
             }}
             onMenuClick={(type, node) => {
-                console.log(type, node)
+                console.log(type, node);
             }}
             contextMenuRender={() => {
-                return [{
-                    key: 'delete',
-                    title: '删除'
-                }]
+                return [
+                    {
+                        key: 'delete',
+                        title: '删除',
+                    },
+                ];
             }}
         />
     );
@@ -125,7 +129,6 @@ export default () => {
 </div>
 
 </div>
-
 
 ## API
 
@@ -198,15 +201,15 @@ export default () => {
 
 ```jsx | pure
 {
-  this.state.treeData.length ? (
-    <Tree>
-      {this.state.treeData.map(data => (
-        <TreeNode />
-      ))}
-    </Tree>
-  ) : (
-    'loading tree'
-  );
+    this.state.treeData.length ? (
+        <Tree>
+            {this.state.treeData.map((data) => (
+                <TreeNode />
+            ))}
+        </Tree>
+    ) : (
+        'loading tree'
+    );
 }
 ```
 

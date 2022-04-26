@@ -2,10 +2,16 @@ import React, { useState, useRef, useLayoutEffect, FC } from 'react';
 import { Modal as AntModal, ModalProps as AntModalProps, notification } from 'antd';
 import Draggable from 'react-draggable';
 
-export interface ModalProps extends Omit<AntModalProps, 'onOk' | 'confirmLoading'> {
+// see https://github.com/react-grid-layout/react-draggable/pull/648
+declare module 'react-draggable' {
+    export interface DraggableProps {
+        children: React.ReactNode;
+    }
+}
 
+export interface ModalProps extends Omit<AntModalProps, 'onOk' | 'confirmLoading'> {
     /** 改变状态触发的事件 */
-    onChangeVisible: (disabled: boolean) => void
+    onChangeVisible: (disabled: boolean) => void;
 
     /** 点击完成按钮触发的事件, 返回一个 `Promise<void>` 对象 */
     onOk?: (
@@ -20,13 +26,15 @@ export interface ModalProps extends Omit<AntModalProps, 'onOk' | 'confirmLoading
     /** 键盘按键的时候触发的事件 */
     onKeyDown?: (
         e: React.KeyboardEvent<HTMLDivElement>,
-        onOkFunction: (event: React.MouseEvent<HTMLElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>) => void
-    ) => void
+        onOkFunction: (
+            event: React.MouseEvent<HTMLElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>,
+        ) => void,
+    ) => void;
 }
 
 const Modal: FC<ModalProps> = ({
-    okText = "确定",
-    cancelText = "取消",
+    okText = '确定',
+    cancelText = '取消',
     visible,
     title,
     destroyOnClose = true,
@@ -42,7 +50,7 @@ const Modal: FC<ModalProps> = ({
     const draggleRef = useRef<HTMLDivElement>(null);
 
     const onOkFunction = (
-        event: React.MouseEvent<HTMLElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>
+        event: React.MouseEvent<HTMLElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>,
     ) => {
         setLoading(true);
         const res = onOk?.(event);
@@ -68,15 +76,15 @@ const Modal: FC<ModalProps> = ({
             }
             setLoading(false);
         }
-    }
+    };
 
     useLayoutEffect(() => {
         if (visible) {
             setTimeout(() => {
-                draggleRef.current?.focus()
-            }, 0)
+                draggleRef.current?.focus();
+            }, 0);
         }
-    }, [visible])
+    }, [visible]);
 
     return (
         <AntModal
@@ -127,9 +135,9 @@ const Modal: FC<ModalProps> = ({
                             tabIndex={-1}
                             onKeyDown={(e) => {
                                 if (onKeyDown) {
-                                    onKeyDown(e, onOkFunction)
+                                    onKeyDown(e, onOkFunction);
                                 } else if (!e.ctrlKey && e.key === 'Enter' && loading === false) {
-                                    onOkFunction(e)
+                                    onOkFunction(e);
                                 }
                             }}
                         >
@@ -139,7 +147,7 @@ const Modal: FC<ModalProps> = ({
                 );
             }}
             onOk={(event) => {
-                onOkFunction(event)
+                onOkFunction(event);
             }}
             onCancel={(event) => {
                 const res = onCancel?.(event);
