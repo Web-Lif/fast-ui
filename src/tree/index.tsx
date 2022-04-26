@@ -96,8 +96,11 @@ const Tree = ({
         }
         return undefined;
     };
-
+    let extProps: {
+        expandAction?: ExpandAction;
+    } = {};
     const AntTempTree = useMemo(() => {
+        extProps.expandAction = expandAction;
         if (directoryTree) {
             return AntTree.DirectoryTree;
         }
@@ -177,6 +180,7 @@ const Tree = ({
                 );
             }}
             {...restProps}
+            {...extProps}
         />
     );
 };
