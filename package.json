@@ -1,6 +1,6 @@
 {
     "name": "@weblif/fast-ui",
-    "version": "0.7.3-canary",
+    "version": "0.7.4-canary",
     "scripts": {
         "start": "dumi dev",
         "docs:build": "dumi build",

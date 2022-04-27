@@ -5,7 +5,7 @@ import { Column, RowClassNameParam, RowSelectType, SortDirection } from './type'
 import useBody from './body';
 import useHeader from './header';
 
-interface TableProps<T> {
+export interface TableProps<T> {
     /** 表格的宽度 */
     width: number;
 
