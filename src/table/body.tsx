@@ -183,7 +183,7 @@ function useBody<T>({
                         )}
                         onDoubleClick={() => {
                             // 如果是单元格编辑
-                            if (mode === 'cell' && col.editor && col.readOnly === true) {
+                            if (mode === 'cell' && col.editor && col.readOnly !== true) {
                                 const index = editCells.indexOf(cell.key as string);
                                 if (index !== -1) {
                                     const changeData = produce<string[], string[]>(
