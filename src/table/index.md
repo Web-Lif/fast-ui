@@ -267,6 +267,7 @@ export default () => {
                             {
                                 name: 'email',
                                 title: '邮箱地址',
+                                readOnly: true,
                                 editor: ({ onFinish, value, onChange }) => (
                                     <Input
                                         value={value}
