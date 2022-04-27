@@ -1,3 +1,4 @@
+import { css } from '@emotion/css';
 import React, { FC, HTMLAttributes, ReactNode, useLayoutEffect, useRef, useState } from 'react';
 
 type Size = {
@@ -9,7 +10,7 @@ interface AutoSizeProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'>
     children: (size: Size) => ReactNode;
 }
 
-const AutoSize: FC<AutoSizeProps> = ({ children, ...restProps }) => {
+const AutoSize: FC<AutoSizeProps> = ({ children, className, ...restProps }) => {
     const [size, setSize] = useState<Size>({
         width: 0,
         height: 0,
@@ -30,8 +31,12 @@ const AutoSize: FC<AutoSizeProps> = ({ children, ...restProps }) => {
         };
     }, []);
 
+    const divCss = css`
+        box-sizing: border-box;
+        overflow: hidden;
+    `;
     return (
-        <div ref={divRef} {...restProps}>
+        <div className={`${divCss} ${className}`} ref={divRef} {...restProps}>
             {children(size)}
         </div>
     );
