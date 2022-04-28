@@ -1,6 +1,6 @@
 {
     "name": "@weblif/fast-ui",
-    "version": "0.7.5-canary",
+    "version": "0.7.6-canary",
     "scripts": {
         "start": "dumi dev",
         "docs:build": "dumi build",
@@ -53,7 +53,7 @@
     "dependencies": {
         "@emotion/css": "^11.7.1",
         "@ant-design/icons": "^4.7.0",
-        "@weblif/rc-table": "^0.0.21-canary",
+        "@weblif/rc-table": "^0.0.22-canary",
         "antd": "^4.20.0",
         "date-fns": "^2.28.0",
         "immer": "^9.0.7",
