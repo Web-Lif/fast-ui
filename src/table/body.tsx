@@ -7,10 +7,11 @@ import produce from 'immer';
 import { Checkbox, Radio } from 'antd';
 
 import { Column, RowClassNameParam, RowSelectType } from './type';
-import { processColumns } from './utils/column';
+import { calcAutoColumnWidth, processColumns } from './utils/column';
 
 interface BodyParam<T> {
     rows: T[];
+    width: number;
     columns: Column<T>[];
     rowKey: string;
     rowSelection?: RowSelectType;
@@ -25,6 +26,7 @@ function useBody<T>({
     rowSelection,
     mode,
     rowKey,
+    width,
     rowClassName,
     onChange,
 }: BodyParam<T>) {
@@ -50,11 +52,25 @@ function useBody<T>({
             `,
             row,
         });
-        columns.forEach((col) => {
+        const {
+            colsWidth: tempColWidth,
+            autoCount,
+            colsCountFixedWidth,
+        } = calcAutoColumnWidth<T>(columns, width);
+
+        columns.forEach((col, index) => {
             let value = (row as any)[col.name];
 
+            let colWidth = tempColWidth[index];
+            let widthResult = 0;
+            if (colWidth === 'auto') {
+                widthResult = (width - colsCountFixedWidth) / autoCount;
+            } else if (typeof colWidth === 'number') {
+                widthResult = colWidth;
+            }
+
             const cell: Cell = {
-                width: col.width || 120,
+                width: widthResult,
                 key: `${col.name}-${(row as any)[rowKey]}`,
                 value: value as string,
             };

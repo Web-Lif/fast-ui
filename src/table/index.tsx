@@ -78,6 +78,7 @@ function Table<T>({
     }, [columns]);
 
     const headers = useHeader<T>({
+        width,
         columns: colsProcess,
         onSortColumnsChange,
         sortColumns,
@@ -85,6 +86,7 @@ function Table<T>({
 
     const bodys = useBody<T>({
         rows,
+        width,
         columns: colsProcess,
         rowSelection,
         rowKey,

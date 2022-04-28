@@ -33,7 +33,7 @@ export interface Column<T> {
     title: string;
 
     /** 列的宽度信息 */
-    width?: number;
+    width?: number | string;
 
     /** 固定列的方向 */
     fixed?: 'left' | 'right';
