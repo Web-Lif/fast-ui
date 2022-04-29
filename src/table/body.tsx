@@ -46,9 +46,7 @@ function useBody<T>({
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 overflow: hidden;
-                :hover {
-                    --rc-table-background-color: #f5f5f5;
-                }
+                background-color: var(--rc-table-background-color);
             `,
             row,
         });

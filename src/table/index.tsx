@@ -113,6 +113,29 @@ function Table<T>({
                     onRowDoubleClick?.(row.object);
                 }
             }}
+            onRowMouseEnter={(e, table) => {
+                const currentTarget = e.currentTarget;
+                setTimeout(() => {
+                    const classNames = currentTarget.className.split(' ');
+                    const className = classNames.find((className) =>
+                        className.includes('rc-table-row-'),
+                    );
+                    const elements = table.querySelectorAll(`.${className}`);
+                    table.querySelectorAll(`.rc-table-row`).forEach((element) => {
+                        const htmlElement = element as HTMLElement;
+                        if (htmlElement.style.getPropertyValue('--rc-table-background-color')) {
+                            htmlElement.style.removeProperty('--rc-table-background-color');
+                        }
+                    });
+
+                    elements.forEach((element) => {
+                        (element as HTMLElement).style.setProperty(
+                            '--rc-table-background-color',
+                            '#f5f5f5',
+                        );
+                    });
+                }, 0);
+            }}
         />
     );
 }
