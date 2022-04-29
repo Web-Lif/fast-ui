@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Button as AButton, ButtonProps as AButtonProps } from 'antd';
 
 export interface ButtonProps extends Omit<AButtonProps, 'onClick'> {
     /** 点击按钮触发的事件, 返回一个 `Promise<void>` 对象 */
-    onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => Promise<void> | void | boolean;
+    onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => Promise<void> | void;
 }
 
 const Button = (props: ButtonProps) => {
@@ -14,7 +14,7 @@ const Button = (props: ButtonProps) => {
     return (
         <AButton
             {...restProps}
-            disabled={(dis === false || dis === true) ? dis : disabled}
+            disabled={dis === false || dis === true ? dis : disabled}
             onClick={(e) => {
                 setDisabled(true);
                 const res = onClick?.(e);
