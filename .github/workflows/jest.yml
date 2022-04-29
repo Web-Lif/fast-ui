@@ -5,7 +5,7 @@ on:
     branches:
       - canary
 jobs:
-  build-and-deploy:
+  jest-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
