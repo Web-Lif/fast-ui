@@ -22,6 +22,7 @@
         "es"
     ],
     "license": "MIT",
+    "homepage": "https://ui.lif.ink",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Web-Lif/fast-ui.git",
