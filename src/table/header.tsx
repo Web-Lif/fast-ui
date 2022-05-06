@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Column, SortDirection } from './type';
-import { Row } from '@weblif/rc-table';
+import { getScrollbarWidth, Row } from '@weblif/rc-table';
 import { Cell } from '@weblif/rc-table/es/types';
 import { css } from '@emotion/css';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
@@ -93,7 +93,7 @@ function useHeader<T>({
             let colWidth = tempColWidth[index];
             let widthResult = 0;
             if (colWidth === 'auto') {
-                widthResult = (width - colsCountFixedWidth) / autoCount;
+                widthResult = (width - colsCountFixedWidth - getScrollbarWidth() - 2) / autoCount;
             } else if (typeof colWidth === 'number') {
                 widthResult = colWidth;
             }
