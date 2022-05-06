@@ -16,12 +16,19 @@ interface FormProps<T = any> extends AntFormProps<T> {
 function InternalForm<T>({ cols, ...restProps }: FormProps<T>) {
     const { children } = restProps;
     /** 采用 Form 的方式进行布局 */
-    if (cols && cols > 0 && children instanceof Array && children.length > 0) {
+    if (cols && cols > 0) {
+        let childrens = [];
+        if (children instanceof Array && children.length > 0) {
+            childrens = children;
+        } else {
+            childrens.push(children);
+        }
         const rows: ReactElement[] = [];
         let cell: ReactElement[] = [];
 
         let before: number = 0;
-        children.forEach((element, index) => {
+
+        childrens.forEach((element, index) => {
             const { colSpan = 0, rowSpan, br } = element.props;
             const { key } = element;
 
@@ -41,7 +48,7 @@ function InternalForm<T>({ cols, ...restProps }: FormProps<T>) {
             );
 
             const remainder = before % cols;
-            if (colSpan < cols && remainder > 0 && (br || children.length === index + 1)) {
+            if (colSpan < cols && remainder > 0 && (br || childrens.length === index + 1)) {
                 before += cols - remainder;
                 cell.push(<td key={`td-${key}-${index}-br`} colSpan={cols - remainder}></td>);
             }
@@ -53,7 +60,7 @@ function InternalForm<T>({ cols, ...restProps }: FormProps<T>) {
             }
         });
 
-        const lastKey = children[children.length - 1].key;
+        const lastKey = childrens[childrens.length - 1].key;
         rows.push(<tr key={`tr-${lastKey}`}>{cell}</tr>);
         return (
             <AntForm<T> {...restProps}>
