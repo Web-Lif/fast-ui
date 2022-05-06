@@ -1,7 +1,7 @@
 import React, { cloneElement, useMemo, useState } from 'react';
 
 import { css, cx } from '@emotion/css';
-import { Row } from '@weblif/rc-table';
+import { Row, getScrollbarWidth } from '@weblif/rc-table';
 import { Cell } from '@weblif/rc-table/es/types';
 import produce from 'immer';
 import { Checkbox, Radio } from 'antd';
@@ -62,7 +62,7 @@ function useBody<T>({
             let colWidth = tempColWidth[index];
             let widthResult = 0;
             if (colWidth === 'auto') {
-                widthResult = (width - colsCountFixedWidth) / autoCount;
+                widthResult = (width - colsCountFixedWidth - getScrollbarWidth() - 2) / autoCount;
             } else if (typeof colWidth === 'number') {
                 widthResult = colWidth;
             }
