@@ -1,6 +1,6 @@
 {
     "name": "@weblif/fast-ui",
-    "version": "0.8.2-canary",
+    "version": "0.8.3-canary",
     "scripts": {
         "start": "dumi dev",
         "docs:build": "dumi build",
@@ -10,8 +10,7 @@
         "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
         "test": "umi-test",
         "test:coverage": "umi-test --coverage",
-        "prepublishOnly": "npm run build",
-        "preinstall": "npx npm-force-resolutions"
+        "prepublishOnly": "npm run build"
     },
     "main": "es/index.js",
     "module": "es/index.js",
