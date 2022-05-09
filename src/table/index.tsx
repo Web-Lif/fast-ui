@@ -102,12 +102,10 @@ function Table<T>({
             height={height}
             rows={headers.concat(bodys)}
             onRowClick={({ row }) => {
-                debugger;
                 if (rowSelection?.clickModel === 'row' && rowSelection?.model === 'multiple') {
-                    debugger;
                     const changeRowsData = produce<T[], T[]>(rows, (draft) => {
                         draft.some((ele) => {
-                            if ((ele as any)[rowKey] === row.key) {
+                            if ((ele as any)[rowKey] === (row.object as any)[rowKey]) {
                                 (ele as any)['$select'] = !(ele as any)['$select'];
                                 (ele as any)['$state'] = 'update';
                                 return true;
@@ -120,7 +118,7 @@ function Table<T>({
                 } else if (rowSelection?.clickModel === 'row' && rowSelection?.model === 'single') {
                     const changeData = produce<T[], T[]>(rows, (draft) => {
                         draft.forEach((ele) => {
-                            if ((ele as any)[rowKey] === row.key) {
+                            if ((ele as any)[rowKey] === (row.object as any)[rowKey]) {
                                 (ele as any)['$select'] = !(ele as any)['$select'];
                             } else {
                                 (ele as any)['$select'] = false;
