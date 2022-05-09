@@ -108,13 +108,11 @@ function useBody<T>({
                             onChange={(e) => {
                                 const checked = e.target.checked;
                                 const changeData = produce<T[], T[]>(rows, (draft) => {
-                                    draft.some((ele) => {
+                                    draft.forEach((ele) => {
                                         if (`${col.name}-${(ele as any)[rowKey]}` === cell.key) {
                                             (ele as any)['$select'] = checked;
-                                            return true;
                                         } else {
                                             (ele as any)['$select'] = false;
-                                            return false;
                                         }
                                     });
                                 });
@@ -229,7 +227,10 @@ function useBody<T>({
             }
 
             let selectd = cell.selectd;
-            if (typeof col.allowCellSelectBorder === 'function') {
+
+            if (mode === undefined) {
+                selectd = false;
+            } else if (typeof col.allowCellSelectBorder === 'function') {
                 selectd = col.allowCellSelectBorder({
                     row,
                     selectd: cell.selectd,

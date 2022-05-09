@@ -4,6 +4,7 @@ import { Table as RCTable } from '@weblif/rc-table';
 import { Column, RowClassNameParam, RowSelectType, SortDirection } from './type';
 import useBody from './body';
 import useHeader from './header';
+import produce from 'immer';
 
 export interface TableProps<T> {
     /** 表格的宽度 */
@@ -101,6 +102,34 @@ function Table<T>({
             height={height}
             rows={headers.concat(bodys)}
             onRowClick={({ row }) => {
+                debugger;
+                if (rowSelection?.clickModel === 'row' && rowSelection?.model === 'multiple') {
+                    debugger;
+                    const changeRowsData = produce<T[], T[]>(rows, (draft) => {
+                        draft.some((ele) => {
+                            if ((ele as any)[rowKey] === row.key) {
+                                (ele as any)['$select'] = !(ele as any)['$select'];
+                                (ele as any)['$state'] = 'update';
+                                return true;
+                            } else {
+                                return false;
+                            }
+                        });
+                    });
+                    onChange?.(changeRowsData);
+                } else if (rowSelection?.clickModel === 'row' && rowSelection?.model === 'single') {
+                    const changeData = produce<T[], T[]>(rows, (draft) => {
+                        draft.forEach((ele) => {
+                            if ((ele as any)[rowKey] === row.key) {
+                                (ele as any)['$select'] = !(ele as any)['$select'];
+                            } else {
+                                (ele as any)['$select'] = false;
+                            }
+                        });
+                    });
+                    onChange?.(changeData);
+                }
+
                 if (row.object) {
                     onRowClick?.(row.object);
                 }
