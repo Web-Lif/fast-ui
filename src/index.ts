@@ -65,3 +65,4 @@ export { Carousel } from './carousel';
 export { Select } from './input/Select';
 export { Image } from './image';
 export { default as AutoSize } from './autosize';
+export { ConfigProvider } from './configprovider';
