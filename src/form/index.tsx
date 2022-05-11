@@ -18,7 +18,7 @@ function InternalForm<T>({ cols, ...restProps }: FormProps<T>) {
     /** 采用 Form 的方式进行布局 */
     if (cols && cols > 0) {
         let childrens = [];
-        if (children instanceof Array && children.length > 0) {
+        if (Array.isArray(children)) {
             childrens = children;
         } else {
             childrens.push(children);
