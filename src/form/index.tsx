@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, ReactNode } from 'react';
+import React, { cloneElement, FC, ReactElement, ReactNode } from 'react';
 import {
     FormProps as AntFormProps,
     Form as AntForm,
@@ -29,7 +29,7 @@ function InternalForm<T>({ cols, ...restProps }: FormProps<T>) {
         let before: number = 0;
 
         childrens.forEach((element, index) => {
-            const { colSpan = 0, rowSpan, br } = element.props;
+            const { colSpan = 0, rowSpan, br, ...restProps } = element.props;
             const { key } = element;
 
             before += (colSpan || 0) + 1;
@@ -43,7 +43,10 @@ function InternalForm<T>({ cols, ...restProps }: FormProps<T>) {
                         vertical-align: top;
                     `}
                 >
-                    {element}
+                    {cloneElement(element, {
+                        name: key,
+                        ...restProps,
+                    })}
                 </td>,
             );
 
