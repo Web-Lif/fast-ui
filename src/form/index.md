@@ -35,7 +35,7 @@ export default () => {
             <Form.Item label="Field 2" name="field2" key="field2">
                 <Input />
             </Form.Item>
-             <Form.Item label="Field 3" name="field2" key="field3">
+            <Form.Item label="Field 3" name="field2" key="field3">
                 <Input />
             </Form.Item>
             <Form.Item label="Field 4" key="field4" name="field4">
@@ -47,7 +47,7 @@ export default () => {
             <Form.Item label="Field 6" name="field6" key="field6">
                 <Input />
             </Form.Item>
-             <Form.Item label="Field 7" name="field7" key="field7">
+            <Form.Item label="Field 7" name="field7" key="field7">
                 <Input />
             </Form.Item>
             <Form.Item label="Field 8" name="field8" key="field8" colSpan={4}>
@@ -58,6 +58,35 @@ export default () => {
 };
 ```
 
+```tsx
+/**
+ * title: 用 key 替代 name
+ * desc:  默认情况下根据 React 要求需要给 Item 设置 key, 如果已经设置 key, name 没有设置，那么默认会使用 key 作为 name 的值
+ */
+import React, { useState, useRef } from 'react';
+import { Form, Input } from '@weblif/fast-ui';
+
+export default () => {
+    return (
+        <Form
+            cols={4}
+            onValuesChange={(values) => {
+                console.log(values);
+            }}
+        >
+            <Form.Item label="Field 0" key="field0">
+                <Input />
+            </Form.Item>
+            <Form.Item label="Field 1" key="field1">
+                <Input />
+            </Form.Item>
+            <Form.Item label="Field 2" key="field2">
+                <Input />
+            </Form.Item>
+        </Form>
+    );
+};
+```
 
 ```tsx
 /**
@@ -93,40 +122,57 @@ export default () => {
  * desc: 通过 `JSON` 数据动态生成表单
  */
 import React, { useState, useEffect, useRef } from 'react';
-import { Form, Modal, Input, Button, InputNumber,JSONFormsData, ModalInstance } from '@weblif/fast-ui';
+import {
+    Form,
+    Modal,
+    Input,
+    Button,
+    InputNumber,
+    JSONFormsData,
+    ModalInstance,
+} from '@weblif/fast-ui';
 
 const JSON_DATA = {
     cols: 4,
-    fields: [{
-        name: 'field0',
-        label: 'Field 0'
-    },{
-        name: 'field1',
-        label: 'Field 1'
-    },{
-        name: 'field2',
-        label: 'Field 2'
-    },{
-        name: 'field3',
-        label: 'Field 3'
-    },{
-        name: 'field4',
-        label: 'Field 4'
-    },{
-        name: 'field5',
-        label: 'Field 5'
-    },{
-        name: 'field6',
-        label: 'Field 6'
-    },{
-        name: 'field7',
-        label: 'Field 7',
-        editor: 'number'
-    }]
-}
+    fields: [
+        {
+            name: 'field0',
+            label: 'Field 0',
+        },
+        {
+            name: 'field1',
+            label: 'Field 1',
+        },
+        {
+            name: 'field2',
+            label: 'Field 2',
+        },
+        {
+            name: 'field3',
+            label: 'Field 3',
+        },
+        {
+            name: 'field4',
+            label: 'Field 4',
+        },
+        {
+            name: 'field5',
+            label: 'Field 5',
+        },
+        {
+            name: 'field6',
+            label: 'Field 6',
+        },
+        {
+            name: 'field7',
+            label: 'Field 7',
+            editor: 'number',
+        },
+    ],
+};
 
 export default () => {
-    const [loading, setLoading] = useState<boolean>(true)
+    const [loading, setLoading] = useState<boolean>(true);
     const [data, setData] = useState<string>(JSON_DATA);
 
     const [visible, setVisible] = useState<boolean>(false);
@@ -135,44 +181,41 @@ export default () => {
         <>
             <Button
                 onClick={() => {
-                    setVisible(true)
+                    setVisible(true);
                 }}
             >
                 修改 JSON 数据进行动态加载
             </Button>
-            
+
             <br />
             <br />
             <Form.DynamicJSONForm
                 data={data}
-                extendEditors={[{
-                    name: 'number',
-                    editor: <InputNumber />
-                }]}
+                extendEditors={[
+                    {
+                        name: 'number',
+                        editor: <InputNumber />,
+                    },
+                ]}
             />
-            <Modal
-                title="输入的JSON数据"
-                visible={visible}
-                onChangeVisible={setVisible}
-
-            >
+            <Modal title="输入的JSON数据" visible={visible} onChangeVisible={setVisible}>
                 <Input.TextArea
                     defaultValue={JSON.stringify(data, null, 2)}
                     style={{
-                        height: 400
+                        height: 400,
                     }}
-                    onChange={value => {
-                        try{
-                            setData(JSON.parse(value))
-                        }catch(e) {
-                        }
+                    onChange={(value) => {
+                        try {
+                            setData(JSON.parse(value));
+                        } catch (e) {}
                     }}
                 />
             </Modal>
         </>
-    )
+    );
 };
 ```
+
 <br />
 
 ## Form
