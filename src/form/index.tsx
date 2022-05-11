@@ -60,8 +60,8 @@ function InternalForm<T>({ cols, ...restProps }: FormProps<T>) {
             }
         });
 
-        const lastKey = childrens[childrens.length - 1].key;
-        rows.push(<tr key={`tr-${lastKey}`}>{cell}</tr>);
+        rows.push(<tr key={`tr-rows`}>{cell}</tr>);
+
         return (
             <AntForm<T> {...restProps}>
                 <table
