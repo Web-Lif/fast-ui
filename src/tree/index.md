@@ -56,23 +56,7 @@ const treeData = [
 ];
 
 export default () => {
-    return (
-        <Tree
-            directoryTree
-            loadData={treeData}
-            onMenuClick={(type, node) => {
-                console.log(type, node);
-            }}
-            contextMenuRender={() => {
-                return [
-                    {
-                        key: 'delete',
-                        title: '删除',
-                    },
-                ];
-            }}
-        />
-    );
+    return <Tree directoryTree loadData={treeData} />;
 };
 ```
 
@@ -85,12 +69,14 @@ export default () => {
  * title: 懒加载
  * desc: 异步加载树的信息, 可极大的优化加载效率
  */
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Tree } from '@weblif/fast-ui';
 
 export default () => {
+    const tree = useRef();
     return (
         <Tree
+            tree={tree}
             loadData={(treeNode) => {
                 return new Promise((resolve) => {
                     if (treeNode === null) {
@@ -111,13 +97,46 @@ export default () => {
                 });
             }}
             onMenuClick={(type, node) => {
-                console.log(type, node);
+                if (type === 'delete') {
+                    tree.current.removeNodes([node.key]);
+                } else if (type === 'refresh') {
+                    tree.current.refresh(node);
+                } else if (type === 'add') {
+                    tree.current.addNodes(node, (nodes) => {
+                        return [
+                            ...nodes,
+                            { title: `Add Child Node - ${node.key}`, key: `${node.key}-add-0` },
+                        ];
+                    });
+                    tree.current.addNodes(node, (nodes) => {
+                        return [
+                            ...nodes,
+                            { title: `Add Child Node - ${node.key} 1`, key: `${node.key}-add-1` },
+                        ];
+                    });
+                } else if (type === 'edit') {
+                    tree.current.editNode(node.key, {
+                        title: `${node.title} - 已修改`,
+                    });
+                }
             }}
             contextMenuRender={() => {
                 return [
                     {
                         key: 'delete',
-                        title: '删除',
+                        label: '删除',
+                    },
+                    {
+                        key: 'refresh',
+                        label: '刷新',
+                    },
+                    {
+                        key: 'add',
+                        label: '添加节点信息',
+                    },
+                    {
+                        key: 'edit',
+                        label: '编辑节点',
                     },
                 ];
             }}
