@@ -1,4 +1,3 @@
-// import 'antd/dist/antd.variable.min.css';
 export type { ReflexElementProps, ReflexContainerProps, ReflexSplitterProps } from 'react-reflex';
 export { default as Button } from './button';
 export type { ButtonProps } from './button';
@@ -61,6 +60,7 @@ export { Tabs } from './tabs';
 export { Cascader } from './input/Cascader';
 export { default as Upload } from './input/Upload';
 export { default as Tree } from './tree';
+export type { TreeInstance } from './tree';
 export { Carousel } from './carousel';
 export { Select } from './input/Select';
 export { Image } from './image';
