@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { Table as RCTable } from '@weblif/rc-table';
+import React, { useMemo, useRef } from 'react';
+import { Table as RCTable, TableInstance } from '@weblif/rc-table';
 
 import { Column, RowClassNameParam, RowSelectType, SortDirection } from './type';
 import useBody from './body';
@@ -62,6 +62,8 @@ function Table<T>({
     rowClassName = ({ className }) => className,
     onSortColumnsChange = () => {},
 }: TableProps<T>) {
+    const table = useRef<TableInstance>(null);
+
     if (typeof rowKey !== 'string') {
         throw new Error('FAST-UI: 表格 [rowKey] 属性要是一个字符串。');
     }
@@ -83,6 +85,7 @@ function Table<T>({
         columns: colsProcess,
         onSortColumnsChange,
         sortColumns,
+        table,
     });
 
     const bodys = useBody<T>({
@@ -94,12 +97,14 @@ function Table<T>({
         mode,
         onChange,
         rowClassName,
+        table,
     });
 
     return (
         <RCTable<T>
             width={width}
             height={height}
+            table={table}
             rows={headers.concat(bodys)}
             onRowClick={({ row }) => {
                 if (rowSelection?.clickModel === 'row' && rowSelection?.model === 'multiple') {

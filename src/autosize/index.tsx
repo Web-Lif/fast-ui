@@ -35,11 +35,19 @@ const AutoSize: FC<AutoSizeProps> = ({ children, className, ...restProps }) => {
         box-sizing: border-box;
         overflow: hidden;
     `;
-    return (
-        <div className={`${divCss} ${className}`} ref={divRef} {...restProps}>
-            {children(size)}
-        </div>
-    );
+
+    const renderChildren = () => {
+        if (size.width === 0 && size.height === 0) {
+            return <div className={`${divCss} ${className}`} ref={divRef} {...restProps} />;
+        }
+        return (
+            <div className={`${divCss} ${className}`} ref={divRef} {...restProps}>
+                {children(size)}
+            </div>
+        );
+    };
+
+    return renderChildren();
 };
 
 export default AutoSize;
