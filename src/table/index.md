@@ -80,7 +80,7 @@ export default () => {
             <br />
             <AutoSize
                 style={{
-                    width: '100%',
+                    width: 1200,
                     height: 600,
                 }}
             >

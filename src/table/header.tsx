@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Column, SortDirection } from './type';
-import { getScrollbarWidth, Row } from '@weblif/rc-table';
+import { getScrollbarWidth, Row, TableInstance } from '@weblif/rc-table';
 import { Cell } from '@weblif/rc-table/es/types';
 import { css } from '@emotion/css';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
@@ -71,6 +71,7 @@ interface HeaderParam<T> {
     columns: Column<T>[];
     sortColumns: SortDirection[];
     onSortColumnsChange: (change: SortDirection[]) => void;
+    table: React.MutableRefObject<TableInstance | null>;
 }
 
 function useHeader<T>({
@@ -78,6 +79,7 @@ function useHeader<T>({
     columns: tempColumns,
     sortColumns = [],
     onSortColumnsChange,
+    table,
 }: HeaderParam<T>) {
     const columns = useMemo(() => {
         return processColumns<T>(tempColumns);
@@ -93,7 +95,13 @@ function useHeader<T>({
             let colWidth = tempColWidth[index];
             let widthResult = 0;
             if (colWidth === 'auto') {
-                widthResult = (width - colsCountFixedWidth - getScrollbarWidth() - 2) / autoCount;
+                console.log(table.current?.getScrollbarWidthOffset());
+                widthResult =
+                    (width -
+                        colsCountFixedWidth -
+                        (table.current?.getScrollbarWidthOffset() || 0) -
+                        2) /
+                    autoCount;
             } else if (typeof colWidth === 'number') {
                 widthResult = colWidth;
             }
@@ -124,7 +132,7 @@ function useHeader<T>({
                 key: 'header',
             },
         ];
-    }, [columns]);
+    }, [columns, table.current]);
     return headers;
 }
 
