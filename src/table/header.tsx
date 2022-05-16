@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Column, SortDirection } from './type';
 import { getScrollbarWidth, Row, TableInstance } from '@weblif/rc-table';
 import { Cell } from '@weblif/rc-table/es/types';
@@ -84,8 +84,8 @@ function useHeader<T>({
     const columns = useMemo(() => {
         return processColumns<T>(tempColumns);
     }, [tempColumns]);
-
-    const headers: Row<T>[] = useMemo(() => {
+    const [headers, setHeaders] = useState<Row<T>[]>([]);
+    useEffect(() => {
         const {
             colsWidth: tempColWidth,
             autoCount,
@@ -124,15 +124,15 @@ function useHeader<T>({
                 }),
             };
         });
-        return [
+        setHeaders([
             {
                 height: 35,
                 sticky: 'top',
                 cells,
                 key: 'header',
             },
-        ];
-    }, [columns, table.current]);
+        ]);
+    }, [columns]);
     return headers;
 }
 
