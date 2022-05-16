@@ -41,7 +41,7 @@ const AutoSize: FC<AutoSizeProps> = ({ children, className, ...restProps }) => {
             return <div className={`${divCss} ${className}`} ref={divRef} {...restProps} />;
         }
         return (
-            <div className={`${divCss} ${className}`} ref={divRef} {...restProps}>
+            <div className={`${divCss} ${className || ''}`} ref={divRef} {...restProps}>
                 {children(size)}
             </div>
         );
