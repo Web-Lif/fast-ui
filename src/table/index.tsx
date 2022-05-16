@@ -100,7 +100,6 @@ function Table<T>({
         table,
     });
 
-    console.log('tableHeight', height);
     return (
         <RCTable<T>
             width={width}
