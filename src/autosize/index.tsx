@@ -33,6 +33,8 @@ const AutoSize: FC<AutoSizeProps> = ({ children, className, ...restProps }) => {
 
     const divCss = css`
         box-sizing: border-box;
+        width: 100%;
+        height: 100%;
         overflow: hidden;
     `;
 
