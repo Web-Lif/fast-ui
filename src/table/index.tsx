@@ -137,9 +137,6 @@ function Table<T>({
                     onRowClick?.(row.object);
                 }
             }}
-            onCellRender={(element, cell) => {
-                return element;
-            }}
             onRowDoubleClick={({ row }) => {
                 if (row.object) {
                     onRowDoubleClick?.(row.object);

@@ -220,8 +220,6 @@ export default () => {
         model: modal === false ? 'single' : 'multiple',
     };
 
-    console.log(modal === false ? 'single' : 'multiple');
-
     return (
         <>
             <Space>
@@ -242,107 +240,81 @@ export default () => {
             </Space>
             <br />
             <br />
-            <AutoSize
-                style={{
-                    width: '100%',
-                    height: 600,
+            <Table
+                width={1200}
+                height={600}
+                rowSelection={{
+                    model: 'multiple',
                 }}
-            >
-                {({ width, height }) => (
-                    <Table
-                        width={width}
-                        height={height}
-                        rowSelection={rowSelection}
-                        rowKey="id"
-                        mode="cell"
-                        sortColumns={sortColumns}
-                        onSortColumnsChange={setSortColumns}
-                        columns={[
-                            {
-                                name: 'username',
-                                title: '人员名称',
-                                fixed: 'right',
-                                allowCellSelectBorder: false,
-                            },
-                            {
-                                name: 'email',
-                                title: '邮箱地址',
-                                readOnly: true,
-                                editor: ({ onFinish, value, onChange }) => (
-                                    <Input
-                                        value={value}
-                                        onChange={onChange}
-                                        autoFocus
-                                        onBlur={onFinish}
-                                    />
-                                ),
-                            },
-                            {
-                                name: 'age',
-                                title: '年龄',
-                                editor: ({ onFinish, value, onChange }) => (
-                                    <Input
-                                        value={value}
-                                        onChange={onChange}
-                                        autoFocus
-                                        onBlur={onFinish}
-                                    />
-                                ),
-                            },
-                            {
-                                name: 'tags',
-                                title: '标签',
-                                editor: ({ onFinish, value, onChange }) => (
-                                    <Input
-                                        value={value}
-                                        onChange={onChange}
-                                        autoFocus
-                                        onBlur={onFinish}
-                                    />
-                                ),
-                            },
-                            {
-                                name: 'col0',
-                                title: '标签',
-                                editor: ({ onFinish, value, onChange }) => (
-                                    <Input
-                                        value={value}
-                                        onChange={onChange}
-                                        autoFocus
-                                        onBlur={onFinish}
-                                    />
-                                ),
-                            },
-                            {
-                                name: 'col1',
-                                title: '标签',
-                            },
-                            {
-                                name: 'col2',
-                                title: '标签',
-                            },
-                            {
-                                name: 'col3',
-                                title: '标签',
-                            },
-                            {
-                                name: 'col4',
-                                title: '标签',
-                            },
-                            {
-                                name: 'col5',
-                                title: '标签',
-                            },
-                            {
-                                name: 'col6',
-                                title: '标签',
-                            },
-                        ]}
-                        rows={data}
-                        onChange={setData}
-                    />
-                )}
-            </AutoSize>
+                rowKey="id"
+                mode="cell"
+                columns={[
+                    {
+                        name: 'username',
+                        title: '人员名称',
+                        fixed: 'right',
+                        allowCellSelectBorder: false,
+                    },
+                    {
+                        name: 'email',
+                        title: '邮箱地址',
+                        readOnly: true,
+                        editor: ({ onFinish, value, onChange }) => (
+                            <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
+                        ),
+                    },
+                    {
+                        name: 'age',
+                        title: '年龄',
+                        editor: ({ onFinish, value, onChange }) => (
+                            <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
+                        ),
+                    },
+                    {
+                        name: 'tags',
+                        title: '标签',
+                        editor: ({ onFinish, value, onChange }) => (
+                            <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
+                        ),
+                    },
+                    {
+                        name: 'col0',
+                        title: '标签',
+                        editor: ({ onFinish, value, onChange }) => (
+                            <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
+                        ),
+                    },
+                    {
+                        name: 'col1',
+                        title: '标签',
+                    },
+                    {
+                        name: 'col2',
+                        title: '标签',
+                    },
+                    {
+                        name: 'col3',
+                        title: '标签',
+                    },
+                    {
+                        name: 'col4',
+                        title: '标签',
+                    },
+                    {
+                        name: 'col5',
+                        title: '标签',
+                    },
+                    {
+                        name: 'col6',
+                        title: '标签',
+                    },
+                ]}
+                rows={data}
+                onChange={(changeData) => {
+                    console.log('changeData');
+                    setData(changeData);
+                }}
+            />
         </>
     );
 };

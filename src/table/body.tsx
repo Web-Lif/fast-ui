@@ -1,7 +1,7 @@
 import React, { cloneElement, useMemo, useState } from 'react';
 
 import { css, cx } from '@emotion/css';
-import { Row, getScrollbarWidth, TableInstance } from '@weblif/rc-table';
+import { Row, TableInstance } from '@weblif/rc-table';
 import { Cell } from '@weblif/rc-table/es/types';
 import produce from 'immer';
 import { Checkbox, Radio } from 'antd';
@@ -58,6 +58,8 @@ function useBody<T>({
             colsCountFixedWidth,
         } = calcAutoColumnWidth<T>(columns, width);
 
+        let isSelectRow = false;
+
         columns.forEach((col, index) => {
             let value = (row as any)[col.name];
 
@@ -85,6 +87,8 @@ function useBody<T>({
                 cell.className = css`
                     padding: 0 8px;
                 `;
+
+                isSelectRow = value === true;
                 if (rowSelection?.model === 'multiple') {
                     cell.value = (
                         <Checkbox
@@ -249,14 +253,23 @@ function useBody<T>({
             cell.selectd = selectd;
             cells.push(cell);
         });
+
+        const selectClass = cx({
+            [css`
+                > div {
+                    background-color: var(--rc-table-select-background-color, #f5f5f5);
+                }
+            `]: isSelectRow,
+        });
         return {
             height: 35,
             cells,
             key: rowIndex,
-            className,
+            className: `${className} ${selectClass}`,
             object: row,
         };
     });
+
     return bodys;
 }
 

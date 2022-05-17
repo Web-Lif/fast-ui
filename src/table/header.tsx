@@ -95,7 +95,6 @@ function useHeader<T>({
             let colWidth = tempColWidth[index];
             let widthResult = 0;
             if (colWidth === 'auto') {
-                console.log(table.current?.getScrollbarWidthOffset());
                 widthResult =
                     (width -
                         colsCountFixedWidth -
