@@ -131,7 +131,7 @@ function useHeader<T>({
                 key: 'header',
             },
         ]);
-    }, [columns]);
+    }, [columns, width]);
     return headers;
 }
 
