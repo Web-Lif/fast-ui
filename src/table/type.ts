@@ -38,6 +38,9 @@ export interface Column<T> {
     /** 列的宽度信息 */
     width?: number | string;
 
+    /** 是否可改变列的大小 */
+    resizable?: boolean;
+
     /** 固定列的方向 */
     fixed?: 'left' | 'right';
 

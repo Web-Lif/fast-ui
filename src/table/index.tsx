@@ -1,10 +1,10 @@
 import React, { useMemo, useRef } from 'react';
 import { Table as RCTable, TableInstance } from '@weblif/rc-table';
+import produce from 'immer';
 
 import { Column, RowClassNameParam, RowSelectType, SortDirection } from './type';
 import useBody from './body';
 import useHeader from './header';
-import produce from 'immer';
 
 export interface TableProps<T> {
     /** 表格的宽度 */
@@ -43,6 +43,9 @@ export interface TableProps<T> {
     /** 改变表格数据触发的事件 */
     onChange?: (rows: T[]) => void;
 
+    /** 改变表格列信息触发的事件 */
+    onChangeColumns?: (cols: Column<T>[]) => void;
+
     /** 排序字段改变触发的事件 */
     onSortColumnsChange?: (change: SortDirection[]) => void;
 }
@@ -59,33 +62,63 @@ function Table<T>({
     onChange,
     onRowClick,
     onRowDoubleClick,
+    onChangeColumns,
     rowClassName = ({ className }) => className,
     onSortColumnsChange = () => {},
 }: TableProps<T>) {
     const table = useRef<TableInstance>(null);
+
+    const moveOffset = useRef<{
+        x: number;
+        y: number;
+    }>({
+        x: 0,
+        y: 0,
+    });
+
+    const startMoveOffset = useRef<{
+        x: number;
+        y: number;
+    }>({
+        x: -1,
+        y: -1,
+    });
+
+    const startMoveColName = useRef<Column<T>>();
 
     if (typeof rowKey !== 'string') {
         throw new Error('FAST-UI: 表格 [rowKey] 属性要是一个字符串。');
     }
 
     const colsProcess = useMemo(() => {
-        if (rowSelection && rowSelection.model) {
-            columns.splice(0, 0, {
-                name: '$select',
-                title: '',
-                width: 35,
-                fixed: 'left',
+        if (rowSelection && rowSelection.model && columns?.[0]?.name !== '$select') {
+            return produce(columns, (draft) => {
+                draft.splice(0, 0, {
+                    name: '$select',
+                    title: '',
+                    width: 35,
+                    fixed: 'left',
+                });
             });
         }
         return columns;
     }, [columns]);
 
-    const headers = useHeader<T>({
+    const { headers, columns: cols } = useHeader<T>({
         width,
         columns: colsProcess,
         onSortColumnsChange,
         sortColumns,
         table,
+        onColumnMouseDown: (e, col) => {
+            if (e.button === 0) {
+                startMoveColName.current = col;
+                startMoveOffset.current = {
+                    x: moveOffset.current.x,
+                    y: moveOffset.current.y,
+                };
+            }
+        },
     });
 
     const bodys = useBody<T>({
@@ -100,12 +133,75 @@ function Table<T>({
         table,
     });
 
+    const moveTicking = useRef<boolean>(false);
+
     return (
         <RCTable<T>
             width={width}
             height={height}
             table={table}
             rows={headers.concat(bodys)}
+            onMouseMove={(e) => {
+                moveOffset.current = {
+                    x: e.clientX,
+                    y: e.clientY,
+                };
+                // 修改列的宽度信息
+                if (
+                    startMoveOffset.current.x !== -1 &&
+                    startMoveOffset.current.y !== -1 &&
+                    !moveTicking.current
+                ) {
+                    const offsetX = moveOffset.current.x - startMoveOffset.current.x;
+                    requestAnimationFrame(() => {
+                        if (cols) {
+                            const changeColumns = produce(cols, (draft) => {
+                                draft.some((element: any) => {
+                                    if (
+                                        element.name === startMoveColName.current?.name &&
+                                        typeof element.width === 'number'
+                                    ) {
+                                        if (element.$initWidth === undefined) {
+                                            element.$initWidth = element.width;
+                                        }
+                                        element.width = element.$initWidth + offsetX;
+                                        return true;
+                                    }
+                                    return false;
+                                });
+                            });
+                            onChangeColumns?.(changeColumns);
+                        }
+                        setTimeout(() => {
+                            moveTicking.current = false;
+                        }, 40);
+                    });
+                    moveTicking.current = true;
+                }
+            }}
+            onMouseUp={() => {
+                if (cols) {
+                    const changeColumns = produce(cols, (draft) => {
+                        draft.some((element: any) => {
+                            if (
+                                element.name === startMoveColName.current?.name &&
+                                typeof element.width === 'number'
+                            ) {
+                                if (element.$initWidth !== undefined) {
+                                    element.$initWidth = undefined;
+                                }
+                                return true;
+                            }
+                            return false;
+                        });
+                    });
+                    onChangeColumns?.(changeColumns);
+                }
+                startMoveOffset.current = {
+                    x: -1,
+                    y: -1,
+                };
+            }}
             onRowClick={({ row }) => {
                 if (rowSelection?.clickModel === 'row' && rowSelection?.model === 'multiple') {
                     const changeRowsData = produce<T[], T[]>(rows, (draft) => {

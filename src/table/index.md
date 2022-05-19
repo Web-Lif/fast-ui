@@ -22,11 +22,11 @@ group:
 
 ```tsx
 /**
- * title: 基础表格
- * desc: 基础的表格信息, 显示列和行, 可通过 `AutoSize` 来进行百分比的设置
+ * title: 基础功能演示
+ * desc: 可通过 `AutoSize` 来进行百分比的设置, 使用 `useTableLocalSort` 进行排序, 设置 `onChangeColumns` 则启动可以拖拽改变表格列的宽度
  */
 import React, { useState, useRef } from 'react';
-import { Table, Button, Input, AutoSize, Space, message } from '@weblif/fast-ui';
+import { Table, Button, Input, AutoSize, Space, message, useTableLocalSort } from '@weblif/fast-ui';
 
 /** Mock 数据 */
 const mockData = () => {
@@ -37,7 +37,7 @@ const mockData = () => {
             email: 'zhang@xx.com',
             id: i,
             age: '25',
-            tags: '人类',
+            tags: Math.floor(Math.random() * 100),
             col0: `col0 - ${i}`,
             col1: `col1 - ${i}`,
             col2: `col2 - ${i}`,
@@ -53,11 +53,72 @@ const mockData = () => {
 export default () => {
     const [data, setData] = useState(mockData());
     const [modal, setModal] = useState(true);
-    const [sortColumns, setSortColumns] = useState([]);
     const rowSelection = {
         model: modal === false ? 'single' : 'multiple',
     };
 
+    const { setSortDirection, sortDirection, rows, setRows } = useTableLocalSort(mockData());
+
+    const [cols, setCols] = useState([
+        {
+            name: 'username',
+            title: '人员名称',
+            fixed: 'right',
+        },
+        {
+            name: 'email',
+            title: '邮箱地址',
+            resizable: true,
+            editor: ({ onFinish, value, onChange }) => (
+                <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
+            ),
+        },
+        {
+            name: 'age',
+            title: '年龄',
+            editor: ({ onFinish, value, onChange }) => (
+                <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
+            ),
+        },
+        {
+            name: 'tags',
+            title: '标签',
+            editor: ({ onFinish, value, onChange }) => (
+                <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
+            ),
+        },
+        {
+            name: 'col0',
+            title: '标签',
+            editor: ({ onFinish, value, onChange }) => (
+                <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
+            ),
+        },
+        {
+            name: 'col1',
+            title: '标签',
+        },
+        {
+            name: 'col2',
+            title: '标签',
+        },
+        {
+            name: 'col3',
+            title: '标签',
+        },
+        {
+            name: 'col4',
+            title: '标签',
+        },
+        {
+            name: 'col5',
+            title: '标签',
+        },
+        {
+            name: 'col6',
+            title: '标签',
+        },
+    ]);
     return (
         <>
             <Space>
@@ -91,89 +152,12 @@ export default () => {
                         rowSelection={rowSelection}
                         rowKey="id"
                         mode="cell"
-                        sortColumns={sortColumns}
-                        onSortColumnsChange={setSortColumns}
-                        columns={[
-                            {
-                                name: 'username',
-                                title: '人员名称',
-                                fixed: 'right',
-                            },
-                            {
-                                name: 'email',
-                                title: '邮箱地址',
-                                editor: ({ onFinish, value, onChange }) => (
-                                    <Input
-                                        value={value}
-                                        onChange={onChange}
-                                        autoFocus
-                                        onBlur={onFinish}
-                                    />
-                                ),
-                            },
-                            {
-                                name: 'age',
-                                title: '年龄',
-                                editor: ({ onFinish, value, onChange }) => (
-                                    <Input
-                                        value={value}
-                                        onChange={onChange}
-                                        autoFocus
-                                        onBlur={onFinish}
-                                    />
-                                ),
-                            },
-                            {
-                                name: 'tags',
-                                title: '标签',
-                                editor: ({ onFinish, value, onChange }) => (
-                                    <Input
-                                        value={value}
-                                        onChange={onChange}
-                                        autoFocus
-                                        onBlur={onFinish}
-                                    />
-                                ),
-                            },
-                            {
-                                name: 'col0',
-                                title: '标签',
-                                editor: ({ onFinish, value, onChange }) => (
-                                    <Input
-                                        value={value}
-                                        onChange={onChange}
-                                        autoFocus
-                                        onBlur={onFinish}
-                                    />
-                                ),
-                            },
-                            {
-                                name: 'col1',
-                                title: '标签',
-                            },
-                            {
-                                name: 'col2',
-                                title: '标签',
-                            },
-                            {
-                                name: 'col3',
-                                title: '标签',
-                            },
-                            {
-                                name: 'col4',
-                                title: '标签',
-                            },
-                            {
-                                name: 'col5',
-                                title: '标签',
-                            },
-                            {
-                                name: 'col6',
-                                title: '标签',
-                            },
-                        ]}
-                        rows={data}
-                        onChange={setData}
+                        sortColumns={sortDirection}
+                        onSortColumnsChange={setSortDirection}
+                        columns={cols}
+                        rows={rows}
+                        onChangeColumns={setCols}
+                        onChange={setRows}
                     />
                 )}
             </AutoSize>
@@ -198,7 +182,7 @@ const mockData = () => {
             username: 'zhangj',
             email: 'zhang@xx.com',
             id: i,
-            age: '25',
+            age: i,
             tags: '人类',
             col0: `col0 - ${i}`,
             col1: `col1 - ${i}`,

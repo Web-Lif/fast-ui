@@ -7,6 +7,7 @@ export { default as Spin } from './spin';
 export type { SpinProps } from './spin';
 export { default as InputNumber } from './input/InputNumber';
 export { default as Table } from './table';
+export { default as useTableLocalSort } from './table/utils/localSort';
 export type { TableProps } from './table';
 export { default as Form } from './form';
 export type { JSONFormsData } from './form';
