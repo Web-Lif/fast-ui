@@ -111,63 +111,63 @@ function useHeader<T>({
     const columns = useMemo(() => {
         return processColumns<T>(tempColumns);
     }, [tempColumns]);
-    const [headers, setHeaders] = useState<Row<T>[]>([]);
-    const realCols = useRef<Column<T>[]>();
-    useEffect(() => {
-        const {
-            colsWidth: tempColWidth,
-            autoCount,
-            colsCountFixedWidth,
-        } = calcAutoColumnWidth<T>(columns, width);
-        realCols.current = [];
-        const cells: Cell[] = columns.map((col, index) => {
-            let colWidth = tempColWidth[index];
-            let widthResult = 0;
-            if (colWidth === 'auto') {
-                widthResult =
-                    (width -
-                        colsCountFixedWidth -
-                        (table.current?.getScrollbarWidthOffset() || 0) -
-                        2) /
-                    autoCount;
-            } else if (typeof colWidth === 'number') {
-                widthResult = colWidth;
-            }
-            realCols.current?.push({
-                ...col,
-                width: widthResult,
-            });
 
-            return {
-                width: widthResult,
-                selectd: false,
-                key: col.name,
-                value: (
-                    <HeaderTitle<T>
-                        column={col}
-                        onMouseDown={onColumnMouseDown}
-                        sortColumns={sortColumns}
-                        onSortColumnsChange={onSortColumnsChange}
-                    />
-                ),
-                sticky: col.fixed,
-                className: css`
-                    --rc-table-background-color: #f9f9f9;
-                `,
-            };
+    const realCols: Column<T>[] = [];
+    const {
+        colsWidth: tempColWidth,
+        autoCount,
+        colsCountFixedWidth,
+    } = calcAutoColumnWidth<T>(columns, width);
+
+    const cells: Cell[] = columns.map((col, index) => {
+        let colWidth = tempColWidth[index];
+        let widthResult = 0;
+        if (colWidth === 'auto') {
+            widthResult =
+                (width -
+                    colsCountFixedWidth -
+                    (table.current?.getScrollbarWidthOffset() || 0) -
+                    2) /
+                autoCount;
+        } else if (typeof colWidth === 'number') {
+            widthResult = colWidth;
+        }
+        realCols.push({
+            ...col,
+            width: widthResult,
         });
-        setHeaders([
-            {
-                height: 35,
-                sticky: 'top',
-                cells,
-                key: 'header',
-            },
-        ]);
-    }, [columns, width]);
+
+        return {
+            width: widthResult,
+            selectd: false,
+            key: col.name,
+            value: (
+                <HeaderTitle<T>
+                    column={col}
+                    onMouseDown={onColumnMouseDown}
+                    sortColumns={sortColumns}
+                    onSortColumnsChange={onSortColumnsChange}
+                />
+            ),
+            sticky: col.fixed,
+            className: css`
+                --rc-table-background-color: #f9f9f9;
+            `,
+        };
+    });
+
+    const headers: Row<T>[] = [
+        {
+            height: 35,
+            sticky: 'top',
+            cells,
+            key: 'header',
+        },
+    ];
+
     return {
         headers,
-        columns: realCols.current,
+        columns: realCols,
     };
 }
 

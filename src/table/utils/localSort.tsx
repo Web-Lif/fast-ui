@@ -23,7 +23,7 @@ function useTableLocalSort<T>(data: T[] = []) {
                 }
             });
         }
-        return rows;
+        return data;
     };
 
     return {

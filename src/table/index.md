@@ -59,6 +59,7 @@ export default () => {
 
     const { setSortDirection, sortDirection, rows, setRows } = useTableLocalSort(mockData());
 
+    console.log(sortDirection);
     const [cols, setCols] = useState([
         {
             name: 'username',
