@@ -36,6 +36,7 @@ const AutoSize: FC<AutoSizeProps> = ({ children, className, ...restProps }) => {
         width: 100%;
         height: 100%;
         overflow: hidden;
+        position: relative;
     `;
 
     const renderChildren = () => {
@@ -44,7 +45,13 @@ const AutoSize: FC<AutoSizeProps> = ({ children, className, ...restProps }) => {
         }
         return (
             <div className={`${divCss} ${className || ''}`} ref={divRef} {...restProps}>
-                {children(size)}
+                <div
+                    style={{
+                        position: 'absolute',
+                    }}
+                >
+                    {children(size)}
+                </div>
             </div>
         );
     };
