@@ -50,16 +50,16 @@ const mockData = () => {
     return data;
 };
 
+const myMockData = mockData();
+
 export default () => {
-    const [data, setData] = useState(mockData());
     const [modal, setModal] = useState(true);
     const rowSelection = {
         model: modal === false ? 'single' : 'multiple',
     };
 
-    const { setSortDirection, sortDirection, rows, setRows } = useTableLocalSort(mockData());
+    const { setSortDirection, sortDirection, rows, setRows } = useTableLocalSort(myMockData);
 
-    console.log(sortDirection);
     const [cols, setCols] = useState([
         {
             name: 'username',
