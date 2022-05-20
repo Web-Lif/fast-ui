@@ -1,6 +1,50 @@
 import { css } from '@emotion/css';
-import React, { CSSProperties, FC, ReactNode, useRef } from 'react';
+import React, { CSSProperties, FC, MutableRefObject, ReactNode, useRef } from 'react';
 import { PlusOutlined, LoadingOutlined, DeleteOutlined } from '@ant-design/icons';
+
+export interface FileInstance {
+    /** 显示文件夹选择器 */
+    showOpenFilePicker: () => void;
+}
+
+interface FileProps {
+    accept?: string;
+    multiple?: boolean;
+    file?: MutableRefObject<FileInstance | null>;
+    onSelectFiles?: (files: FileList | null) => void;
+}
+
+export const File: FC<FileProps> = ({ accept, multiple, file, onSelectFiles }) => {
+    const fileRef = useRef<HTMLInputElement>(null);
+
+    if (file) {
+        file.current = {
+            showOpenFilePicker: () => {
+                fileRef.current?.click();
+            },
+        };
+    }
+
+    return (
+        <>
+            <input
+                ref={fileRef}
+                accept={accept}
+                className={css({
+                    display: 'none',
+                })}
+                type="file"
+                value=""
+                multiple={multiple}
+                onChange={(e) => {
+                    onSelectFiles?.(e.target.files);
+                    e.stopPropagation();
+                    e.preventDefault();
+                }}
+            />
+        </>
+    );
+};
 
 type FileType = {
     /** 名称 */
@@ -44,9 +88,6 @@ export interface UploadProps {
 
     /** 上传文件执行的方法 */
     onUpload?: (files: FileList | null) => void;
-
-    /** 改变触发的事件 */
-    onChange?: (files: FileType[]) => void;
 
     /** 点击 Action 触发的事件*/
     onActionClick?: (name: string, file: FileType) => void;
@@ -134,12 +175,11 @@ const Upload: FC<UploadProps> = ({
     multiple,
     files,
     onUpload,
-    onChange,
     onActionClick = () => {},
     renderPreview,
     renderActionIcon,
 }) => {
-    const fileRef = useRef<HTMLInputElement>(null);
+    const file = useRef<FileInstance>(null);
 
     const renderAddFileDom = () => {
         let addFileDom: JSX.Element | null = (
@@ -163,7 +203,7 @@ const Upload: FC<UploadProps> = ({
             return (
                 <UploadWrap
                     onClick={() => {
-                        fileRef.current?.click();
+                        file.current?.showOpenFilePicker();
                     }}
                 >
                     {addFileDom}
@@ -263,19 +303,12 @@ const Upload: FC<UploadProps> = ({
                 {renderImages()}
                 {renderAddFileDom()}
             </div>
-            <input
-                ref={fileRef}
+            <File
+                file={file}
                 accept={accept}
-                className={css({
-                    display: 'none',
-                })}
-                type="file"
-                value=""
                 multiple={multiple}
-                onChange={(e) => {
-                    onUpload?.(e.target.files);
-                    e.stopPropagation();
-                    e.preventDefault();
+                onSelectFiles={(files) => {
+                    onUpload?.(files);
                 }}
             />
         </>
