@@ -119,11 +119,6 @@ function useHeader<T>({
         colsCountFixedWidth,
     } = calcAutoColumnWidth<T>(columns, width);
 
-    console.log(
-        'table.current?.getScrollbarWidthOffset()',
-        table.current?.getScrollbarWidthOffset(),
-    );
-
     const cells: Cell[] = columns.map((col, index) => {
         let colWidth = tempColWidth[index];
         let widthResult = 0;
