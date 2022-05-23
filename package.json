@@ -8,9 +8,10 @@
         "build": "tsc",
         "deploy": "npm run docs:build && npm run docs:deploy",
         "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
+        "build:rm": "rimraf es",
         "test": "umi-test",
         "test:coverage": "umi-test --coverage",
-        "prepublishOnly": "npm run build"
+        "prepublishOnly": "npm run build:rm && npm run build"
     },
     "main": "es/index.js",
     "module": "es/index.js",
@@ -50,6 +51,7 @@
         "lint-staged": "^10.0.7",
         "prettier": "^2.2.1",
         "react-test-renderer": "^18.1.0",
+        "rimraf": "^3.0.2",
         "yorkie": "^2.0.0"
     },
     "dependencies": {
