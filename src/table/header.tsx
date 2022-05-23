@@ -108,15 +108,6 @@ function useHeader<T>({
     table,
     onColumnMouseDown,
 }: HeaderParam<T>) {
-    const headers: Row<T>[] = [
-        {
-            height: 35,
-            sticky: 'top',
-            cells: [],
-            key: 'header',
-        },
-    ];
-
     const columns = useMemo(() => {
         return processColumns<T>(tempColumns);
     }, [tempColumns]);
@@ -164,6 +155,15 @@ function useHeader<T>({
             `,
         };
     });
+
+    const headers: Row<T>[] = [
+        {
+            height: 35,
+            sticky: 'top',
+            cells,
+            key: 'header',
+        },
+    ];
 
     return {
         headers,
