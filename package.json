@@ -1,11 +1,11 @@
 {
     "name": "@weblif/fast-ui",
-    "version": "0.14.0-canary",
+    "version": "0.14.1-canary",
     "scripts": {
         "start": "dumi dev",
         "docs:build": "dumi build",
         "docs:deploy": "gh-pages -d docs-dist",
-        "build": "father-build",
+        "build": "tsc",
         "deploy": "npm run docs:build && npm run docs:deploy",
         "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
         "test": "umi-test",
