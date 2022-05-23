@@ -83,25 +83,26 @@ export default () => {
         },
         {
             name: 'tags',
-            title: '标签',
+            title: '标签0',
             editor: ({ onFinish, value, onChange }) => (
                 <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
             ),
         },
         {
             name: 'col0',
-            title: '标签',
+            title: '标签1',
+            hidden: true,
             editor: ({ onFinish, value, onChange }) => (
                 <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
             ),
         },
         {
             name: 'col1',
-            title: '标签',
+            title: '标签2',
         },
         {
             name: 'col2',
-            title: '标签',
+            title: '标3',
         },
         {
             name: 'col3',

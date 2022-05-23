@@ -6,6 +6,9 @@ export function processColumns<T>(columns: Column<T>[]) {
     const normalColumns: Column<T>[] = [];
 
     columns.forEach((column) => {
+        if (column.hidden === true) {
+            return;
+        }
         if (column.fixed === 'left') {
             leftColumns.push(column);
         } else if (column.fixed === 'right') {

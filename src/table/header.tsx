@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Column, SortDirection } from './type';
 import { Row, TableInstance } from '@weblif/rc-table';
 import { Cell } from '@weblif/rc-table/es/types';
@@ -108,6 +108,15 @@ function useHeader<T>({
     table,
     onColumnMouseDown,
 }: HeaderParam<T>) {
+    const headers: Row<T>[] = [
+        {
+            height: 35,
+            sticky: 'top',
+            cells: [],
+            key: 'header',
+        },
+    ];
+
     const columns = useMemo(() => {
         return processColumns<T>(tempColumns);
     }, [tempColumns]);
@@ -155,15 +164,6 @@ function useHeader<T>({
             `,
         };
     });
-
-    const headers: Row<T>[] = [
-        {
-            height: 35,
-            sticky: 'top',
-            cells,
-            key: 'header',
-        },
-    ];
 
     return {
         headers,

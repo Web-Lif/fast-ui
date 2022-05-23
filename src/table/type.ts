@@ -47,6 +47,9 @@ export interface Column<T> {
     /** 是否只读 */
     readOnly?: boolean;
 
+    /** 是否隐藏此列 */
+    hidden?: boolean;
+
     /** 设置列的对齐方式 */
     align?: {
         /** 默认为 left */
