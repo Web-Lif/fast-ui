@@ -23,45 +23,49 @@ group:
 import React, { useState, useRef } from 'react';
 import { Cascader } from '@weblif/fast-ui';
 
-
 const options = [
-  {
-    value: 'zhejiang',
-    label: 'Zhejiang',
-    children: [
-      {
-        value: 'hangzhou',
-        label: 'Hangzhou',
+    {
+        key: 'zhejiang',
+        title: 'Zhejiang',
         children: [
-          {
-            value: 'xihu',
-            label: 'West Lake',
-          },
+            {
+                key: 'hangzhou',
+                title: 'Hangzhou',
+                children: [
+                    {
+                        key: 'xihu',
+                        title: 'West Lake',
+                    },
+                ],
+            },
         ],
-      },
-    ],
-  },
-  {
-    value: 'jiangsu',
-    label: 'Jiangsu',
-    children: [
-      {
-        value: 'nanjing',
-        label: 'Nanjing',
+    },
+    {
+        key: 'jiangsu',
+        title: 'Jiangsu',
         children: [
-          {
-            value: 'zhonghuamen',
-            label: 'Zhong Hua Men',
-          },
+            {
+                key: 'nanjing',
+                title: 'Nanjing',
+                children: [
+                    {
+                        key: 'zhonghuamen',
+                        title: 'Zhong Hua Men',
+                    },
+                ],
+            },
         ],
-      },
-    ],
-  },
+    },
 ];
 
 export default () => {
     return (
-        <Cascader options={options} onChange={(e) => { console.log(e) }}  />
+        <Cascader
+            options={options}
+            onChange={(e) => {
+                console.log(e);
+            }}
+        />
     );
 };
 ```
@@ -127,13 +131,13 @@ export default () => {
 
 ```typescript
 interface Option {
-  value: string | number;
-  label?: React.ReactNode;
-  disabled?: boolean;
-  children?: Option[];
-  // 标记是否为叶子节点，设置了 `loadData` 时有效
-  // 设为 `false` 时会强制标记为父节点，即使当前节点没有 children，也会显示展开图标
-  isLeaf?: boolean;
+    value: string | number;
+    label?: React.ReactNode;
+    disabled?: boolean;
+    children?: Option[];
+    // 标记是否为叶子节点，设置了 `loadData` 时有效
+    // 设为 `false` 时会强制标记为父节点，即使当前节点没有 children，也会显示展开图标
+    isLeaf?: boolean;
 }
 ```
 
