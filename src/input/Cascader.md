@@ -70,6 +70,84 @@ export default () => {
 };
 ```
 
+```tsx
+/**
+ * title: 懒加载
+ * desc: 通过远程服务器动态加载
+ */
+import React, { useState, useRef } from 'react';
+import { Cascader } from '@weblif/fast-ui';
+
+const options = [
+    {
+        key: 'zhejiang',
+        title: 'Zhejiang',
+        children: [
+            {
+                key: 'hangzhou',
+                title: 'Hangzhou',
+                children: [
+                    {
+                        key: 'xihu',
+                        title: 'West Lake',
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        key: 'jiangsu',
+        title: 'Jiangsu',
+        children: [
+            {
+                key: 'nanjing',
+                title: 'Nanjing',
+                children: [
+                    {
+                        key: 'zhonghuamen',
+                        title: 'Zhong Hua Men',
+                    },
+                ],
+            },
+        ],
+    },
+];
+
+export default () => {
+    const [options, setOptions] = useState([]);
+    return (
+        <Cascader
+            options={options}
+            onChangeOptions={setOptions}
+            changeOnSelect
+            loadData={async (option) => {
+                if (option === null) {
+                    return [
+                        {
+                            key: 'zhejiang',
+                            title: 'Zhejiang',
+                            isLeaf: false,
+                        },
+                        {
+                            key: 'jiangsu',
+                            title: 'Jiangsu',
+                            isLeaf: false,
+                        },
+                    ];
+                }
+                return [
+                    { title: `Child  - ${option.key}`, key: `${option.key}-0` },
+                    { title: `Child  - ${option.key}-1`, key: `${option.key}-1` },
+                ];
+            }}
+            onChange={(e) => {
+                console.log(e);
+            }}
+        />
+    );
+};
+```
+
 <br />
 
 ## API
