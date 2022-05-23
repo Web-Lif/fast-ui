@@ -31,10 +31,10 @@ interface TreeProps extends Omit<AntTreeProps, 'loadData' | 'loadedKeys' | 'tree
     loadData: ((treeNode: DataNode | null) => Promise<DataNode[]>) | DataNode[];
 
     /** 渲染右键菜单 */
-    contextMenuRender?: (node: DataNode) => MenuItemType[];
+    contextMenuRender?: (node: DataNode | null) => MenuItemType[];
 
     /** 点击右键菜单触发的事件 */
-    onMenuClick?: (type: string, node: DataNode) => void;
+    onMenuClick?: (type: string, node: DataNode | null) => void;
 
     expandAction?: ExpandAction;
 }
@@ -246,40 +246,42 @@ const Tree = ({
         };
     }
 
+    const [visible, setVisible] = useState<boolean>(false);
+
+    const selectRightClickNode = useRef<EventDataNode | null>(null);
+
     return (
-        <AntTempTree
-            loadData={loadDataFunction()}
-            loadedKeys={loadedKeys}
-            treeData={typeof loadData === 'function' ? treeData : loadData}
-            expandedKeys={expandedKeys}
-            onContextMenu={(e) => {
-                e.preventDefault();
-            }}
-            onExpand={(eKeys, info) => {
-                setExpandedKeys(eKeys);
-                onExpand?.(eKeys, info);
-            }}
-            titleRender={(node) => {
-                const menuItems = contextMenuRender?.(node) || [];
-
-                const menu = (
-                    <Menu
-                        items={menuItems}
-                        onClick={(info) => {
-                            onMenuClick?.(info.key, node);
-                        }}
-                    />
-                );
-
-                return (
-                    <Dropdown overlay={menu} trigger={['contextMenu']}>
-                        <span>{node.title}</span>
-                    </Dropdown>
-                );
-            }}
-            {...restProps}
-            {...extProps}
-        />
+        <Dropdown
+            trigger={['contextMenu']}
+            visible={visible}
+            onVisibleChange={setVisible}
+            overlay={
+                <Menu
+                    items={contextMenuRender?.(null)}
+                    onClick={(info) => {
+                        onMenuClick?.(info.key, selectRightClickNode.current);
+                        setVisible(false);
+                    }}
+                />
+            }
+        >
+            <AntTempTree
+                loadData={loadDataFunction()}
+                loadedKeys={loadedKeys}
+                treeData={typeof loadData === 'function' ? treeData : loadData}
+                expandedKeys={expandedKeys}
+                onRightClick={(info) => {
+                    selectRightClickNode.current = info.node;
+                    setVisible(true);
+                }}
+                onExpand={(eKeys, info) => {
+                    setExpandedKeys(eKeys);
+                    onExpand?.(eKeys, info);
+                }}
+                {...restProps}
+                {...extProps}
+            />
+        </Dropdown>
     );
 };
 
