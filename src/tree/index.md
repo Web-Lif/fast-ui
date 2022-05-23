@@ -217,24 +217,6 @@ export default () => {
 | --- | --- | --- | --- |
 | expandAction | 目录展开逻辑，可选：false \| `click` \| `doubleClick` | string \| boolean | `click` |
 
-## 注意
-
-在 `3.4.0` 之前：树节点可以有很多，但在设置 `checkable` 时，将会花费更多的计算时间，因此我们缓存了一些计算结果（`this.treeNodesStates`）来复用，避免多次重复计算，以此提高性能。但这也带来了一些限制，当你异步加载树节点时，你需要这样渲染树：
-
-```jsx | pure
-{
-    this.state.treeData.length ? (
-        <Tree>
-            {this.state.treeData.map((data) => (
-                <TreeNode />
-            ))}
-        </Tree>
-    ) : (
-        'loading tree'
-    );
-}
-```
-
 ### Tree 方法
 
 | 名称 | 说明 |
