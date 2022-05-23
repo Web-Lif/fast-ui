@@ -121,7 +121,9 @@ export default () => {
                 }
             }}
             contextMenuRender={(node) => {
-                console.log('contextMenuRender', node);
+                if (node === null) {
+                    return [];
+                }
                 return [
                     {
                         key: 'delete',

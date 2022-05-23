@@ -263,7 +263,14 @@ const Tree = ({
         <Dropdown
             trigger={['contextMenu']}
             visible={visible}
-            onVisibleChange={setVisible}
+            onVisibleChange={(changeVisible) => {
+                setVisible((data) => {
+                    if (data !== changeVisible && changeVisible === true) {
+                        setItems(contextMenuRender?.(null) || []);
+                    }
+                    return changeVisible;
+                });
+            }}
             overlay={
                 <Menu
                     items={items}
