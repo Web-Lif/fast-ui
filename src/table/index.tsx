@@ -5,6 +5,8 @@ import produce from 'immer';
 import { Column, RowClassNameParam, RowSelectType, SortDirection } from './type';
 import useBody from './body';
 import useHeader from './header';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 export interface TableProps<T> {
     /** 表格的宽度 */
@@ -134,6 +136,12 @@ function Table<T>({
     });
 
     const moveTicking = useRef<boolean>(false);
+
+    const [_, forceRefresh] = useState<number>(0);
+
+    useEffect(() => {
+        forceRefresh(new Date().getTime());
+    }, []);
 
     return (
         <RCTable<T>
