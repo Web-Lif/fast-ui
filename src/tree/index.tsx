@@ -4,6 +4,7 @@ import { DataNode, EventDataNode } from 'antd/lib/tree';
 import { produce } from 'immer';
 import { ExpandAction } from 'antd/lib/tree/DirectoryTree';
 import { MenuItemType } from 'rc-menu/lib/interface';
+import { ItemType } from 'antd/lib/menu/hooks/useItems';
 
 type FunAddDataNodesParam = (nodes: DataNode[]) => DataNode[];
 
@@ -250,6 +251,14 @@ const Tree = ({
 
     const selectRightClickNode = useRef<EventDataNode | null>(null);
 
+    const [items, setItems] = useState<ItemType[]>([]);
+
+    useEffect(() => {
+        if (contextMenuRender) {
+            setItems(contextMenuRender?.(null));
+        }
+    }, []);
+
     return (
         <Dropdown
             trigger={['contextMenu']}
@@ -257,7 +266,7 @@ const Tree = ({
             onVisibleChange={setVisible}
             overlay={
                 <Menu
-                    items={contextMenuRender?.(null)}
+                    items={items}
                     onClick={(info) => {
                         onMenuClick?.(info.key, selectRightClickNode.current);
                         setVisible(false);
@@ -271,7 +280,7 @@ const Tree = ({
                 treeData={typeof loadData === 'function' ? treeData : loadData}
                 expandedKeys={expandedKeys}
                 onRightClick={(info) => {
-                    selectRightClickNode.current = info.node;
+                    setItems(contextMenuRender?.(info.node) || []);
                     setVisible(true);
                 }}
                 onExpand={(eKeys, info) => {
