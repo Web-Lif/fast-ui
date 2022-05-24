@@ -88,10 +88,11 @@ const Tree = ({
     onExpand,
     onChangeTreeData,
     expandAction,
+    defaultExpandedKeys,
     ...restProps
 }: TreeProps) => {
     const [loadedKeys, setLoadedKeys] = useState<string[]>([]);
-    const [expandedKeys, setExpandedKeys] = useState<Key[]>([]);
+    const [expandedKeys, setExpandedKeys] = useState<Key[]>(defaultExpandedKeys || []);
 
     useEffect(() => {
         if (typeof loadData === 'function') {
