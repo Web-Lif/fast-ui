@@ -70,13 +70,16 @@ export default () => {
  * desc: 异步加载树的信息, 可极大的优化加载效率
  */
 import { Tree } from '@weblif/fast-ui';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 export default () => {
     const tree = useRef();
+    const [treeData, setTreeData] = useState([]);
     return (
         <Tree
             tree={tree}
+            treeData={treeData}
+            onChangeDataNodes={setTreeData}
             loadData={(treeNode) => {
                 return new Promise((resolve) => {
                     if (treeNode === null) {
