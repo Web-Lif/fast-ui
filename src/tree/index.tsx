@@ -37,7 +37,7 @@ interface TreeProps extends Omit<AntTreeProps, 'loadData' | 'loadedKeys'> {
     directoryTree?: boolean;
 
     /** 装载数据 */
-    loadData: ((treeNode: DataNode | null) => Promise<DataNode[]>) | DataNode[];
+    loadData?: (treeNode: DataNode | null) => Promise<DataNode[]>;
 
     expandAction?: ExpandAction;
 
