@@ -56,7 +56,7 @@ const treeData = [
 ];
 
 export default () => {
-    return <Tree directoryTree loadData={treeData} />;
+    return <Tree directoryTree treeData={treeData} />;
 };
 ```
 

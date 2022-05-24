@@ -289,7 +289,7 @@ const Tree = ({
             <AntTempTree
                 loadData={loadDataFunction()}
                 loadedKeys={loadedKeys}
-                treeData={typeof loadData === 'function' ? treeData : loadData}
+                treeData={treeData}
                 expandedKeys={expandedKeys}
                 onRightClick={(info) => {
                     setItems(contextMenuRender?.(info.node) || []);
