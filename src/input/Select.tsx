@@ -1,3 +1,0 @@
-export { Select } from 'antd'
-
-

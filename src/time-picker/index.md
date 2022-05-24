@@ -13,17 +13,15 @@ group:
 
 <br />
 
-
-例子: 
-
+例子:
 
 ```tsx
 /**
  * title: 基础使用
  * desc: 点击 `TimePicker` 然后可以在浮层中选择或者输入某一时间。
  */
-import React, { useState, useRef } from 'react';
 import { TimePicker } from '@weblif/fast-ui';
+import React from 'react';
 
 export default () => {
     return (
@@ -34,13 +32,12 @@ export default () => {
 };
 ```
 
-
 ## API
 
 ---
 
 ```tsx | pure
-<TimePicker defaultValue={new Date()} />;
+<TimePicker defaultValue={new Date()} />
 ```
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
@@ -68,7 +65,7 @@ export default () => {
 | popupStyle | 弹出层样式对象 | object | - |  |
 | renderExtraFooter | 选择框底部显示自定义的内容 | () => ReactNode | - |  |
 | secondStep | 秒选项间隔 | number | 1 |  |
-| status    | 设置校验状态 | `'error'` \| `'warning'` | 
+| status | 设置校验状态 | `'error'` \| `'warning'` |
 | showNow | 面板是否显示“此刻”按钮 | boolean | - | 4.4.0 |
 | suffixIcon | 自定义的选择框后缀图标 | ReactNode | - |  |
 | use12Hours | 使用 12 小时制，为 true 时 `format` 默认为 `h:mm:ss a` | boolean | false |  |
@@ -78,18 +75,18 @@ export default () => {
 
 ## 方法
 
-| 名称 | 描述 | 版本 |
-| --- | --- | --- |
-| blur() | 移除焦点 |  |
-| focus() | 获取焦点 |  |
+| 名称    | 描述     | 版本 |
+| ------- | -------- | ---- |
+| blur()  | 移除焦点 |      |
+| focus() | 获取焦点 |      |
 
 ### RangePicker
 
 属性与 DatePicker 的 [RangePicker](/components/date-picker/#RangePicker) 相同。还包含以下属性：
 
-| 参数 | 说明 | 类型 | 默认值 | 版本 |
-| --- | --- | --- | --- | --- |
-| order | 始末时间是否自动排序 | boolean | true | 4.1.0 |
+| 参数  | 说明                 | 类型    | 默认值 | 版本  |
+| ----- | -------------------- | ------- | ------ | ----- |
+| order | 始末时间是否自动排序 | boolean | true   | 4.1.0 |
 
 <style>
 .code-box-demo .ant-picker { margin: 0 8px 12px 0; }

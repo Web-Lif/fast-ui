@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
 import { Radio as AntRadio, RadioProps as AntRadioProps } from 'antd';
+import React, { FC } from 'react';
 
 interface RadioProps extends AntRadioProps {}
 

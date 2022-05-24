@@ -20,8 +20,8 @@ group:
  * title: 基础使用
  * desc: 这是基础的图片上传例子, 单个文件上传
  */
-import React, { useState, useRef } from 'react';
 import { Upload } from '@weblif/fast-ui';
+import React, { useState } from 'react';
 
 export default () => {
     const [files, setFiles] = useState([]);
@@ -66,8 +66,8 @@ export default () => {
  * title: 多文件上传
  * desc: 这是一次性选择上传多个文件
  */
-import React, { useState, useRef } from 'react';
 import { Upload } from '@weblif/fast-ui';
+import React, { useState } from 'react';
 
 export default () => {
     const [files, setFiles] = useState([]);
@@ -112,8 +112,8 @@ export default () => {
  * title: 自定义上传
  * desc: 进行自定义的逻辑控制
  */
-import React, { useState, useRef } from 'react';
-import { File, FileInstance, Button } from '@weblif/fast-ui';
+import { Button, File, FileInstance } from '@weblif/fast-ui';
+import React, { useRef } from 'react';
 
 export default () => {
     const file = useRef<FileInstance>(null);

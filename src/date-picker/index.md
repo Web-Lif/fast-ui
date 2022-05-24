@@ -24,8 +24,8 @@ group:
  * title: 基本
  * desc: 最简单的用法，在浮层中可以选择或者输入日期。
  */
-import React, { useState, useRef } from 'react';
 import { DatePicker } from '@weblif/fast-ui';
+import React from 'react';
 
 export default () => {
     return (
@@ -45,9 +45,9 @@ export default () => {
  * title: 定制日期单元格
  * desc: 使用 `dateRender` 可以自定义日期单元格的内容和样式。
  */
-import React, { useState, useRef } from 'react';
 import { DatePicker } from '@weblif/fast-ui';
 import { getDate } from 'date-fns';
+import React from 'react';
 
 export default () => {
     return (
@@ -78,8 +78,8 @@ export default () => {
  * title: 范围选择器
  * desc: 通过设置 `picker` 属性，指定范围选择器类型。
  */
-import React, { useState, useRef } from 'react';
 import { DatePicker } from '@weblif/fast-ui';
+import React from 'react';
 
 export default () => {
     return (
@@ -157,7 +157,7 @@ import locale from 'antd/lib/locale/zh_CN';
 | prevIcon | 自定义上一个图标 | `ReactNode` | - |
 | size | 输入框大小，large 高度为 40px，small 为 24px，默认是 32px | `large` \| `middle` \| `small` | - |
 | style | 自定义输入框样式 | `CSSProperties` | `{}` |
-| status    | 设置校验状态 | `'error'` \| `'warning'` | 
+| status | 设置校验状态 | `'error'` \| `'warning'` |
 | suffixIcon | 自定义的选择框后缀图标 | `ReactNode` | - |
 | superNextIcon | 自定义 << 切换图标 | `ReactNode` | - |
 | superPrevIcon | 自定义 >> 切换图标 | `ReactNode` | - |
@@ -174,7 +174,7 @@ import locale from 'antd/lib/locale/zh_CN';
 ### DatePicker
 
 | 属性 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | defaultPickerValue | 默认面板日期 | `Date` | - |
 | defaultValue | 默认日期，如果开始时间或结束时间为 null 或者 undefined，日期范围将是一个开区间 | `Date` | - |
 | disabledTime | 不可选择的时间 | `string` | - |

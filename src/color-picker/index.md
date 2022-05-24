@@ -20,13 +20,11 @@ group:
  * title: 基本
  * desc: 基础的颜色选择器
  */
-import React, { useState, useRef } from 'react';
 import { ColorPicker } from '@weblif/fast-ui';
+import React from 'react';
 
 export default () => {
-    return (
-        <ColorPicker />
-    );
+    return <ColorPicker />;
 };
 ```
 

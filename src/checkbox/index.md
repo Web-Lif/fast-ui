@@ -24,8 +24,8 @@ group:
  * title: 基本
  * desc: 最简单的用法
  */
-import React, { useState, useRef } from 'react';
 import { Checkbox } from '@weblif/fast-ui';
+import React from 'react';
 
 export default () => {
     return (
@@ -51,8 +51,8 @@ export default () => {
  * title: 不可用
  * desc: Checkbox 不可用
  */
-import React, { useState, useRef } from 'react';
 import { Checkbox } from '@weblif/fast-ui';
+import React from 'react';
 
 export default () => {
     return (

@@ -18,10 +18,10 @@ group:
  * title: 基本使用。
  * desc: 基础选择器
  */
-import React from 'react';
 import { Select } from '@weblif/fast-ui';
+import React from 'react';
 
-const { Option } = Select
+const { Option } = Select;
 
 export default () => {
     return (
@@ -39,13 +39,11 @@ export default () => {
 };
 ```
 
-
-
 ## API
 
 ```jsx | pure
 <Select>
-  <Option value="lucy">lucy</Option>
+    <Option value="lucy">lucy</Option>
 </Select>
 ```
 
@@ -110,6 +108,7 @@ export default () => {
 | onSelect | 被选中时调用，参数为选中项的 value (或 key) 值 | function(string \| number \| LabeledValue, option: Option) | - |  |
 
 > 注意，如果发现下拉菜单跟随页面滚动，或者需要在其他弹层中触发 Select，请尝试使用 `getPopupContainer={triggerNode => triggerNode.parentElement}` 将下拉弹层渲染节点固定在触发器的父元素中。
+
 ### Select Methods
 
 | 名称    | 说明     | 版本 |

@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
 import { InputNumber as AntInputNumber, InputNumberProps as AntInputNumberProps } from 'antd';
+import React, { FC } from 'react';
 
 export interface InputNumberProps extends Omit<AntInputNumberProps, ''> {}
 

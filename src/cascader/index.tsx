@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
 import { Cascader as AntCascader, CascaderProps as AntCascaderProps } from 'antd';
+import React, { useEffect } from 'react';
 
 interface Option {
     key: string | number;
@@ -14,7 +14,7 @@ interface CascaderProps extends Omit<AntCascaderProps<Option>, 'loadData'> {
     loadData?: (selectedOptions: Option | null) => Promise<Option[]>;
 }
 
-export function Cascader({ options, loadData, onChangeOptions, ...restProps }: CascaderProps) {
+function Cascader({ options, loadData, onChangeOptions, ...restProps }: CascaderProps) {
     let extProps: {
         loadData?: (selectOptions: any[]) => void;
     } = {
@@ -52,3 +52,5 @@ export function Cascader({ options, loadData, onChangeOptions, ...restProps }: C
         />
     );
 }
+
+export default Cascader;

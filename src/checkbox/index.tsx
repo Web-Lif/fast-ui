@@ -1,6 +1,6 @@
-import React, { FC, useMemo } from 'react';
 import { Checkbox as AntCheckbox, CheckboxProps as AntCheckboxProps } from 'antd';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
+import React, { FC, useMemo } from 'react';
 
 interface CheckboxProps extends Omit<AntCheckboxProps, 'value' | 'checked' | 'onChange'> {
     value?: boolean;
@@ -13,17 +13,16 @@ const InternalCheckbox: FC<CheckboxProps> = ({ value, onChange, ...restProps }) 
             return {
                 checked: value,
                 ...restProps,
-            }
+            };
         }
-        return restProps
-    }, [value])
+        return restProps;
+    }, [value]);
 
     return (
         <AntCheckbox
             onChange={(e) => {
                 onChange?.(e.target.checked, e);
             }}
-
             {...props}
         />
     );

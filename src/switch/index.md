@@ -15,7 +15,6 @@ group:
 
 例子:
 
-
 <div class="fu-code-block-row">
 
 <div class="fu-code-block-col-2-1">
@@ -25,8 +24,8 @@ group:
  * title: 基础使用
  * desc: 这是一个简单使用的例子
  */
-import React, { useState, useRef } from 'react';
 import { Switch } from '@weblif/fast-ui';
+import React from 'react';
 
 export default () => {
     return (
@@ -46,15 +45,13 @@ export default () => {
  * title: 不可用
  * desc: Switch 失效状态。
  */
-import React, { useState, useRef } from 'react';
 import { Switch } from '@weblif/fast-ui';
+import React from 'react';
 
 export default () => {
     return (
         <>
-            <Switch
-                disabled
-            />
+            <Switch disabled />
         </>
     );
 };
@@ -65,8 +62,8 @@ export default () => {
  * title: 两种大小
  * desc: size="small" 表示小号开关。
  */
-import React, { useState, useRef } from 'react';
 import { Switch } from '@weblif/fast-ui';
+import React from 'react';
 
 export default () => {
     return (
@@ -88,8 +85,8 @@ export default () => {
  * title: 加载中
  * desc: 标识开关操作仍在执行中。
  */
-import React, { useState, useRef } from 'react';
 import { Switch } from '@weblif/fast-ui';
+import React from 'react';
 
 export default () => {
     return (
@@ -107,8 +104,8 @@ export default () => {
  * title: 文字
  * desc: 带有文字的开关
  */
-import React, { useState, useRef } from 'react';
 import { Switch } from '@weblif/fast-ui';
+import React from 'react';
 
 export default () => {
     return (
@@ -142,7 +139,7 @@ export default () => {
 
 ## 方法
 
-| 名称 | 描述 |
-| --- | --- |
-| blur() | 移除焦点 |
+| 名称    | 描述     |
+| ------- | -------- |
+| blur()  | 移除焦点 |
 | focus() | 获取焦点 |
