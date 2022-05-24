@@ -20,9 +20,8 @@ group:
  * title: 执行耗时任务
  * desc: 执行耗时任务可以自动进行防止多次点击按钮, 当执行成功后才让继续点击
  */
-import React, { useState, useRef } from 'react';
-import { Modal, Button } from '@weblif/fast-ui';
-import { message, Input } from 'antd';
+import { Button, Modal } from '@weblif/fast-ui';
+import React, { useState } from 'react';
 
 /** Mock 请求数据, 或则一些耗时操作 */
 const requestData = () => {
@@ -67,8 +66,8 @@ export default () => {
  * title: 快速创建提示
  * desc: 可采用 `Modal` 的方法快速创建对话框
  */
-import React, { useState, useRef } from 'react';
-import { Modal, Button, Space } from '@weblif/fast-ui';
+import { Button, Modal, Space } from '@weblif/fast-ui';
+import React from 'react';
 
 export default () => {
     return (
@@ -88,6 +87,48 @@ export default () => {
             >
                 消息
             </Button>
+        </Space>
+    );
+};
+```
+
+```tsx
+/**
+ * title: 事件冒泡
+ * desc: 对回车事件的冒泡处理
+ */
+import { Button, Input, Modal, Space } from '@weblif/fast-ui';
+import React, { useState } from 'react';
+
+export default () => {
+    const [visible, setVisible] = useState<boolean>(false);
+    return (
+        <Space>
+            <Button
+                onClick={() => {
+                    setVisible(true);
+                }}
+            >
+                显示弹出框
+            </Button>
+
+            <Modal
+                title="这是一个弹出框"
+                visible={visible}
+                // mask={false}
+                onOk={() => {
+                    console.log('modal -> test');
+                    // const msg = await requestData();
+                    // message.info(msg);
+                }}
+                onChangeVisible={setVisible}
+            >
+                <Input
+                    onKeyDown={(e) => {
+                        e.stopPropagation();
+                    }}
+                />
+            </Modal>
         </Space>
     );
 };
