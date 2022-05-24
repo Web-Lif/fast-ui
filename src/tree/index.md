@@ -79,7 +79,7 @@ export default () => {
         <Tree
             tree={tree}
             treeData={treeData}
-            onChangeDataNodes={setTreeData}
+            onChangeTreeData={setTreeData}
             loadData={(treeNode) => {
                 return new Promise((resolve) => {
                     if (treeNode === null) {

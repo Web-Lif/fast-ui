@@ -45,7 +45,7 @@ interface TreeProps extends Omit<AntTreeProps, 'loadData' | 'loadedKeys'> {
     contextMenuRender?: (node: DataNode | null) => MenuItemType[];
 
     /** 改变节点触发的事件 */
-    onChangeDataNodes?: Dispatch<SetStateAction<any>>;
+    onChangeTreeData?: Dispatch<SetStateAction<any>>;
 }
 
 const changeTreeDataChildren = (
@@ -86,7 +86,7 @@ const Tree = ({
     tree,
     contextMenuRender,
     onExpand,
-    onChangeDataNodes,
+    onChangeTreeData,
     expandAction,
     ...restProps
 }: TreeProps) => {
@@ -96,7 +96,7 @@ const Tree = ({
     useEffect(() => {
         if (typeof loadData === 'function') {
             loadData?.(null).then((data) => {
-                onChangeDataNodes?.(
+                onChangeTreeData?.(
                     data.map((node) => ({
                         parent: null,
                         ...node,
@@ -120,7 +120,7 @@ const Tree = ({
                         })),
                     );
                 });
-                onChangeDataNodes?.(newTreeNode);
+                onChangeTreeData?.(newTreeNode);
                 const newLoadedKeys = produce(loadedKeys, (draft) => {
                     draft.push(treeNode.key as string);
                 });
@@ -143,7 +143,7 @@ const Tree = ({
     const refresh = (node: DataNode | null) => {
         if (typeof loadData === 'function' && node) {
             loadData?.(node).then((data) => {
-                onChangeDataNodes?.((prevState: any) => {
+                onChangeTreeData?.((prevState: any) => {
                     const newTreeData = produce(prevState, (draft: DataNode[]) => {
                         changeTreeDataChildren(draft, node.key, data);
                     });
@@ -163,7 +163,7 @@ const Tree = ({
             });
         } else if (typeof loadData === 'function' && node === null) {
             loadData?.(node).then((data) => {
-                onChangeDataNodes?.(data);
+                onChangeTreeData?.(data);
                 const childrens = getChildrenFlatList(data).map((data) => data.key);
 
                 setLoadedKeys((prevState) => {
@@ -192,7 +192,7 @@ const Tree = ({
                     });
                 };
 
-                onChangeDataNodes?.((prevState: any) => {
+                onChangeTreeData?.((prevState: any) => {
                     const newTreeData = produce(prevState, (draft: DataNode[]) => {
                         recursion(draft);
                     });
@@ -216,7 +216,7 @@ const Tree = ({
                         }
                     });
                 };
-                onChangeDataNodes?.((prevState: any) => {
+                onChangeTreeData?.((prevState: any) => {
                     const newTreeData = produce(prevState, (draft: DataNode[]) => {
                         recursion(draft);
                     });
@@ -241,7 +241,7 @@ const Tree = ({
                     });
                 };
 
-                onChangeDataNodes?.((prevState: any) => {
+                onChangeTreeData?.((prevState: any) => {
                     const newTreeData = produce(prevState, (draft: DataNode[]) => {
                         recursion(draft);
                     });
