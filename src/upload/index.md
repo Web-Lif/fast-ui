@@ -151,4 +151,4 @@ export default () => {
 };
 ```
 
-<API src="./Upload.tsx"></API>
+<API></API>

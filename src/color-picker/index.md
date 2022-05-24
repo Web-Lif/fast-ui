@@ -30,4 +30,4 @@ export default () => {
 
 <br />
 
-<API src="./ColorPicker.tsx"></API>
+<API></API>

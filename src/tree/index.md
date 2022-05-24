@@ -20,8 +20,8 @@ group:
  * title: 全部加载
  * desc: 一次性加载节点数据, 可通过 `directoryTree` 来设置树的类型，在数据量大的时候存在性能问题
  */
-import React, { useState } from 'react';
 import { Tree } from '@weblif/fast-ui';
+import React from 'react';
 
 const treeData = [
     {
@@ -69,8 +69,8 @@ export default () => {
  * title: 懒加载
  * desc: 异步加载树的信息, 可极大的优化加载效率
  */
-import React, { useState, useRef } from 'react';
 import { Tree } from '@weblif/fast-ui';
+import React, { useRef } from 'react';
 
 export default () => {
     const tree = useRef();
@@ -96,30 +96,6 @@ export default () => {
                     }, 1000);
                 });
             }}
-            onMenuClick={(type, node) => {
-                if (type === 'delete') {
-                    tree.current.removeNodes([node.key]);
-                } else if (type === 'refresh') {
-                    tree.current.refresh(node);
-                } else if (type === 'add') {
-                    tree.current.addNodes(node, (nodes) => {
-                        return [
-                            ...nodes,
-                            { title: `Add Child Node - ${node.key}`, key: `${node.key}-add-0` },
-                        ];
-                    });
-                    tree.current.addNodes(node, (nodes) => {
-                        return [
-                            ...nodes,
-                            { title: `Add Child Node - ${node.key} 1`, key: `${node.key}-add-1` },
-                        ];
-                    });
-                } else if (type === 'edit') {
-                    tree.current.editNode(node.key, {
-                        title: `${node.title} - 已修改`,
-                    });
-                }
-            }}
             contextMenuRender={(node) => {
                 if (node === null) {
                     return [];
@@ -128,18 +104,49 @@ export default () => {
                     {
                         key: 'delete',
                         label: '删除',
+                        onClick: () => {
+                            tree.current.removeNodes([node.key]);
+                        },
                     },
                     {
                         key: 'refresh',
                         label: '刷新',
+                        onClick: () => {
+                            tree.current.refresh(node);
+                        },
                     },
                     {
                         key: 'add',
                         label: '添加节点信息',
+                        onClick: () => {
+                            tree.current.addNodes(node, (nodes) => {
+                                return [
+                                    ...nodes,
+                                    {
+                                        title: `Add Child Node - ${node.key}`,
+                                        key: `${node.key}-add-0`,
+                                    },
+                                ];
+                            });
+                            tree.current.addNodes(node, (nodes) => {
+                                return [
+                                    ...nodes,
+                                    {
+                                        title: `Add Child Node - ${node.key} 1`,
+                                        key: `${node.key}-add-1`,
+                                    },
+                                ];
+                            });
+                        },
                     },
                     {
                         key: 'edit',
                         label: '编辑节点',
+                        onClick: () => {
+                            tree.current.editNode(node.key, {
+                                title: `${node.title} - 已修改`,
+                            });
+                        },
                     },
                 ];
             }}
