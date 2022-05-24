@@ -1,10 +1,10 @@
-import React, { Key, MutableRefObject, useEffect, useMemo, useRef, useState } from 'react';
-import { Tree as AntTree, TreeProps as AntTreeProps, Dropdown, Menu } from 'antd';
-import { DataNode, EventDataNode } from 'antd/lib/tree';
-import { produce } from 'immer';
-import { ExpandAction } from 'antd/lib/tree/DirectoryTree';
-import { MenuItemType } from 'rc-menu/lib/interface';
+import { Dropdown, Menu, Tree as AntTree, TreeProps as AntTreeProps } from 'antd';
 import { ItemType } from 'antd/lib/menu/hooks/useItems';
+import { DataNode, EventDataNode } from 'antd/lib/tree';
+import { ExpandAction } from 'antd/lib/tree/DirectoryTree';
+import { produce } from 'immer';
+import { MenuItemType } from 'rc-menu/lib/interface';
+import React, { Key, MutableRefObject, useEffect, useMemo, useState } from 'react';
 
 type FunAddDataNodesParam = (nodes: DataNode[]) => DataNode[];
 
@@ -33,9 +33,6 @@ interface TreeProps extends Omit<AntTreeProps, 'loadData' | 'loadedKeys' | 'tree
 
     /** 渲染右键菜单 */
     contextMenuRender?: (node: DataNode | null) => MenuItemType[];
-
-    /** 点击右键菜单触发的事件 */
-    onMenuClick?: (type: string, node: DataNode | null) => void;
 
     expandAction?: ExpandAction;
 }
@@ -76,7 +73,6 @@ const Tree = ({
     directoryTree,
     tree,
     contextMenuRender,
-    onMenuClick,
     onExpand,
     expandAction,
     ...restProps
@@ -249,8 +245,6 @@ const Tree = ({
 
     const [visible, setVisible] = useState<boolean>(false);
 
-    const selectRightClickNode = useRef<EventDataNode | null>(null);
-
     const [items, setItems] = useState<ItemType[]>([]);
 
     useEffect(() => {
@@ -274,8 +268,7 @@ const Tree = ({
             overlay={
                 <Menu
                     items={items}
-                    onClick={(info) => {
-                        onMenuClick?.(info.key, selectRightClickNode.current);
+                    onClick={() => {
                         setVisible(false);
                     }}
                 />
