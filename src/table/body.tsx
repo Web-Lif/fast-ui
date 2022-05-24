@@ -1,11 +1,9 @@
-import React, { cloneElement, useMemo, useState } from 'react';
-
 import { css, cx } from '@emotion/css';
 import { Row, TableInstance } from '@weblif/rc-table';
 import { Cell } from '@weblif/rc-table/es/types';
-import produce from 'immer';
 import { Checkbox, Radio } from 'antd';
-
+import produce from 'immer';
+import React, { cloneElement, useMemo, useState } from 'react';
 import { Column, RowClassNameParam, RowSelectType } from './type';
 import { calcAutoColumnWidth, processColumns } from './utils/column';
 
@@ -186,6 +184,14 @@ function useBody<T>({
                     return value;
                 };
 
+                let textAlign = '';
+
+                if (typeof col.align?.body === 'string') {
+                    textAlign = col.align?.body;
+                } else if (typeof col.align?.body === 'function') {
+                    textAlign = col.align?.body(row);
+                }
+
                 cell.value = (
                     <div
                         className={cx(
@@ -197,6 +203,13 @@ function useBody<T>({
                                     text-overflow: ellipsis;
                                     overflow: hidden;
                                 `]: true,
+                            },
+                            {
+                                [css`
+                                    text-align: ${textAlign};
+                                `]:
+                                    typeof col.align?.body === 'string' ||
+                                    typeof col.align?.body === 'function',
                             },
                             {
                                 [css`

@@ -1,10 +1,9 @@
-import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { Column, SortDirection } from './type';
+import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
+import { css } from '@emotion/css';
 import { Row, TableInstance } from '@weblif/rc-table';
 import { Cell } from '@weblif/rc-table/es/types';
-import { css } from '@emotion/css';
-import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
-
+import React, { useMemo } from 'react';
+import { Column, SortDirection } from './type';
 import { calcAutoColumnWidth, processColumns } from './utils/column';
 
 interface HeaderTitleProps<T> {
@@ -37,6 +36,9 @@ function HeaderTitle<T>({
                     display: inline-block;
                     width: calc(100% - 4px);
                     padding: 0px 0px 0px 8px;
+                    ${column.align?.header !== undefined
+                        ? `text-align: ${column.align?.header};`
+                        : ''};
                 `}
                 onClick={() => {
                     if (sc?.direction === 'ASC') {
