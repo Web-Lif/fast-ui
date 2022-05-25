@@ -1,3 +1,4 @@
+import { produce } from 'immer';
 import { useEffect, useState } from 'react';
 import { SortDirection } from '../type';
 
@@ -18,25 +19,29 @@ function useTableLocalSort<T>(data: T[] = []) {
     const sortRows = () => {
         const directionElement = sortDirection.find((element) => element.direction);
         if (directionElement?.name) {
-            return rows.sort((element: any, nextElement: any) => {
-                if (directionElement.direction === 'ASC') {
-                    if (element[directionElement.name] > nextElement[directionElement.name]) {
-                        return 1;
+            return produce(rows, (draft) => {
+                draft.sort((element: any, nextElement: any) => {
+                    if (directionElement.direction === 'ASC') {
+                        if (element[directionElement.name] > nextElement[directionElement.name]) {
+                            return 1;
+                        }
+                        return -1;
+                    } else {
+                        if (element[directionElement.name] < nextElement[directionElement.name]) {
+                            return 1;
+                        }
+                        return -1;
                     }
-                    return -1;
-                } else {
-                    if (element[directionElement.name] < nextElement[directionElement.name]) {
-                        return 1;
-                    }
-                    return -1;
-                }
+                });
             });
         }
-        return rows.sort((element: any, nextElement: any) => {
-            if (element.$$serialNumber > nextElement.$$serialNumber) {
-                return 1;
-            }
-            return -1;
+        return produce(rows, (draft) => {
+            draft.sort((element: any, nextElement: any) => {
+                if (element.$$serialNumber > nextElement.$$serialNumber) {
+                    return 1;
+                }
+                return -1;
+            });
         });
     };
 
