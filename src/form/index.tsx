@@ -1,20 +1,29 @@
-import React, { cloneElement, FC, ReactElement, ReactNode } from 'react';
+import { css, cx } from '@emotion/css';
 import {
-    FormProps as AntFormProps,
     Form as AntForm,
-    Input,
-    FormItemProps as AntFormItemProps,
     FormInstance,
+    FormItemProps as AntFormItemProps,
+    FormProps as AntFormProps,
+    Input,
 } from 'antd';
-import { css } from '@emotion/css';
+import React, { cloneElement, FC, ReactElement, ReactNode } from 'react';
 
 interface FormProps<T = any> extends AntFormProps<T> {
     cols?: number;
+    labelWidth?: number;
     children?: ReactNode;
 }
 
-function InternalForm<T>({ cols, ...restProps }: FormProps<T>) {
+function InternalForm<T>({ cols, labelWidth, labelWrap, ...restProps }: FormProps<T>) {
     const { children } = restProps;
+
+    const getLabelWarp = () => {
+        if (labelWrap === undefined && typeof labelWidth === 'number') {
+            return true;
+        }
+        return labelWrap;
+    };
+
     /** 采用 Form 的方式进行布局 */
     if (cols && cols > 0) {
         let childrens = [];
@@ -68,16 +77,28 @@ function InternalForm<T>({ cols, ...restProps }: FormProps<T>) {
         return (
             <AntForm<T> {...restProps}>
                 <table
-                    className={css`
-                        width: 100%;
-                        table-layout: fixed;
-                        td {
-                            padding-left: 0.5rem;
-                        }
-                        .ant-form-item {
-                            margin: 0 0 1em;
-                        }
-                    `}
+                    className={cx({
+                        [css`
+                            width: 100%;
+                            table-layout: fixed;
+                            td {
+                                padding-left: 0.5rem;
+                            }
+                            .ant-form-item {
+                                margin: 0 0 1em;
+                            }
+                        `]: true,
+                        [css`
+                            .ant-form-item-label {
+                                width: ${labelWidth}px;
+                            }
+                        `]: typeof labelWidth === 'number',
+                        [css`
+                            .ant-form-item-label {
+                                white-space: break-spaces;
+                            }
+                        `]: getLabelWarp(),
+                    })}
                 >
                     <tbody>{rows}</tbody>
                 </table>
@@ -86,7 +107,7 @@ function InternalForm<T>({ cols, ...restProps }: FormProps<T>) {
     }
 
     /** 采用默认的 antd 方式 */
-    return <AntForm {...restProps} />;
+    return <AntForm labelWrap={getLabelWarp()} {...restProps} />;
 }
 
 interface FormItemProps extends AntFormItemProps {
