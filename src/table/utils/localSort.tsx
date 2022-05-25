@@ -16,39 +16,49 @@ function useTableLocalSort<T>(data: T[] = []) {
         );
     }, []);
 
-    const sortRows = () => {
-        const directionElement = sortDirection.find((element) => element.direction);
-        if (directionElement?.name) {
-            return produce(rows, (draft) => {
-                draft.sort((element: any, nextElement: any) => {
-                    if (directionElement.direction === 'ASC') {
-                        if (element[directionElement.name] > nextElement[directionElement.name]) {
-                            return 1;
-                        }
-                        return -1;
-                    } else {
-                        if (element[directionElement.name] < nextElement[directionElement.name]) {
-                            return 1;
-                        }
-                        return -1;
-                    }
-                });
-            });
-        }
-        return produce(rows, (draft) => {
-            draft.sort((element: any, nextElement: any) => {
-                if (element.$$serialNumber > nextElement.$$serialNumber) {
-                    return 1;
-                }
-                return -1;
-            });
-        });
-    };
-
     return {
         sortDirection,
-        setSortDirection,
-        rows: sortRows(),
+        setSortDirection: (sortDirection: SortDirection[]) => {
+            const directionElement = sortDirection.find((element) => element.direction);
+            setSortDirection(sortDirection);
+            if (directionElement?.name) {
+                setRows(
+                    produce(rows, (draft) => {
+                        draft.sort((element: any, nextElement: any) => {
+                            if (directionElement.direction === 'ASC') {
+                                if (
+                                    element[directionElement.name] >
+                                    nextElement[directionElement.name]
+                                ) {
+                                    return 1;
+                                }
+                                return -1;
+                            } else {
+                                if (
+                                    element[directionElement.name] <
+                                    nextElement[directionElement.name]
+                                ) {
+                                    return 1;
+                                }
+                                return -1;
+                            }
+                        });
+                    }),
+                );
+                return;
+            }
+            setRows(
+                produce(rows, (draft) => {
+                    draft.sort((element: any, nextElement: any) => {
+                        if (element.$$serialNumber > nextElement.$$serialNumber) {
+                            return 1;
+                        }
+                        return -1;
+                    });
+                }),
+            );
+        },
+        rows,
         setRows,
     };
 }
