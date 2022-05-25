@@ -1,11 +1,19 @@
-import React, { useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SortDirection } from '../type';
 
 /** 设置本地排序 */
 function useTableLocalSort<T>(data: T[] = []) {
     const [sortDirection, setSortDirection] = useState<SortDirection[]>([]);
-    const [rows, setRows] = useState<T[]>(data);
-    const initRows = useRef<T[]>([...data]);
+    const [rows, setRows] = useState<T[]>([]);
+
+    useEffect(() => {
+        setRows(
+            data.map((row, index) => ({
+                ...row,
+                $$serialNumber: index,
+            })),
+        );
+    }, []);
 
     const sortRows = () => {
         const directionElement = sortDirection.find((element) => element.direction);
@@ -24,7 +32,12 @@ function useTableLocalSort<T>(data: T[] = []) {
                 }
             });
         }
-        return initRows.current;
+        return rows.sort((element: any, nextElement: any) => {
+            if (element.$$serialNumber > nextElement.$$serialNumber) {
+                return 1;
+            }
+            return -1;
+        });
     };
 
     return {

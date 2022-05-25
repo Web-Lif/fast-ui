@@ -25,8 +25,8 @@ group:
  * title: 基础功能演示
  * desc: 可通过 `AutoSize` 来进行百分比的设置, 使用 `useTableLocalSort` 进行排序, 设置 `onChangeColumns` 则启动可以拖拽改变表格列的宽度
  */
-import React, { useState, useRef } from 'react';
-import { Table, Button, Input, AutoSize, Space, message, useTableLocalSort } from '@weblif/fast-ui';
+import { AutoSize, Button, Input, Space, Table, useTableLocalSort } from '@weblif/fast-ui';
+import React, { useState } from 'react';
 
 /** Mock 数据 */
 const mockData = () => {
@@ -133,10 +133,17 @@ export default () => {
                 </Button>
                 <Button
                     onClick={() => {
-                        alert(data.filter((ele) => ele.$state === 'update'));
+                        console.log(rows.filter((ele) => ele.$state === 'update'));
                     }}
                 >
                     获取修改的内容
+                </Button>
+                <Button
+                    onClick={() => {
+                        console.log(rows.filter((ele) => ele.$select === true));
+                    }}
+                >
+                    获取选中的数据
                 </Button>
             </Space>
             <br />
@@ -173,8 +180,8 @@ export default () => {
  * title: 大数据测试
  * desc: 显示表格1000条数据
  */
-import React, { useState, useRef } from 'react';
-import { Table, Button, Input, AutoSize, Space, message } from '@weblif/fast-ui';
+import { Button, Input, Space, Table } from '@weblif/fast-ui';
+import React, { useState } from 'react';
 
 /** Mock 数据 */
 const mockData = () => {
