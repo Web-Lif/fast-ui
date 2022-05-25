@@ -326,6 +326,7 @@ export default () => {
 | width | 列的宽度信息 | `number` | - |
 | fixed | 固定列的方向 | `'left'` \| `'right'` | - |
 | readOnly | 是否只读 | `boolean` | - |
+| resizable | 是否可拖拽改变宽度 | `boolean` | - |
 | align | 列的对齐方式 | `{ header?: AlignType, body?: AlignType \| ((row: T) => AlignType) }` | - |
 | editor | 编辑器 | `(renderType: EditRenderType<T>) => ReactElement` | - |
 | render | 渲染单元格 | `(renderType: RenderType<T>) => ReactElement` | - |
