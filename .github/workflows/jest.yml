@@ -16,6 +16,6 @@ jobs:
       - name: Install
         run: sudo npm i -g npm@latest &&  npm install --force
 
-      - name: TEST
-        run: npm run test
+    #   - name: TEST
+    #     run: npm run test
 
