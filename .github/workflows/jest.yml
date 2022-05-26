@@ -17,5 +17,5 @@ jobs:
         run: sudo npm i -g npm@latest &&  npm install --force
 
       - name: TEST
-        run: npm run test:coverage
+        run: npm run test
 

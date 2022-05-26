@@ -10,7 +10,6 @@
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
     "build:rm": "rimraf es",
     "test": "jest",
-    "test:coverage": "umi-test --coverage",
     "prepublishOnly": "npm run build:rm && npm run build"
   },
   "main": "es/index.js",
