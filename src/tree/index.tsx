@@ -107,6 +107,10 @@ const Tree = ({
         }
     }, []);
 
+    useEffect(() => {
+        setExpandedKeys([...expandedKeys]);
+    }, [treeData]);
+
     const loadDataFunction = () => {
         if (typeof loadData === 'function') {
             return async (treeNode: EventDataNode) => {

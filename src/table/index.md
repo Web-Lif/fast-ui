@@ -20,167 +20,14 @@ group:
 
 例子:
 
-```tsx
-/**
- * title: 基础功能演示
- * desc: 可通过 `AutoSize` 来进行百分比的设置, 使用 `useTableLocalSort` 进行排序, 设置 `onChangeColumns` 则启动可以拖拽改变表格列的宽度
- */
-import { AutoSize, Button, Input, Space, Table, useTableLocalSort } from '@weblif/fast-ui';
-import React, { useState } from 'react';
-
-/** Mock 数据 */
-const mockData = () => {
-    const data = [];
-    for (let i = 0; i < 10; i += 1) {
-        data.push({
-            username: 'zhangj',
-            email: 'zhang@xx.com',
-            id: i,
-            age: '25',
-            tags: Math.floor(Math.random() * 100),
-            col0: `col0 - ${i}`,
-            col1: `col1 - ${i}`,
-            col2: `col2 - ${i}`,
-            col3: `col3 - ${i}`,
-            col4: `col4 - ${i}`,
-            col5: `col5 - ${i}`,
-            col6: `col6 - ${i}`,
-        });
-    }
-    return data;
-};
-
-const myMockData = mockData();
-
-export default () => {
-    const [modal, setModal] = useState(true);
-    const rowSelection = {
-        model: modal === false ? 'single' : 'multiple',
-    };
-
-    const { setSortDirection, sortDirection, rows, setRows } = useTableLocalSort(myMockData);
-
-    const [cols, setCols] = useState([
-        {
-            name: 'username',
-            title: '人员名称',
-            fixed: 'right',
-        },
-        {
-            name: 'email',
-            title: '邮箱地址',
-            resizable: true,
-            editor: ({ onFinish, value, onChange }) => (
-                <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
-            ),
-        },
-        {
-            name: 'age',
-            title: '年龄',
-            editor: ({ onFinish, value, onChange }) => (
-                <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
-            ),
-        },
-        {
-            name: 'tags',
-            title: '标签0',
-            editor: ({ onFinish, value, onChange }) => (
-                <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
-            ),
-        },
-        {
-            name: 'col0',
-            title: '标签1',
-            hidden: true,
-            editor: ({ onFinish, value, onChange }) => (
-                <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
-            ),
-        },
-        {
-            name: 'col1',
-            title: '标签2',
-        },
-        {
-            name: 'col2',
-            title: '标3',
-        },
-        {
-            name: 'col3',
-            title: '标签',
-        },
-        {
-            name: 'col4',
-            title: '标签',
-        },
-        {
-            name: 'col5',
-            title: '标签',
-        },
-        {
-            name: 'col6',
-            title: '标签',
-        },
-    ]);
-    return (
-        <>
-            <Space>
-                <Button
-                    onClick={() => {
-                        setModal(!modal);
-                    }}
-                >
-                    切换单选/多选
-                </Button>
-                <Button
-                    onClick={() => {
-                        console.log(rows.filter((ele) => ele.$state === 'update'));
-                    }}
-                >
-                    获取修改的内容
-                </Button>
-                <Button
-                    onClick={() => {
-                        console.log(rows.filter((ele) => ele.$select === true));
-                    }}
-                >
-                    获取选中的数据
-                </Button>
-            </Space>
-            <br />
-            <br />
-            <AutoSize
-                style={{
-                    width: 1200,
-                    height: 600,
-                }}
-            >
-                {({ width, height }) => (
-                    <Table
-                        width={width}
-                        height={height}
-                        rowSelection={rowSelection}
-                        rowKey="id"
-                        mode="cell"
-                        sortColumns={sortDirection}
-                        onSortColumnsChange={setSortDirection}
-                        columns={cols}
-                        rows={rows}
-                        onChangeColumns={setCols}
-                        onChange={setRows}
-                    />
-                )}
-            </AutoSize>
-        </>
-    );
-};
-```
+<code src="./__demo__/simple.tsx"></code>
 
 ```tsx
 /**
  * title: 大数据测试
  * desc: 显示表格1000条数据
  */
-import { Button, Input, Space, Table } from '@weblif/fast-ui';
+import { Button, Space, Table } from '@weblif/fast-ui';
 import React, { useState } from 'react';
 
 /** Mock 数据 */
@@ -236,9 +83,6 @@ export default () => {
             <Table
                 width={1200}
                 height={600}
-                rowSelection={{
-                    model: 'multiple',
-                }}
                 rowKey="id"
                 mode="cell"
                 columns={[
@@ -246,36 +90,22 @@ export default () => {
                         name: 'username',
                         title: '人员名称',
                         fixed: 'right',
-                        allowCellSelectBorder: false,
                     },
                     {
                         name: 'email',
                         title: '邮箱地址',
-                        readOnly: true,
-                        editor: ({ onFinish, value, onChange }) => (
-                            <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
-                        ),
                     },
                     {
                         name: 'age',
                         title: '年龄',
-                        editor: ({ onFinish, value, onChange }) => (
-                            <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
-                        ),
                     },
                     {
                         name: 'tags',
                         title: '标签',
-                        editor: ({ onFinish, value, onChange }) => (
-                            <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
-                        ),
                     },
                     {
                         name: 'col0',
                         title: '标签',
-                        editor: ({ onFinish, value, onChange }) => (
-                            <Input value={value} onChange={onChange} autoFocus onBlur={onFinish} />
-                        ),
                     },
                     {
                         name: 'col1',
@@ -303,10 +133,7 @@ export default () => {
                     },
                 ]}
                 rows={data}
-                onChange={(changeData) => {
-                    console.log('changeData');
-                    setData(changeData);
-                }}
+                onChange={setData}
             />
         </>
     );
