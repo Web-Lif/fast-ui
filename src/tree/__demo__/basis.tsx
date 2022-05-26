@@ -43,5 +43,5 @@ export default () => {
         setTreeData(mockTreeData);
     }, []);
 
-    return <Tree defaultExpandedKeys={['0-0']} treeData={treeData} />;
+    return <Tree checkable defaultExpandedKeys={['0-0']} treeData={treeData} />;
 };
