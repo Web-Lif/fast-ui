@@ -57,6 +57,7 @@ export { Steps } from './steps';
 export { Switch } from './switch';
 export { default as Table } from './table';
 export type { TableProps } from './table';
+export type { Column } from './table/type';
 export { default as useTableLocalSort } from './table/utils/localSort';
 export { Tabs } from './tabs';
 export { Tag } from './tag';
