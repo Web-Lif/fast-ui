@@ -93,47 +93,58 @@ export default () => {
                     {
                         name: 'username',
                         title: '人员名称',
+                        width: 120,
                         fixed: 'right',
                     },
                     {
                         name: 'email',
+                        width: 120,
                         title: '邮箱地址',
                     },
                     {
                         name: 'age',
+                        width: 120,
                         title: '年龄',
                     },
                     {
                         name: 'tags',
+                        width: 120,
                         title: '标签',
                     },
                     {
                         name: 'col0',
+                        width: 120,
                         title: '标签',
                     },
                     {
                         name: 'col1',
+                        width: 120,
                         title: '标签',
                     },
                     {
                         name: 'col2',
                         title: '标签',
+                        width: 120,
                     },
                     {
                         name: 'col3',
                         title: '标签',
+                        width: 120,
                     },
                     {
                         name: 'col4',
                         title: '标签',
+                        width: 120,
                     },
                     {
                         name: 'col5',
                         title: '标签',
+                        width: 120,
                     },
                     {
                         name: 'col6',
                         title: '标签',
+                        width: 120,
                     },
                 ]}
                 rows={data}
