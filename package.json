@@ -61,7 +61,7 @@
     "dependencies": {
         "@ant-design/icons": "^4.7.0",
         "@emotion/css": "^11.9.0",
-        "@weblif/rc-table": "^0.4.3-canary",
+        "@weblif/rc-table": "^0.4.5-canary",
         "antd": "^4.20.6",
         "date-fns": "^2.28.0",
         "immer": "^9.0.14",

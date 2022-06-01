@@ -1,12 +1,10 @@
-import React, { useMemo, useRef } from 'react';
 import { Table as RCTable, TableInstance } from '@weblif/rc-table';
 import produce from 'immer';
-
-import { Column, RowClassNameParam, RowSelectType, SortDirection } from './type';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Empty } from '../index';
 import useBody from './body';
 import useHeader from './header';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { Column, RowClassNameParam, RowSelectType, SortDirection } from './type';
 
 export interface TableProps<T> {
     /** 表格的宽度 */
@@ -269,6 +267,7 @@ function Table<T>({
                     });
                 }, 0);
             }}
+            onEmptyRowsRenderer={() => <Empty />}
         />
     );
 }
