@@ -1,1 +1,1 @@
-export { Layout } from 'antd'
+export { Layout } from 'antd';
