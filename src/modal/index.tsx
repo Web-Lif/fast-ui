@@ -1,13 +1,6 @@
-import React, { useState, useRef, useLayoutEffect, FC } from 'react';
 import { Modal as AntModal, ModalProps as AntModalProps, notification } from 'antd';
+import React, { FC, useLayoutEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
-
-// see https://github.com/react-grid-layout/react-draggable/pull/648
-declare module 'react-draggable' {
-    export interface DraggableProps {
-        children: React.ReactNode;
-    }
-}
 
 export interface ModalProps extends Omit<AntModalProps, 'onOk' | 'confirmLoading'> {
     /** 改变状态触发的事件 */
