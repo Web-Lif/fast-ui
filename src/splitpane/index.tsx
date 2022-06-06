@@ -38,6 +38,12 @@ const SplitPane: FC<SplitPaneProps> = ({
                         .ant-card-extra {
                             padding: 10px;
                         }
+                        .resize-right {
+                            transition: background-color 0.8s;
+                            &:hover {
+                                background-color: var(--ant-primary-color-hover, #40a9ff);
+                            }
+                        }
                     `}
                     height={height}
                     width={width}
