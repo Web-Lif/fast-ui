@@ -39,6 +39,7 @@ const SplitPane: FC<SplitPaneProps> = ({
                             padding: 10px;
                         }
                         .resize-right {
+                            z-index: 40;
                             transition: background-color 0.8s;
                             &:hover {
                                 background-color: var(--ant-primary-color-hover, #40a9ff);
