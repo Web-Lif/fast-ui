@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
         "outDir": "es",
-        "target": "esnext",
-        "module": "CommonJS",
+        "target": "es5",
+        "module": "UMD",
         "moduleResolution": "node",
         "jsx": "react",
         "esModuleInterop": true,
