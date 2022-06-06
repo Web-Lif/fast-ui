@@ -9,7 +9,8 @@
         "types": ["jest"],
         "strict": true,
         "skipLibCheck": true,
-        "declaration": true
+        "declaration": true,
+        "lib": ["ESNext", "DOM"]
     },
     "exclude": [
         "node_modules",
