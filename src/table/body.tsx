@@ -1,5 +1,5 @@
 import { css, cx } from '@emotion/css';
-import { Row, TableInstance } from '@weblif/rc-table';
+import { Row } from '@weblif/rc-table';
 import { Cell } from '@weblif/rc-table/es/types';
 import { Checkbox, Radio } from 'antd';
 import produce from 'immer';
@@ -16,7 +16,6 @@ interface BodyParam<T> {
     mode?: 'cell' | 'row';
     onChange?: (data: T[]) => void;
     rowClassName?: (param: RowClassNameParam<T>) => string;
-    table: React.MutableRefObject<TableInstance | null>;
 }
 
 function useBody<T>({
@@ -28,7 +27,6 @@ function useBody<T>({
     width,
     rowClassName,
     onChange,
-    table,
 }: BodyParam<T>) {
     const [editCells, setEditCells] = useState<string[]>([]);
 
@@ -64,12 +62,7 @@ function useBody<T>({
             let colWidth = tempColWidth[index];
             let widthResult = 0;
             if (colWidth === 'auto') {
-                widthResult =
-                    (width -
-                        colsCountFixedWidth -
-                        (table.current?.getScrollbarWidthOffset() || 0) -
-                        2) /
-                    autoCount;
+                widthResult = (width - colsCountFixedWidth) / autoCount;
             } else if (typeof colWidth === 'number') {
                 widthResult = colWidth;
             }

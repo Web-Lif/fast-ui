@@ -1,4 +1,4 @@
-import { Table as RCTable, TableInstance } from '@weblif/rc-table';
+import { Table as RCTable } from '@weblif/rc-table';
 import produce from 'immer';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Empty } from '../index';
@@ -66,8 +66,6 @@ function Table<T>({
     rowClassName = ({ className }) => className,
     onSortColumnsChange = () => {},
 }: TableProps<T>) {
-    const table = useRef<TableInstance>(null);
-
     const moveOffset = useRef<{
         x: number;
         y: number;
@@ -109,7 +107,6 @@ function Table<T>({
         columns: colsProcess,
         onSortColumnsChange,
         sortColumns,
-        table,
         onColumnMouseDown: (e, col) => {
             if (e.button === 0) {
                 startMoveColName.current = col;
@@ -130,7 +127,6 @@ function Table<T>({
         mode,
         onChange,
         rowClassName,
-        table,
     });
 
     const moveTicking = useRef<boolean>(false);
@@ -145,7 +141,6 @@ function Table<T>({
         <RCTable<T>
             width={width}
             height={height}
-            table={table}
             rows={headers.concat(bodys)}
             onMouseMove={(e) => {
                 moveOffset.current = {

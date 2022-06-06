@@ -1,6 +1,6 @@
 import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import { css } from '@emotion/css';
-import { Row, TableInstance } from '@weblif/rc-table';
+import { Row } from '@weblif/rc-table';
 import { Cell } from '@weblif/rc-table/es/types';
 import React, { useMemo } from 'react';
 import { Column, SortDirection } from './type';
@@ -99,7 +99,6 @@ interface HeaderParam<T> {
     onColumnMouseDown: (e: React.MouseEvent<HTMLDivElement, MouseEvent>, column: Column<T>) => void;
     sortColumns: SortDirection[];
     onSortColumnsChange: (change: SortDirection[]) => void;
-    table: React.MutableRefObject<TableInstance | null>;
 }
 
 function useHeader<T>({
@@ -107,7 +106,6 @@ function useHeader<T>({
     columns: tempColumns,
     sortColumns = [],
     onSortColumnsChange,
-    table,
     onColumnMouseDown,
 }: HeaderParam<T>) {
     const columns = useMemo(() => {
@@ -125,12 +123,7 @@ function useHeader<T>({
         let colWidth = tempColWidth[index];
         let widthResult = 0;
         if (colWidth === 'auto') {
-            widthResult =
-                (width -
-                    colsCountFixedWidth -
-                    (table.current?.getScrollbarWidthOffset() || 0) -
-                    2) /
-                autoCount;
+            widthResult = (width - colsCountFixedWidth) / autoCount;
         } else if (typeof colWidth === 'number') {
             widthResult = colWidth;
         }
