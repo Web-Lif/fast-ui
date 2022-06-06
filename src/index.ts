@@ -29,6 +29,7 @@ export { default as Input } from './input/Input';
 export { Card } from './layout/Card';
 export { Divider } from './layout/Divider';
 export { Col, Row } from './layout/Grid';
+export { Layout } from './layout/Layout';
 export { Space } from './layout/Space';
 export type { SpaceProps } from './layout/Space';
 export { List } from './list';
