@@ -16,6 +16,10 @@
     "main": "es/index.js",
     "module": "es/index.js",
     "typings": "es/index.d.ts",
+    "author": {
+        "name" : "苯苯本",
+        "email" : "854363956@qq.com"
+    },
     "gitHooks": {
         "pre-commit": "lint-staged"
     },
