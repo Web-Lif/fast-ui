@@ -4,6 +4,8 @@
     企业级的UI组件库，适合在大数据处理，或经常使用 CURD 的场景
 </div>
 
+[![npm](https://img.shields.io/npm/v/@weblif/fast-ui)](https://www.npmjs.com/package/@weblif/fast-ui) [![GitHub license](https://img.shields.io/github/license/Web-Lif/fast-ui)](https://github.com/Web-Lif/fast-ui/blob/canary/LICENSE)
+
 ## ✨ 特性
 
 -   🌈 企业级的框架设计，基于 `antd` 的组件库
@@ -24,7 +26,7 @@
 
 ```bash
 npm install @weblif/fast-ui --save
-# or 
+# or
 yarn add @weblif/fast-ui
 ```
 
