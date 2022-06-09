@@ -37,7 +37,7 @@ group:
 
 共同属性
 
-| 属性名 | 类型 | 默认值 | 述 |
+| 属性名 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- | --- |
 | as | `string` \| `React.ComponentType<ICommonProps>` | `div` | 允许通过 HTML 5 语义标记或自定义组件控制输出的 HTML 元素。 |
 | className | `string` | - |  | 应用于元素的类名。 |

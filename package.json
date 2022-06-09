@@ -7,7 +7,7 @@
         "docs:deploy": "gh-pages -d docs-dist",
         "build": "tsc",
         "deploy": "npm run docs:build && npm run docs:deploy",
-        "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
+        "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,json}\"",
         "build:rm": "rimraf es",
         "test": "umi-test",
         "test:coverage": "umi-test --coverage",
