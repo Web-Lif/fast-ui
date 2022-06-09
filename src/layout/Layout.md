@@ -37,22 +37,22 @@ group:
 
 共同属性
 
-| 属性名 | 类型 | 默认值 | 描述 |
+| 属性名 | 类型 | 默认值 | 述 |
 | --- | --- | --- | --- | --- |
 | as | `string` \| `React.ComponentType<ICommonProps>` | `div` | 允许通过 HTML 5 语义标记或自定义组件控制输出的 HTML 元素。 |
-| className | `string` |  |  | 应用于元素的类名。 |
+| className | `string` | - |  | 应用于元素的类名。 |
 | id | `string` | Randomly generated id | 默认情况下，空间输出具有随机生成 id 的元素。您可以指定自己的 ID。最好在根据状态更改添加和删除的组件上指定一个 id。 |
 | scrollable | `boolean` | `false` | 使空间可滚动。默认情况下，溢出空间的内容将被隐藏。如果内容溢出，这将允许添加滚动条。 |
 | style | `CSSProperties` |  | CSS properties |
 | trackSize | `boolean` | `false` | 告诉空间在将大小更改为 `useCurrentSpace()` 挂钩时报告其大小。关闭此功能后，空间将仅报告初始大小。 |
 | zIndex | `number` | `0` | 一个数字，表示空间所在的层。如果未指定，则空间位于第 0 层。较高的数字出现在较低的数字前面。这旨在替代使用 `<Layer />` 作为包装器，并且更适合在不同层之间移动的空间以避免重新安装子组件。 |
 | allowOverflow | `boolean` | `false` | 为 true 时，允许空间内的内容超出空间边界 |
-| onClick | `(event) => void` |  | onClick 事件 |
-| onDoubleClick | `(event) => void` |  | onDoubleClick 事件 |
-| onMouseDown | `(event) => void` |  | onMouseDown 事件 |
-| onMouseEnter | `(event) => void` |  | onMouseEnter 事件 |
-| onMouseLeave | `(event) => void` |  | onMouseLeave 事件 |
-| onMouseMove | `(event) => void` |  | onMouseMove 事件 |
-| onTouchStart | `(event) => void` |  | onTouchStart 事件 |
-| onTouchMove | `(event) => void` |  | onTouchMove 事件 |
-| onTouchEnd | `(event) => void` |  | onTouchEnd 事件 |
+| onClick | `(event) => void` | - | onClick 事件 |
+| onDoubleClick | `(event) => void` | - | onDoubleClick 事件 |
+| onMouseDown | `(event) => void` | - | onMouseDown 事件 |
+| onMouseEnter | `(event) => void` | - | onMouseEnter 事件 |
+| onMouseLeave | `(event) => void` | - | onMouseLeave 事件 |
+| onMouseMove | `(event) => void` | - | onMouseMove 事件 |
+| onTouchStart | `(event) => void` | - | onTouchStart 事件 |
+| onTouchMove | `(event) => void` | - | onTouchMove 事件 |
+| onTouchEnd | `(event) => void` | - | onTouchEnd 事件 |
