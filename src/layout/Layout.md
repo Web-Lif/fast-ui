@@ -11,75 +11,48 @@ group:
 
 协助进行页面级整体布局
 
-#### 组件描述
+## 布局组件描述
 
--   `Layout`: 布局容器，其下可嵌套 `Header` `Sider` `Content` `Footer` 或 `Layout` 本身，可以放在任何父容器中。
--   `Header`: 顶部布局，自带默认样式，其下可嵌套任何元素，只能放在 `Layout` 中。
--   `Sider`: 侧边栏，自带默认样式及基本功能，其下可嵌套任何元素，只能放在 `Layout` 中。
--   `Content`: 内容部分，自带默认样式，其下可嵌套任何元素，只能放在 `Layout` 中。
--   `Footer`: 底部布局，自带默认样式，其下可嵌套任何元素，只能放在 `Layout` 中。
+-   `ViewPort` 将接管浏览器窗口的整个视口。调整浏览器窗口大小将自动调整此空间和所有嵌套空间的大小。
+-   `Fixed` 这表示可以指定一个高度，也可以指定一个宽度（默认情况下，它的大小为容器的 100%）。所有嵌套空间都将包含在这个固定大小的空间内。
+-   `Left` 父容器空间的左侧
+-   `Right` 在父容器空间的右侧
+-   `Top` 在父容器空间的顶部
+-   `Bottom` 在父容器空间的底部
+-   `Fill` 填充剩余空间
+-   `Positioned` 可以按照定位进行浮动在父组件的任意位置
+-   `Layer` 图层允许您在父空间中创建图层
+-   `Centered` 将空间的内容水平和垂直居中。
+-   `CenteredVertically` 垂直居中空间的内容
 
 <br />
 
 例子:
 
-```tsx
-/**
- * title: 基本
- * desc: 典型的页面布局。
- */
-import { Layout } from '@weblif/fast-ui';
-import React from 'react';
-
-export default () => {
-    return (
-        <>
-            <Layout>
-                <Layout.Header style={{ background: '#7dbcea' }}></Layout.Header>
-                <Layout style={{ height: 200 }}>
-                    <Layout.Sider style={{ background: '#3ba0e9' }}></Layout.Sider>
-                    <Layout.Content
-                        style={{ background: 'rgba(16, 142, 233, 1)' }}
-                    ></Layout.Content>
-                </Layout>
-                <Layout.Footer style={{ background: '#7dbcea' }}></Layout.Footer>
-            </Layout>
-        </>
-    );
-};
-```
+<code src="./__demo__/simple_layout.tsx"></code>
 
 <br />
 
 ### API
 
-##### Layout
+共同属性
 
-布局容器。
-
-| 属性 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| className | 容器 className | `string` |
-| hasSider | 表示子元素里有 Sider，一般不用指定。可用于服务端渲染时避免样式闪动 | `boolean` |
-| style | 指定样式 | `CSSProperties` |
-
-##### Layout.Sider
-
-侧边栏。
-
-| 属性 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| breakpoint | 触发响应式布局的断点 | `xs` \| `sm` \| `md` \| `lg` \| `xl` \| `xxl` | - |
-| className | 容器 className | `string` |
-| collapsed | 当前收起状态 | `boolean` |
-| collapsedWidth | 收缩宽度，设置为 0 会出现特殊 trigger | `number` |
-| collapsible | 是否可收起 | `boolean` |
-| defaultCollapsed | 是否默认收起 | `boolean` |
-| reverseArrow | 翻转折叠提示箭头的方向，当 Sider 在右边时可以使用 | `boolean` |
-| style | 指定样式 | `CSSProperties` |
-| theme | 主题颜色 | `light` \| `dark` |
-| trigger | 自定义 trigger，设置为 null 时隐藏 trigger | `ReactNode` |
-| width | 宽度 | `number` \| `string` |
-| zeroWidthTriggerStyle | 指定当 collapsedWidth 为 0 时出现的特殊 trigger 的样式 | `object` |
-| onBreakpoint | 触发响应式布局断点时的回调 | `(broken) => {}` |
-| onCollapse | 展开-收起时的回调函数，有点击 trigger 以及响应式反馈两种方式可以触发 | `(collapsed, type) => {}` |
+| 属性名 | 类型 | 默认值 | 描述 |
+| --- | --- | --- | --- | --- |
+| as | `string` \| `React.ComponentType<ICommonProps>` | `div` | 允许通过 HTML 5 语义标记或自定义组件控制输出的 HTML 元素。 |
+| className | `string` |  |  | 应用于元素的类名。 |
+| id | `string` | Randomly generated id | 默认情况下，空间输出具有随机生成 id 的元素。您可以指定自己的 ID。最好在根据状态更改添加和删除的组件上指定一个 id。 |
+| scrollable | `boolean` | `false` | 使空间可滚动。默认情况下，溢出空间的内容将被隐藏。如果内容溢出，这将允许添加滚动条。 |
+| style | `CSSProperties` |  | CSS properties |
+| trackSize | `boolean` | `false` | 告诉空间在将大小更改为 `useCurrentSpace()` 挂钩时报告其大小。关闭此功能后，空间将仅报告初始大小。 |
+| zIndex | `number` | `0` | 一个数字，表示空间所在的层。如果未指定，则空间位于第 0 层。较高的数字出现在较低的数字前面。这旨在替代使用 `<Layer />` 作为包装器，并且更适合在不同层之间移动的空间以避免重新安装子组件。 |
+| allowOverflow | `boolean` | `false` | 为 true 时，允许空间内的内容超出空间边界 |
+| onClick | `(event) => void` |  | onClick 事件 |
+| onDoubleClick | `(event) => void` |  | onDoubleClick 事件 |
+| onMouseDown | `(event) => void` |  | onMouseDown 事件 |
+| onMouseEnter | `(event) => void` |  | onMouseEnter 事件 |
+| onMouseLeave | `(event) => void` |  | onMouseLeave 事件 |
+| onMouseMove | `(event) => void` |  | onMouseMove 事件 |
+| onTouchStart | `(event) => void` |  | onTouchStart 事件 |
+| onTouchMove | `(event) => void` |  | onTouchMove 事件 |
+| onTouchEnd | `(event) => void` |  | onTouchEnd 事件 |

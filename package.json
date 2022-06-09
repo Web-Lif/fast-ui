@@ -71,7 +71,6 @@
         "immer": "^9.0.14",
         "react-color": "^2.19.3",
         "react-draggable": "^4.4.5",
-        "react-spaces": "^0.3.4",
-        "react-viewer": "^3.2.2"
+        "react-spaces": "^0.3.4"
     }
 }

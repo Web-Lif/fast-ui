@@ -1,1 +1,1 @@
-export { Layout } from 'antd';
+export * as Layout from 'react-spaces';
