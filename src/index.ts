@@ -12,7 +12,7 @@ export { Carousel } from './carousel';
 export { default as Cascader } from './cascader';
 export { default as Checkbox } from './checkbox';
 export { Collapse } from './collapse';
-export { default as ColorPicker } from './color-picker';
+export { ColorPickerPanel, default as ColorPicker } from './color-picker';
 export { Comment } from './comment';
 export { ConfigProvider } from './configprovider';
 export { default as DatePicker } from './date-picker';
