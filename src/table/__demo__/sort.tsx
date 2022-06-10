@@ -1,6 +1,6 @@
 /**
  * title: 本地排序
- * desc: 可通过 `useTableLocalSort` 来进行本地排序, 可点击表格头部进行排序
+ * desc: 可通过 `useTableLocalSort` 来进行本地排序, 可点击表格头部进行排序, 可通过 `Column` 的 `sort` 属性来进行控制， 默认不排序
  */
 import { AutoSize, Column, Table, useTableLocalSort } from '@weblif/fast-ui';
 import React, { useState } from 'react';
@@ -46,18 +46,21 @@ const myMockData = mockData();
 
 export default () => {
     const { rows, setRows, sortDirection, setSortDirection } = useTableLocalSort(myMockData);
-    const [cols, setCols] = useState<Column<UserData>>([
+    const [cols, setCols] = useState<Column<UserData>[]>([
         {
             name: 'username',
             title: '人员名称',
+            sort: true,
         },
         {
             name: 'email',
             title: '邮箱地址',
+            sort: true,
         },
         {
             name: 'age',
             title: '年龄',
+            sort: true,
         },
         {
             name: 'tags',
@@ -101,7 +104,7 @@ export default () => {
                 }}
             >
                 {({ width, height }) => (
-                    <Table
+                    <Table<UserData>
                         width={width}
                         height={height}
                         rowKey="id"
