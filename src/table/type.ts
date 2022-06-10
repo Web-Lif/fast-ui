@@ -41,6 +41,9 @@ export interface Column<T> {
     /** 是否可改变列的大小 */
     resizable?: boolean;
 
+    /** 是否可以排序 */
+    sort?: boolean;
+
     /** 固定列的方向 */
     fixed?: 'left' | 'right';
 

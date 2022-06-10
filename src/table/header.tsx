@@ -32,7 +32,7 @@ function HeaderTitle<T>({
         <>
             <div
                 className={css`
-                    cursor: pointer;
+                    cursor: ${column.sort ? 'pointer' : 'auto'};
                     display: inline-block;
                     width: calc(100% - 4px);
                     padding: 0px 0px 0px 8px;
@@ -41,27 +41,29 @@ function HeaderTitle<T>({
                         : ''};
                 `}
                 onClick={() => {
-                    if (sc?.direction === 'ASC') {
-                        onSortColumnsChange?.([
-                            {
-                                name: column.name,
-                                direction: 'DESC',
-                            },
-                        ]);
-                    } else if (sc?.direction === 'DESC') {
-                        onSortColumnsChange?.([
-                            {
-                                name: column.name,
-                                direction: undefined,
-                            },
-                        ]);
-                    } else {
-                        onSortColumnsChange?.([
-                            {
-                                name: column.name,
-                                direction: 'ASC',
-                            },
-                        ]);
+                    if (column.sort) {
+                        if (sc?.direction === 'ASC') {
+                            onSortColumnsChange?.([
+                                {
+                                    name: column.name,
+                                    direction: 'DESC',
+                                },
+                            ]);
+                        } else if (sc?.direction === 'DESC') {
+                            onSortColumnsChange?.([
+                                {
+                                    name: column.name,
+                                    direction: undefined,
+                                },
+                            ]);
+                        } else {
+                            onSortColumnsChange?.([
+                                {
+                                    name: column.name,
+                                    direction: 'ASC',
+                                },
+                            ]);
+                        }
                     }
                 }}
             >
