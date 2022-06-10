@@ -1,4 +1,3 @@
-export type { ReflexContainerProps, ReflexElementProps, ReflexSplitterProps } from 'react-reflex';
 export { Affix } from './affix';
 export { Alert } from './alert';
 export { Anchor } from './anchor';
