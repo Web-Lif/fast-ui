@@ -2,7 +2,7 @@
  * title: 本地排序
  * desc: 可通过 `useTableLocalSort` 来进行本地排序, 可点击表格头部进行排序, 可通过 `Column` 的 `sort` 属性来进行控制， 默认不排序
  */
-import { AutoSize, Column, Table, useTableLocalSort } from '@weblif/fast-ui';
+import { Column, Table, useTableLocalSort } from '@weblif/fast-ui';
 import React, { useState } from 'react';
 
 interface UserData {
@@ -97,27 +97,20 @@ export default () => {
     ]);
     return (
         <>
-            <AutoSize
+            <Table<UserData>
                 style={{
                     width: 1200,
                     height: 300,
                 }}
-            >
-                {({ width, height }) => (
-                    <Table<UserData>
-                        width={width}
-                        height={height}
-                        rowKey="id"
-                        mode="cell"
-                        columns={cols}
-                        rows={rows}
-                        sortColumns={sortDirection}
-                        onSortColumnsChange={setSortDirection}
-                        onChangeColumns={setCols}
-                        onChange={setRows}
-                    />
-                )}
-            </AutoSize>
+                rowKey="id"
+                mode="cell"
+                columns={cols}
+                rows={rows}
+                sortColumns={sortDirection}
+                onSortColumnsChange={setSortDirection}
+                onChangeColumns={setCols}
+                onChange={setRows}
+            />
         </>
     );
 };

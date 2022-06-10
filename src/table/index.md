@@ -83,8 +83,10 @@ export default () => {
             <br />
             <br />
             <Table
-                width={1200}
-                height={600}
+                style={{
+                    height: 600,
+                    width: 1200,
+                }}
                 rowKey="id"
                 mode="cell"
                 columns={[
@@ -154,8 +156,6 @@ export default () => {
 ```
 
 <br />
-
-<API></API>
 
 ## Column
 

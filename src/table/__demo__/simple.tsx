@@ -2,7 +2,7 @@
  * title: 基础
  * desc: 简单的表格信息
  */
-import { AutoSize, Table, useTableLocalSort } from '@weblif/fast-ui';
+import { Column, Table, useTableLocalSort } from '@weblif/fast-ui';
 import React, { useState } from 'react';
 
 interface UserData {
@@ -45,7 +45,7 @@ const mockData = () => {
 const myMockData = mockData();
 
 export default () => {
-    const [cols, setCols] = useState([
+    const [cols, setCols] = useState<Column<UserData>[]>([
         {
             name: 'username',
             title: '人员名称',
@@ -96,25 +96,18 @@ export default () => {
     const { rows, setRows } = useTableLocalSort(myMockData);
     return (
         <>
-            <AutoSize
+            <Table
                 style={{
                     width: 1200,
                     height: 300,
                 }}
-            >
-                {({ width, height }) => (
-                    <Table
-                        width={width}
-                        height={height}
-                        rowKey="id"
-                        mode="cell"
-                        columns={cols}
-                        rows={rows}
-                        onChangeColumns={setCols}
-                        onChange={setRows}
-                    />
-                )}
-            </AutoSize>
+                rowKey="id"
+                mode="cell"
+                columns={cols}
+                rows={rows}
+                onChangeColumns={setCols}
+                onChange={setRows}
+            />
         </>
     );
 };
