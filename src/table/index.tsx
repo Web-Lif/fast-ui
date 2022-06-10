@@ -1,12 +1,13 @@
 import { Table as RCTable } from '@weblif/rc-table';
 import produce from 'immer';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
+import { AutoSize } from '..';
 import { Empty } from '../index';
 import useBody from './body';
 import useHeader from './header';
 import { Column, RowClassNameParam, RowSelectType, SortDirection } from './type';
 
-export interface TableProps<T> {
+export interface InternalTableProps<T> {
     /** 表格的宽度 */
     width: number;
 
@@ -50,7 +51,7 @@ export interface TableProps<T> {
     onSortColumnsChange?: (change: SortDirection[]) => void;
 }
 
-function Table<T>({
+function InternalTable<T>({
     width,
     height,
     columns = [],
@@ -65,7 +66,7 @@ function Table<T>({
     onChangeColumns,
     rowClassName = ({ className }) => className,
     onSortColumnsChange = () => {},
-}: TableProps<T>) {
+}: InternalTableProps<T>) {
     const moveOffset = useRef<{
         x: number;
         y: number;
@@ -264,6 +265,19 @@ function Table<T>({
             }}
             onEmptyRowsRenderer={() => <Empty />}
         />
+    );
+}
+
+export interface TableProps<T> extends Omit<InternalTableProps<T>, 'width' | 'height'> {
+    className?: string;
+    style?: CSSProperties;
+}
+
+function Table<T>({ className, style, ...restProps }: TableProps<T>) {
+    return (
+        <AutoSize className={className} style={style}>
+            {({ width, height }) => <InternalTable width={width} height={height} {...restProps} />}
+        </AutoSize>
     );
 }
 
