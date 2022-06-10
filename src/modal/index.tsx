@@ -1,6 +1,15 @@
+import {
+    DndContext,
+    PointerSensor,
+    TouchSensor,
+    useDraggable,
+    useSensor,
+    useSensors,
+} from '@dnd-kit/core';
+import { restrictToWindowEdges } from '@dnd-kit/modifiers';
+import { CSS } from '@dnd-kit/utilities';
 import { Modal as AntModal, ModalProps as AntModalProps, notification } from 'antd';
 import React, { FC, useLayoutEffect, useRef, useState } from 'react';
-import Draggable from 'react-draggable';
 
 export interface ModalProps extends Omit<AntModalProps, 'onOk' | 'confirmLoading'> {
     /** 改变状态触发的事件 */
@@ -25,6 +34,53 @@ export interface ModalProps extends Omit<AntModalProps, 'onOk' | 'confirmLoading
     ) => void;
 }
 
+interface DraggableProps extends React.HTMLAttributes<HTMLDivElement> {
+    transform: {
+        x: number;
+        y: number;
+        scaleX: number;
+        scaleY: number;
+    };
+    disabled?: boolean;
+}
+
+const Draggable = React.forwardRef<HTMLDivElement | null, DraggableProps>(
+    ({ children, transform: transf, style, disabled, ...restProps }, forwardref) => {
+        const { attributes, listeners, setNodeRef, transform } = useDraggable({
+            id: 'draggable-title',
+            disabled,
+        });
+
+        return (
+            <div
+                style={{
+                    width: '100%',
+                    transform: CSS.Translate.toString({
+                        x: (transform?.x || 0) + transf.x,
+                        y: (transform?.y || 0) + transf.y,
+                        scaleX: 0,
+                        scaleY: 0,
+                    }),
+                    ...style,
+                }}
+                ref={(ref) => {
+                    setNodeRef(ref);
+                    if (typeof forwardref === 'function') {
+                        forwardref(ref);
+                    } else if (forwardref) {
+                        forwardref.current = ref;
+                    }
+                }}
+                {...restProps}
+                {...listeners}
+                {...attributes}
+            >
+                {children}
+            </div>
+        );
+    },
+);
+
 const InternalModal: FC<ModalProps> = ({
     okText = '确定',
     cancelText = '取消',
@@ -39,7 +95,6 @@ const InternalModal: FC<ModalProps> = ({
 }) => {
     const [loading, setLoading] = useState(false);
     const [disabled, setDisabled] = useState(true);
-    const [bounds, setBounds] = useState({ left: 0, top: 0, bottom: 0, right: 0 });
     const draggleRef = useRef<HTMLDivElement>(null);
 
     const onOkFunction = (
@@ -73,59 +128,76 @@ const InternalModal: FC<ModalProps> = ({
 
     useLayoutEffect(() => {
         if (visible) {
-            setTimeout(() => {
+            requestIdleCallback(() => {
                 draggleRef.current?.focus();
-            }, 0);
+            });
         }
     }, [visible]);
 
+    const [delta, setDelta] = useState<{
+        x: number;
+        y: number;
+        scaleX: number;
+        scaleY: number;
+    }>({
+        x: 0,
+        y: 0,
+        scaleX: 0,
+        scaleY: 0,
+    });
+
+    const sensors = useSensors(
+        useSensor(PointerSensor, {
+            activationConstraint: {
+                distance: 5,
+            },
+        }),
+        useSensor(TouchSensor, {
+            activationConstraint: {
+                delay: 150,
+                tolerance: 5,
+            },
+        }),
+    );
+
     return (
-        <AntModal
-            visible={visible}
-            confirmLoading={loading}
-            okText={okText}
-            cancelText={cancelText}
-            title={
-                <div
-                    tabIndex={0}
-                    style={{
-                        width: '100%',
-                        cursor: 'move',
-                    }}
-                    onMouseOver={() => {
-                        if (disabled) {
+        <DndContext
+            sensors={sensors}
+            modifiers={[restrictToWindowEdges]}
+            onDragEnd={({ delta }) => {
+                console.log(delta);
+                setDelta(({ x, y }) => ({
+                    x: delta.x + x,
+                    y: delta.y + y,
+                    scaleX: 0,
+                    scaleY: 0,
+                }));
+            }}
+        >
+            <AntModal
+                visible={visible}
+                confirmLoading={loading}
+                okText={okText}
+                cancelText={cancelText}
+                title={
+                    <div
+                        onMouseUp={() => {
                             setDisabled(false);
-                        }
-                    }}
-                    onMouseOut={() => {
-                        setDisabled(true);
-                    }}
-                >
-                    {title}
-                </div>
-            }
-            modalRender={(dom) => {
-                return (
-                    <Draggable
-                        disabled={disabled}
-                        bounds={bounds}
-                        onStart={(event, uiData) => {
-                            const { clientWidth, clientHeight } = window.document.documentElement;
-                            const targetRect = draggleRef.current?.getBoundingClientRect();
-                            if (!targetRect) {
-                                return;
-                            }
-                            setBounds({
-                                left: -targetRect.left + uiData.x,
-                                right: clientWidth - (targetRect.right - uiData.x),
-                                top: -targetRect.top + uiData.y,
-                                bottom: clientHeight - (targetRect.bottom - uiData.y),
-                            });
+                        }}
+                        onMouseDown={() => {
+                            setDisabled(true);
                         }}
                     >
-                        <div
+                        {title}
+                    </div>
+                }
+                modalRender={(dom) => {
+                    return (
+                        <Draggable
                             ref={draggleRef}
                             tabIndex={-1}
+                            disabled={disabled}
+                            transform={delta}
                             onKeyDown={(e) => {
                                 if (onKeyDown) {
                                     onKeyDown(e, onOkFunction);
@@ -135,38 +207,39 @@ const InternalModal: FC<ModalProps> = ({
                             }}
                         >
                             {dom}
-                        </div>
-                    </Draggable>
-                );
-            }}
-            onOk={(event) => {
-                onOkFunction(event);
-            }}
-            onCancel={(event) => {
-                const res = onCancel?.(event);
-                if (res instanceof Promise) {
-                    res!
-                        .then((isVisible) => {
-                            if (isVisible !== false) {
-                                onChangeVisible(false);
-                            }
-                        })
-                        .catch((error) => {
-                            console.error(error);
-                            notification.error({
-                                message: '系统消息',
-                                description: error.message,
+                        </Draggable>
+                    );
+                }}
+                onOk={(event) => {
+                    onOkFunction(event);
+                }}
+                onCancel={(event) => {
+                    console.log('onCancel');
+                    const res = onCancel?.(event);
+                    if (res instanceof Promise) {
+                        res!
+                            .then((isVisible) => {
+                                if (isVisible !== false) {
+                                    onChangeVisible(false);
+                                }
+                            })
+                            .catch((error) => {
+                                console.error(error);
+                                notification.error({
+                                    message: '系统消息',
+                                    description: error.message,
+                                });
                             });
-                        });
-                } else {
-                    if (res !== false) {
-                        onChangeVisible(false);
+                    } else {
+                        if (res !== false) {
+                            onChangeVisible(false);
+                        }
                     }
-                }
-            }}
-            destroyOnClose={destroyOnClose}
-            {...restProps}
-        />
+                }}
+                destroyOnClose={destroyOnClose}
+                {...restProps}
+            />
+        </DndContext>
     );
 };
 
