@@ -1,6 +1,6 @@
 import { css } from '@emotion/css';
 import { Dropdown } from 'antd';
-import React, { CSSProperties, FC, useState } from 'react';
+import React, { CSSProperties, FC, useRef, useState } from 'react';
 import { Color, ColorChangeHandler, ColorResult, RGBColor, SketchPicker } from 'react-color';
 
 export interface ColorPickerProps {
@@ -27,22 +27,13 @@ export interface ColorPickerProps {
      * 改变颜色触发的事件
      */
     onChange?: ColorChangeHandler;
-
-    /**
-     * 隐藏颜色面板的时候触发的事件
-     */
-    onVisibleChange?: (visible: boolean) => void;
 }
 
-const ColorPicker: FC<ColorPickerProps> = ({
-    value: color,
-    width = '250px',
-    onChange,
-    onVisibleChange,
-}) => {
+const ColorPicker: FC<ColorPickerProps> = ({ value: color, width = '250px', onChange }) => {
     const [colorValue, setColorValue] = useState<RGBColor>();
 
     const [value, setValue] = useState<Color>();
+    const [visible, setVisible] = useState<boolean>(false);
 
     const style: CSSProperties = {};
 
@@ -50,11 +41,32 @@ const ColorPicker: FC<ColorPickerProps> = ({
         style.background = `rgba(${colorValue.r}, ${colorValue.g}, ${colorValue.b}, ${colorValue.a})`;
     }
 
+    const isMouseOut = useRef<boolean>(false);
+    const divRef = useRef<HTMLDivElement>(null);
+
     return (
         <Dropdown
-            trigger={['click']}
+            {...{ autoFocus: true }}
+            visible={visible}
             overlay={
-                <>
+                <div
+                    ref={divRef}
+                    style={{
+                        outline: 'auto',
+                    }}
+                    tabIndex={-1}
+                    onBlur={() => {
+                        if (isMouseOut.current) {
+                            setVisible(false);
+                        }
+                    }}
+                    onMouseOut={() => {
+                        isMouseOut.current = true;
+                    }}
+                    onMouseMove={() => {
+                        isMouseOut.current = false;
+                    }}
+                >
                     <SketchPicker
                         width={width}
                         color={color === undefined ? value : color}
@@ -69,9 +81,8 @@ const ColorPicker: FC<ColorPickerProps> = ({
                             }
                         }}
                     />
-                </>
+                </div>
             }
-            onVisibleChange={onVisibleChange}
         >
             <div
                 className={css`
@@ -82,6 +93,10 @@ const ColorPicker: FC<ColorPickerProps> = ({
                     display: inline-block;
                     cursor: pointer;
                 `}
+                onClick={() => {
+                    isMouseOut.current = true;
+                    setVisible(true);
+                }}
             >
                 <div
                     style={style}
@@ -96,5 +111,7 @@ const ColorPicker: FC<ColorPickerProps> = ({
         </Dropdown>
     );
 };
+
+export { SketchPicker as ColorPickerPanel };
 
 export default ColorPicker;
