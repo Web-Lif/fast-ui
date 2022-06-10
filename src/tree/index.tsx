@@ -113,7 +113,7 @@ const Tree = ({
 
     const loadDataFunction = () => {
         if (typeof loadData === 'function') {
-            return async (treeNode: EventDataNode) => {
+            return async (treeNode: EventDataNode<any>) => {
                 const datas = await loadData?.(treeNode);
                 const newTreeNode = produce(treeData, (draft: DataNode[]) => {
                     changeTreeDataChildren(
