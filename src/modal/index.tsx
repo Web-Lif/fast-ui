@@ -1,11 +1,4 @@
-import {
-    DndContext,
-    PointerSensor,
-    TouchSensor,
-    useDraggable,
-    useSensor,
-    useSensors,
-} from '@dnd-kit/core';
+import { DndContext, PointerSensor, useDraggable, useSensor, useSensors } from '@dnd-kit/core';
 import { restrictToWindowEdges } from '@dnd-kit/modifiers';
 import { CSS } from '@dnd-kit/utilities';
 import { Modal as AntModal, ModalProps as AntModalProps, notification } from 'antd';
@@ -71,9 +64,9 @@ const Draggable = React.forwardRef<HTMLDivElement | null, DraggableProps>(
                         forwardref.current = ref;
                     }
                 }}
-                {...restProps}
                 {...listeners}
                 {...attributes}
+                {...restProps}
             >
                 {children}
             </div>
@@ -146,26 +139,13 @@ const InternalModal: FC<ModalProps> = ({
         scaleY: 0,
     });
 
-    const sensors = useSensors(
-        useSensor(PointerSensor, {
-            activationConstraint: {
-                distance: 5,
-            },
-        }),
-        useSensor(TouchSensor, {
-            activationConstraint: {
-                delay: 150,
-                tolerance: 5,
-            },
-        }),
-    );
+    const sensors = useSensors(useSensor(PointerSensor));
 
     return (
         <DndContext
             sensors={sensors}
             modifiers={[restrictToWindowEdges]}
             onDragEnd={({ delta }) => {
-                console.log(delta);
                 setDelta(({ x, y }) => ({
                     x: delta.x + x,
                     y: delta.y + y,
@@ -181,10 +161,10 @@ const InternalModal: FC<ModalProps> = ({
                 cancelText={cancelText}
                 title={
                     <div
-                        onMouseUp={() => {
+                        onMouseMove={() => {
                             setDisabled(false);
                         }}
-                        onMouseDown={() => {
+                        onMouseOut={() => {
                             setDisabled(true);
                         }}
                     >
