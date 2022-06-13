@@ -20,6 +20,8 @@ group:
 
 <code src="./__demo__/simple.tsx"></code>
 
+<code src="./__demo__/pagination.tsx"></code>
+
 <code src="./__demo__/sort.tsx"></code>
 
 <code src="./__demo__/emptyRows.tsx"></code>
@@ -156,6 +158,8 @@ export default () => {
 ```
 
 <br />
+
+<API></API>
 
 ## Column
 

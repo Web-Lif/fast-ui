@@ -1,7 +1,9 @@
+import { css } from '@emotion/css';
 import { Table as RCTable } from '@weblif/rc-table';
+import { PaginationProps } from 'antd';
 import produce from 'immer';
 import React, { CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
-import { AutoSize } from '..';
+import { AutoSize, Pagination } from '..';
 import { Empty } from '../index';
 import useBody from './body';
 import useHeader from './header';
@@ -269,15 +271,73 @@ function InternalTable<T>({
 }
 
 export interface TableProps<T> extends Omit<InternalTableProps<T>, 'width' | 'height'> {
+    /**
+     * 设置表格样式信息
+     */
     className?: string;
+    /**
+     * CSSProperties
+     */
     style?: CSSProperties;
+    /**
+     * 如果存在，则添加对应的分页信息
+     */
+    pagination?: PaginationProps;
 }
 
-function Table<T>({ className, style, ...restProps }: TableProps<T>) {
+function Table<T>({ className, style, pagination, ...restProps }: TableProps<T>) {
+    const renderPagination = () => {
+        if (pagination) {
+            const {
+                size = 'small',
+                showQuickJumper = true,
+                showSizeChanger = true,
+                pageSizeOptions = ['50', '100', '200', '500'],
+                ...paginationProps
+            } = pagination;
+            return (
+                <div
+                    style={{
+                        width: style?.width,
+                    }}
+                    className={css`
+                        display: flex;
+                        justify-content: center;
+                        padding: 0.3rem;
+                        border-left: 1px solid var(--rc-table-border-color, #ddd);
+                        border-bottom: 1px solid var(--rc-table-border-color, #ddd);
+                        border-right: 1px solid var(--rc-table-border-color, #ddd);
+                        background-color: #f9f9f9;
+                    `}
+                >
+                    <div
+                        className={css`
+                            flex: 1;
+                        `}
+                    />
+                    <Pagination
+                        size={size}
+                        showQuickJumper={showQuickJumper}
+                        showSizeChanger={showSizeChanger}
+                        pageSizeOptions={pageSizeOptions}
+                        {...paginationProps}
+                    />
+                </div>
+            );
+        }
+        return null;
+    };
     return (
-        <AutoSize className={className} style={style}>
-            {({ width, height }) => <InternalTable width={width} height={height} {...restProps} />}
-        </AutoSize>
+        <>
+            <AutoSize className={className} style={style}>
+                {({ width, height }) => (
+                    <>
+                        <InternalTable width={width} height={height} {...restProps} />
+                    </>
+                )}
+            </AutoSize>
+            {renderPagination()}
+        </>
     );
 }
 
