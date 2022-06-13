@@ -51,9 +51,6 @@ const ColorPicker: FC<ColorPickerProps> = ({ value: color, width = '250px', onCh
             overlay={
                 <div
                     ref={divRef}
-                    style={{
-                        outline: 'auto',
-                    }}
                     tabIndex={-1}
                     onBlur={() => {
                         if (isMouseOut.current) {
