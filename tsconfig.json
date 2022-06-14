@@ -2,7 +2,7 @@
     "compilerOptions": {
         "outDir": "es",
         "target": "es5",
-        "module": "UMD",
+        "module": "CommonJS",
         "moduleResolution": "node",
         "jsx": "react",
         "esModuleInterop": true,
