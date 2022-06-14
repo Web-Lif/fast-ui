@@ -67,7 +67,7 @@
         "@dnd-kit/modifiers": "^6.0.0",
         "@dnd-kit/utilities": "^3.2.0",
         "@emotion/css": "^11.9.0",
-        "@weblif/rc-table": "^0.5.0-canary",
+        "@weblif/rc-table": "^0.5.1-canary",
         "antd": "^4.21.0",
         "date-fns": "^2.28.0",
         "immer": "^9.0.14",
