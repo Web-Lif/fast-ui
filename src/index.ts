@@ -8,6 +8,8 @@ export { default as Badge } from './badge';
 export { Breadcrumb } from './breadcrumb';
 export { default as Button } from './button';
 export type { ButtonProps } from './button';
+export { Calendar } from './calendar';
+export type { CalendarProps } from './calendar';
 export { Carousel } from './carousel';
 export { default as Cascader } from './cascader';
 export { default as Checkbox } from './checkbox';
