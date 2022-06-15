@@ -6,8 +6,9 @@ import {
 import { css, cx } from '@emotion/css'
 import { Row } from '@weblif/rc-table'
 import { Cell } from '@weblif/rc-table/es/types'
-import { Dropdown, Menu, Checkbox } from '..'
-import React, { Key, useEffect, useMemo, useRef, useState } from 'react'
+import { Dropdown, Menu } from '..'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { Checkbox } from 'antd'
 import { Column, SortDirection } from './type'
 import { calcAutoColumnWidth, processColumns } from './utils/column'
 
@@ -19,6 +20,7 @@ interface HeaderTitleProps<T> {
     column: Column<T>
     columns: Column<T>[]
     sortColumns: SortDirection[]
+    onChangeColumns?: (cols: Column<T>[]) => void
     onSortColumnsChange: (change: SortDirection[]) => void
 }
 
@@ -28,9 +30,9 @@ function HeaderTitle<T>({
     sortColumns,
     onSortColumnsChange,
     onMouseDown,
+    onChangeColumns,
 }: HeaderTitleProps<T>) {
     let iconDirection = null
-
     let sc = sortColumns.find((sc) => sc.name === column.name)
     if (sc && sc.direction === 'ASC') {
         iconDirection = <ArrowUpOutlined />
@@ -58,6 +60,7 @@ function HeaderTitle<T>({
 
     const [openKeys, setOpenKeys] = useState<string[]>([])
 
+    console.log(columns)
     return (
         <>
             <div
@@ -150,7 +153,7 @@ function HeaderTitle<T>({
                                                 label: (
                                                     <>
                                                         <Checkbox
-                                                            value={visibility}
+                                                            checked={visibility}
                                                             className={css`
                                                                 margin-right: 7px;
                                                             `}
@@ -158,6 +161,24 @@ function HeaderTitle<T>({
                                                         {title}
                                                     </>
                                                 ),
+                                                onClick: () => {
+                                                    const newCols = columns.map(
+                                                        (col) => {
+                                                            if (
+                                                                col.name ===
+                                                                name
+                                                            ) {
+                                                                return {
+                                                                    ...col,
+                                                                    visibility:
+                                                                        !visibility,
+                                                                }
+                                                            }
+                                                            return col
+                                                        }
+                                                    )
+                                                    onChangeColumns?.(newCols)
+                                                },
                                                 key: name,
                                             })
                                         ),
@@ -207,6 +228,7 @@ function HeaderTitle<T>({
 interface HeaderParam<T> {
     width: number
     columns: Column<T>[]
+    onChangeColumns?: (cols: Column<T>[]) => void
     onColumnMouseDown: (
         e: React.MouseEvent<HTMLDivElement, MouseEvent>,
         column: Column<T>
@@ -220,6 +242,7 @@ function useHeader<T>({
     columns: tempColumns,
     sortColumns = [],
     onSortColumnsChange,
+    onChangeColumns,
     onColumnMouseDown,
 }: HeaderParam<T>) {
     const columns = useMemo(() => {
@@ -227,44 +250,48 @@ function useHeader<T>({
     }, [tempColumns])
 
     const realCols: Column<T>[] = []
+
     const {
         colsWidth: tempColWidth,
         autoCount,
         colsCountFixedWidth,
     } = calcAutoColumnWidth<T>(columns, width)
 
-    const cells: Cell[] = columns.map((col, index) => {
-        let colWidth = tempColWidth[index]
-        let widthResult = 0
-        if (colWidth === 'auto') {
-            widthResult = (width - colsCountFixedWidth) / autoCount
-        } else if (typeof colWidth === 'number') {
-            widthResult = colWidth
-        }
-        realCols.push({
-            ...col,
-            width: widthResult,
-        })
+    const cells: Cell[] = columns
+        .filter((col) => col.visibility !== false)
+        .map((col, index) => {
+            let colWidth = tempColWidth[index]
+            let widthResult = 0
+            if (colWidth === 'auto') {
+                widthResult = (width - colsCountFixedWidth) / autoCount
+            } else if (typeof colWidth === 'number') {
+                widthResult = colWidth
+            }
+            realCols.push({
+                ...col,
+                width: widthResult,
+            })
 
-        return {
-            width: widthResult,
-            selectd: false,
-            key: col.name,
-            value: (
-                <HeaderTitle<T>
-                    column={col}
-                    columns={tempColumns}
-                    onMouseDown={onColumnMouseDown}
-                    sortColumns={sortColumns}
-                    onSortColumnsChange={onSortColumnsChange}
-                />
-            ),
-            sticky: col.fixed,
-            className: css`
-                --rc-table-background-color: #f9f9f9;
-            `,
-        }
-    })
+            return {
+                width: widthResult,
+                selectd: false,
+                key: col.name,
+                value: (
+                    <HeaderTitle<T>
+                        column={col}
+                        columns={tempColumns}
+                        onMouseDown={onColumnMouseDown}
+                        sortColumns={sortColumns}
+                        onChangeColumns={onChangeColumns}
+                        onSortColumnsChange={onSortColumnsChange}
+                    />
+                ),
+                sticky: col.fixed,
+                className: css`
+                    --rc-table-background-color: #f9f9f9;
+                `,
+            }
+        })
 
     const headers: Row<T>[] = [
         {
@@ -275,10 +302,7 @@ function useHeader<T>({
         },
     ]
 
-    return {
-        headers,
-        columns: realCols,
-    }
+    return headers
 }
 
 export default useHeader

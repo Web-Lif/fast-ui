@@ -124,7 +124,7 @@ function InternalTable<T>({
         return columns
     }, [columns])
 
-    const { headers, columns: cols } = useHeader<T>({
+    const headers = useHeader<T>({
         width,
         columns: colsProcess,
         onSortColumnsChange,
@@ -138,6 +138,7 @@ function InternalTable<T>({
                 }
             }
         },
+        onChangeColumns,
     })
 
     const bodys = useBody<T>({
@@ -180,24 +181,31 @@ function InternalTable<T>({
                     const offsetX =
                         moveOffset.current.x - startMoveOffset.current.x
                     requestAnimationFrame(() => {
-                        if (cols) {
-                            const changeColumns = produce(cols, (draft) => {
-                                draft.some((element: any) => {
-                                    if (
-                                        element.name ===
-                                            startMoveColName.current?.name &&
-                                        typeof element.width === 'number'
-                                    ) {
-                                        if (element.$initWidth === undefined) {
-                                            element.$initWidth = element.width
+                        if (colsProcess) {
+                            const changeColumns = produce(
+                                colsProcess,
+                                (draft) => {
+                                    draft.some((element: any) => {
+                                        if (
+                                            element.name ===
+                                                startMoveColName.current
+                                                    ?.name &&
+                                            typeof element.width === 'number'
+                                        ) {
+                                            if (
+                                                element.$initWidth === undefined
+                                            ) {
+                                                element.$initWidth =
+                                                    element.width
+                                            }
+                                            element.width =
+                                                element.$initWidth + offsetX
+                                            return true
                                         }
-                                        element.width =
-                                            element.$initWidth + offsetX
-                                        return true
-                                    }
-                                    return false
-                                })
-                            })
+                                        return false
+                                    })
+                                }
+                            )
                             onChangeColumns?.(changeColumns)
                         }
                         setTimeout(() => {
@@ -208,8 +216,8 @@ function InternalTable<T>({
                 }
             }}
             onMouseUp={() => {
-                if (cols) {
-                    const changeColumns = produce(cols, (draft) => {
+                if (colsProcess) {
+                    const changeColumns = produce(colsProcess, (draft) => {
                         draft.some((element: any) => {
                             if (
                                 element.name ===
