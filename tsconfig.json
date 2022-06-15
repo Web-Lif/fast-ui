@@ -12,6 +12,7 @@
         "declaration": true,
         "lib": ["ESNext", "DOM"]
     },
+    "include": ["src"],
     "exclude": [
         "node_modules",
         "lib",
