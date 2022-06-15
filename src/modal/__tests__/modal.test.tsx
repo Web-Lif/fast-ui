@@ -1,6 +1,6 @@
-import {render, fireEvent} from '@testing-library/react'
-import React, { useState } from 'react';
-import Modal from '../index'
+import { render, fireEvent } from '@testing-library/react'
+import React, { useState } from 'react'
+import Modal from '..'
 
 const TestDoubleClick = (props: any) => {
     const [visible, setVisible] = useState<boolean>(true)
@@ -15,11 +15,11 @@ const TestDoubleClick = (props: any) => {
                 async 请求远程数据
             </Modal>
         </>
-    );
+    )
 }
 
 test('test fast double ok click', async () => {
-    const mockOk= jest.fn();
+    const mockOk = jest.fn()
     const { findByText } = render(<TestDoubleClick onOk={mockOk} />)
     const okBut = await findByText('确 定')
     expect(mockOk.mock.calls.length).toBe(0)
