@@ -115,7 +115,6 @@ function useBody<T>({
                             `}
                             onChange={(e) => {
                                 const checked = e.target.checked
-                                console.log(checked)
                                 if (checked) {
                                     onSelectedRowsChange?.([key])
                                 }
