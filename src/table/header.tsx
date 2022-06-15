@@ -1,36 +1,67 @@
-import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
-import { css } from '@emotion/css';
-import { Row } from '@weblif/rc-table';
-import { Cell } from '@weblif/rc-table/es/types';
-import React, { useMemo } from 'react';
-import { Column, SortDirection } from './type';
-import { calcAutoColumnWidth, processColumns } from './utils/column';
+import {
+    ArrowDownOutlined,
+    ArrowUpOutlined,
+    MenuOutlined,
+} from '@ant-design/icons'
+import { css, cx } from '@emotion/css'
+import { Row } from '@weblif/rc-table'
+import { Cell } from '@weblif/rc-table/es/types'
+import { Dropdown, Menu, Checkbox } from '..'
+import React, { Key, useEffect, useMemo, useRef, useState } from 'react'
+import { Column, SortDirection } from './type'
+import { calcAutoColumnWidth, processColumns } from './utils/column'
 
 interface HeaderTitleProps<T> {
-    onMouseDown: (e: React.MouseEvent<HTMLDivElement, MouseEvent>, column: Column<T>) => void;
-    column: Column<T>;
-    sortColumns: SortDirection[];
-    onSortColumnsChange: (change: SortDirection[]) => void;
+    onMouseDown: (
+        e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+        column: Column<T>
+    ) => void
+    column: Column<T>
+    columns: Column<T>[]
+    sortColumns: SortDirection[]
+    onSortColumnsChange: (change: SortDirection[]) => void
 }
 
 function HeaderTitle<T>({
     column,
+    columns,
     sortColumns,
     onSortColumnsChange,
     onMouseDown,
 }: HeaderTitleProps<T>) {
-    let iconDirection = null;
+    let iconDirection = null
 
-    let sc = sortColumns.find((sc) => sc.name === column.name);
+    let sc = sortColumns.find((sc) => sc.name === column.name)
     if (sc && sc.direction === 'ASC') {
-        iconDirection = <ArrowUpOutlined />;
+        iconDirection = <ArrowUpOutlined />
     } else if (sc && sc.direction === 'DESC') {
-        iconDirection = <ArrowDownOutlined />;
+        iconDirection = <ArrowDownOutlined />
     }
+    const [visible, setVisible] = useState<boolean>(false)
+    const divRef = useRef<HTMLDivElement>(null)
+    useEffect(() => {
+        if (visible === true) {
+            const taskid = setInterval(() => {
+                if (
+                    (
+                        document.activeElement?.getAttribute('class') || ''
+                    ).indexOf('ant-dropdown') === -1
+                ) {
+                    setVisible(false)
+                }
+            }, 300)
+            return () => {
+                clearInterval(taskid)
+            }
+        }
+    }, [visible])
+
+    const [openKeys, setOpenKeys] = useState<string[]>([])
 
     return (
         <>
             <div
+                ref={divRef}
                 className={css`
                     cursor: ${column.sort ? 'pointer' : 'auto'};
                     display: inline-block;
@@ -39,8 +70,13 @@ function HeaderTitle<T>({
                     ${column.align?.header !== undefined
                         ? `text-align: ${column.align?.header};`
                         : ''};
+                    &:hover {
+                        .rc-table-header-menus {
+                            opacity: 1;
+                        }
+                    }
                 `}
-                onClick={() => {
+                onClick={(e) => {
                     if (column.sort) {
                         if (sc?.direction === 'ASC') {
                             onSortColumnsChange?.([
@@ -48,21 +84,21 @@ function HeaderTitle<T>({
                                     name: column.name,
                                     direction: 'DESC',
                                 },
-                            ]);
+                            ])
                         } else if (sc?.direction === 'DESC') {
                             onSortColumnsChange?.([
                                 {
                                     name: column.name,
                                     direction: undefined,
                                 },
-                            ]);
+                            ])
                         } else {
                             onSortColumnsChange?.([
                                 {
                                     name: column.name,
                                     direction: 'ASC',
                                 },
-                            ]);
+                            ])
                         }
                     }
                 }}
@@ -76,6 +112,79 @@ function HeaderTitle<T>({
                 >
                     {iconDirection}
                 </div>
+                <Dropdown
+                    autoFocus
+                    visible={visible}
+                    overlay={
+                        <Menu
+                            multiple
+                            openKeys={openKeys}
+                            rootClassName={css`
+                                min-width: 120px;
+                                .ant-dropdown-menu {
+                                    min-width: 120px;
+                                    max-height: 300px;
+                                    padding: 0px;
+                                    overflow: auto;
+                                    box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%),
+                                        0 6px 16px 0 rgb(0 0 0 / 8%),
+                                        0 9px 28px 8px rgb(0 0 0 / 5%);
+                                }
+                            `}
+                            getPopupContainer={(element) => element}
+                            items={[
+                                {
+                                    label: '列信息',
+                                    key: 'columns',
+                                    onTitleClick: ({ key }) => {
+                                        setOpenKeys([key])
+                                    },
+                                    children: columns
+                                        .filter((col) => col.name !== '$select')
+                                        .map(
+                                            ({
+                                                title,
+                                                name,
+                                                visibility = true,
+                                            }) => ({
+                                                label: (
+                                                    <>
+                                                        <Checkbox
+                                                            value={visibility}
+                                                            className={css`
+                                                                margin-right: 7px;
+                                                            `}
+                                                        />
+                                                        {title}
+                                                    </>
+                                                ),
+                                                key: name,
+                                            })
+                                        ),
+                                },
+                            ]}
+                        />
+                    }
+                >
+                    <div
+                        className={cx({
+                            [css`
+                                float: right;
+                                cursor: pointer;
+                                opacity: 0;
+                                transition: opacity 0.2s;
+                                margin-right: 5px;
+                            `]: true,
+                            'rc-table-header-menus': true,
+                        })}
+                        onClick={(e) => {
+                            e.nativeEvent.stopPropagation()
+                            setVisible(true)
+                        }}
+                    >
+                        <MenuOutlined />
+                    </div>
+                </Dropdown>
             </div>
             {column.resizable === true ? (
                 <div
@@ -85,22 +194,25 @@ function HeaderTitle<T>({
                         cursor: col-resize;
                     `}
                     onMouseDown={(e) => {
-                        onMouseDown?.(e, column);
+                        onMouseDown?.(e, column)
                     }}
                 >
                     &nbsp;
                 </div>
             ) : null}
         </>
-    );
+    )
 }
 
 interface HeaderParam<T> {
-    width: number;
-    columns: Column<T>[];
-    onColumnMouseDown: (e: React.MouseEvent<HTMLDivElement, MouseEvent>, column: Column<T>) => void;
-    sortColumns: SortDirection[];
-    onSortColumnsChange: (change: SortDirection[]) => void;
+    width: number
+    columns: Column<T>[]
+    onColumnMouseDown: (
+        e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+        column: Column<T>
+    ) => void
+    sortColumns: SortDirection[]
+    onSortColumnsChange: (change: SortDirection[]) => void
 }
 
 function useHeader<T>({
@@ -111,28 +223,28 @@ function useHeader<T>({
     onColumnMouseDown,
 }: HeaderParam<T>) {
     const columns = useMemo(() => {
-        return processColumns<T>(tempColumns);
-    }, [tempColumns]);
+        return processColumns<T>(tempColumns)
+    }, [tempColumns])
 
-    const realCols: Column<T>[] = [];
+    const realCols: Column<T>[] = []
     const {
         colsWidth: tempColWidth,
         autoCount,
         colsCountFixedWidth,
-    } = calcAutoColumnWidth<T>(columns, width);
+    } = calcAutoColumnWidth<T>(columns, width)
 
     const cells: Cell[] = columns.map((col, index) => {
-        let colWidth = tempColWidth[index];
-        let widthResult = 0;
+        let colWidth = tempColWidth[index]
+        let widthResult = 0
         if (colWidth === 'auto') {
-            widthResult = (width - colsCountFixedWidth) / autoCount;
+            widthResult = (width - colsCountFixedWidth) / autoCount
         } else if (typeof colWidth === 'number') {
-            widthResult = colWidth;
+            widthResult = colWidth
         }
         realCols.push({
             ...col,
             width: widthResult,
-        });
+        })
 
         return {
             width: widthResult,
@@ -141,6 +253,7 @@ function useHeader<T>({
             value: (
                 <HeaderTitle<T>
                     column={col}
+                    columns={tempColumns}
                     onMouseDown={onColumnMouseDown}
                     sortColumns={sortColumns}
                     onSortColumnsChange={onSortColumnsChange}
@@ -150,8 +263,8 @@ function useHeader<T>({
             className: css`
                 --rc-table-background-color: #f9f9f9;
             `,
-        };
-    });
+        }
+    })
 
     const headers: Row<T>[] = [
         {
@@ -160,12 +273,12 @@ function useHeader<T>({
             cells,
             key: 'header',
         },
-    ];
+    ]
 
     return {
         headers,
         columns: realCols,
-    };
+    }
 }
 
-export default useHeader;
+export default useHeader
