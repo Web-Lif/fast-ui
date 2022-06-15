@@ -1,82 +1,82 @@
 {
-  "name": "@weblif/fast-ui",
-  "version": "0.19.1",
-  "scripts": {
-    "start": "dumi dev",
-    "docs:build": "dumi build",
-    "build": "tsc",
-    "deploy": "npm run docs:build && npm run docs:deploy",
-    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,json}\"",
-    "build:rm": "rimraf es",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
-    "prepublishOnly": "npm run build:rm && npm run build"
-  },
-  "main": "es/index.js",
-  "module": "es/index.js",
-  "typings": "es/index.d.ts",
-  "author": {
-    "name": "苯苯",
-    "email": "854363956@qq.com"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "files": [
-    "es"
-  ],
-  "license": "MIT",
-  "homepage": "https://ui.lif.ink",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Web-Lif/fast-ui.git",
-    "branch": "canary",
-    "platform": "github"
-  },
-  "lint-staged": {
-    "*.{js,jsx,less,md,json}": [
-      "prettier --write"
+    "name": "@weblif/fast-ui",
+    "version": "0.19.1",
+    "scripts": {
+        "start": "dumi dev",
+        "docs:build": "dumi build",
+        "build": "tsc",
+        "deploy": "npm run docs:build && npm run docs:deploy",
+        "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,json}\"",
+        "build:rm": "rimraf es",
+        "test": "jest",
+        "test:coverage": "jest --coverage",
+        "prepublishOnly": "npm run build:rm && npm run build"
+    },
+    "main": "es/index.js",
+    "module": "es/index.js",
+    "typings": "es/index.d.ts",
+    "author": {
+        "name": "苯苯",
+        "email": "854363956@qq.com"
+    },
+    "gitHooks": {
+        "pre-commit": "lint-staged"
+    },
+    "files": [
+        "es"
     ],
-    "*.ts?(x)": [
-      "prettier --parser=typescript --write"
-    ]
-  },
-  "devDependencies": {
-    "@babel/core": "^7.18.5",
-    "@babel/preset-env": "^7.18.2",
-    "@babel/preset-react": "^7.17.12",
-    "@babel/preset-typescript": "^7.17.12",
-    "@shopify/jest-dom-mocks": "^4.0.0",
-    "@testing-library/react": "^13.3.0",
-    "@types/jest": "^28.1.1",
-    "@types/react-color": "^3.0.6",
-    "babel-jest": "^28.1.1",
-    "dumi": "^1.1.42",
-    "jest": "^28.1.1",
-    "jest-environment-jsdom": "^28.1.1",
-    "lint-staged": "^13.0.1",
-    "prettier": "^2.6.2",
-    "react-test-renderer": "^18.2.0",
-    "rimraf": "^3.0.2",
-    "ts-jest": "^28.0.5",
-    "ts-node-dev": "^2.0.0",
-    "yorkie": "^2.0.0"
-  },
-  "peerDependencies": {
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0"
-  },
-  "dependencies": {
-    "@ant-design/icons": "^4.7.0",
-    "@dnd-kit/core": "^6.0.3",
-    "@dnd-kit/modifiers": "^6.0.0",
-    "@dnd-kit/utilities": "^3.2.0",
-    "@emotion/css": "^11.9.0",
-    "@weblif/rc-table": "^0.5.1-canary",
-    "antd": "^4.21.0",
-    "date-fns": "^2.28.0",
-    "immer": "^9.0.14",
-    "react-color": "^2.19.3",
-    "react-spaces": "^0.3.4"
-  }
+    "license": "MIT",
+    "homepage": "https://ui.lif.ink",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Web-Lif/fast-ui.git",
+        "branch": "canary",
+        "platform": "github"
+    },
+    "lint-staged": {
+        "*.{js,jsx,less,md,json}": [
+            "prettier --write"
+        ],
+        "*.ts?(x)": [
+            "prettier --parser=typescript --write"
+        ]
+    },
+    "devDependencies": {
+        "@babel/core": "^7.18.5",
+        "@babel/preset-env": "^7.18.2",
+        "@babel/preset-react": "^7.17.12",
+        "@babel/preset-typescript": "^7.17.12",
+        "@shopify/jest-dom-mocks": "^4.0.0",
+        "@testing-library/react": "^13.3.0",
+        "@types/jest": "^28.1.1",
+        "@types/react-color": "^3.0.6",
+        "babel-jest": "^28.1.1",
+        "dumi": "^1.1.42",
+        "jest": "^28.1.1",
+        "jest-environment-jsdom": "^28.1.1",
+        "lint-staged": "^13.0.1",
+        "prettier": "^2.6.2",
+        "react-test-renderer": "^18.2.0",
+        "rimraf": "^3.0.2",
+        "ts-jest": "^28.0.5",
+        "ts-node-dev": "^2.0.0",
+        "yorkie": "^2.0.0"
+    },
+    "peerDependencies": {
+        "react": "^18.1.0",
+        "react-dom": "^18.1.0"
+    },
+    "dependencies": {
+        "@ant-design/icons": "^4.7.0",
+        "@dnd-kit/core": "^6.0.3",
+        "@dnd-kit/modifiers": "^6.0.0",
+        "@dnd-kit/utilities": "^3.2.0",
+        "@emotion/css": "^11.9.0",
+        "@weblif/rc-table": "^0.5.1-canary",
+        "antd": "^4.21.0",
+        "date-fns": "^2.28.0",
+        "immer": "^9.0.14",
+        "react-color": "^2.19.3",
+        "react-spaces": "^0.3.4"
+    }
 }
