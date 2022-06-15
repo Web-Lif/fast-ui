@@ -1,48 +1,66 @@
-import { DndContext, PointerSensor, useDraggable, useSensor, useSensors } from '@dnd-kit/core';
-import { restrictToWindowEdges } from '@dnd-kit/modifiers';
-import { CSS } from '@dnd-kit/utilities';
-import { Modal as AntModal, ModalProps as AntModalProps, notification } from 'antd';
-import React, { FC, useLayoutEffect, useRef, useState } from 'react';
+import {
+    DndContext,
+    PointerSensor,
+    useDraggable,
+    useSensor,
+    useSensors,
+} from '@dnd-kit/core'
+import { restrictToWindowEdges } from '@dnd-kit/modifiers'
+import { CSS } from '@dnd-kit/utilities'
+import {
+    Modal as AntModal,
+    ModalProps as AntModalProps,
+    notification,
+} from 'antd'
+import React, { FC, useLayoutEffect, useRef, useState } from 'react'
 
-export interface ModalProps extends Omit<AntModalProps, 'onOk' | 'confirmLoading'> {
+export interface ModalProps
+    extends Omit<AntModalProps, 'onOk' | 'confirmLoading'> {
     /** 改变状态触发的事件 */
-    onChangeVisible: (disabled: boolean) => void;
+    onChangeVisible: (disabled: boolean) => void
 
     /** 点击完成按钮触发的事件, 返回一个 `Promise<void>` 对象 */
     onOk?: (
-        event: React.MouseEvent<HTMLElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>,
-    ) => Promise<boolean | void> | boolean | void;
+        event:
+            | React.MouseEvent<HTMLElement, MouseEvent>
+            | React.KeyboardEvent<HTMLDivElement>
+    ) => Promise<boolean | void> | boolean | void
 
     /** 点击取消按钮后触发的事件 */
     onCancel?: (
-        event: React.MouseEvent<HTMLElement, MouseEvent>,
-    ) => Promise<boolean | void> | boolean | void;
+        event: React.MouseEvent<HTMLElement, MouseEvent>
+    ) => Promise<boolean | void> | boolean | void
 
     /** 键盘按键的时候触发的事件 */
     onKeyDown?: (
         e: React.KeyboardEvent<HTMLDivElement>,
         onOkFunction: (
-            event: React.MouseEvent<HTMLElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>,
-        ) => void,
-    ) => void;
+            event:
+                | React.MouseEvent<HTMLElement, MouseEvent>
+                | React.KeyboardEvent<HTMLDivElement>
+        ) => void
+    ) => void
 }
 
 interface DraggableProps extends React.HTMLAttributes<HTMLDivElement> {
     transform: {
-        x: number;
-        y: number;
-        scaleX: number;
-        scaleY: number;
-    };
-    disabled?: boolean;
+        x: number
+        y: number
+        scaleX: number
+        scaleY: number
+    }
+    disabled?: boolean
 }
 
 const Draggable = React.forwardRef<HTMLDivElement | null, DraggableProps>(
-    ({ children, transform: transf, style, disabled, ...restProps }, forwardref) => {
+    (
+        { children, transform: transf, style, disabled, ...restProps },
+        forwardref
+    ) => {
         const { attributes, listeners, setNodeRef, transform } = useDraggable({
             id: 'draggable-title',
             disabled,
-        });
+        })
 
         return (
             <div
@@ -57,11 +75,11 @@ const Draggable = React.forwardRef<HTMLDivElement | null, DraggableProps>(
                     ...style,
                 }}
                 ref={(ref) => {
-                    setNodeRef(ref);
+                    setNodeRef(ref)
                     if (typeof forwardref === 'function') {
-                        forwardref(ref);
+                        forwardref(ref)
                     } else if (forwardref) {
-                        forwardref.current = ref;
+                        forwardref.current = ref
                     }
                 }}
                 {...listeners}
@@ -70,9 +88,9 @@ const Draggable = React.forwardRef<HTMLDivElement | null, DraggableProps>(
             >
                 {children}
             </div>
-        );
-    },
-);
+        )
+    }
+)
 
 const InternalModal: FC<ModalProps> = ({
     okText = '确定',
@@ -86,60 +104,62 @@ const InternalModal: FC<ModalProps> = ({
     onKeyDown,
     ...restProps
 }) => {
-    const [loading, setLoading] = useState(false);
-    const [disabled, setDisabled] = useState(true);
-    const draggleRef = useRef<HTMLDivElement>(null);
+    const [loading, setLoading] = useState(false)
+    const [disabled, setDisabled] = useState(true)
+    const draggleRef = useRef<HTMLDivElement>(null)
 
     const onOkFunction = (
-        event: React.MouseEvent<HTMLElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>,
+        event:
+            | React.MouseEvent<HTMLElement, MouseEvent>
+            | React.KeyboardEvent<HTMLDivElement>
     ) => {
-        setLoading(true);
-        const res = onOk?.(event);
+        setLoading(true)
+        const res = onOk?.(event)
         if (res instanceof Promise) {
             res!
                 .then((isVisible) => {
                     if (isVisible !== false) {
-                        onChangeVisible(false);
+                        onChangeVisible(false)
                     }
-                    setLoading(false);
+                    setLoading(false)
                 })
                 .catch((error) => {
-                    console.error(error);
+                    console.error(error)
                     notification.error({
                         message: '系统消息',
                         description: error.message,
-                    });
-                    setLoading(false);
-                });
+                    })
+                    setLoading(false)
+                })
         } else {
             if (res !== false) {
-                onChangeVisible(false);
+                onChangeVisible(false)
             }
-            setLoading(false);
+            setLoading(false)
         }
-    };
+    }
 
     useLayoutEffect(() => {
         if (visible) {
-            requestIdleCallback(() => {
-                draggleRef.current?.focus();
-            });
+            setTimeout(() => {
+                draggleRef.current?.focus()
+            }, 0)
         }
-    }, [visible]);
+    }, [visible])
 
     const [delta, setDelta] = useState<{
-        x: number;
-        y: number;
-        scaleX: number;
-        scaleY: number;
+        x: number
+        y: number
+        scaleX: number
+        scaleY: number
     }>({
         x: 0,
         y: 0,
         scaleX: 0,
         scaleY: 0,
-    });
+    })
 
-    const sensors = useSensors(useSensor(PointerSensor));
+    const sensors = useSensors(useSensor(PointerSensor))
 
     return (
         <DndContext
@@ -151,7 +171,7 @@ const InternalModal: FC<ModalProps> = ({
                     y: delta.y + y,
                     scaleX: 0,
                     scaleY: 0,
-                }));
+                }))
             }}
         >
             <AntModal
@@ -162,10 +182,10 @@ const InternalModal: FC<ModalProps> = ({
                 title={
                     <div
                         onMouseMove={() => {
-                            setDisabled(false);
+                            setDisabled(false)
                         }}
                         onMouseOut={() => {
-                            setDisabled(true);
+                            setDisabled(true)
                         }}
                     >
                         {title}
@@ -180,39 +200,43 @@ const InternalModal: FC<ModalProps> = ({
                             transform={delta}
                             onKeyDown={(e) => {
                                 if (onKeyDown) {
-                                    onKeyDown(e, onOkFunction);
-                                } else if (!e.ctrlKey && e.key === 'Enter' && loading === false) {
-                                    onOkFunction(e);
+                                    onKeyDown(e, onOkFunction)
+                                } else if (
+                                    !e.ctrlKey &&
+                                    e.key === 'Enter' &&
+                                    loading === false
+                                ) {
+                                    onOkFunction(e)
                                 }
                             }}
                         >
                             {dom}
                         </Draggable>
-                    );
+                    )
                 }}
                 onOk={(event) => {
-                    onOkFunction(event);
+                    onOkFunction(event)
                 }}
                 onCancel={(event) => {
-                    console.log('onCancel');
-                    const res = onCancel?.(event);
+                    console.log('onCancel')
+                    const res = onCancel?.(event)
                     if (res instanceof Promise) {
                         res!
                             .then((isVisible) => {
                                 if (isVisible !== false) {
-                                    onChangeVisible(false);
+                                    onChangeVisible(false)
                                 }
                             })
                             .catch((error) => {
-                                console.error(error);
+                                console.error(error)
                                 notification.error({
                                     message: '系统消息',
                                     description: error.message,
-                                });
-                            });
+                                })
+                            })
                     } else {
                         if (res !== false) {
-                            onChangeVisible(false);
+                            onChangeVisible(false)
                         }
                     }
                 }}
@@ -220,25 +244,25 @@ const InternalModal: FC<ModalProps> = ({
                 {...restProps}
             />
         </DndContext>
-    );
-};
-
-type InternalModalType = typeof InternalModal;
-
-interface ModalInterface extends InternalModalType {
-    info: typeof AntModal.info;
-    success: typeof AntModal.success;
-    warning: typeof AntModal.warning;
-    error: typeof AntModal.error;
-    confirm: typeof AntModal.confirm;
+    )
 }
 
-const Modal = InternalModal as ModalInterface;
+type InternalModalType = typeof InternalModal
 
-Modal.info = AntModal.info;
-Modal.warning = AntModal.warning;
-Modal.success = AntModal.success;
-Modal.error = AntModal.error;
-Modal.confirm = AntModal.confirm;
+interface ModalInterface extends InternalModalType {
+    info: typeof AntModal.info
+    success: typeof AntModal.success
+    warning: typeof AntModal.warning
+    error: typeof AntModal.error
+    confirm: typeof AntModal.confirm
+}
 
-export default Modal;
+const Modal = InternalModal as ModalInterface
+
+Modal.info = AntModal.info
+Modal.warning = AntModal.warning
+Modal.success = AntModal.success
+Modal.error = AntModal.error
+Modal.confirm = AntModal.confirm
+
+export default Modal
