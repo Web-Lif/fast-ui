@@ -52,8 +52,8 @@ function HeaderTitle<T>({
                     className.indexOf('ant-dropdown') === -1 &&
                     className.indexOf('ant-checkbox-input') === -1
                 ) {
-                    setVisible(false)
                     setOpenKeys([])
+                    setVisible(false)
                 }
             }, 200)
             return () => {
