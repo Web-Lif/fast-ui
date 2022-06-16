@@ -3,12 +3,11 @@ import {
     ArrowUpOutlined,
     MenuOutlined,
 } from '@ant-design/icons'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { css, cx } from '@emotion/css'
 import { Row } from '@weblif/rc-table'
 import { Cell } from '@weblif/rc-table/es/types'
-import { Dropdown, Menu } from '..'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { Checkbox } from 'antd'
+import { Dropdown, Menu, Checkbox } from '..'
 import { Column, SortDirection } from './type'
 import { calcAutoColumnWidth, processColumns } from './utils/column'
 
@@ -63,6 +62,44 @@ function HeaderTitle<T>({
         }
     }, [visible])
 
+    const items = [
+        {
+            label: '列信息',
+            key: 'columns',
+            onTitleClick: ({ key }: { key: string }) => {
+                setOpenKeys([key])
+            },
+            children: columns
+                .filter((col) => col.name !== '$select')
+                .map(({ title, name, visibility = true }) => ({
+                    label: (
+                        <>
+                            <Checkbox
+                                value={visibility}
+                                className={css`
+                                    margin-right: 7px;
+                                `}
+                            />
+                            {title}
+                        </>
+                    ),
+                    disabled: column.name === name,
+                    onClick: () => {
+                        const newCols = columns.map((col) => {
+                            if (col.name === name) {
+                                return {
+                                    ...col,
+                                    visibility: !visibility,
+                                }
+                            }
+                            return col
+                        })
+                        onChangeColumns?.(newCols)
+                    },
+                    key: name,
+                })),
+        },
+    ]
     return (
         <>
             <div
@@ -136,64 +173,7 @@ function HeaderTitle<T>({
                                     }
                                 `}
                                 getPopupContainer={(element) => element}
-                                items={[
-                                    {
-                                        label: '列信息',
-                                        key: 'columns',
-                                        onTitleClick: ({ key }) => {
-                                            setOpenKeys([key])
-                                        },
-                                        children: columns
-                                            .filter(
-                                                (col) => col.name !== '$select'
-                                            )
-                                            .map(
-                                                ({
-                                                    title,
-                                                    name,
-                                                    visibility = true,
-                                                }) => ({
-                                                    label: (
-                                                        <>
-                                                            <Checkbox
-                                                                checked={
-                                                                    visibility
-                                                                }
-                                                                className={css`
-                                                                    margin-right: 7px;
-                                                                `}
-                                                            />
-                                                            {title}
-                                                        </>
-                                                    ),
-                                                    disabled:
-                                                        column.name === name,
-                                                    onClick: () => {
-                                                        const newCols =
-                                                            columns.map(
-                                                                (col) => {
-                                                                    if (
-                                                                        col.name ===
-                                                                        name
-                                                                    ) {
-                                                                        return {
-                                                                            ...col,
-                                                                            visibility:
-                                                                                !visibility,
-                                                                        }
-                                                                    }
-                                                                    return col
-                                                                }
-                                                            )
-                                                        onChangeColumns?.(
-                                                            newCols
-                                                        )
-                                                    },
-                                                    key: name,
-                                                })
-                                            ),
-                                    },
-                                ]}
+                                items={items}
                             />
                         }
                     >
@@ -202,7 +182,7 @@ function HeaderTitle<T>({
                                 [css`
                                     float: right;
                                     cursor: pointer;
-                                    opacity: 0;
+                                    opacity: ${visible ? 1 : 0};
                                     transition: opacity 0.2s;
                                     margin-right: 5px;
                                     margin-left: 3px;
