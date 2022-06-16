@@ -16,13 +16,16 @@ const InternalCheckbox: FC<CheckboxProps> = ({
     onChange,
     ...restProps
 }) => {
+    let props: AntCheckboxProps = restProps
+    if (value !== undefined) {
+        props.checked = value
+    }
     return (
         <AntCheckbox
-            checked={value}
             onChange={(e) => {
                 onChange?.(e.target.checked, e)
             }}
-            {...restProps}
+            {...props}
         />
     )
 }
