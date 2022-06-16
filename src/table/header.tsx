@@ -1,4 +1,6 @@
 import {
+    AlignLeftOutlined,
+    AlignRightOutlined,
     ArrowDownOutlined,
     ArrowUpOutlined,
     MenuOutlined,
@@ -98,6 +100,59 @@ function HeaderTitle<T>({
                     },
                     key: name,
                 })),
+        },
+        {
+            label: '设置固定列',
+            key: 'fixed',
+            onTitleClick: ({ key }: { key: string }) => {
+                setOpenKeys([key])
+            },
+            children: [
+                {
+                    label: column.fixed === 'left' ? '取消左边' : '左边',
+                    icon: <AlignLeftOutlined />,
+                    onClick: () => {
+                        const newCols: Column<T>[] = columns.map((col) => {
+                            if (col.name === column.name) {
+                                if (col.fixed === 'left') {
+                                    return {
+                                        ...col,
+                                        fixed: undefined,
+                                    }
+                                }
+                                return {
+                                    ...col,
+                                    fixed: 'left',
+                                }
+                            }
+                            return col
+                        })
+                        onChangeColumns?.(newCols)
+                    },
+                },
+                {
+                    label: column.fixed === 'right' ? '取消右边' : '右边',
+                    icon: <AlignRightOutlined />,
+                    onClick: () => {
+                        const newCols: Column<T>[] = columns.map((col) => {
+                            if (col.name === column.name) {
+                                if (col.fixed === 'right') {
+                                    return {
+                                        ...col,
+                                        fixed: undefined,
+                                    }
+                                }
+                                return {
+                                    ...col,
+                                    fixed: 'right',
+                                }
+                            }
+                            return col
+                        })
+                        onChangeColumns?.(newCols)
+                    },
+                },
+            ],
         },
     ]
     return (
