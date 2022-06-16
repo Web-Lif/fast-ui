@@ -40,27 +40,29 @@ function HeaderTitle<T>({
         iconDirection = <ArrowDownOutlined />
     }
     const [visible, setVisible] = useState<boolean>(false)
+
+    const [openKeys, setOpenKeys] = useState<string[]>([])
+
     const divRef = useRef<HTMLDivElement>(null)
     useEffect(() => {
         if (visible === true) {
             const taskid = setInterval(() => {
+                const className =
+                    document.activeElement?.getAttribute('class') || ''
                 if (
-                    (
-                        document.activeElement?.getAttribute('class') || ''
-                    ).indexOf('ant-dropdown') === -1
+                    className.indexOf('ant-dropdown') === -1 &&
+                    className.indexOf('ant-checkbox-input') === -1
                 ) {
                     setVisible(false)
+                    setOpenKeys([])
                 }
-            }, 300)
+            }, 200)
             return () => {
                 clearInterval(taskid)
             }
         }
     }, [visible])
 
-    const [openKeys, setOpenKeys] = useState<string[]>([])
-
-    console.log(columns)
     return (
         <>
             <div
@@ -113,99 +115,110 @@ function HeaderTitle<T>({
                         color: rgba(0, 0, 0, 0.85);
                     `}
                 >
+                    <Dropdown
+                        autoFocus
+                        visible={visible}
+                        overlay={
+                            <Menu
+                                multiple
+                                openKeys={openKeys}
+                                rootClassName={css`
+                                    min-width: 120px;
+                                    .ant-dropdown-menu {
+                                        min-width: 120px;
+                                        max-height: 300px;
+                                        padding: 0px;
+                                        overflow: auto;
+                                        box-shadow: 0 3px 6px -4px rgb(0 0 0 /
+                                                        12%),
+                                            0 6px 16px 0 rgb(0 0 0 / 8%),
+                                            0 9px 28px 8px rgb(0 0 0 / 5%);
+                                    }
+                                `}
+                                getPopupContainer={(element) => element}
+                                items={[
+                                    {
+                                        label: '列信息',
+                                        key: 'columns',
+                                        onTitleClick: ({ key }) => {
+                                            setOpenKeys([key])
+                                        },
+                                        children: columns
+                                            .filter(
+                                                (col) => col.name !== '$select'
+                                            )
+                                            .map(
+                                                ({
+                                                    title,
+                                                    name,
+                                                    visibility = true,
+                                                }) => ({
+                                                    label: (
+                                                        <>
+                                                            <Checkbox
+                                                                checked={
+                                                                    visibility
+                                                                }
+                                                                className={css`
+                                                                    margin-right: 7px;
+                                                                `}
+                                                            />
+                                                            {title}
+                                                        </>
+                                                    ),
+                                                    disabled:
+                                                        column.name === name,
+                                                    onClick: () => {
+                                                        const newCols =
+                                                            columns.map(
+                                                                (col) => {
+                                                                    if (
+                                                                        col.name ===
+                                                                        name
+                                                                    ) {
+                                                                        return {
+                                                                            ...col,
+                                                                            visibility:
+                                                                                !visibility,
+                                                                        }
+                                                                    }
+                                                                    return col
+                                                                }
+                                                            )
+                                                        onChangeColumns?.(
+                                                            newCols
+                                                        )
+                                                    },
+                                                    key: name,
+                                                })
+                                            ),
+                                    },
+                                ]}
+                            />
+                        }
+                    >
+                        <div
+                            className={cx({
+                                [css`
+                                    float: right;
+                                    cursor: pointer;
+                                    opacity: 0;
+                                    transition: opacity 0.2s;
+                                    margin-right: 5px;
+                                    margin-left: 3px;
+                                `]: true,
+                                'rc-table-header-menus': true,
+                            })}
+                            onClick={(e) => {
+                                e.nativeEvent.stopPropagation()
+                                setVisible(true)
+                            }}
+                        >
+                            <MenuOutlined />
+                        </div>
+                    </Dropdown>
                     {iconDirection}
                 </div>
-                <Dropdown
-                    autoFocus
-                    visible={visible}
-                    overlay={
-                        <Menu
-                            multiple
-                            openKeys={openKeys}
-                            rootClassName={css`
-                                min-width: 120px;
-                                .ant-dropdown-menu {
-                                    min-width: 120px;
-                                    max-height: 300px;
-                                    padding: 0px;
-                                    overflow: auto;
-                                    box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%),
-                                        0 6px 16px 0 rgb(0 0 0 / 8%),
-                                        0 9px 28px 8px rgb(0 0 0 / 5%);
-                                }
-                            `}
-                            getPopupContainer={(element) => element}
-                            items={[
-                                {
-                                    label: '列信息',
-                                    key: 'columns',
-                                    onTitleClick: ({ key }) => {
-                                        setOpenKeys([key])
-                                    },
-                                    children: columns
-                                        .filter((col) => col.name !== '$select')
-                                        .map(
-                                            ({
-                                                title,
-                                                name,
-                                                visibility = true,
-                                            }) => ({
-                                                label: (
-                                                    <>
-                                                        <Checkbox
-                                                            checked={visibility}
-                                                            className={css`
-                                                                margin-right: 7px;
-                                                            `}
-                                                        />
-                                                        {title}
-                                                    </>
-                                                ),
-                                                onClick: () => {
-                                                    const newCols = columns.map(
-                                                        (col) => {
-                                                            if (
-                                                                col.name ===
-                                                                name
-                                                            ) {
-                                                                return {
-                                                                    ...col,
-                                                                    visibility:
-                                                                        !visibility,
-                                                                }
-                                                            }
-                                                            return col
-                                                        }
-                                                    )
-                                                    onChangeColumns?.(newCols)
-                                                },
-                                                key: name,
-                                            })
-                                        ),
-                                },
-                            ]}
-                        />
-                    }
-                >
-                    <div
-                        className={cx({
-                            [css`
-                                float: right;
-                                cursor: pointer;
-                                opacity: 0;
-                                transition: opacity 0.2s;
-                                margin-right: 5px;
-                            `]: true,
-                            'rc-table-header-menus': true,
-                        })}
-                        onClick={(e) => {
-                            e.nativeEvent.stopPropagation()
-                            setVisible(true)
-                        }}
-                    >
-                        <MenuOutlined />
-                    </div>
-                </Dropdown>
             </div>
             {column.resizable === true ? (
                 <div
