@@ -36,7 +36,7 @@ export interface InternalTableProps<T> {
     columns: Column<T>[]
 
     /** 选择配置 */
-    rowSelection?: RowSelectType
+    rowSelection?: RowSelectType<T>
 
     /** 设置行的 className */
     rowClassName?: (param: RowClassNameParam<T>) => string
