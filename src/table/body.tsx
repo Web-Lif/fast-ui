@@ -12,7 +12,7 @@ interface BodyParam<T> {
     width: number
     columns: Column<T>[]
     rowKey: string
-    rowSelection?: RowSelectType
+    rowSelection?: RowSelectType<T>
     selectedRows?: Key[]
     onSelectedRowsChange?: (selectedRows: Key[]) => void
     mode?: 'cell' | 'row'
@@ -80,6 +80,9 @@ function useBody<T>({
                     value: value as string,
                 }
 
+                const rowSelectDisabled =
+                    rowSelection?.allowDisabledSelect?.(row)
+
                 if (col.name === '$select') {
                     cell.selectd = false
                     cell.className = css`
@@ -90,6 +93,7 @@ function useBody<T>({
                     if (rowSelection?.model === 'multiple') {
                         cell.value = (
                             <Checkbox
+                                disabled={rowSelectDisabled}
                                 checked={isSelectRow}
                                 onChange={(e) => {
                                     const checked = e.target.checked
@@ -111,6 +115,7 @@ function useBody<T>({
                     } else if (rowSelection?.model === 'single') {
                         cell.value = (
                             <Radio
+                                disabled={rowSelectDisabled}
                                 checked={isSelectRow}
                                 className={css`
                                     margin-right: 0px;

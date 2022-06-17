@@ -2,12 +2,15 @@ import { ReactElement } from 'react'
 
 type AlignType = 'left' | 'right' | 'center'
 
-export interface RowSelectType {
+export interface RowSelectType<T> {
     /** 选择模式, 是单选还是多选模式 */
     model: 'single' | 'multiple'
 
     /** 点击模式, row 表示点击表格行则进行选中 */
     clickModel?: 'row'
+
+    /** 允许禁用选择这一行 */
+    allowDisabledSelect?: (row: T) => boolean
 }
 
 export type AllowCellSelectBorderParam<T> = {
