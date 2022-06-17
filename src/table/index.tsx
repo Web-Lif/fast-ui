@@ -29,6 +29,9 @@ export interface InternalTableProps<T> {
     /** 编辑模式 Cell 表示单元格编辑, Row 表示行编辑 */
     mode?: 'cell' | 'row'
 
+    /** 设置行的数据,表示将符合行的数据开启为编辑模式, mode 必须为 `row` 模式 */
+    rowEditKey?: string[]
+
     /** 数据的唯一Key */
     rowKey: string
 
@@ -76,6 +79,7 @@ function InternalTable<T>({
     sortColumns = [],
     rowSelection,
     selectedRows = [],
+    rowEditKey = [],
     onSelectedRowsChange,
     onChange,
     onRowClick,
@@ -149,6 +153,7 @@ function InternalTable<T>({
         rowKey,
         mode,
         selectedRows,
+        rowEditKey,
         onSelectedRowsChange,
         onChange,
         rowClassName,

@@ -1,8 +1,8 @@
-import { defineConfig } from 'dumi';
-import { readFileSync } from 'fs';
-import { join } from 'path';
+import { defineConfig } from 'dumi'
+import { readFileSync } from 'fs'
+import { join } from 'path'
 
-const globalCss = readFileSync(join(__dirname, 'site', 'global.css'));
+const globalCss = readFileSync(join(__dirname, 'site', 'global.css'))
 
 export default defineConfig({
     title: 'Fast UI',
@@ -13,6 +13,7 @@ export default defineConfig({
     locales: [['zh-CN', '中文']],
     styles: [globalCss.toString('utf-8')],
     // mfsu: {},
+    devtool: 'eval-source-map',
     navs: {
         'zh-CN': [
             null,
@@ -22,4 +23,4 @@ export default defineConfig({
             },
         ],
     },
-});
+})

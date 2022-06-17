@@ -2,27 +2,27 @@
  * title: 基础
  * desc: 简单的表格信息
  */
-import { Column, Table, useTableLocalSort } from '@weblif/fast-ui';
-import React, { useState } from 'react';
+import { Column, Table, useTableLocalSort } from '@weblif/fast-ui'
+import React, { useState } from 'react'
 
 interface UserData {
-    username: string;
-    email: string;
-    id: number;
-    age: string;
-    tags: number;
-    col0: string;
-    col1: string;
-    col2: string;
-    col3: string;
-    col4: string;
-    col5: string;
-    col6: string;
+    username: string
+    email: string
+    id: number
+    age: string
+    tags: number
+    col0: string
+    col1: string
+    col2: string
+    col3: string
+    col4: string
+    col5: string
+    col6: string
 }
 
 /** Mock 数据 */
 const mockData = () => {
-    const data = [];
+    const data: UserData[] = []
     for (let i = 0; i < 10; i += 1) {
         data.push({
             username: 'zhangj',
@@ -37,12 +37,12 @@ const mockData = () => {
             col4: `col4 - ${i}`,
             col5: `col5 - ${i}`,
             col6: `col6 - ${i}`,
-        });
+        })
     }
-    return data;
-};
+    return data
+}
 
-const myMockData = mockData();
+const myMockData = mockData()
 
 export default () => {
     const [cols, setCols] = useState<Column<UserData>[]>([
@@ -91,9 +91,9 @@ export default () => {
             name: 'col6',
             title: '标签',
         },
-    ]);
+    ])
 
-    const { rows, setRows } = useTableLocalSort(myMockData);
+    const { rows, setRows } = useTableLocalSort(myMockData)
     return (
         <>
             <Table
@@ -109,5 +109,5 @@ export default () => {
                 onChange={setRows}
             />
         </>
-    );
-};
+    )
+}
