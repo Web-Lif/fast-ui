@@ -1,15 +1,15 @@
 /**
  * title: 虚拟滚动
- * desc: 1000条表格数据信息进行测试
+ * desc: 1万条表格数据信息进行测试
  */
 import { Table } from '@weblif/fast-ui'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 /** Mock 数据 */
 const mockData = () => {
     return Array.from(
         {
-            length: 1000,
+            length: 10000,
         },
         (_, i) => ({
             username: 'zhangj',
@@ -29,7 +29,7 @@ const mockData = () => {
 }
 
 export default () => {
-    const [data, setData] = useState(mockData())
+    const [data, setData] = useState([])
     const [cols, setCols] = useState<any[]>([
         {
             name: 'username',
@@ -88,6 +88,14 @@ export default () => {
             width: 120,
         },
     ])
+    useEffect(() => {
+        setTimeout(() => {
+            setData(mockData())
+        }, 0)
+    }, [])
+    if (data.length === 0) {
+        return <> 正在加载数据, 一共加载1万条数据... </>
+    }
     return (
         <>
             <Table
