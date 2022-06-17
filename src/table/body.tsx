@@ -3,7 +3,7 @@ import { Row } from '@weblif/rc-table'
 import { Cell } from '@weblif/rc-table/es/types'
 import { Checkbox, Radio } from 'antd'
 import produce from 'immer'
-import React, { cloneElement, Key, useMemo, useState } from 'react'
+import React, { cloneElement, Key, useEffect, useMemo, useState } from 'react'
 import { Column, RowClassNameParam, RowSelectType } from './type'
 import { calcAutoColumnWidth, processColumns } from './utils/column'
 
@@ -16,6 +16,7 @@ interface BodyParam<T> {
     selectedRows?: Key[]
     onSelectedRowsChange?: (selectedRows: Key[]) => void
     mode?: 'cell' | 'row'
+    rowEditKey?: string[]
     onChange?: (data: T[]) => void
     rowClassName?: (param: RowClassNameParam<T>) => string
 }
@@ -28,6 +29,7 @@ function useBody<T>({
     rowKey,
     width,
     selectedRows = [],
+    rowEditKey,
     onSelectedRowsChange,
     rowClassName,
     onChange,
@@ -37,6 +39,21 @@ function useBody<T>({
     const columns = useMemo(() => {
         return processColumns<T>(tempColumns)
     }, [tempColumns])
+
+    useEffect(() => {
+        if (mode === 'row') {
+            const edits: string[] = []
+            tempColumns.forEach((col) => {
+                if (col.readOnly || typeof col.editor !== 'function') {
+                    return
+                }
+                rowEditKey?.forEach((key) => {
+                    edits.push(`${col.name}-${key}`)
+                })
+            })
+            setEditCells(edits)
+        }
+    }, [rowEditKey])
 
     const bodys: Row<T>[] = rows.map((row, rowIndex) => {
         const cells: Cell[] = []
@@ -164,17 +181,19 @@ function useBody<T>({
                                     onChange?.(changeRowsData)
                                 },
                                 onFinish: () => {
-                                    const index = editCells.indexOf(
-                                        cell.key as string
-                                    )
-                                    const changeData = produce<
-                                        string[],
-                                        string[]
-                                    >(editCells, (draft) => {
-                                        draft.splice(index, 1)
-                                    })
+                                    if (mode === 'cell') {
+                                        const index = editCells.indexOf(
+                                            cell.key as string
+                                        )
+                                        const changeData = produce<
+                                            string[],
+                                            string[]
+                                        >(editCells, (draft) => {
+                                            draft.splice(index, 1)
+                                        })
 
-                                    setEditCells(changeData)
+                                        setEditCells(changeData)
+                                    }
                                 },
                             })
                             const { style, ...restProps } = editorElement.props
@@ -228,6 +247,9 @@ function useBody<T>({
                                     [css`
                                         padding: 0 8px;
                                     `]: !editCells.includes(cell.key as string),
+                                    [css`
+                                        padding: 0px 2px 5px 2px;
+                                    `]: editCells.includes(cell.key as string),
                                 }
                             )}
                             onDoubleClick={() => {
@@ -281,8 +303,11 @@ function useBody<T>({
                 } else if (typeof col.allowCellSelectBorder === 'boolean') {
                     selectd = col.allowCellSelectBorder
                 }
-
-                cell.selectd = selectd
+                if (mode === 'row') {
+                    cell.selectd = false
+                } else {
+                    cell.selectd = selectd
+                }
                 cells.push(cell)
             })
 
