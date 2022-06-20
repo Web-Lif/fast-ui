@@ -20,11 +20,11 @@ group:
  * title: 基础使用
  * desc: 这是基础的图片上传例子, 单个文件上传
  */
-import { Upload } from '@weblif/fast-ui';
-import React, { useState } from 'react';
+import { Upload } from '@weblif/fast-ui'
+import React, { useState } from 'react'
 
 export default () => {
-    const [files, setFiles] = useState([]);
+    const [files, setFiles] = useState([])
     return (
         <Upload
             files={files}
@@ -37,7 +37,7 @@ export default () => {
                             url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
                             state: 'progress',
                         },
-                    ]);
+                    ])
                     setTimeout(() => {
                         setFiles([
                             {
@@ -46,19 +46,19 @@ export default () => {
                                 url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
                                 state: 'success',
                             },
-                        ]);
-                    }, 10000);
-                });
+                        ])
+                    }, 10000)
+                })
             }}
             onActionClick={(name) => {
                 if (name === 'delete') {
-                    setFiles([]);
+                    setFiles([])
                 }
             }}
             onChange={setFiles}
         />
-    );
-};
+    )
+}
 ```
 
 ```tsx
@@ -66,45 +66,50 @@ export default () => {
  * title: 多文件上传
  * desc: 这是一次性选择上传多个文件
  */
-import { Upload } from '@weblif/fast-ui';
-import React, { useState } from 'react';
+import { Upload } from '@weblif/fast-ui'
+import React, { useState } from 'react'
 
 export default () => {
-    const [files, setFiles] = useState([]);
+    const [files, setFiles] = useState([])
     return (
         <Upload
             files={files}
             multiple
             onUpload={(data) => {
                 return new Promise((res) => {
-                    const addFIle = [];
+                    const addFIle = []
                     data.forEach((ele, index) => {
                         addFIle.push({
                             name: `${files.length + index + 1}.jpg`,
                             type: res.type,
                             url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
                             state: 'progress',
-                        });
-                    });
+                        })
+                    })
 
-                    const result = [...files, ...addFIle];
-                    setFiles(result);
+                    const result = [...files, ...addFIle]
+                    setFiles(result)
 
                     // 模拟上传
                     setTimeout(() => {
-                        setFiles(result.map((file) => ({ ...file, state: 'success' })));
-                    }, 1000);
-                });
+                        setFiles(
+                            result.map((file) => ({
+                                ...file,
+                                state: 'success',
+                            }))
+                        )
+                    }, 1000)
+                })
             }}
             onActionClick={(type, { name }) => {
                 if (type === 'delete') {
-                    setFiles([...files.filter((file) => file.name !== name)]);
+                    setFiles([...files.filter((file) => file.name !== name)])
                 }
             }}
             onChange={setFiles}
         />
-    );
-};
+    )
+}
 ```
 
 ```tsx
@@ -112,16 +117,16 @@ export default () => {
  * title: 自定义上传
  * desc: 进行自定义的逻辑控制
  */
-import { Button, File, FileInstance } from '@weblif/fast-ui';
-import React, { useRef } from 'react';
+import { Button, File, FileInstance } from '@weblif/fast-ui'
+import React, { useRef } from 'react'
 
 export default () => {
-    const file = useRef<FileInstance>(null);
+    const file = useRef<FileInstance>(null)
     return (
         <>
             <Button
                 onClick={() => {
-                    file.current.showOpenFilePicker();
+                    file.current.showOpenFilePicker()
                 }}
             >
                 点击上传文件
@@ -129,26 +134,12 @@ export default () => {
             <File
                 file={file}
                 onSelectFiles={(file) => {
-                    /*
-                        // 如果需要通过 fetch 上传文件, 则采用以下方式, ajax 类似
-                        const formData = new FormData()
-                        formData.append('file', file.files[0])
-                        fetch('/upload', {
-                            method: 'POST',
-                            body: formData,
-                            headers: {
-                            'Content-Type': 'multipart/form-data'
-                            }
-                        }).then(res => {
-                        }).then(res => {
-                        })
-                    */
-                    console.log(file);
+                    console.log(file)
                 }}
             />
         </>
-    );
-};
+    )
+}
 ```
 
 <API></API>
