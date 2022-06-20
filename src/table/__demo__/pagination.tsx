@@ -2,27 +2,27 @@
  * title: 分页
  * desc: 带分页的表格信息
  */
-import { Column, Table } from '@weblif/fast-ui';
-import React, { useState } from 'react';
+import { Column, Table } from '@weblif/fast-ui'
+import React, { useState } from 'react'
 
 interface UserData {
-    username: string;
-    email: string;
-    id: number;
-    age: string;
-    tags: number;
-    col0: string;
-    col1: string;
-    col2: string;
-    col3: string;
-    col4: string;
-    col5: string;
-    col6: string;
+    username: string
+    email: string
+    id: number
+    age: string
+    tags: number
+    col0: string
+    col1: string
+    col2: string
+    col3: string
+    col4: string
+    col5: string
+    col6: string
 }
 
 /** Mock 数据 */
 const mockData = (page: number, pageSize: number) => {
-    const data = [];
+    const data: UserData[] = []
     for (let i = 0; i < pageSize; i += 1) {
         data.push({
             username: `${page}, ${pageSize} zhangj`,
@@ -37,10 +37,10 @@ const mockData = (page: number, pageSize: number) => {
             col4: `col4 - ${i}`,
             col5: `col5 - ${i}`,
             col6: `col6 - ${i}`,
-        });
+        })
     }
-    return data;
-};
+    return data
+}
 
 export default () => {
     const [cols, setCols] = useState<Column<UserData>[]>([
@@ -89,11 +89,11 @@ export default () => {
             name: 'col6',
             title: '标签',
         },
-    ]);
+    ])
 
-    const [page, setPage] = useState<number>(1);
-    const [pageSize, setPageSize] = useState<number>(20);
-    const [rows, setRows] = useState<UserData[]>(mockData(1, pageSize));
+    const [page, setPage] = useState<number>(1)
+    const [pageSize, setPageSize] = useState<number>(20)
+    const [rows, setRows] = useState<UserData[]>(mockData(1, pageSize))
     return (
         <>
             <Table
@@ -110,14 +110,14 @@ export default () => {
                     pageSize,
                     total: 50,
                     onChange: (changePage, changePageSize) => {
-                        setPage(changePage);
-                        setPageSize(changePageSize);
-                        setRows(mockData(page, pageSize));
+                        setPage(changePage)
+                        setPageSize(changePageSize)
+                        setRows(mockData(page, pageSize))
                     },
                 }}
                 onChangeColumns={setCols}
                 onChange={setRows}
             />
         </>
-    );
-};
+    )
+}

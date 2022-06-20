@@ -44,6 +44,8 @@ group:
 
 <code src="./__demo__/pagination.tsx"></code>
 
+<code src="./__demo__/row-edit.tsx"></code>
+
 <code src="./__demo__/sort.tsx"></code>
 
 <code src="./__demo__/emptyRows.tsx"></code>
