@@ -76,6 +76,7 @@
         "antd": "^4.21.2",
         "date-fns": "^2.28.0",
         "immer": "^9.0.15",
+        "qrcode.react": "^3.0.2",
         "react-color": "^2.19.3",
         "react-spaces": "^0.3.4"
     }
