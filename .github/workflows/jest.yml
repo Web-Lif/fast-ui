@@ -1,23 +1,25 @@
 name: Jest
 
 on:
-  push:
-    branches: [ canary ]
-  pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [ canary ]
+    push:
+        branches: [canary]
+    pull_request:
+        # The branches below must be a subset of the branches above
+        branches: [canary]
 jobs:
-  jest-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          persist-credentials: false
+    jest-test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+              with:
+                  persist-credentials: false
 
-      - name: Install
-        run: npm ci
+            - name: Install
+              run: npm ci
 
-      - name: TEST
-        run: npm run test
+            - name: TEST
+              run: npm run test
 
+            - name: Report
+              run: npx codecov
