@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot 1`] = `
+<div>
+  <button
+    class="ant-btn ant-btn-default"
+    type="button"
+  >
+    <span>
+      button
+    </span>
+  </button>
+</div>
+`;
+
+exports[`test disabled 1`] = `
+<div>
+  <button
+    class="ant-btn ant-btn-default"
+    disabled=""
+    type="button"
+  >
+    <span>
+      button
+    </span>
+  </button>
+</div>
+`;
