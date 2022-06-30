@@ -1,4 +1,5 @@
 import { defineConfig } from 'dumi'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { readFileSync } from 'fs'
 import { join } from 'path'
 
@@ -26,7 +27,14 @@ export default defineConfig({
     },
     chunks: [],
     chainWebpack: (config) => {
-        config.output.filename('main.bundle.js')
+        config.output.filename('[name].bundle.js')
+
+        config.plugin('HtmlWebpackPlugin').use(HtmlWebpackPlugin, [
+            {
+                template: join(process.cwd(), 'document.ejs'),
+            },
+        ])
+
         config.optimization.splitChunks({
             chunks: 'all',
             maxSize: 524288,
