@@ -3,8 +3,8 @@
     "version": "0.23.1",
     "scripts": {
         "start": "dumi dev",
-        "docs:build": "dumi build",
         "build": "tsc",
+        "build:docs": "dumi build",
         "deploy": "npm run docs:build && npm run docs:deploy",
         "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,json}\"",
         "build:rm": "rimraf es",
