@@ -13,6 +13,7 @@ export default defineConfig({
     locales: [['zh-CN', '中文']],
     styles: [globalCss.toString('utf-8')],
     // mfsu: {},
+    headScripts: [{ src: '/main.bundle.js', defer: true }],
     devtool: 'eval-source-map',
     navs: {
         'zh-CN': [
@@ -22,5 +23,32 @@ export default defineConfig({
                 path: 'https://github.com/Web-Lif/fast-ui',
             },
         ],
+    },
+    chunks: [],
+    chainWebpack: (config) => {
+        config.output.filename('main.bundle.js')
+        config.optimization.splitChunks({
+            chunks: 'all',
+            maxSize: 524288,
+            minSize: 262144,
+            minChunks: 1,
+            maxAsyncRequests: 30,
+            maxInitialRequests: 30,
+            enforceSizeThreshold: 50000,
+            cacheGroups: {
+                defaultVendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10,
+                    reuseExistingChunk: true,
+                },
+                default: {
+                    name: 'umi',
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true,
+                },
+            },
+        })
+        config.optimization.usedExports(true)
     },
 })
