@@ -3,8 +3,6 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { readFileSync } from 'fs'
 import { join } from 'path'
 
-const globalCss = readFileSync(join(__dirname, 'site', 'global.css'))
-
 export default defineConfig({
     title: 'Fast UI',
     favicon: 'https://avatars.githubusercontent.com/u/91562499?s=200&v=4',
@@ -12,7 +10,6 @@ export default defineConfig({
     outputPath: 'docs-dist',
     mode: 'site',
     locales: [['zh-CN', '中文']],
-    styles: [globalCss.toString('utf-8')],
     // mfsu: {},
     headScripts: [{ src: '/main.bundle.js', defer: true }],
     devtool: 'eval-source-map',
