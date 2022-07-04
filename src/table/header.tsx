@@ -5,12 +5,12 @@ import {
     ArrowUpOutlined,
     MenuOutlined,
 } from '@ant-design/icons'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { Key, useEffect, useMemo, useRef, useState } from 'react'
 import { css, cx } from '@emotion/css'
 import { Row } from '@weblif/rc-table'
 import { Cell } from '@weblif/rc-table/es/types'
 import { Dropdown, Menu, Checkbox } from '..'
-import { Column, SortDirection } from './type'
+import { Column, RowSelectType, SortDirection } from './type'
 import { calcAutoColumnWidth, processColumns } from './utils/column'
 
 interface HeaderTitleProps<T> {
@@ -73,11 +73,11 @@ function HeaderTitle<T>({
             },
             children: columns
                 .filter((col) => col.name !== '$select')
-                .map(({ title, name, visibility = true }) => ({
+                .map(({ title, name, hidden = false }) => ({
                     label: (
                         <>
                             <Checkbox
-                                value={visibility}
+                                value={!hidden}
                                 className={css`
                                     margin-right: 7px;
                                 `}
@@ -91,7 +91,7 @@ function HeaderTitle<T>({
                             if (col.name === name) {
                                 return {
                                     ...col,
-                                    visibility: !visibility,
+                                    hidden: !hidden,
                                 }
                             }
                             return col
@@ -275,7 +275,12 @@ function HeaderTitle<T>({
 
 interface HeaderParam<T> {
     width: number
+    rows: T[]
     columns: Column<T>[]
+    rowKey: string
+    rowSelection?: RowSelectType<T>
+    selectedRows?: Key[]
+    onSelectedRowsChange?: (selectedRows: Key[]) => void
     onChangeColumns?: (cols: Column<T>[]) => void
     onColumnMouseDown: (
         e: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -287,11 +292,16 @@ interface HeaderParam<T> {
 
 function useHeader<T>({
     width,
+    rows,
     columns: tempColumns,
+    rowSelection,
+    rowKey,
     sortColumns = [],
+    selectedRows = [],
     onSortColumnsChange,
     onChangeColumns,
     onColumnMouseDown,
+    onSelectedRowsChange,
 }: HeaderParam<T>) {
     const columns = useMemo(() => {
         return processColumns<T>(tempColumns)
@@ -305,41 +315,81 @@ function useHeader<T>({
         colsCountFixedWidth,
     } = calcAutoColumnWidth<T>(columns, width)
 
-    const cells: Cell[] = columns
-        .filter((col) => col.visibility !== false)
-        .map((col, index) => {
-            let colWidth = tempColWidth[index]
-            let widthResult = 0
-            if (colWidth === 'auto') {
-                widthResult = (width - colsCountFixedWidth) / autoCount
-            } else if (typeof colWidth === 'number') {
-                widthResult = colWidth
-            }
-            realCols.push({
-                ...col,
-                width: widthResult,
-            })
+    const cells: Cell[] = columns.map((col, index) => {
+        let colWidth = tempColWidth[index]
+        let widthResult = 0
+        if (colWidth === 'auto') {
+            widthResult = (width - colsCountFixedWidth) / autoCount
+        } else if (typeof colWidth === 'number') {
+            widthResult = colWidth
+        }
+        realCols.push({
+            ...col,
+            width: widthResult,
+        })
 
+        if (col.name === '$select' && rowSelection?.model === 'multiple') {
             return {
                 width: widthResult,
                 selectd: false,
                 key: col.name,
                 value: (
-                    <HeaderTitle<T>
-                        column={col}
-                        columns={tempColumns}
-                        onMouseDown={onColumnMouseDown}
-                        sortColumns={sortColumns}
-                        onChangeColumns={onChangeColumns}
-                        onSortColumnsChange={onSortColumnsChange}
+                    <Checkbox
+                        value={
+                            selectedRows.length ===
+                            rows.filter(
+                                (row) =>
+                                    rowSelection?.allowDisabledSelect?.(row) !==
+                                    true
+                            ).length
+                        }
+                        onChange={(value) => {
+                            if (value === false) {
+                                onSelectedRowsChange?.([])
+                            } else {
+                                onSelectedRowsChange?.(
+                                    rows
+                                        .filter(
+                                            (row) =>
+                                                rowSelection?.allowDisabledSelect?.(
+                                                    row
+                                                ) !== true
+                                        )
+                                        .map((row: any) => {
+                                            return row[rowKey]
+                                        })
+                                )
+                            }
+                        }}
                     />
                 ),
                 sticky: col.fixed,
                 className: css`
+                    padding: 0 8px;
                     --rc-table-background-color: #f9f9f9;
                 `,
             }
-        })
+        }
+        return {
+            width: widthResult,
+            selectd: false,
+            key: col.name,
+            value: (
+                <HeaderTitle<T>
+                    column={col}
+                    columns={tempColumns}
+                    onMouseDown={onColumnMouseDown}
+                    sortColumns={sortColumns}
+                    onChangeColumns={onChangeColumns}
+                    onSortColumnsChange={onSortColumnsChange}
+                />
+            ),
+            sticky: col.fixed,
+            className: css`
+                --rc-table-background-color: #f9f9f9;
+            `,
+        }
+    })
 
     const headers: Row<T>[] = [
         {

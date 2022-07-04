@@ -65,9 +65,6 @@ export interface Column<T> {
         body?: AlignType | ((row: T) => AlignType)
     }
 
-    /** 列是否可见, 默认为可见 */
-    visibility?: boolean
-
     /** 编辑器 */
     editor?: (renderType: EditRenderType<T>) => ReactElement
 
