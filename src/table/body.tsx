@@ -40,8 +40,6 @@ function useBody<T>({
         return processColumns<T>(tempColumns)
     }, [tempColumns])
 
-    const dis = tempColumns
-
     useEffect(() => {
         if (mode === 'row') {
             const edits: string[] = []
