@@ -10,6 +10,7 @@ import React, {
     useRef,
     useState,
 } from 'react'
+
 import { AutoSize, Pagination } from '..'
 import { Empty } from '../index'
 import useBody from './body'
@@ -129,7 +130,11 @@ function InternalTable<T>({
     }, [columns])
 
     const headers = useHeader<T>({
+        rows,
         width,
+        rowKey,
+        selectedRows,
+        rowSelection,
         columns: colsProcess,
         onSortColumnsChange,
         sortColumns,
@@ -142,6 +147,7 @@ function InternalTable<T>({
                 }
             }
         },
+        onSelectedRowsChange,
         onChangeColumns,
     })
 

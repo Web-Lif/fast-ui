@@ -70,3 +70,4 @@ group:
 | editor                | 编辑器               | `(renderType: EditRenderType<T>) => ReactElement`                     | -      |
 | render                | 渲染单元格           | `(renderType: RenderType<T>) => ReactElement`                         | -      |
 | allowCellSelectBorder | 是否允许单元格被选中 | `((param: AllowCellSelectBorderParam<T>) => boolean) \| boolean`      |
+| hidden                | 是否隐藏此列         | `boolean`                                                             | -      |
