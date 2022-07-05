@@ -4,7 +4,7 @@
     "scripts": {
         "start": "dumi dev",
         "build": "tsc",
-        "build:docs": "ANALYZE=1 dumi build",
+        "build:docs": "dumi build",
         "deploy": "npm run docs:build && npm run docs:deploy",
         "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,json}\"",
         "build:rm": "rimraf es",
