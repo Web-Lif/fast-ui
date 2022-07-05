@@ -1,6 +1,5 @@
 import { defineConfig } from 'dumi'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import { readFileSync } from 'fs'
 import { join } from 'path'
 
 export default defineConfig({
@@ -9,10 +8,17 @@ export default defineConfig({
     logo: 'https://avatars.githubusercontent.com/u/91562499?s=200&v=4',
     outputPath: 'docs-dist',
     mode: 'site',
+    externals: {
+        react: 'React',
+        'react-dom': 'ReactDOM',
+        antd: 'antd',
+        '@ant-design/icons': 'icons',
+    },
     locales: [['zh-CN', '中文']],
     // mfsu: {},
     headScripts: [{ src: '/main.bundle.js', defer: true }],
     devtool: 'eval-source-map',
+    targets: false,
     navs: {
         'zh-CN': [
             null,
@@ -54,6 +60,5 @@ export default defineConfig({
                 },
             },
         })
-        config.optimization.usedExports(true)
     },
 })

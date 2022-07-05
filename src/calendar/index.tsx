@@ -1,16 +1,20 @@
-import { CalendarProps as AntCalendarProps } from 'antd';
-import generateCalendar from 'antd/es/calendar/generateCalendar';
-import zhCN from 'antd/lib/locale/zh_CN';
-import dateFnsGenerateConfig from 'rc-picker/es/generate/dateFns';
-import React from 'react';
+import React from 'react'
+import { CalendarProps as AntCalendarProps } from 'antd'
+import generateCalendar from 'antd/es/calendar/generateCalendar'
+import zhCN from 'antd/lib/locale/zh_CN'
+import dayJSGenerateConfig from 'rc-picker/es/generate/dayjs'
+import { Dayjs } from 'dayjs'
 
-const InternalCalendar = generateCalendar<Date>(dateFnsGenerateConfig);
+const InternalCalendar = generateCalendar<Dayjs>(dayJSGenerateConfig)
 
-interface CalendarProps extends AntCalendarProps<Date> {}
+interface CalendarProps extends AntCalendarProps<Dayjs> {}
 
-export type { CalendarProps };
-export { Calendar };
+export type { CalendarProps }
+export { Calendar }
 
-const Calendar = ({ locale = zhCN.DatePicker, ...restProps }: CalendarProps) => {
-    return <InternalCalendar locale={locale} {...restProps} />;
-};
+const Calendar = ({
+    locale = zhCN.DatePicker,
+    ...restProps
+}: CalendarProps) => {
+    return <InternalCalendar locale={locale} {...restProps} />
+}
