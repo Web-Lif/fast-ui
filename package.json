@@ -51,7 +51,7 @@
         "@types/react-color": "3.0.6",
         "babel-jest": "28.1.2",
         "core-js": "3.23.4",
-        "dumi": "1.1.44",
+        "dumi": "1.1.45",
         "html-webpack-plugin": "4.5.2",
         "jest": "28.1.2",
         "jest-environment-jsdom": "28.1.2",
