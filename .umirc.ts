@@ -8,12 +8,6 @@ export default defineConfig({
     logo: 'https://avatars.githubusercontent.com/u/91562499?s=200&v=4',
     outputPath: 'docs-dist',
     mode: 'site',
-    externals: {
-        react: 'React',
-        'react-dom': 'ReactDOM',
-        antd: 'antd',
-        '@ant-design/icons': 'icons',
-    },
     locales: [['zh-CN', '中文']],
     // mfsu: {},
     headScripts: [{ src: '/main.bundle.js', defer: true }],
