@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "outDir": "es",
-        "target": "es5",
+        "target": "es6",
         "module": "CommonJS",
         "moduleResolution": "node",
         "jsx": "react",
