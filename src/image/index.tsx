@@ -1,1 +1,1 @@
-export { Image } from 'antd'
+export { default as Image } from 'antd/es/image'

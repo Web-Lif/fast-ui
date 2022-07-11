@@ -1,10 +1,10 @@
-import React from 'react';
-import { Rate as AntRate, RateProps as AntRateProps } from 'antd';
+import React from 'react'
+import AntRate, { RateProps as AntRateProps } from 'antd/es/rate'
 
 interface RateProps extends AntRateProps {}
 
 const Rate = ({ ...restProps }: RateProps) => {
-    return <AntRate {...restProps} />;
-};
+    return <AntRate {...restProps} />
+}
 
-export default Rate;
+export default Rate

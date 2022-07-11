@@ -1,15 +1,15 @@
-import {
-    AlignLeftOutlined,
-    AlignRightOutlined,
-    ArrowDownOutlined,
-    ArrowUpOutlined,
-    MenuOutlined,
-} from '@ant-design/icons'
 import React, { Key, useEffect, useMemo, useRef, useState } from 'react'
 import { css, cx } from '@emotion/css'
 import { Row } from '@weblif/rc-table'
 import { Cell } from '@weblif/rc-table/es/types'
-import { Dropdown, Menu, Checkbox } from '..'
+import AlignLeftOutlined from '@ant-design/icons/AlignLeftOutlined'
+import AlignRightOutlined from '@ant-design/icons/AlignRightOutlined'
+import ArrowDownOutlined from '@ant-design/icons/ArrowDownOutlined'
+import ArrowUpOutlined from '@ant-design/icons/ArrowUpOutlined'
+import MenuOutlined from '@ant-design/icons/MenuOutlined'
+import Dropdown from '../dropdown'
+import { Menu } from '../menu'
+import Checkbox from '../checkbox'
 import { Column, RowSelectType, SortDirection } from './type'
 import { calcAutoColumnWidth, processColumns } from './utils/column'
 

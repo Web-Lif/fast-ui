@@ -1,1 +1,1 @@
-export { Card } from 'antd'
+export { default as Card } from 'antd/es/card'

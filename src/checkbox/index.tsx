@@ -1,9 +1,8 @@
-import {
-    Checkbox as AntCheckbox,
+import React, { FC } from 'react'
+import AntCheckbox, {
+    CheckboxChangeEvent,
     CheckboxProps as AntCheckboxProps,
-} from 'antd'
-import { CheckboxChangeEvent } from 'antd/es/checkbox'
-import React, { FC, useMemo } from 'react'
+} from 'antd/es/checkbox'
 
 interface CheckboxProps
     extends Omit<AntCheckboxProps, 'value' | 'checked' | 'onChange'> {

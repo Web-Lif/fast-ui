@@ -1,1 +1,1 @@
-export { notification } from 'antd'
+export { default as notification } from 'antd/es/notification'

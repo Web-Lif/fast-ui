@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react'
-import { Badge as AntBadge, BadgeProps as AntBadgeProps } from 'antd'
+import AntBadge, { BadgeProps as AntBadgeProps } from 'antd/es/badge'
 
 interface BadgeProps extends AntBadgeProps {
     children?: ReactNode
 }
 
 const Badge = (props: BadgeProps) => {
-    return <AntBadge {...props}/>
+    return <AntBadge {...props} />
 }
 
 export default Badge

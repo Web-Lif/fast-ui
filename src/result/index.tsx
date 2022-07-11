@@ -1,1 +1,1 @@
-export { Result } from 'antd'
+export { default as Result } from 'antd/es/result'

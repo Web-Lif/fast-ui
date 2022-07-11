@@ -1,28 +1,41 @@
-import { DeleteOutlined, LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { css } from '@emotion/css';
-import React, { CSSProperties, FC, MutableRefObject, ReactNode, useRef } from 'react';
+import DeleteOutlined from '@ant-design/icons/DeleteOutlined'
+import LoadingOutlined from '@ant-design/icons/LoadingOutlined'
+import PlusOutlined from '@ant-design/icons/PlusOutlined'
+import { css } from '@emotion/css'
+import React, {
+    CSSProperties,
+    FC,
+    MutableRefObject,
+    ReactNode,
+    useRef,
+} from 'react'
 
 export interface FileInstance {
     /** 显示文件夹选择器 */
-    showOpenFilePicker: () => void;
+    showOpenFilePicker: () => void
 }
 
 interface FileProps {
-    accept?: string;
-    multiple?: boolean;
-    file?: MutableRefObject<FileInstance | null>;
-    onSelectFiles?: (files: FileList | null) => void;
+    accept?: string
+    multiple?: boolean
+    file?: MutableRefObject<FileInstance | null>
+    onSelectFiles?: (files: FileList | null) => void
 }
 
-export const File: FC<FileProps> = ({ accept, multiple, file, onSelectFiles }) => {
-    const fileRef = useRef<HTMLInputElement>(null);
+export const File: FC<FileProps> = ({
+    accept,
+    multiple,
+    file,
+    onSelectFiles,
+}) => {
+    const fileRef = useRef<HTMLInputElement>(null)
 
     if (file) {
         file.current = {
             showOpenFilePicker: () => {
-                fileRef.current?.click();
+                fileRef.current?.click()
             },
-        };
+        }
     }
 
     return (
@@ -37,81 +50,81 @@ export const File: FC<FileProps> = ({ accept, multiple, file, onSelectFiles }) =
                 value=""
                 multiple={multiple}
                 onChange={(e) => {
-                    onSelectFiles?.(e.target.files);
-                    e.stopPropagation();
-                    e.preventDefault();
+                    onSelectFiles?.(e.target.files)
+                    e.stopPropagation()
+                    e.preventDefault()
                 }}
             />
         </>
-    );
-};
+    )
+}
 
 type FileType = {
     /** 名称 */
-    name: string;
+    name: string
 
     /** 类型 */
-    type: string;
+    type: string
 
     /** 下载的地址 */
-    url: string;
+    url: string
 
     /** 上传进度 */
-    progress: number;
+    progress: number
 
     /** 上传状态 */
-    state: 'error' | 'success' | 'progress';
-};
+    state: 'error' | 'success' | 'progress'
+}
 
 export interface UploadProps {
     /** 要上传的文件信息 */
-    files: FileType[];
+    files: FileType[]
 
     /** 样式信息 */
-    style?: CSSProperties;
+    style?: CSSProperties
 
     /** 可接受的类型 */
-    accept?: string;
+    accept?: string
 
     /** 是否支持多选 */
-    multiple?: boolean;
+    multiple?: boolean
 
     /** 自定义预览信息 */
-    renderPreview?: (file: FileType) => ReactNode;
+    renderPreview?: (file: FileType) => ReactNode
 
     /** 渲染 Action Icon */
     renderActionIcon?: (
         file: FileType,
         action: ReactNode,
-        clickAction: (name: string, file: FileType) => void,
-    ) => ReactNode;
+        clickAction: (name: string, file: FileType) => void
+    ) => ReactNode
 
     /** 上传文件执行的方法 */
-    onUpload?: (files: FileList | null) => void;
+    onUpload?: (files: FileList | null) => void
 
     /** 点击 Action 触发的事件*/
-    onActionClick?: (name: string, file: FileType) => void;
+    onActionClick?: (name: string, file: FileType) => void
 }
 
 interface UploadWrapProps {
-    state?: 'error' | 'success' | 'progress';
-    onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-    children: ReactNode;
+    state?: 'error' | 'success' | 'progress'
+    onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
+    children: ReactNode
 }
 
 const UploadWrap: FC<UploadWrapProps> = ({ state, children, onClick }) => {
-    let border: string = '1px dashed #d9d9d9';
-    let hoverBorderColor: string = '#1890ff';
+    let border: string = '1px dashed #d9d9d9'
+    let hoverBorderColor: string = '#1890ff'
 
     if (state === 'success') {
-        border = '1px solid #d9d9d9';
-        hoverBorderColor = '#1890ff';
+        border = '1px solid #d9d9d9'
+        hoverBorderColor = '#1890ff'
     } else if (state === 'error') {
-        border = '1px solid #ff4d4f';
-        hoverBorderColor = '#ff4d4f';
+        border = '1px solid #ff4d4f'
+        hoverBorderColor = '#ff4d4f'
     } else if (state === 'progress') {
-        border = '1px solid #d9d9d9';
-        hoverBorderColor = '#1890ff';
+        border = '1px solid #d9d9d9'
+        hoverBorderColor = '#1890ff'
     }
 
     const renderDom = () => {
@@ -131,11 +144,11 @@ const UploadWrap: FC<UploadWrapProps> = ({ state, children, onClick }) => {
                         上传中...
                     </div>
                 </div>
-            );
+            )
         }
 
-        return children;
-    };
+        return children
+    }
 
     return (
         <div
@@ -159,13 +172,13 @@ const UploadWrap: FC<UploadWrapProps> = ({ state, children, onClick }) => {
                 }
             `}
             onClick={(e) => {
-                onClick?.(e);
+                onClick?.(e)
             }}
         >
             {renderDom()}
         </div>
-    );
-};
+    )
+}
 
 /**
  * 图片上传
@@ -179,7 +192,7 @@ const Upload: FC<UploadProps> = ({
     renderPreview,
     renderActionIcon,
 }) => {
-    const file = useRef<FileInstance>(null);
+    const file = useRef<FileInstance>(null)
 
     const renderAddFileDom = () => {
         let addFileDom: JSX.Element | null = (
@@ -197,25 +210,25 @@ const Upload: FC<UploadProps> = ({
                     上传文件
                 </div>
             </div>
-        );
+        )
 
         if ((!multiple && files.length === 0) || multiple) {
             return (
                 <UploadWrap
                     onClick={() => {
-                        file.current?.showOpenFilePicker();
+                        file.current?.showOpenFilePicker()
                     }}
                 >
                     {addFileDom}
                 </UploadWrap>
-            );
+            )
         }
-        return null;
-    };
+        return null
+    }
 
     const renderContent = (file: FileType) => {
         if (renderPreview) {
-            return renderPreview(file);
+            return renderPreview(file)
         }
 
         let actionIcon: ReactNode = (
@@ -223,15 +236,15 @@ const Upload: FC<UploadProps> = ({
                 <span>
                     <DeleteOutlined
                         onClick={(e) => {
-                            onActionClick('delete', file);
-                            e.stopPropagation();
+                            onActionClick('delete', file)
+                            e.stopPropagation()
                         }}
                     />
                 </span>
             </>
-        );
+        )
         if (renderActionIcon) {
-            actionIcon = renderActionIcon(file, actionIcon, onActionClick);
+            actionIcon = renderActionIcon(file, actionIcon, onActionClick)
         }
         return (
             <div
@@ -243,7 +256,7 @@ const Upload: FC<UploadProps> = ({
             >
                 <div
                     onMouseUp={(e) => {
-                        e.currentTarget.offsetLeft;
+                        e.currentTarget.offsetLeft
                     }}
                     className={css`
                         z-index: 1;
@@ -279,18 +292,18 @@ const Upload: FC<UploadProps> = ({
                     `}
                 ></img>
             </div>
-        );
-    };
+        )
+    }
 
     const renderImages = () =>
         files.map((file) => {
-            const content = renderContent(file);
+            const content = renderContent(file)
             return (
                 <UploadWrap key={file.name} state={file.state}>
                     {content}
                 </UploadWrap>
-            );
-        });
+            )
+        })
 
     return (
         <>
@@ -308,11 +321,11 @@ const Upload: FC<UploadProps> = ({
                 accept={accept}
                 multiple={multiple}
                 onSelectFiles={(files) => {
-                    onUpload?.(files);
+                    onUpload?.(files)
                 }}
             />
         </>
-    );
-};
+    )
+}
 
-export default Upload;
+export default Upload

@@ -1,1 +1,1 @@
-export { Popconfirm } from 'antd'
+export { default as Popconfirm } from 'antd/es/popconfirm'

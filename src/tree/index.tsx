@@ -1,10 +1,4 @@
-import { css } from '@emotion/css'
-import {
-    Dropdown,
-    Menu,
-    Tree as AntTree,
-    TreeProps as AntTreeProps,
-} from 'antd'
+import AntTree, { TreeProps as AntTreeProps } from 'antd/es/tree'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { DataNode, EventDataNode } from 'antd/lib/tree'
 import { ExpandAction } from 'antd/lib/tree/DirectoryTree'
@@ -19,7 +13,9 @@ import React, {
     useMemo,
     useState,
 } from 'react'
-import { AutoSize } from '..'
+import { Menu } from '../menu'
+import Dropdown from '../dropdown'
+import AutoSize from '../autosize'
 
 type FunAddDataNodesParam = (nodes: DataNode[]) => DataNode[]
 

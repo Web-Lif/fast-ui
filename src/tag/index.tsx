@@ -1,1 +1,1 @@
-export { Tag } from 'antd'
+export { default as Tag } from 'antd/es/tag'

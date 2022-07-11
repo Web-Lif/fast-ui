@@ -7,12 +7,9 @@ import {
 } from '@dnd-kit/core'
 import { restrictToWindowEdges } from '@dnd-kit/modifiers'
 import { CSS } from '@dnd-kit/utilities'
-import {
-    Modal as AntModal,
-    ModalProps as AntModalProps,
-    notification,
-} from 'antd'
+import AntModal, { ModalProps as AntModalProps } from 'antd/es/modal'
 import React, { FC, useLayoutEffect, useRef, useState } from 'react'
+import notification from 'antd/es/notification'
 
 export interface ModalProps
     extends Omit<AntModalProps, 'onOk' | 'confirmLoading'> {
@@ -218,7 +215,6 @@ const InternalModal: FC<ModalProps> = ({
                     onOkFunction(event)
                 }}
                 onCancel={(event) => {
-                    console.log('onCancel')
                     const res = onCancel?.(event)
                     if (res instanceof Promise) {
                         res!

@@ -1,19 +1,20 @@
-import { css, cx } from '@emotion/css';
-import React, { CSSProperties, FC, ReactNode } from 'react';
-import * as ReactSpaces from 'react-spaces';
-import { IResizableProps } from 'react-spaces';
-import { SizeUnit } from 'react-spaces/dist/core-types';
-import { AutoSize, Card } from '..';
+import { css, cx } from '@emotion/css'
+import React, { CSSProperties, FC, ReactNode } from 'react'
+import * as ReactSpaces from 'react-spaces'
+import { IResizableProps } from 'react-spaces'
+import { SizeUnit } from 'react-spaces/dist/core-types'
+import AutoSize from '../autosize'
+import { Card } from '../card'
 
 interface SplitPaneProps extends Omit<IResizableProps, 'size'> {
-    leftReactNode?: ReactNode;
-    title?: ReactNode;
-    extra?: ReactNode;
-    contentStyle?: CSSProperties;
-    contentClassName?: string;
-    contentTitle?: ReactNode;
-    contentExtra?: ReactNode;
-    size?: SizeUnit;
+    leftReactNode?: ReactNode
+    title?: ReactNode
+    extra?: ReactNode
+    contentStyle?: CSSProperties
+    contentClassName?: string
+    contentTitle?: ReactNode
+    contentExtra?: ReactNode
+    size?: SizeUnit
 }
 
 const SplitPane: FC<SplitPaneProps> = ({
@@ -42,7 +43,10 @@ const SplitPane: FC<SplitPaneProps> = ({
                             z-index: 40;
                             transition: background-color 0.8s;
                             &:hover {
-                                background-color: var(--ant-primary-color-hover, #40a9ff);
+                                background-color: var(
+                                    --ant-primary-color-hover,
+                                    #40a9ff
+                                );
                             }
                         }
                     `}
@@ -84,7 +88,8 @@ const SplitPane: FC<SplitPaneProps> = ({
                     <ReactSpaces.Fill
                         style={contentStyle}
                         className={cx({
-                            [contentClassName || '']: typeof contentClassName === 'string',
+                            [contentClassName || '']:
+                                typeof contentClassName === 'string',
                         })}
                     >
                         <Card
@@ -115,7 +120,7 @@ const SplitPane: FC<SplitPaneProps> = ({
                 </ReactSpaces.Fixed>
             )}
         </AutoSize>
-    );
-};
+    )
+}
 
-export default SplitPane;
+export default SplitPane

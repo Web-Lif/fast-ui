@@ -1,1 +1,1 @@
-export { Carousel } from 'antd'
+export { default as Carousel } from 'antd/es/carousel'
