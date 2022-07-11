@@ -1,6 +1,8 @@
 import React, { ChangeEvent, FC } from 'react'
-import { Input as AntInput, InputProps as AntInputProps } from 'antd'
-import { TextAreaProps as AntTextAreaProps } from 'antd/lib/input'
+import AntInput, {
+    InputProps as AntInputProps,
+    TextAreaProps as AntTextAreaProps,
+} from 'antd/es/input'
 
 interface InputProps extends Omit<AntInputProps, 'onChange'> {
     onChange?: (value: string, event: ChangeEvent<HTMLInputElement>) => void

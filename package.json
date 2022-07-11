@@ -19,11 +19,17 @@
         "name": "苯苯",
         "email": "854363956@qq.com"
     },
+    "keywords": [
+        "react-component",
+        "react",
+        "UI"
+    ],
     "gitHooks": {
         "pre-commit": "lint-staged"
     },
     "files": [
-        "es"
+        "es",
+        "README.md"
     ],
     "license": "MIT",
     "homepage": "https://ui.lif.ink",

@@ -1,1 +1,1 @@
-export { Affix } from 'antd'
+export { default as Affix } from 'antd/es/affix'

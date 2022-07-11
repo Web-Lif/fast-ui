@@ -1,1 +1,1 @@
-export { Skeleton } from 'antd'
+export { default as Skeleton } from 'antd/es/skeleton'

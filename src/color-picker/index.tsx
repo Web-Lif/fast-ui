@@ -1,6 +1,6 @@
 import { css } from '@emotion/css'
-import { Dropdown } from 'antd'
 import React, { CSSProperties, FC, useRef, useState } from 'react'
+import Dropdown from 'antd/es/dropdown'
 import {
     Color,
     ColorChangeHandler,

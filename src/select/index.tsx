@@ -1,1 +1,1 @@
-export { Select } from 'antd';
+export { default as Select } from 'antd/es/select'

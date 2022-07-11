@@ -1,1 +1,1 @@
-export { Anchor } from 'antd'
+export { default as Anchor } from 'antd/es/anchor'

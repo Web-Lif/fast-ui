@@ -1,1 +1,1 @@
-export { Progress } from 'antd'
+export { default as Progress } from 'antd/es/progress'

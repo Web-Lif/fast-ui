@@ -1,1 +1,1 @@
-export { message } from 'antd'
+export { default as message } from 'antd/es/mentions'

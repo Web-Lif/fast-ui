@@ -1,1 +1,1 @@
-export { Divider } from 'antd'
+export { default as Divider } from 'antd/es/divider'
