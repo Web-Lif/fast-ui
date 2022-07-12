@@ -75,15 +75,6 @@ ConfigProvider.config({
 
 参考[《增加语言包》](/docs/react/i18n#%E5%A2%9E%E5%8A%A0%E8%AF%AD%E8%A8%80%E5%8C%85)。
 
-#### 为什么我使用了 ConfigProvider `locale`，时间类组件的国际化还有问题？
-
-请检查是否正确设置了 moment 语言包，或者是否有两个版本的 moment 共存。
-
-```js
-import 'moment/locale/zh-cn'
-moment.locale('zh-cn')
-```
-
 #### 配置 `getPopupContainer` 导致 Modal 报错？
 
 相关 issue：<https://github.com/ant-design/ant-design/issues/19974>

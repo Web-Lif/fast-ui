@@ -1,10 +1,8 @@
-import { css } from '@emotion/css'
 import generatePicker, {
     PickerDateProps,
     PickerProps,
     RangePickerProps,
 } from 'antd/es/date-picker/generatePicker'
-import zhCN from 'antd/lib/locale/zh_CN'
 import { Dayjs } from 'dayjs'
 import dayJSGenerateConfig from 'rc-picker/es/generate/dayjs'
 import React, { FC } from 'react'
@@ -12,71 +10,33 @@ import React, { FC } from 'react'
 const InternalDatePicker = generatePicker<Dayjs>(dayJSGenerateConfig)
 
 function InternalDatePickerWrapper({ ...restProps }: PickerProps<Dayjs>) {
-    return (
-        <InternalDatePicker
-            className={css`
-                width: 100%;
-            `}
-            locale={zhCN.DatePicker}
-            {...restProps}
-        />
-    )
+    return <InternalDatePicker {...restProps} />
 }
 
 type InternalDatePickerType = typeof InternalDatePickerWrapper
 
 const RangePicker: FC<RangePickerProps<Dayjs>> = ({ ...restProps }) => {
-    return (
-        <InternalDatePicker.RangePicker
-            locale={zhCN.DatePicker}
-            {...restProps}
-        />
-    )
+    return <InternalDatePicker.RangePicker {...restProps} />
 }
 
 const WeekPicker: FC<PickerDateProps<Dayjs>> = ({ ...restProps }) => {
-    return (
-        <InternalDatePicker.WeekPicker
-            locale={zhCN.DatePicker}
-            {...restProps}
-        />
-    )
+    return <InternalDatePicker.WeekPicker {...restProps} />
 }
 
 const MonthPicker: FC<PickerDateProps<Dayjs>> = ({ ...restProps }) => {
-    return (
-        <InternalDatePicker.MonthPicker
-            locale={zhCN.DatePicker}
-            {...restProps}
-        />
-    )
+    return <InternalDatePicker.MonthPicker {...restProps} />
 }
 
 const YearPicker: FC<PickerDateProps<Dayjs>> = ({ ...restProps }) => {
-    return (
-        <InternalDatePicker.YearPicker
-            locale={zhCN.DatePicker}
-            {...restProps}
-        />
-    )
+    return <InternalDatePicker.YearPicker {...restProps} />
 }
 
 const TimePicker: FC<PickerDateProps<Dayjs>> = ({ ...restProps }) => {
-    return (
-        <InternalDatePicker.TimePicker
-            locale={zhCN.DatePicker}
-            {...restProps}
-        />
-    )
+    return <InternalDatePicker.TimePicker {...restProps} />
 }
 
 const QuarterPicker: FC<PickerDateProps<Dayjs>> = ({ ...restProps }) => {
-    return (
-        <InternalDatePicker.QuarterPicker
-            locale={zhCN.DatePicker}
-            {...restProps}
-        />
-    )
+    return <InternalDatePicker {...restProps} />
 }
 
 interface DatePickerInterface extends InternalDatePickerType {
