@@ -16,7 +16,7 @@ jobs:
                   persist-credentials: false
 
             - name: Install
-              run: npm ci
+              run: npm install -g npm && npm ci
 
             - name: TEST
               run: npm run test

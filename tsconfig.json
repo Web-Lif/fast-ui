@@ -12,7 +12,7 @@
         "declaration": true,
         "lib": ["ESNext", "DOM"]
     },
-    "include": ["src", ".dumi/theme/layout.tsx"],
+    "include": ["src"],
     "exclude": [
         "node_modules",
         "lib",
