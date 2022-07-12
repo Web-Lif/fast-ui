@@ -83,6 +83,9 @@
         "react-color": "^2.19.3",
         "react-spaces": "^0.3.4"
     },
-
+    "overrides": {
+        "react": "^17.0.0",
+        "react-dom": "^17.0.0"
+    },
     "sideEffects": false
 }
