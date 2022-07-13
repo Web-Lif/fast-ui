@@ -245,7 +245,7 @@ function HeaderTitle<T>({
                                 'rc-table-header-menus': true,
                             })}
                             onClick={(e) => {
-                                e.preventDefault()
+                                e.stopPropagation()
                                 setVisible(true)
                             }}
                         >
