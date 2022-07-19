@@ -20,6 +20,7 @@ export default defineConfig({
             },
         ],
     },
+    chunks: process.env.NODE_ENV === 'production' ? [] : undefined,
     chainWebpack: (config) => {
         if (process.env.NODE_ENV === 'production') {
             config.output.filename('[name].bundle.js')
