@@ -359,6 +359,7 @@ function Table<T>({
                 showQuickJumper = true,
                 showSizeChanger = true,
                 pageSizeOptions = ['50', '100', '200', '500'],
+                showTotal = (total) => `总数: ${total} 条`,
                 ...paginationProps
             } = pagination
             return (
@@ -389,6 +390,7 @@ function Table<T>({
                         showQuickJumper={showQuickJumper}
                         showSizeChanger={showSizeChanger}
                         pageSizeOptions={pageSizeOptions}
+                        showTotal={showTotal}
                         {...paginationProps}
                     />
                 </div>
