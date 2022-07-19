@@ -1,6 +1,9 @@
 import { defineConfig } from 'dumi'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { join } from 'path'
+import { readFileSync } from 'fs'
+
+const globalCss = readFileSync(join(__dirname, 'site', 'global.css'))
 
 export default defineConfig({
     title: 'Fast UI',
@@ -8,6 +11,7 @@ export default defineConfig({
     logo: 'https://avatars.githubusercontent.com/u/91562499?s=200&v=4',
     outputPath: 'docs-dist',
     mode: 'site',
+    styles: [globalCss.toString('utf-8')],
     locales: [['zh-CN', '中文']],
     devtool: 'eval-source-map',
     targets: false,
