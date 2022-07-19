@@ -3,7 +3,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { join } from 'path'
 import { readFileSync } from 'fs'
 
-const globalCss = readFileSync(join(__dirname, 'site', 'global.css'))
+const globalCss = readFileSync(join(__dirname, 'public', 'global.css'))
 
 export default defineConfig({
     title: 'Fast UI',
