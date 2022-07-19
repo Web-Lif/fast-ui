@@ -9,7 +9,6 @@ import { restrictToWindowEdges } from '@dnd-kit/modifiers'
 import { CSS } from '@dnd-kit/utilities'
 import AntModal, { ModalProps as AntModalProps } from 'antd/es/modal'
 import React, { FC, useLayoutEffect, useRef, useState } from 'react'
-import notification from 'antd/es/notification'
 
 export interface ModalProps
     extends Omit<AntModalProps, 'onOk' | 'confirmLoading'> {
@@ -122,10 +121,6 @@ const InternalModal: FC<ModalProps> = ({
                 })
                 .catch((error) => {
                     console.error(error)
-                    notification.error({
-                        message: '系统消息',
-                        description: error.message,
-                    })
                     setLoading(false)
                 })
         } else {
@@ -225,10 +220,6 @@ const InternalModal: FC<ModalProps> = ({
                             })
                             .catch((error) => {
                                 console.error(error)
-                                notification.error({
-                                    message: '系统消息',
-                                    description: error.message,
-                                })
                             })
                     } else {
                         if (res !== false) {
