@@ -47,6 +47,6 @@ const App = () => (
 -   issues 在此提交 [https://github.com/Web-Lif/fast-ui/issues](https://github.com/Web-Lif/fast-ui/issues) 获取社区支持
 -   discussions 在此提交讨论/新的想法/创意 [https://github.com/Web-Lif/fast-ui/discussions](https://github.com/Web-Lif/fast-ui/discussions)
 
-## Stargazers over time
+## ❤️ Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/Web-Lif/fast-ui.svg)](https://starchart.cc/Web-Lif/fast-ui)
