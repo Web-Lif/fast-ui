@@ -1,1 +1,3 @@
-export { default as message } from 'antd/es/mentions'
+import message from 'antd/es/message'
+
+export default message
