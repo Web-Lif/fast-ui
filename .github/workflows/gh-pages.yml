@@ -20,7 +20,7 @@ jobs:
         run: npm run build:docs && cp CNAME docs-dist && \cp docs-dist/index.html docs-dist/404.html
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.3.4
+        uses: JamesIves/github-pages-deploy-action@v4.4.0
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
