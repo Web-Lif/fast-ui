@@ -337,11 +337,12 @@ function useHeader<T>({
                     <Checkbox
                         value={
                             selectedRows.length ===
-                            rows.filter(
-                                (row) =>
-                                    rowSelection?.allowDisabledSelect?.(row) !==
-                                    true
-                            ).length
+                                rows.filter(
+                                    (row) =>
+                                        rowSelection?.allowDisabledSelect?.(
+                                            row
+                                        ) !== true
+                                ).length && rows?.length !== 0
                         }
                         onChange={(value) => {
                             if (value === false) {
