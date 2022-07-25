@@ -78,7 +78,17 @@ function useBody<T>({
         let isSelectRow = false
 
         columns.forEach((col, index) => {
-            let value = (row as any)[col.name]
+            // 是否是合法的字段信息
+            let value = ''
+            if (/^[A-z_][A-z0-9_]+(\.[A-z_][A-z0-9_]+)+$/.test(col.name)) {
+                let tempRowData = row as any
+                col.name.split('.').forEach((dataName) => {
+                    tempRowData = tempRowData[dataName]
+                })
+                value = tempRowData
+            } else if (/^[A-z_][A-z0-9_]+/.test(col.name)) {
+                value = (row as any)[col.name]
+            }
 
             let colWidth = tempColWidth[index]
             let widthResult = 0
