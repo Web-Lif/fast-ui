@@ -10,7 +10,7 @@ interface UserData {
     email: string
     id: number
     age: string
-    tags: number
+    tags: any
     col0: string
     col1: string
     col2: string
@@ -29,7 +29,9 @@ const mockData = () => {
             email: 'zhang@xx.com',
             id: i,
             age: '25',
-            tags: Math.floor(Math.random() * 100),
+            tags: {
+                title: Math.floor(Math.random() * 100),
+            },
             col0: `col0 - ${i}`,
             col1: `col1 - ${i}`,
             col2: `col2 - ${i}`,
@@ -60,7 +62,7 @@ export default () => {
             title: '年龄',
         },
         {
-            name: 'tags',
+            name: 'tags.title',
             title: '标签0',
         },
         {
