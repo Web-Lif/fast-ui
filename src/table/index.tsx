@@ -57,6 +57,12 @@ export interface InternalTableProps<T> {
     /** 表格单击行触发的事件 */
     onRowClick?: (row: T) => void
 
+    /** 右键行菜单的时候触发的事件 */
+    onRowContextMenu?: (
+        row: T,
+        e: React.MouseEvent<HTMLDivElement, MouseEvent>
+    ) => void
+
     /** 表格双击行触发的事件 */
     onRowDoubleClick?: (row: T) => void
 
@@ -87,6 +93,7 @@ function InternalTable<T>({
     onRowDoubleClick,
     onChangeColumns,
     rowClassName = ({ className }) => className,
+    onRowContextMenu,
     onSortColumnsChange = () => {},
 }: InternalTableProps<T>) {
     const moveOffset = useRef<{
@@ -292,6 +299,11 @@ function InternalTable<T>({
             onRowDoubleClick={({ row }) => {
                 if (row.object) {
                     onRowDoubleClick?.(row.object)
+                }
+            }}
+            onRowContextMenu={(row, e) => {
+                if (row.key !== 'header') {
+                    onRowContextMenu?.(row.object as any, e)
                 }
             }}
             onRowMouseEnter={(e, table) => {
