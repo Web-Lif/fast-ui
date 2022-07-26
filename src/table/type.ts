@@ -1,4 +1,4 @@
-import { ReactElement } from 'react'
+import { ReactElement, ReactNode } from 'react'
 
 type AlignType = 'left' | 'right' | 'center'
 
@@ -36,7 +36,7 @@ export interface Column<T> {
     name: string
 
     /** 标题显示的名称 */
-    title: string
+    title: ReactNode
 
     /** 列的宽度信息 */
     width?: number | string
