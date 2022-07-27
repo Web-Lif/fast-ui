@@ -1,4 +1,4 @@
-import { css } from '@emotion/css'
+import { css, cx } from '@emotion/css'
 import { Table as RCTable } from '@weblif/rc-table'
 import { PaginationProps } from 'antd'
 import { ItemType } from 'antd/es/menu/hooks/useItems'
@@ -193,23 +193,28 @@ function InternalTable<T>({
     }, [])
     const [visible, setVisible] = useState<boolean>(false)
 
-    const getDropdownVisible = () => {
-        if (loading === true) {
-            return false
-        }
-        return visible
-    }
     return (
         <Dropdown
+            className={cx([
+                {
+                    [css`
+                        pointer-events: none;
+                    `]: loading,
+                },
+            ])}
             trigger={['contextMenu']}
-            visible={getDropdownVisible()}
+            visible={visible}
             onVisibleChange={(changeVisible) => {
-                setVisible((data) => {
-                    if (data !== changeVisible && changeVisible === true) {
-                        setItems(contextMenuRender?.(null) || [])
-                    }
-                    return changeVisible
-                })
+                if (loading) {
+                    setVisible(false)
+                } else {
+                    setVisible((data) => {
+                        if (data !== changeVisible && changeVisible === true) {
+                            setItems(contextMenuRender?.(null) || [])
+                        }
+                        return changeVisible
+                    })
+                }
             }}
             overlay={
                 <Menu
