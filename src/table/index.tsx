@@ -13,7 +13,7 @@ import React, {
 } from 'react'
 import { MenuItemType } from 'rc-menu/lib/interface'
 
-import { AutoSize, Dropdown, Menu, Pagination } from '..'
+import { AutoSize, Dropdown, Menu, Pagination, Spin } from '..'
 import { Empty } from '../index'
 import useBody from './body'
 import useHeader from './header'
@@ -31,6 +31,9 @@ export interface InternalTableProps<T> {
 
     /** 编辑模式 Cell 表示单元格编辑, Row 表示行编辑 */
     mode?: 'cell' | 'row'
+
+    /** 是否加载中 */
+    loading?: boolean
 
     /** 设置行的数据,表示将符合行的数据开启为编辑模式, mode 必须为 `row` 模式 */
     rowEditKey?: string[]
@@ -92,6 +95,7 @@ function InternalTable<T>({
     rowSelection,
     selectedRows = [],
     rowEditKey = [],
+    loading = false,
     onSelectedRowsChange,
     onChange,
     onRowClick,
@@ -189,10 +193,16 @@ function InternalTable<T>({
     }, [])
     const [visible, setVisible] = useState<boolean>(false)
 
+    const getDropdownVisible = () => {
+        if (loading === true) {
+            return false
+        }
+        return visible
+    }
     return (
         <Dropdown
             trigger={['contextMenu']}
-            visible={visible}
+            visible={getDropdownVisible()}
             onVisibleChange={(changeVisible) => {
                 setVisible((data) => {
                     if (data !== changeVisible && changeVisible === true) {
@@ -210,7 +220,7 @@ function InternalTable<T>({
                 />
             }
         >
-            <div>
+            <Spin spinning={loading}>
                 <RCTable<T>
                     width={width}
                     height={height}
@@ -391,7 +401,7 @@ function InternalTable<T>({
                     }}
                     onEmptyRowsRenderer={() => <Empty />}
                 />
-            </div>
+            </Spin>
         </Dropdown>
     )
 }
