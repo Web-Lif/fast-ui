@@ -3,7 +3,12 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { join } from 'path'
 import { readFileSync } from 'fs'
 
-const globalCss = readFileSync(join(__dirname, 'public', 'global.css'))
+const globalCss = readFileSync(
+    join(__dirname, 'public', 'global.css')
+).toString('utf-8')
+const changelog = readFileSync(join(__dirname, 'CHANGELOG.md')).toString(
+    'utf-8'
+)
 
 export default defineConfig({
     title: 'Fast UI',
@@ -11,10 +16,13 @@ export default defineConfig({
     logo: 'https://avatars.githubusercontent.com/u/91562499?s=200&v=4',
     outputPath: 'docs-dist',
     mode: 'site',
-    styles: [globalCss.toString('utf-8')],
+    styles: [globalCss],
     locales: [['zh-CN', '中文']],
     devtool: 'eval-source-map',
     targets: false,
+    define: {
+        _WEBPACK$DEFINE$CHANGELOG: changelog,
+    },
     navs: {
         'zh-CN': [
             null,
