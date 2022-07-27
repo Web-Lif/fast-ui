@@ -3,5 +3,13 @@
     "tabWidth": 4,
     "semi": false,
     "singleQuote": true,
-    "bracketSpacing": true
+    "bracketSpacing": true,
+    "overrides": [
+        {
+            "files": "*.md",
+            "options": {
+                "tabWidth": 2
+            }
+        }
+    ]
 }
