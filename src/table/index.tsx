@@ -1,6 +1,7 @@
 import { css } from '@emotion/css'
 import { Table as RCTable } from '@weblif/rc-table'
 import { PaginationProps } from 'antd'
+import { ItemType } from 'antd/es/menu/hooks/useItems'
 import produce from 'immer'
 import React, {
     CSSProperties,
@@ -10,8 +11,9 @@ import React, {
     useRef,
     useState,
 } from 'react'
+import { MenuItemType } from 'rc-menu/lib/interface'
 
-import { AutoSize, Pagination } from '..'
+import { AutoSize, Dropdown, Menu, Pagination } from '..'
 import { Empty } from '../index'
 import useBody from './body'
 import useHeader from './header'
@@ -74,6 +76,9 @@ export interface InternalTableProps<T> {
 
     /** 排序字段改变触发的事件 */
     onSortColumnsChange?: (change: SortDirection[]) => void
+
+    /** 渲染右键菜单 */
+    contextMenuRender?: (node: T | null) => MenuItemType[]
 }
 
 function InternalTable<T>({
@@ -92,6 +97,7 @@ function InternalTable<T>({
     onRowClick,
     onRowDoubleClick,
     onChangeColumns,
+    contextMenuRender,
     rowClassName = ({ className }) => className,
     onRowContextMenu,
     onSortColumnsChange = () => {},
@@ -174,31 +180,93 @@ function InternalTable<T>({
 
     const moveTicking = useRef<boolean>(false)
 
-    const [_, forceRefresh] = useState<number>(0)
+    const [items, setItems] = useState<ItemType[]>([])
 
     useEffect(() => {
-        forceRefresh(new Date().getTime())
+        if (contextMenuRender) {
+            setItems(contextMenuRender?.(null))
+        }
     }, [])
+    const [visible, setVisible] = useState<boolean>(false)
 
     return (
-        <RCTable<T>
-            width={width}
-            height={height}
-            rows={headers.concat(bodys)}
-            onMouseMove={(e) => {
-                moveOffset.current = {
-                    x: e.clientX,
-                    y: e.clientY,
-                }
-                // 修改列的宽度信息
-                if (
-                    startMoveOffset.current.x !== -1 &&
-                    startMoveOffset.current.y !== -1 &&
-                    !moveTicking.current
-                ) {
-                    const offsetX =
-                        moveOffset.current.x - startMoveOffset.current.x
-                    requestAnimationFrame(() => {
+        <Dropdown
+            trigger={['contextMenu']}
+            visible={visible}
+            onVisibleChange={(changeVisible) => {
+                setVisible((data) => {
+                    if (data !== changeVisible && changeVisible === true) {
+                        setItems(contextMenuRender?.(null) || [])
+                    }
+                    return changeVisible
+                })
+            }}
+            overlay={
+                <Menu
+                    items={items}
+                    onClick={() => {
+                        setVisible(false)
+                    }}
+                />
+            }
+        >
+            <div>
+                <RCTable<T>
+                    width={width}
+                    height={height}
+                    rows={headers.concat(bodys)}
+                    onMouseMove={(e) => {
+                        moveOffset.current = {
+                            x: e.clientX,
+                            y: e.clientY,
+                        }
+                        // 修改列的宽度信息
+                        if (
+                            startMoveOffset.current.x !== -1 &&
+                            startMoveOffset.current.y !== -1 &&
+                            !moveTicking.current
+                        ) {
+                            const offsetX =
+                                moveOffset.current.x - startMoveOffset.current.x
+                            requestAnimationFrame(() => {
+                                if (colsProcess) {
+                                    const changeColumns = produce(
+                                        colsProcess,
+                                        (draft) => {
+                                            draft.some((element: any) => {
+                                                if (
+                                                    element.name ===
+                                                        startMoveColName.current
+                                                            ?.name &&
+                                                    typeof element.width ===
+                                                        'number'
+                                                ) {
+                                                    if (
+                                                        element.$initWidth ===
+                                                        undefined
+                                                    ) {
+                                                        element.$initWidth =
+                                                            element.width
+                                                    }
+                                                    element.width =
+                                                        element.$initWidth +
+                                                        offsetX
+                                                    return true
+                                                }
+                                                return false
+                                            })
+                                        }
+                                    )
+                                    onChangeColumns?.(changeColumns)
+                                }
+                                setTimeout(() => {
+                                    moveTicking.current = false
+                                }, 40)
+                            })
+                            moveTicking.current = true
+                        }
+                    }}
+                    onMouseUp={() => {
                         if (colsProcess) {
                             const changeColumns = produce(
                                 colsProcess,
@@ -211,13 +279,10 @@ function InternalTable<T>({
                                             typeof element.width === 'number'
                                         ) {
                                             if (
-                                                element.$initWidth === undefined
+                                                element.$initWidth !== undefined
                                             ) {
-                                                element.$initWidth =
-                                                    element.width
+                                                element.$initWidth = undefined
                                             }
-                                            element.width =
-                                                element.$initWidth + offsetX
                                             return true
                                         }
                                         return false
@@ -226,119 +291,108 @@ function InternalTable<T>({
                             )
                             onChangeColumns?.(changeColumns)
                         }
-                        setTimeout(() => {
-                            moveTicking.current = false
-                        }, 40)
-                    })
-                    moveTicking.current = true
-                }
-            }}
-            onMouseUp={() => {
-                if (colsProcess) {
-                    const changeColumns = produce(colsProcess, (draft) => {
-                        draft.some((element: any) => {
-                            if (
-                                element.name ===
-                                    startMoveColName.current?.name &&
-                                typeof element.width === 'number'
-                            ) {
-                                if (element.$initWidth !== undefined) {
-                                    element.$initWidth = undefined
-                                }
-                                return true
-                            }
-                            return false
-                        })
-                    })
-                    onChangeColumns?.(changeColumns)
-                }
-                startMoveOffset.current = {
-                    x: -1,
-                    y: -1,
-                }
-            }}
-            onRowClick={({ row }) => {
-                if (
-                    rowSelection?.clickModel === 'row' &&
-                    rowSelection?.model === 'multiple'
-                ) {
-                    const key: Key = (row.object as any)[rowKey]
+                        startMoveOffset.current = {
+                            x: -1,
+                            y: -1,
+                        }
+                    }}
+                    onRowClick={({ row }) => {
+                        if (
+                            rowSelection?.clickModel === 'row' &&
+                            rowSelection?.model === 'multiple'
+                        ) {
+                            const key: Key = (row.object as any)[rowKey]
 
-                    if (selectedRows?.includes(key)) {
-                        onSelectedRowsChange?.(
-                            selectedRows.filter((rowKey) => rowKey !== key)
-                        )
-                    } else {
-                        onSelectedRowsChange?.([...selectedRows, key])
-                    }
-                } else if (
-                    rowSelection?.clickModel === 'row' &&
-                    rowSelection?.model === 'single'
-                ) {
-                    const changeData = produce<T[], T[]>(rows, (draft) => {
-                        draft.forEach((ele) => {
-                            if (
-                                (ele as any)[rowKey] ===
-                                (row.object as any)[rowKey]
-                            ) {
-                                ;(ele as any)['$select'] = !(ele as any)[
-                                    '$select'
-                                ]
+                            if (selectedRows?.includes(key)) {
+                                onSelectedRowsChange?.(
+                                    selectedRows.filter(
+                                        (rowKey) => rowKey !== key
+                                    )
+                                )
                             } else {
-                                ;(ele as any)['$select'] = false
+                                onSelectedRowsChange?.([...selectedRows, key])
                             }
-                        })
-                    })
-                    onChange?.(changeData)
-                }
+                        } else if (
+                            rowSelection?.clickModel === 'row' &&
+                            rowSelection?.model === 'single'
+                        ) {
+                            const changeData = produce<T[], T[]>(
+                                rows,
+                                (draft) => {
+                                    draft.forEach((ele) => {
+                                        if (
+                                            (ele as any)[rowKey] ===
+                                            (row.object as any)[rowKey]
+                                        ) {
+                                            ;(ele as any)['$select'] = !(
+                                                ele as any
+                                            )['$select']
+                                        } else {
+                                            ;(ele as any)['$select'] = false
+                                        }
+                                    })
+                                }
+                            )
+                            onChange?.(changeData)
+                        }
 
-                if (row.object) {
-                    onRowClick?.(row.object)
-                }
-            }}
-            onRowDoubleClick={({ row }) => {
-                if (row.object) {
-                    onRowDoubleClick?.(row.object)
-                }
-            }}
-            onRowContextMenu={(row, e) => {
-                if (row.key !== 'header') {
-                    onRowContextMenu?.(row.object as any, e)
-                }
-            }}
-            onRowMouseEnter={(e, table) => {
-                const currentTarget = e.currentTarget
-                setTimeout(() => {
-                    const classNames = currentTarget.className.split(' ')
-                    const className = classNames.find((className) =>
-                        className.includes('rc-table-row-')
-                    )
-                    const elements = table.querySelectorAll(`.${className}`)
-                    table
-                        .querySelectorAll(`.rc-table-row`)
-                        .forEach((element) => {
-                            const htmlElement = element as HTMLElement
-                            if (
-                                htmlElement.style.getPropertyValue(
-                                    '--rc-table-background-color'
-                                )
-                            ) {
-                                htmlElement.style.removeProperty(
-                                    '--rc-table-background-color'
-                                )
-                            }
-                        })
+                        if (row.object) {
+                            onRowClick?.(row.object)
+                        }
+                    }}
+                    onRowDoubleClick={({ row }) => {
+                        if (row.object) {
+                            onRowDoubleClick?.(row.object)
+                        }
+                    }}
+                    onRowContextMenu={(row, e) => {
+                        e.preventDefault()
+                        if (row.key !== 'header') {
+                            setItems(
+                                contextMenuRender?.(row.object as any) || []
+                            )
+                            setVisible(true)
+                            onRowContextMenu?.(row.object as any, e)
+                        }
+                    }}
+                    onRowMouseEnter={(e, table) => {
+                        const currentTarget = e.currentTarget
+                        setTimeout(() => {
+                            const classNames =
+                                currentTarget.className.split(' ')
+                            const className = classNames.find((className) =>
+                                className.includes('rc-table-row-')
+                            )
+                            const elements = table.querySelectorAll(
+                                `.${className}`
+                            )
+                            table
+                                .querySelectorAll(`.rc-table-row`)
+                                .forEach((element) => {
+                                    const htmlElement = element as HTMLElement
+                                    if (
+                                        htmlElement.style.getPropertyValue(
+                                            '--rc-table-background-color'
+                                        )
+                                    ) {
+                                        htmlElement.style.removeProperty(
+                                            '--rc-table-background-color'
+                                        )
+                                    }
+                                })
 
-                    elements.forEach((element) => {
-                        ;(element as HTMLElement).style.setProperty(
-                            '--rc-table-background-color',
-                            '#f5f5f5'
-                        )
-                    })
-                }, 0)
-            }}
-            onEmptyRowsRenderer={() => <Empty />}
-        />
+                            elements.forEach((element) => {
+                                ;(element as HTMLElement).style.setProperty(
+                                    '--rc-table-background-color',
+                                    '#f5f5f5'
+                                )
+                            })
+                        }, 0)
+                    }}
+                    onEmptyRowsRenderer={() => <Empty />}
+                />
+            </div>
+        </Dropdown>
     )
 }
 
