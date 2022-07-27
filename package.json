@@ -66,7 +66,7 @@
     },
     "peerDependencies": {
         "@ant-design/icons": "4.7.0",
-        "antd": "4.21.7",
+        "antd": "4.22.0",
         "dayjs": "1.11.4",
         "immer": "9.0.15",
         "react": "18.2.0",
