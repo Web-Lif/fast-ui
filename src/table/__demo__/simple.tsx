@@ -2,7 +2,7 @@
  * title: 基础
  * desc: 简单的表格信息
  */
-import { Column, Table, useTableLocalSort } from '@weblif/fast-ui'
+import { Column, Table, useTableLocalSort, Switch } from '@weblif/fast-ui'
 import React, { useState } from 'react'
 
 interface UserData {
@@ -96,8 +96,24 @@ export default () => {
     ])
 
     const { rows, setRows } = useTableLocalSort(myMockData)
+    const [loading, setLoading] = useState<boolean>(false)
     return (
         <>
+            切换表格加载状态:
+            <Switch
+                style={{
+                    marginLeft: 10,
+                }}
+                onChange={(changeValue) => {
+                    if (changeValue) {
+                        setLoading(true)
+                    } else {
+                        setLoading(false)
+                    }
+                }}
+            />
+            <br />
+            <br />
             <Table
                 style={{
                     width: 1200,
@@ -123,6 +139,7 @@ export default () => {
                 mode="cell"
                 columns={cols}
                 rows={rows}
+                loading={loading}
                 onChangeColumns={setCols}
                 onChange={setRows}
             />
