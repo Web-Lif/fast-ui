@@ -20,6 +20,9 @@ export default defineConfig({
     locales: [['zh-CN', '中文']],
     devtool: 'eval-source-map',
     targets: false,
+    dynamicImport: {
+        loading: '@/__website__/Loading',
+    },
     define: {
         _WEBPACK$DEFINE$CHANGELOG: changelog,
     },
