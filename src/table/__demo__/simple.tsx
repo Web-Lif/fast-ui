@@ -103,6 +103,22 @@ export default () => {
                     width: 1200,
                     height: 300,
                 }}
+                contextMenuRender={(row) => {
+                    if (row === null) {
+                        return [
+                            {
+                                label: '测试数据',
+                                key: 'test',
+                            },
+                        ]
+                    }
+                    return [
+                        {
+                            label: '当前行数据',
+                            key: 'app',
+                        },
+                    ]
+                }}
                 rowKey="id"
                 mode="cell"
                 columns={cols}
