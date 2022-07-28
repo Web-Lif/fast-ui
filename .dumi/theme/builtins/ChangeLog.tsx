@@ -12,11 +12,10 @@ const analyzeChangeLogMD = (text: string) => {
             if (content !== null) {
                 result.push(content)
             }
+            content = `${rows[i]}`
         }
 
-        if (content === null) {
-            content = `\n${rows[i]}`
-        } else {
+        if (content !== null) {
             content += `\n${rows[i]}`
         }
     }
