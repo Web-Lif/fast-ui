@@ -13,6 +13,12 @@ const Loading = () => {
     return (
         <>
             <LoadingBar ref={ref} />
+            <div
+                style={{
+                    width: '100%',
+                    height: '100vh',
+                }}
+            />
         </>
     )
 }
