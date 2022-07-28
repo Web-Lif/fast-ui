@@ -5,9 +5,9 @@ name: Node Build CI
 
 on:
   push:
-    branches: [ "canary" ]
+    branches: [ canary, pre-release ]
   pull_request:
-    branches: [ "canary" ]
+    branches: [ canary, pre-release ]
 
 jobs:
   build:

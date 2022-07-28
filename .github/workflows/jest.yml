@@ -2,10 +2,10 @@ name: Jest
 
 on:
     push:
-        branches: [canary]
+        branches: [canary, pre-release]
     pull_request:
         # The branches below must be a subset of the branches above
-        branches: [canary]
+        branches: [canary, pre-release]
 jobs:
     jest-test:
         runs-on: ubuntu-latest
@@ -16,7 +16,7 @@ jobs:
                   persist-credentials: false
 
             - name: Install
-              run: npm install -g npm && npm ci
+              run: npm ci
 
             - name: TEST
               run: npm run test
