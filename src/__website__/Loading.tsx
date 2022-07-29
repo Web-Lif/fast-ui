@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import LoadingBar, { LoadingBarRef } from '@weblif/react-top-loading-bar'
+import { Spin } from '..'
 
 const Loading = () => {
     const ref = useRef<LoadingBarRef>(null)
@@ -13,12 +14,14 @@ const Loading = () => {
     return (
         <>
             <LoadingBar ref={ref} />
-            <div
-                style={{
-                    width: '100%',
-                    height: '100vh',
-                }}
-            />
+            <Spin spinning>
+                <div
+                    style={{
+                        width: '100%',
+                        height: '100vh',
+                    }}
+                />
+            </Spin>
         </>
     )
 }
