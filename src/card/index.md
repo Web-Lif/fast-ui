@@ -1,10 +1,10 @@
 ---
 nav:
-    title: 组件
-    path: /components
+  title: 组件
+  path: /components
 group:
-    path: /components/layout
-    title: 布局
+  path: /components/layout
+  title: 布局
 ---
 
 ## Card 卡片
@@ -15,41 +15,15 @@ group:
 
 例子:
 
-```tsx
-/**
- * title: 经典卡片
- * desc: 包含标题、内容、操作区域。
- */
-import React, { useState, useRef } from 'react'
-import { Card } from '@weblif/fast-ui'
-
-export default () => {
-    return (
-        <>
-            <Card
-                title="Default size card"
-                extra={<a href="#">More</a>}
-                style={{ width: 300 }}
-            >
-                <p>Card content</p>
-                <p>Card content</p>
-                <p>Card content</p>
-            </Card>
-            <br />
-            <Card
-                size="small"
-                title="Small size card"
-                extra={<a href="#">More</a>}
-                style={{ width: 300 }}
-            >
-                <p>Card content</p>
-                <p>Card content</p>
-                <p>Card content</p>
-            </Card>
-        </>
-    )
-}
-```
+<div
+    className=".fu-code-block-row"
+>
+    <div
+        className='.fu-code-block-col-2-1'
+    >
+        <code src="./__demo__/base.tsx"></code>
+    </div>
+</div>
 
 <br />
 

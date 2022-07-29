@@ -1,5 +1,5 @@
 import React from 'react'
-import { Timeline, Typography } from '@weblif/fast-ui'
+import { Timeline } from '@weblif/fast-ui'
 import ReactMarkdown from 'react-markdown'
 
 const analyzeChangeLogMD = (text: string) => {
