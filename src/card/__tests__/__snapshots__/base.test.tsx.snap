@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot 1`] = `
+<div>
+  <div
+    style="height: 400px; width: 500px;"
+  >
+    <div
+      class="ant-card ant-card-bordered css-1yapcxr"
+    >
+      <div
+        class="ant-card-head"
+      >
+        <div
+          class="ant-card-head-wrapper"
+        >
+          <div
+            class="ant-card-head-title"
+          >
+            Default size card
+          </div>
+          <div
+            class="ant-card-extra"
+          >
+            <a
+              href="#"
+            >
+              More
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="ant-card-body"
+      >
+        <p>
+          Card content
+        </p>
+        <p>
+          Card content
+        </p>
+        <p>
+          Card content
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
