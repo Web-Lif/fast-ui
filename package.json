@@ -52,7 +52,7 @@
         "@types/jest": "28.1.6",
         "@types/react-color": "3.0.6",
         "@weblif/react-top-loading-bar": "2.1.2",
-        "core-js": "3.24.0",
+        "core-js": "3.24.1",
         "cross-env": "7.0.3",
         "dumi": "1.1.46",
         "html-webpack-plugin": "4.5.2",
@@ -80,7 +80,7 @@
         "react-dom": "18.2.0"
     },
     "dependencies": {
-        "@emotion/css": "11.9.0",
+        "@emotion/css": "11.10.0",
         "@weblif/rc-table": "0.6.2",
         "qrcode.react": "3.1.0",
         "react-color": "2.19.3",
