@@ -331,24 +331,16 @@ function InternalTable<T>({
                             rowSelection?.clickModel === 'row' &&
                             rowSelection?.model === 'single'
                         ) {
-                            const changeData = produce<T[], T[]>(
-                                rows,
-                                (draft) => {
-                                    draft.forEach((ele) => {
-                                        if (
-                                            (ele as any)[rowKey] ===
-                                            (row.object as any)[rowKey]
-                                        ) {
-                                            ;(ele as any)['$select'] = !(
-                                                ele as any
-                                            )['$select']
-                                        } else {
-                                            ;(ele as any)['$select'] = false
-                                        }
-                                    })
-                                }
-                            )
-                            onChange?.(changeData)
+                            const key: Key = (row.object as any)[rowKey]
+                            if (selectedRows?.includes(key)) {
+                                onSelectedRowsChange?.(
+                                    selectedRows.filter(
+                                        (rowKey) => rowKey !== key
+                                    )
+                                )
+                            } else {
+                                onSelectedRowsChange?.([key])
+                            }
                         }
 
                         if (row.object) {
