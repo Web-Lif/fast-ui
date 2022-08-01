@@ -1,10 +1,10 @@
 ---
 nav:
-    title: 组件
-    path: /components
+  title: 组件
+  path: /components
 group:
-    path: /components/layout
-    title: 布局
+  path: /components/layout
+  title: 布局
 ---
 
 ## Layout 布局
@@ -13,17 +13,17 @@ group:
 
 ## 布局组件描述
 
--   `ViewPort` 将接管浏览器窗口的整个视口。调整浏览器窗口大小将自动调整此空间和所有嵌套空间的大小。
--   `Fixed` 这表示可以指定一个高度，也可以指定一个宽度（默认情况下，它的大小为容器的 100%）。所有嵌套空间都将包含在这个固定大小的空间内。
--   `Left` 父容器空间的左侧
--   `Right` 在父容器空间的右侧
--   `Top` 在父容器空间的顶部
--   `Bottom` 在父容器空间的底部
--   `Fill` 填充剩余空间
--   `Positioned` 可以按照定位进行浮动在父组件的任意位置
--   `Layer` 图层允许您在父空间中创建图层
--   `Centered` 将空间的内容水平和垂直居中。
--   `CenteredVertically` 垂直居中空间的内容
+- `ViewPort` 将接管浏览器窗口的整个视口。调整浏览器窗口大小将自动调整此空间和所有嵌套空间的大小。
+- `Fixed` 这表示可以指定一个高度，也可以指定一个宽度（默认情况下，它的大小为容器的 100%）。所有嵌套空间都将包含在这个固定大小的空间内。
+- `Left` 父容器空间的左侧
+- `Right` 在父容器空间的右侧
+- `Top` 在父容器空间的顶部
+- `Bottom` 在父容器空间的底部
+- `Fill` 填充剩余空间
+- `Positioned` 可以按照定位进行浮动在父组件的任意位置
+- `Layer` 图层允许您在父空间中创建图层
+- `Centered` 将空间的内容水平和垂直居中。
+- `CenteredVertically` 垂直居中空间的内容
 
 <br />
 

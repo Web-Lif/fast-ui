@@ -1,10 +1,10 @@
 ---
 nav:
-    title: 组件
-    path: /components
+  title: 组件
+  path: /components
 group:
-    path: /components/data
-    title: 数据
+  path: /components/data
+  title: 数据
 ---
 
 ## QRCode 二维码

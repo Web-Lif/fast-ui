@@ -2,8 +2,8 @@
  * title: 分割面板
  * desc: 可简单的对页面进行分割布局
  */
-import { Button, SplitPane, Tree } from '@weblif/fast-ui';
-import React, { useEffect, useState } from 'react';
+import { Button, SplitPane, Tree } from '@weblif/fast-ui'
+import React, { useEffect, useState } from 'react'
 
 const mockTreeData = [
     {
@@ -30,18 +30,21 @@ const mockTreeData = [
                 title: 'parent 1-1',
                 key: '0-0-1',
                 children: [
-                    { title: <span style={{ color: '#1890ff' }}>sss</span>, key: '0-0-1-0' },
+                    {
+                        title: <span style={{ color: '#1890ff' }}>sss</span>,
+                        key: '0-0-1-0',
+                    },
                 ],
             },
         ],
     },
-];
+]
 
 export default () => {
-    const [treeData, setTreeData] = useState<any[]>([]);
+    const [treeData, setTreeData] = useState<any[]>([])
     useEffect(() => {
-        setTreeData(mockTreeData);
-    }, []);
+        setTreeData(mockTreeData)
+    }, [])
 
     return (
         <SplitPane
@@ -55,10 +58,17 @@ export default () => {
                     <Button type="link"> 点击查询</Button>
                 </>
             }
-            leftReactNode={<Tree checkable defaultExpandedKeys={['0-0']} treeData={treeData} />}
+            leftReactNode={
+                <Tree
+                    checkable
+                    defaultExpandedKeys={['0-0']}
+                    treeData={treeData}
+                />
+            }
         >
             《CLANNAD》（日语：クラナド）是日本游戏品牌Key制作的恋爱冒险游戏，于2004年4月28日在Windows平台发行。《CLANNAD》是继《Kanon》、《AIR》后，Key的第三部作品。本作后来被移植到PlayStation
-            2、PlayStation Portable、Xbox 360、PlayStation 3、PlayStation Vita、PlayStation
+            2、PlayStation Portable、Xbox 360、PlayStation 3、PlayStation
+            Vita、PlayStation
             4和任天堂Switch平台。2019年10月，简体中文版本在Steam上发行。
             故事描写了少年少女的恋爱、友情、家庭之爱等主题，并因剧情被获得“催泪游戏”的称呼。因其剧情大部分发生于春季，《CLANNAD》亦被视为Key社季节组曲中的“春”。
             《CLANNAD》已被多次改编为其它媒体。ASCII Media Works、Flex
@@ -69,5 +79,5 @@ export default () => {
             校园篇为主角和女主角们之间所发生的事件，After
             story为主角在学校毕业之后，以及家庭生活，其中还关联著“幻想世界”，CLANNAD就是由这三个要素所组成的故事。
         </SplitPane>
-    );
-};
+    )
+}

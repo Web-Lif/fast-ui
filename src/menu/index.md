@@ -1,10 +1,10 @@
 ---
 nav:
-    title: 组件
-    path: /components
+  title: 组件
+  path: /components
 group:
-    path: /components/navigation
-    title: 导航
+  path: /components/navigation
+  title: 导航
 ---
 
 ## Menu 导航菜单
@@ -21,52 +21,48 @@ group:
 import React, { useState } from 'react'
 import { Menu, Dropdown } from '@weblif/fast-ui'
 import {
-    MailOutlined,
-    AppstoreOutlined,
-    SettingOutlined,
+  MailOutlined,
+  AppstoreOutlined,
+  SettingOutlined,
 } from '@ant-design/icons'
 
 export default () => {
-    const [selectKey, setSelectKey] = useState<string>('mail')
-    return (
-        <Menu
-            onClick={(e) => {
-                setSelectKey(e.key)
-            }}
-            selectedKeys={[selectKey]}
-            mode="horizontal"
-        >
-            <Menu.Item key="mail" icon={<MailOutlined />}>
-                Navigation One
-            </Menu.Item>
-            <Menu.Item key="app" disabled icon={<AppstoreOutlined />}>
-                Navigation Two
-            </Menu.Item>
-            <Menu.SubMenu
-                key="SubMenu"
-                icon={<SettingOutlined />}
-                title="Navigation Three - Submenu"
-            >
-                <Menu.ItemGroup title="Item 1">
-                    <Menu.Item key="setting:1">Option 1</Menu.Item>
-                    <Menu.Item key="setting:2">Option 2</Menu.Item>
-                </Menu.ItemGroup>
-                <Menu.ItemGroup title="Item 2">
-                    <Menu.Item key="setting:3">Option 3</Menu.Item>
-                    <Menu.Item key="setting:4">Option 4</Menu.Item>
-                </Menu.ItemGroup>
-            </Menu.SubMenu>
-            <Menu.Item key="alipay">
-                <a
-                    href="https://ui.lif.ink"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Navigation Four - FAST-UI
-                </a>
-            </Menu.Item>
-        </Menu>
-    )
+  const [selectKey, setSelectKey] = useState<string>('mail')
+  return (
+    <Menu
+      onClick={(e) => {
+        setSelectKey(e.key)
+      }}
+      selectedKeys={[selectKey]}
+      mode="horizontal"
+    >
+      <Menu.Item key="mail" icon={<MailOutlined />}>
+        Navigation One
+      </Menu.Item>
+      <Menu.Item key="app" disabled icon={<AppstoreOutlined />}>
+        Navigation Two
+      </Menu.Item>
+      <Menu.SubMenu
+        key="SubMenu"
+        icon={<SettingOutlined />}
+        title="Navigation Three - Submenu"
+      >
+        <Menu.ItemGroup title="Item 1">
+          <Menu.Item key="setting:1">Option 1</Menu.Item>
+          <Menu.Item key="setting:2">Option 2</Menu.Item>
+        </Menu.ItemGroup>
+        <Menu.ItemGroup title="Item 2">
+          <Menu.Item key="setting:3">Option 3</Menu.Item>
+          <Menu.Item key="setting:4">Option 4</Menu.Item>
+        </Menu.ItemGroup>
+      </Menu.SubMenu>
+      <Menu.Item key="alipay">
+        <a href="https://ui.lif.ink" target="_blank" rel="noopener noreferrer">
+          Navigation Four - FAST-UI
+        </a>
+      </Menu.Item>
+    </Menu>
+  )
 }
 ```
 
@@ -74,10 +70,10 @@ export default () => {
 
 ```jsx | pure
 <Menu>
-    <Menu.Item>菜单项</Menu.Item>
-    <SubMenu title="子菜单">
-        <Menu.Item>子菜单项</Menu.Item>
-    </SubMenu>
+  <Menu.Item>菜单项</Menu.Item>
+  <SubMenu title="子菜单">
+    <Menu.Item>子菜单项</Menu.Item>
+  </SubMenu>
 </Menu>
 ```
 

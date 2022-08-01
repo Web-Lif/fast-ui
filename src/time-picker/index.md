@@ -1,10 +1,10 @@
 ---
 nav:
-    title: 组件
-    path: /components
+  title: 组件
+  path: /components
 group:
-    path: /components/data
-    title: 数据
+  path: /components/data
+  title: 数据
 ---
 
 ## TimePicker 时间选择框
@@ -24,11 +24,11 @@ import { TimePicker } from '@weblif/fast-ui'
 import React from 'react'
 
 export default () => {
-    return (
-        <>
-            <TimePicker />
-        </>
-    )
+  return (
+    <>
+      <TimePicker />
+    </>
+  )
 }
 ```
 

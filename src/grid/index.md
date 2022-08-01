@@ -1,10 +1,10 @@
 ---
 nav:
-    title: 组件
-    path: /components
+  title: 组件
+  path: /components
 group:
-    path: /components/layout
-    title: 布局
+  path: /components/layout
+  title: 布局
 ---
 
 ## Grid 布局
@@ -22,25 +22,25 @@ import React, { useState, useRef } from 'react'
 import { Row, Col } from '@weblif/fast-ui'
 
 export default () => {
-    const style = { background: '#7dbcea', height: 100 }
-    return (
-        <>
-            <Row gutter={16}>
-                <Col span={6}>
-                    <div style={style} />
-                </Col>
-                <Col span={6}>
-                    <div style={style} />
-                </Col>
-                <Col span={6}>
-                    <div style={style} />
-                </Col>
-                <Col span={6}>
-                    <div style={style} />
-                </Col>
-            </Row>
-        </>
-    )
+  const style = { background: '#7dbcea', height: 100 }
+  return (
+    <>
+      <Row gutter={16}>
+        <Col span={6}>
+          <div style={style} />
+        </Col>
+        <Col span={6}>
+          <div style={style} />
+        </Col>
+        <Col span={6}>
+          <div style={style} />
+        </Col>
+        <Col span={6}>
+          <div style={style} />
+        </Col>
+      </Row>
+    </>
+  )
 }
 ```
 

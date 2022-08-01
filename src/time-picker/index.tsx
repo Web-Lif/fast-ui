@@ -1,3 +1,3 @@
-import DatePicker from '../date-picker';
+import DatePicker from '../date-picker'
 
-export const TimePicker = DatePicker.TimePicker;
+export const TimePicker = DatePicker.TimePicker

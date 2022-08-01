@@ -1,10 +1,10 @@
 ---
 nav:
-    title: 组件
-    path: /components
+  title: 组件
+  path: /components
 group:
-    path: /components/other
-    title: 其他
+  path: /components/other
+  title: 其他
 ---
 
 ## ConfigProvider 全局化配置
@@ -21,9 +21,9 @@ import { ConfigProvider } from 'antd'
 // ...
 
 export default () => (
-    <ConfigProvider direction="rtl">
-        <App />
-    </ConfigProvider>
+  <ConfigProvider direction="rtl">
+    <App />
+  </ConfigProvider>
 )
 ```
 
@@ -33,7 +33,7 @@ export default () => (
 
 ```jsx | pure
 <ConfigProvider csp={{ nonce: 'YourNonceCode' }}>
-    <Button>My Button</Button>
+  <Button>My Button</Button>
 </ConfigProvider>
 ```
 
@@ -64,8 +64,8 @@ export default () => (
 
 ```jsx | pure
 ConfigProvider.config({
-    prefixCls: 'ant', // 4.13.0+
-    iconPrefixCls: 'anticon', // 4.17.0+
+  prefixCls: 'ant', // 4.13.0+
+  iconPrefixCls: 'anticon', // 4.17.0+
 })
 ```
 
