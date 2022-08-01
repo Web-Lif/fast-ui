@@ -2,7 +2,7 @@
 
 `2022-8-1`
 
-- 🐞 修复 `Table` 表格的 `rowSelection.clickModel` 模式在 `single` 模式下未生效的问题
+- 🐞 修复 `Table` 表格的 `rowSelection.clickModel` 模式在 `single` 模式下未生效的问题 [#242](https://github.com/Web-Lif/fast-ui/pull/242) [@robothot](https://github.com/robothot)
 
 ## 0.28.0
 
