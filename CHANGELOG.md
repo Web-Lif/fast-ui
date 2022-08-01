@@ -1,3 +1,9 @@
+## 0.28.2
+
+`2022-8-1`
+
+- ⚡️ 采用 `react/jsx-runtime` 进行转义, 略微改善 bundle 的大小 [#243](https://github.com/Web-Lif/fast-ui/pull/243) [@robothot](https://github.com/robothot)
+
 ## 0.28.1
 
 `2022-8-1`
