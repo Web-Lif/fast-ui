@@ -2,27 +2,27 @@
  * title: 本地排序
  * desc: 可通过 `useTableLocalSort` 来进行本地排序, 可点击表格头部进行排序, 可通过 `Column` 的 `sort` 属性来进行控制， 默认不排序
  */
-import { Column, Table, useTableLocalSort } from '@weblif/fast-ui';
-import React, { useState } from 'react';
+import { Column, Table, useTableLocalSort } from '@weblif/fast-ui'
+import React, { useState } from 'react'
 
 interface UserData {
-    username: string;
-    email: string;
-    id: number;
-    age: string;
-    tags: number;
-    col0: string;
-    col1: string;
-    col2: string;
-    col3: string;
-    col4: string;
-    col5: string;
-    col6: string;
+    username: string
+    email: string
+    id: number
+    age: string
+    tags: number
+    col0: string
+    col1: string
+    col2: string
+    col3: string
+    col4: string
+    col5: string
+    col6: string
 }
 
 /** Mock 数据 */
 const mockData = () => {
-    const data = [];
+    const data = []
     for (let i = 0; i < 10; i += 1) {
         data.push({
             username: 'zhangj',
@@ -37,15 +37,16 @@ const mockData = () => {
             col4: `col4 - ${i}`,
             col5: `col5 - ${i}`,
             col6: `col6 - ${i}`,
-        });
+        })
     }
-    return data;
-};
+    return data
+}
 
-const myMockData = mockData();
+const myMockData = mockData()
 
 export default () => {
-    const { rows, setRows, sortDirection, setSortDirection } = useTableLocalSort(myMockData);
+    const { rows, setRows, sortDirection, setSortDirection } =
+        useTableLocalSort(myMockData)
     const [cols, setCols] = useState<Column<UserData>[]>([
         {
             name: 'username',
@@ -94,7 +95,7 @@ export default () => {
             name: 'col6',
             title: '标签',
         },
-    ]);
+    ])
     return (
         <>
             <Table<UserData>
@@ -112,5 +113,5 @@ export default () => {
                 onChange={setRows}
             />
         </>
-    );
-};
+    )
+}

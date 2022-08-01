@@ -1,10 +1,10 @@
 ---
 nav:
-    title: 组件
-    path: /components
+  title: 组件
+  path: /components
 group:
-    path: /components/layout
-    title: 布局
+  path: /components/layout
+  title: 布局
 ---
 
 ## Divider 分割线
@@ -24,15 +24,15 @@ import React, { useState, useRef } from 'react'
 import { Divider } from '@weblif/fast-ui'
 
 export default () => {
-    return (
-        <>
-            Text
-            <Divider type="vertical" />
-            <a href="#">Link</a>
-            <Divider type="vertical" />
-            <a href="#">Link</a>
-        </>
-    )
+  return (
+    <>
+      Text
+      <Divider type="vertical" />
+      <a href="#">Link</a>
+      <Divider type="vertical" />
+      <a href="#">Link</a>
+    </>
+  )
 }
 ```
 

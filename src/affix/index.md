@@ -1,10 +1,10 @@
 ---
 nav:
-    title: 组件
-    path: /components
+  title: 组件
+  path: /components
 group:
-    path: /components/navigation
-    title: 导航
+  path: /components/navigation
+  title: 导航
 ---
 
 ## Affix 固钉
@@ -13,38 +13,35 @@ group:
 
 <br />
 
-例子: 
-
+例子:
 
 ```tsx
 /**
  * title: 基础使用
  * desc: 最简单的用法。
  */
-import React, { useState, useRef } from 'react';
-import { Affix, Button } from '@weblif/fast-ui';
+import React, { useState, useRef } from 'react'
+import { Affix, Button } from '@weblif/fast-ui'
 
 export default () => {
-    return (
-        <>
-            <Affix offsetTop={64}>
-                <Button type="primary" >
-                    固定到滚动条的头部
-                </Button>
-            </Affix>
-        </>
-    );
-};
+  return (
+    <>
+      <Affix offsetTop={64}>
+        <Button type="primary">固定到滚动条的头部</Button>
+      </Affix>
+    </>
+  )
+}
 ```
 
 ## API
 
-| 成员 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| offsetBottom | 距离窗口底部达到指定偏移量后触发 | number | - |
-| offsetTop | 距离窗口顶部达到指定偏移量后触发 | number | 0 |
-| target | 设置 `Affix` 需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数 | () => HTMLElement | () => window |
-| onChange | 固定状态改变时触发的回调函数 | (affixed?: boolean) => void | - |
+| 成员         | 说明                                                                   | 类型                        | 默认值       |
+| ------------ | ---------------------------------------------------------------------- | --------------------------- | ------------ |
+| offsetBottom | 距离窗口底部达到指定偏移量后触发                                       | number                      | -            |
+| offsetTop    | 距离窗口顶部达到指定偏移量后触发                                       | number                      | 0            |
+| target       | 设置 `Affix` 需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数 | () => HTMLElement           | () => window |
+| onChange     | 固定状态改变时触发的回调函数                                           | (affixed?: boolean) => void | -            |
 
 **注意：**`Affix` 内的元素不要使用绝对定位，如需要绝对定位的效果，可以直接设置 `Affix` 为绝对定位：
 

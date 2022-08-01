@@ -4,7 +4,7 @@ import * as ReactSpaces from 'react-spaces'
 import { IResizableProps } from 'react-spaces'
 import { SizeUnit } from 'react-spaces/dist/core-types'
 import AutoSize from '../autosize'
-import { Card } from '../card'
+import Card from '../card'
 
 interface SplitPaneProps extends Omit<IResizableProps, 'size'> {
     leftReactNode?: ReactNode

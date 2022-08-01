@@ -1,5 +1,5 @@
 import React from 'react'
-import { Timeline, Typography } from '@weblif/fast-ui'
+import { Timeline } from '@weblif/fast-ui'
 import ReactMarkdown from 'react-markdown'
 
 const analyzeChangeLogMD = (text: string) => {
@@ -13,9 +13,7 @@ const analyzeChangeLogMD = (text: string) => {
                 result.push(content)
             }
             content = `${rows[i]}`
-        }
-
-        if (content !== null) {
+        } else if (content !== null) {
             content += `\n${rows[i]}`
         }
     }

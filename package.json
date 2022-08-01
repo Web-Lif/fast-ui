@@ -1,12 +1,12 @@
 {
     "name": "@weblif/fast-ui",
-    "version": "0.27.0",
+    "version": "0.28.0",
     "scripts": {
         "start": "dumi dev",
         "build": "tsc",
         "build:docs": "dumi build",
         "deploy": "npm run docs:build && npm run docs:deploy",
-        "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,json}\"",
+        "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,json,md}\"",
         "build:rm": "rimraf es",
         "test": "jest",
         "test:coverage": "jest --coverage",

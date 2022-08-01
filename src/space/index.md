@@ -1,10 +1,10 @@
 ---
 nav:
-    title: 组件
-    path: /components
+  title: 组件
+  path: /components
 group:
-    path: /components/layout
-    title: 布局
+  path: /components/layout
+  title: 布局
 ---
 
 ## Space 间距
@@ -24,14 +24,14 @@ import React, { useState, useRef } from 'react'
 import { Space, Button } from '@weblif/fast-ui'
 
 export default () => {
-    return (
-        <Space>
-            间距
-            <Button type="primary">按钮一</Button>
-            <Button>按钮二</Button>
-            <Button>按钮三</Button>
-        </Space>
-    )
+  return (
+    <Space>
+      间距
+      <Button type="primary">按钮一</Button>
+      <Button>按钮二</Button>
+      <Button>按钮三</Button>
+    </Space>
+  )
 }
 ```
 
@@ -45,18 +45,18 @@ import { Space } from '@weblif/fast-ui'
 import { Card } from 'antd'
 
 export default () => {
-    return (
-        <Space direction="vertical">
-            <Card title="Card" style={{ width: 300 }}>
-                <p>Card content</p>
-                <p>Card content</p>
-            </Card>
-            <Card title="Card" style={{ width: 300 }}>
-                <p>Card content</p>
-                <p>Card content</p>
-            </Card>
-        </Space>
-    )
+  return (
+    <Space direction="vertical">
+      <Card title="Card" style={{ width: 300 }}>
+        <p>Card content</p>
+        <p>Card content</p>
+      </Card>
+      <Card title="Card" style={{ width: 300 }}>
+        <p>Card content</p>
+        <p>Card content</p>
+      </Card>
+    </Space>
+  )
 }
 ```
 
