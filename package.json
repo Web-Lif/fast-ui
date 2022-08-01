@@ -6,7 +6,7 @@
         "build": "tsc",
         "build:docs": "dumi build",
         "deploy": "npm run docs:build && npm run docs:deploy",
-        "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,json}\"",
+        "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,json,md}\"",
         "build:rm": "rimraf es",
         "test": "jest",
         "test:coverage": "jest --coverage",

@@ -1,10 +1,10 @@
 ---
 nav:
-    title: 组件
-    path: /components
+  title: 组件
+  path: /components
 group:
-    path: /components/data
-    title: 数据
+  path: /components/data
+  title: 数据
 ---
 
 ## Rate 评分
@@ -13,8 +13,8 @@ group:
 
 ### 何时使用
 
--   对评价进行展示。
--   对事物进行快速的评级操作。
+- 对评价进行展示。
+- 对事物进行快速的评级操作。
 
 <div class="fu-code-block-row">
 
@@ -25,12 +25,12 @@ group:
  * title: 基础使用
  * desc: 最简单的用法。
  */
-import React from 'react';
-import { Rate } from '@weblif/fast-ui';
+import React from 'react'
+import { Rate } from '@weblif/fast-ui'
 
 export default () => {
-    return <Rate />;
-};
+  return <Rate />
+}
 ```
 
 ```tsx
@@ -38,12 +38,12 @@ export default () => {
  * title: 只读
  * desc: 只读，无法进行鼠标交互。
  */
-import React from 'react';
-import { Rate } from '@weblif/fast-ui';
+import React from 'react'
+import { Rate } from '@weblif/fast-ui'
 
 export default () => {
-    return <Rate disabled defaultValue={2} />;
-};
+  return <Rate disabled defaultValue={2} />
+}
 ```
 
 </div>
@@ -55,12 +55,12 @@ export default () => {
  * title: 半星
  * desc: 支持选中半星。
  */
-import React from 'react';
-import { Rate } from '@weblif/fast-ui';
+import React from 'react'
+import { Rate } from '@weblif/fast-ui'
 
 export default () => {
-    return <Rate allowHalf defaultValue={2.5} />;
-};
+  return <Rate allowHalf defaultValue={2.5} />
+}
 ```
 
 </div>
@@ -69,24 +69,24 @@ export default () => {
 
 <br />
 
-| 属性 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| allowClear | 是否允许再次点击后清除 | `boolean` | `true` |
-| allowHalf | 是否允许半选 | `boolean` | `false` |
-| autoFocus | 自动获取焦点 | `boolean` | `false` |
-| character | 自定义字符 | `ReactNode` \| `(RateProps) => ReactNode` | `<StarFilled />` |
-| className | 自定义样式类名 | `string` | - |
-| count | star 总数 | `number` | `5` |
-| defaultValue | 默认值 | `number` | `0` |
-| disabled | 只读，无法进行交互 | `boolean` | `false` |
-| style | 自定义样式对象 | `CSSProperties` | - |
-| tooltips | 自定义每项的提示信息 | `string[]` | - |
-| value | 当前数，受控值 | `number` | - |
-| onBlur | 失去焦点时的回调 | `function()` | - |
-| onChange | 选择时的回调 | `function(value: number)` | - |
-| onFocus | 获取焦点时的回调 | `function()` | - |
-| onHoverChange | 鼠标经过时数值变化的回调 | `function(value: number)` | - |
-| onKeyDown | 按键回调 | `function(event)` | - |
+| 属性          | 说明                     | 类型                                      | 默认值           |
+| ------------- | ------------------------ | ----------------------------------------- | ---------------- |
+| allowClear    | 是否允许再次点击后清除   | `boolean`                                 | `true`           |
+| allowHalf     | 是否允许半选             | `boolean`                                 | `false`          |
+| autoFocus     | 自动获取焦点             | `boolean`                                 | `false`          |
+| character     | 自定义字符               | `ReactNode` \| `(RateProps) => ReactNode` | `<StarFilled />` |
+| className     | 自定义样式类名           | `string`                                  | -                |
+| count         | star 总数                | `number`                                  | `5`              |
+| defaultValue  | 默认值                   | `number`                                  | `0`              |
+| disabled      | 只读，无法进行交互       | `boolean`                                 | `false`          |
+| style         | 自定义样式对象           | `CSSProperties`                           | -                |
+| tooltips      | 自定义每项的提示信息     | `string[]`                                | -                |
+| value         | 当前数，受控值           | `number`                                  | -                |
+| onBlur        | 失去焦点时的回调         | `function()`                              | -                |
+| onChange      | 选择时的回调             | `function(value: number)`                 | -                |
+| onFocus       | 获取焦点时的回调         | `function()`                              | -                |
+| onHoverChange | 鼠标经过时数值变化的回调 | `function(value: number)`                 | -                |
+| onKeyDown     | 按键回调                 | `function(event)`                         | -                |
 
 ## 方法
 

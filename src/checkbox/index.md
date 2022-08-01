@@ -1,10 +1,10 @@
 ---
 nav:
-    title: 组件
-    path: /components
+  title: 组件
+  path: /components
 group:
-    path: /components/data
-    title: 数据
+  path: /components/data
+  title: 数据
 ---
 
 ## Checkbox 多选框
@@ -24,22 +24,22 @@ group:
  * title: 基本
  * desc: 最简单的用法
  */
-import { Checkbox } from '@weblif/fast-ui';
-import React from 'react';
+import { Checkbox } from '@weblif/fast-ui'
+import React from 'react'
 
 export default () => {
-    return (
-        <>
-            <Checkbox
-                onChange={(value) => {
-                    console.log(value);
-                }}
-            >
-                Checkbox
-            </Checkbox>
-        </>
-    );
-};
+  return (
+    <>
+      <Checkbox
+        onChange={(value) => {
+          console.log(value)
+        }}
+      >
+        Checkbox
+      </Checkbox>
+    </>
+  )
+}
 ```
 
 </div>
@@ -51,16 +51,16 @@ export default () => {
  * title: 不可用
  * desc: Checkbox 不可用
  */
-import { Checkbox } from '@weblif/fast-ui';
-import React from 'react';
+import { Checkbox } from '@weblif/fast-ui'
+import React from 'react'
 
 export default () => {
-    return (
-        <>
-            <Checkbox disabled>Checkbox</Checkbox>
-        </>
-    );
-};
+  return (
+    <>
+      <Checkbox disabled>Checkbox</Checkbox>
+    </>
+  )
+}
 ```
 
 </div>
@@ -84,22 +84,22 @@ export default () => {
 
 #### Checkbox Group
 
-| 属性 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| defaultValue | 默认选中的选项 | `string[]` | `[]` |
-| disabled | 整组失效 | `boolean` | `false` |
-| name | `CheckboxGroup` 下所有 input`[type="checkbox"]` 的 name 属性 | `string` | - |
-| options | 指定可选项 | `string[]` \| `Option[]` | `[]` |
-| value | 指定选中的选项 | `string[]` | `[]` |
-| onChange | 变化时回调函数 | `function(checkedValue)` | - |
+| 属性         | 说明                                                         | 类型                     | 默认值  |
+| ------------ | ------------------------------------------------------------ | ------------------------ | ------- |
+| defaultValue | 默认选中的选项                                               | `string[]`               | `[]`    |
+| disabled     | 整组失效                                                     | `boolean`                | `false` |
+| name         | `CheckboxGroup` 下所有 input`[type="checkbox"]` 的 name 属性 | `string`                 | -       |
+| options      | 指定可选项                                                   | `string[]` \| `Option[]` | `[]`    |
+| value        | 指定选中的选项                                               | `string[]`               | `[]`    |
+| onChange     | 变化时回调函数                                               | `function(checkedValue)` | -       |
 
 ##### Option
 
 ```ts
 interface Option {
-    label: string;
-    value: string;
-    disabled?: boolean;
+  label: string
+  value: string
+  disabled?: boolean
 }
 ```
 

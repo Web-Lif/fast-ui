@@ -1,11 +1,11 @@
 ---
 nav:
-    title: 组件
-    path: /components
+  title: 组件
+  path: /components
 group:
-    path: /components/universal
-    title: 通用
-    order: 10
+  path: /components/universal
+  title: 通用
+  order: 10
 ---
 
 ## Button 按钮

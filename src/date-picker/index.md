@@ -1,10 +1,10 @@
 ---
 nav:
-    title: 组件
-    path: /components
+  title: 组件
+  path: /components
 group:
-    path: /components/data
-    title: 数据
+  path: /components/data
+  title: 数据
 ---
 
 ## DatePicker 日期选择框
@@ -28,15 +28,15 @@ import { DatePicker } from '@weblif/fast-ui'
 import React from 'react'
 
 export default () => {
-    return (
-        <>
-            <DatePicker
-                onChange={(e) => {
-                    console.log(e)
-                }}
-            />
-        </>
-    )
+  return (
+    <>
+      <DatePicker
+        onChange={(e) => {
+          console.log(e)
+        }}
+      />
+    </>
+  )
 }
 ```
 
@@ -49,13 +49,13 @@ import { DatePicker } from '@weblif/fast-ui'
 import React from 'react'
 
 export default () => {
-    return (
-        <DatePicker.RangePicker
-            onChange={(e) => {
-                console.log(e)
-            }}
-        />
-    )
+  return (
+    <DatePicker.RangePicker
+      onChange={(e) => {
+        console.log(e)
+      }}
+    />
+  )
 }
 ```
 
@@ -69,12 +69,12 @@ export default () => {
 
 日期类组件包括以下五种形式。
 
--   DatePicker
--   DatePicker[picker="month"]
--   DatePicker[picker="week"]
--   DatePicker[picker="year"]
--   DatePicker[picker="quarter"]
--   RangePicker
+- DatePicker
+- DatePicker[picker="month"]
+- DatePicker[picker="week"]
+- DatePicker[picker="year"]
+- DatePicker[picker="quarter"]
+- RangePicker
 
 国际化配置
 
@@ -84,16 +84,14 @@ export default () => {
 
 ```js
 import locale from 'antd/es/date-picker/locale/zh_CN'
-
 ;<DatePicker locale={locale} />
 ```
 
 ```js
 // 如果你需要设置其他语言，推荐在入口文件全局设置 locale
 import locale from 'antd/lib/locale/zh_CN'
-
 ;<ConfigProvider locale={locale}>
-    <DatePicker />
+  <DatePicker />
 </ConfigProvider>
 ```
 
@@ -140,8 +138,8 @@ import locale from 'antd/lib/locale/zh_CN'
 
 ### DatePicker
 
-| 属性                  | 说明                                                                           | 类型                                                | 默认值                        |
-| --------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------- | ----------------------------- | ------------ |
+| 属性                  | 说明                                                                           | 类型                                                | 默认值                        
+| --------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------- | ----------------------------- 
 | defaultPickerValue    | 默认面板日期                                                                   | `Date`                                              | -                             |
 | defaultValue          | 默认日期，如果开始时间或结束时间为 null 或者 undefined，日期范围将是一个开区间 | `Date`                                              | -                             |
 | disabledTime          | 不可选择的时间                                                                 | `string`                                            | -                             |
@@ -223,4 +221,4 @@ import locale from 'antd/lib/locale/zh_CN'
 
 <br />
 
--   字符串格式化 [https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)
+- 字符串格式化 [https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)

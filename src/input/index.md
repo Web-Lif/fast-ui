@@ -1,10 +1,10 @@
 ---
 nav:
-    title: 组件
-    path: /components
+  title: 组件
+  path: /components
 group:
-    path: /components/data
-    title: 数据
+  path: /components/data
+  title: 数据
 ---
 
 ## Input 输入框
@@ -28,15 +28,15 @@ import React, { useState, useRef } from 'react'
 import { Input } from '@weblif/fast-ui'
 
 export default () => {
-    return (
-        <>
-            <Input
-                onChange={(value) => {
-                    console.log(value)
-                }}
-            />
-        </>
-    )
+  return (
+    <>
+      <Input
+        onChange={(value) => {
+          console.log(value)
+        }}
+      />
+    </>
+  )
 }
 ```
 
@@ -49,15 +49,15 @@ import React, { useState, useRef } from 'react'
 import { Input } from '@weblif/fast-ui'
 
 export default () => {
-    return (
-        <>
-            <Input.Password
-                onChange={(value) => {
-                    console.log(value)
-                }}
-            />
-        </>
-    )
+  return (
+    <>
+      <Input.Password
+        onChange={(value) => {
+          console.log(value)
+        }}
+      />
+    </>
+  )
 }
 ```
 
@@ -70,16 +70,16 @@ import React, { useState, useRef } from 'react'
 import { Input } from '@weblif/fast-ui'
 
 export default () => {
-    return (
-        <>
-            <Input
-                bordered={false}
-                onChange={(value) => {
-                    console.log(value)
-                }}
-            />
-        </>
-    )
+  return (
+    <>
+      <Input
+        bordered={false}
+        onChange={(value) => {
+          console.log(value)
+        }}
+      />
+    </>
+  )
 }
 ```
 
@@ -96,17 +96,17 @@ import React, { useState, useRef } from 'react'
 import { Input } from '@weblif/fast-ui'
 
 export default () => {
-    return (
-        <>
-            <Input.TextArea
-                maxLength={100}
-                showCount
-                onChange={(value) => {
-                    console.log(value)
-                }}
-            />
-        </>
-    )
+  return (
+    <>
+      <Input.TextArea
+        maxLength={100}
+        showCount
+        onChange={(value) => {
+          console.log(value)
+        }}
+      />
+    </>
+  )
 }
 ```
 
@@ -119,15 +119,15 @@ import React, { useState, useRef } from 'react'
 import { Input } from '@weblif/fast-ui'
 
 export default () => {
-    return (
-        <>
-            <Input.Search
-                onChange={(value) => {
-                    console.log(value)
-                }}
-            />
-        </>
-    )
+  return (
+    <>
+      <Input.Search
+        onChange={(value) => {
+          console.log(value)
+        }}
+      />
+    </>
+  )
 }
 ```
 

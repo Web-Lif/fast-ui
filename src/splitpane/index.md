@@ -1,10 +1,10 @@
 ---
 nav:
-    title: 组件
-    path: /components
+  title: 组件
+  path: /components
 group:
-    path: /components/layout
-    title: 布局
+  path: /components/layout
+  title: 布局
 ---
 
 ## SplitPane 分割面板

@@ -1,1 +1,1 @@
-import 'antd/dist/antd.compact.min.css';
+import 'antd/dist/antd.compact.min.css'
