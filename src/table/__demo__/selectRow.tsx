@@ -120,6 +120,7 @@ export default () => {
                 onSelectedRowsChange={setSelectRows}
                 rowSelection={{
                     model,
+                    clickModel: 'row',
                     allowDisabledSelect: (row) => {
                         if (row.id === 0) {
                             return true
