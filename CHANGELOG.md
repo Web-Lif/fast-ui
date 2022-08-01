@@ -6,3 +6,5 @@
   - 🆕 添加 `Collapse` 支持百分比高度布局 [#228](https://github.com/Web-Lif/fast-ui/pull/228) [@robothot](https://github.com/robothot)
 - Card
   - 🆕 添加 `Card` 支持百分比高度布局 [#235](https://github.com/Web-Lif/fast-ui/pull/235) [@robothot](https://github.com/robothot)
+- Tabs
+  - 🆕 添加 `Tabs` 支持百分比高度布局 [#240](https://github.com/Web-Lif/fast-ui/pull/240) [@robothot](https://github.com/robothot)
