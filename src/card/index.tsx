@@ -1,27 +1,30 @@
 import { css, cx } from '@emotion/css'
 import AntCard, { CardProps } from 'antd/es/card'
-import React from 'react'
+import React, { forwardRef } from 'react'
 
-const InternalAntCard = ({ className, ...props }: CardProps) => {
-    return (
-        <AntCard
-            className={cx([
-                {
-                    [className || '']: typeof className === 'string',
-                    [css`
-                        height: 100%;
-                        display: flex;
-                        flex-direction: column;
-                        > .ant-card-body {
-                            flex: 1;
-                        }
-                    `]: true,
-                },
-            ])}
-            {...props}
-        />
-    )
-}
+const InternalAntCard = forwardRef<HTMLDivElement, CardProps>(
+    ({ className, ...props }, refs) => {
+        return (
+            <AntCard
+                ref={refs}
+                className={cx([
+                    {
+                        [className || '']: typeof className === 'string',
+                        [css`
+                            height: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            > .ant-card-body {
+                                flex: 1;
+                            }
+                        `]: true,
+                    },
+                ])}
+                {...props}
+            />
+        )
+    }
+)
 
 type InternalCardType = typeof InternalAntCard
 

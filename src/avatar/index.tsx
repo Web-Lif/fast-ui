@@ -1,10 +1,10 @@
-import React, { FC } from 'react'
+import React, { FC, forwardRef } from 'react'
 import AntAvatar, { AvatarProps as AntAvatarProps } from 'antd/es/avatar'
 
 interface AvatarProps extends AntAvatarProps {}
 
-const Avatar: FC<AvatarProps> = ({ ...restProps }) => {
-    return <AntAvatar {...restProps} />
-}
+const Avatar = forwardRef<HTMLElement, AvatarProps>((props, refs) => {
+    return <AntAvatar ref={refs} {...props} />
+})
 
 export default Avatar

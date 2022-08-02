@@ -1,11 +1,11 @@
 import AntRadio, { RadioProps as AntRadioProps } from 'antd/es/radio'
-import React, { FC } from 'react'
+import React, { FC, forwardRef } from 'react'
 
 interface RadioProps extends AntRadioProps {}
 
-const InternalRadio: FC<RadioProps> = ({ ...restProps }) => {
-    return <AntRadio {...restProps} />
-}
+const InternalRadio = forwardRef<HTMLElement, RadioProps>((props, refs) => {
+    return <AntRadio ref={refs} {...props} />
+})
 
 type InternalRadioType = typeof InternalRadio
 

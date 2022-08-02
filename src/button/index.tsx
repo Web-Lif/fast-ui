@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, forwardRef } from 'react'
 import AButton, { ButtonProps as AButtonProps } from 'antd/es/button'
 
 export interface ButtonProps extends Omit<AButtonProps, 'onClick'> {
@@ -8,28 +8,31 @@ export interface ButtonProps extends Omit<AButtonProps, 'onClick'> {
     ) => Promise<void> | void
 }
 
-const Button = (props: ButtonProps) => {
-    const { onClick, disabled: dis, ...restProps } = props
+const Button = forwardRef<HTMLElement, ButtonProps>(
+    (props: ButtonProps, refs) => {
+        const { onClick, disabled: dis, ...restProps } = props
 
-    const [disabled, setDisabled] = useState(dis)
+        const [disabled, setDisabled] = useState(dis)
 
-    return (
-        <AButton
-            {...restProps}
-            disabled={dis === false || dis === true ? dis : disabled}
-            onClick={(e) => {
-                setDisabled(true)
-                const res = onClick?.(e)
-                if (res instanceof Promise) {
-                    res?.finally(() => {
+        return (
+            <AButton
+                ref={refs}
+                {...restProps}
+                disabled={dis === false || dis === true ? dis : disabled}
+                onClick={(e) => {
+                    setDisabled(true)
+                    const res = onClick?.(e)
+                    if (res instanceof Promise) {
+                        res?.finally(() => {
+                            setDisabled(false)
+                        })
+                    } else {
                         setDisabled(false)
-                    })
-                } else {
-                    setDisabled(false)
-                }
-            }}
-        />
-    )
-}
+                    }
+                }}
+            />
+        )
+    }
+)
 
 export default Button
