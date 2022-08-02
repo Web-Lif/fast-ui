@@ -1,29 +1,29 @@
-import React, { ChangeEvent, FC } from 'react'
+import React, { ChangeEvent, forwardRef } from 'react'
 import AntInput, {
     InputProps as AntInputProps,
+    InputRef,
     TextAreaProps as AntTextAreaProps,
 } from 'antd/es/input'
+import { TextAreaRef } from 'antd/es/input/TextArea'
 
 interface InputProps extends Omit<AntInputProps, 'onChange'> {
     onChange?: (value: string, event: ChangeEvent<HTMLInputElement>) => void
 }
 
-const InternalInput: FC<InputProps> = ({
-    onChange,
-    className,
-    ...restProps
-}) => {
-    return (
-        <AntInput
-            className={`fu-input-count ${className || ''}`}
-            {...restProps}
-            onChange={(event) => {
-                const value: string = event.currentTarget.value as string
-                onChange?.(value, event)
-            }}
-        />
-    )
-}
+const InternalInput = forwardRef<InputRef, InputProps>(
+    ({ onChange, ...restProps }, refs) => {
+        return (
+            <AntInput
+                ref={refs}
+                {...restProps}
+                onChange={(event) => {
+                    const value: string = event.currentTarget.value as string
+                    onChange?.(value, event)
+                }}
+            />
+        )
+    }
+)
 
 type InternalInputType = typeof InternalInput
 
@@ -31,17 +31,20 @@ interface TextAreaProps extends Omit<AntTextAreaProps, 'onChange'> {
     onChange?: (value: string, event: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
-const TextArea: FC<TextAreaProps> = ({ onChange, ...restProps }) => {
-    return (
-        <AntInput.TextArea
-            onChange={(event) => {
-                const value: string = event.currentTarget.value as string
-                onChange?.(value, event)
-            }}
-            {...restProps}
-        />
-    )
-}
+const TextArea = forwardRef<TextAreaRef, TextAreaProps>(
+    ({ onChange, ...restProps }, refs) => {
+        return (
+            <AntInput.TextArea
+                onChange={(event) => {
+                    const value: string = event.currentTarget.value as string
+                    onChange?.(value, event)
+                }}
+                ref={refs}
+                {...restProps}
+            />
+        )
+    }
+)
 
 interface InputInterface extends InternalInputType {
     Group: typeof AntInput.Group
