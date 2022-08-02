@@ -2,14 +2,14 @@
 
 `2022-8-2`
 
-- 🐞 修复 `Input` 中无法正确获取 `ref` 对象
-- 🐞 修复 `TextArea` 中无法正确获取 `ref` 对象
-- 🐞 修复 `Button` 中无法正确获取 `ref` 对象
-- 🐞 修复 `Card` 中无法正确获取 `ref` 对象
-- 🐞 修复 `InputNumber` 中无法正确获取 `ref` 对象
-- 🐞 修复 `Radio` 中无法正确获取 `ref` 对象
-- 🐞 修复 `Rate` 中无法正确获取 `ref` 对象
-- 🐞 修复 `Switch` 中无法正确获取 `ref` 对象
+- 🐞 修复 `Input` 中无法正确获取 `ref` 对象 [#246](https://github.com/Web-Lif/fast-ui/pull/246) [@robothot](https://github.com/robothot)
+- 🐞 修复 `TextArea` 中无法正确获取 `ref` 对象 [#246](https://github.com/Web-Lif/fast-ui/pull/246) [@robothot](https://github.com/robothot)
+- 🐞 修复 `Button` 中无法正确获取 `ref` 对象 [#246](https://github.com/Web-Lif/fast-ui/pull/246) [@robothot](https://github.com/robothot)
+- 🐞 修复 `Card` 中无法正确获取 `ref` 对象 [#246](https://github.com/Web-Lif/fast-ui/pull/246) [@robothot](https://github.com/robothot)
+- 🐞 修复 `InputNumber` 中无法正确获取 `ref` 对象 [#246](https://github.com/Web-Lif/fast-ui/pull/246) [@robothot](https://github.com/robothot)
+- 🐞 修复 `Radio` 中无法正确获取 `ref` 对象 [#246](https://github.com/Web-Lif/fast-ui/pull/246) [@robothot](https://github.com/robothot)
+- 🐞 修复 `Rate` 中无法正确获取 `ref` 对象 [#246](https://github.com/Web-Lif/fast-ui/pull/246) [@robothot](https://github.com/robothot)
+- 🐞 修复 `Switch` 中无法正确获取 `ref` 对象 [#246](https://github.com/Web-Lif/fast-ui/pull/246) [@robothot](https://github.com/robothot)
 
 ## 0.28.2
 
