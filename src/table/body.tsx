@@ -371,6 +371,7 @@ function useBody<T>({
                 width: widthResult,
                 key: `${col.name}-summary`,
                 value: col?.summary?.(rows) || '',
+                selectd: false,
                 sticky: col.fixed,
             })
         })
