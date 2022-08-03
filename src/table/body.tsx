@@ -3,7 +3,14 @@ import { Row } from '@weblif/rc-table'
 import { Cell } from '@weblif/rc-table/es/types'
 import { Checkbox, Radio } from 'antd'
 import produce from 'immer'
-import React, { cloneElement, Key, useEffect, useMemo, useState } from 'react'
+import React, {
+    cloneElement,
+    isValidElement,
+    Key,
+    useEffect,
+    useMemo,
+    useState,
+} from 'react'
 import { Column, RowClassNameParam, RowSelectType } from './type'
 import { calcAutoColumnWidth, processColumns } from './utils/column'
 
@@ -199,15 +206,18 @@ function useBody<T>({
                                 }
                             },
                         })
-                        const { style, ...restProps } = editorElement.props
-                        return cloneElement(editorElement, {
-                            ...restProps,
-                            style: {
-                                width: '100%',
-                                height: '100%',
-                                ...(style || {}),
-                            },
-                        })
+                        if (isValidElement(editorElement)) {
+                            const { style, ...restProps } = editorElement.props
+                            return cloneElement(editorElement, {
+                                ...restProps,
+                                style: {
+                                    width: '100%',
+                                    height: '100%',
+                                    ...(style || {}),
+                                },
+                            })
+                        }
+                        return editorElement
                     }
                     if (col.render) {
                         return col.render({
@@ -332,6 +342,53 @@ function useBody<T>({
             object: row,
         }
     })
+
+    const isHaveSummary = columns.some((col) => {
+        if (col.summary) {
+            return true
+        }
+        return false
+    })
+
+    if (isHaveSummary) {
+        const cells: Cell[] = []
+
+        tempColumns.forEach((col, index) => {
+            const {
+                colsWidth: tempColWidth,
+                autoCount,
+                colsCountFixedWidth,
+            } = calcAutoColumnWidth<T>(columns, width)
+
+            let colWidth = tempColWidth[index]
+            let widthResult = 0
+            if (colWidth === 'auto') {
+                widthResult = (width - colsCountFixedWidth) / autoCount
+            } else if (typeof colWidth === 'number') {
+                widthResult = colWidth
+            }
+            cells.push({
+                width: widthResult,
+                key: `${col.name}-summary`,
+                value: col?.summary?.(rows) || '',
+                sticky: col.fixed,
+            })
+        })
+        bodys.push({
+            height: 35,
+            cells,
+            key: 'rc-table-row-summary',
+            sticky: 'bottom',
+            className: css`
+                width: 100%;
+                height: 100%;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                background-color: var(--rc-table-background-color);
+            `,
+        })
+    }
 
     return bodys
 }
