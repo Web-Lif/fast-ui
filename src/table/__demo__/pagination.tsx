@@ -52,6 +52,9 @@ export default () => {
         {
             name: 'email',
             title: '邮箱地址',
+            summary: (rows) => {
+                return <>共计: {rows.length} 条</>
+            },
         },
         {
             name: 'age',

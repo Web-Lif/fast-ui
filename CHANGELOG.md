@@ -1,3 +1,11 @@
+## 0.29.0
+
+`2022-8-3`
+
+- Table
+  - 🆕 添加汇总栏的功能 [#249](https://github.com/Web-Lif/fast-ui/pull/249) [@robothot](https://github.com/robothot)
+  - 🔥 将 `Column` 类型中的 `summary`, `editor`, `render` 返回值改成 `ReactNode` [#249](https://github.com/Web-Lif/fast-ui/pull/249) [@robothot](https://github.com/robothot)
+
 ## 0.28.3
 
 `2022-8-2`
