@@ -3,7 +3,14 @@ import { Row } from '@weblif/rc-table'
 import { Cell } from '@weblif/rc-table/es/types'
 import { Checkbox, Radio } from 'antd'
 import produce from 'immer'
-import React, { cloneElement, Key, useEffect, useMemo, useState } from 'react'
+import React, {
+    cloneElement,
+    isValidElement,
+    Key,
+    useEffect,
+    useMemo,
+    useState,
+} from 'react'
 import { Column, RowClassNameParam, RowSelectType } from './type'
 import { calcAutoColumnWidth, processColumns } from './utils/column'
 
@@ -199,15 +206,18 @@ function useBody<T>({
                                 }
                             },
                         })
-                        const { style, ...restProps } = editorElement.props
-                        return cloneElement(editorElement, {
-                            ...restProps,
-                            style: {
-                                width: '100%',
-                                height: '100%',
-                                ...(style || {}),
-                            },
-                        })
+                        if (isValidElement(editorElement)) {
+                            const { style, ...restProps } = editorElement.props
+                            return cloneElement(editorElement, {
+                                ...restProps,
+                                style: {
+                                    width: '100%',
+                                    height: '100%',
+                                    ...(style || {}),
+                                },
+                            })
+                        }
+                        return editorElement
                     }
                     if (col.render) {
                         return col.render({

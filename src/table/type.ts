@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 type AlignType = 'left' | 'right' | 'center'
 
@@ -66,13 +66,13 @@ export interface Column<T> {
     }
 
     /** 汇总栏 */
-    summary?: (rows: T[]) => ReactElement
+    summary?: (rows: T[]) => ReactNode
 
     /** 编辑器 */
-    editor?: (renderType: EditRenderType<T>) => ReactElement
+    editor?: (renderType: EditRenderType<T>) => ReactNode
 
     /** 渲染单元格触发的事件 */
-    render?: (renderType: RenderType<T>) => ReactElement
+    render?: (renderType: RenderType<T>) => ReactNode
 
     /** 是否允许显示选择的边框 */
     allowCellSelectBorder?:
