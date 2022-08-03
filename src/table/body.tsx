@@ -333,6 +333,53 @@ function useBody<T>({
         }
     })
 
+    const isHaveSummary = columns.some((col) => {
+        if (col.summary) {
+            return true
+        }
+        return false
+    })
+
+    if (isHaveSummary) {
+        const cells: Cell[] = []
+
+        tempColumns.forEach((col, index) => {
+            const {
+                colsWidth: tempColWidth,
+                autoCount,
+                colsCountFixedWidth,
+            } = calcAutoColumnWidth<T>(columns, width)
+
+            let colWidth = tempColWidth[index]
+            let widthResult = 0
+            if (colWidth === 'auto') {
+                widthResult = (width - colsCountFixedWidth) / autoCount
+            } else if (typeof colWidth === 'number') {
+                widthResult = colWidth
+            }
+            cells.push({
+                width: widthResult,
+                key: `${col.name}-summary`,
+                value: col?.summary?.(rows) || '',
+                sticky: col.fixed,
+            })
+        })
+        bodys.push({
+            height: 35,
+            cells,
+            key: 'rc-table-row-summary',
+            sticky: 'bottom',
+            className: css`
+                width: 100%;
+                height: 100%;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                background-color: var(--rc-table-background-color);
+            `,
+        })
+    }
+
     return bodys
 }
 

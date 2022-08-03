@@ -65,6 +65,9 @@ export interface Column<T> {
         body?: AlignType | ((row: T) => AlignType)
     }
 
+    /** 汇总栏 */
+    summary?: (rows: T[]) => ReactElement
+
     /** 编辑器 */
     editor?: (renderType: EditRenderType<T>) => ReactElement
 
