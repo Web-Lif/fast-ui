@@ -1,3 +1,8 @@
+## 0.29.1
+
+- Table
+  - 🆕 在表格中, 可以使用 CSS var 来进行自定义表格样式 [#249](https://github.com/Web-Lif/fast-ui/pull/249) [@robothot](https://github.com/robothot)
+
 ## 0.29.0
 
 `2022-8-3`

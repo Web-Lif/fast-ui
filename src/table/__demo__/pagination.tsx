@@ -48,49 +48,90 @@ export default () => {
             name: 'username',
             title: '人员名称',
             fixed: 'right',
+            width: 200,
+            summary: (rows) => {
+                return <>username</>
+            },
         },
         {
             name: 'email',
             title: '邮箱地址',
+            width: 200,
             summary: (rows) => {
-                return <>共计: {rows.length} 条</>
+                return <>email</>
             },
         },
         {
             name: 'age',
             title: '年龄',
+            width: 200,
+            summary: (rows) => {
+                return <>age</>
+            },
         },
         {
             name: 'tags',
             title: '标签0',
+            width: 200,
+            summary: (rows) => {
+                return <>tags</>
+            },
         },
         {
             name: 'col0',
             title: '标签1',
+            width: 200,
+            summary: (rows) => {
+                return <>col0</>
+            },
         },
         {
             name: 'col1',
             title: '标签2',
+            width: 200,
+            summary: (rows) => {
+                return <>col1</>
+            },
         },
         {
             name: 'col2',
             title: '标3',
+            width: 200,
+            summary: (rows) => {
+                return <>col2</>
+            },
         },
         {
             name: 'col3',
             title: '标签',
+            width: 200,
+            summary: (rows) => {
+                return <>col3</>
+            },
         },
         {
             name: 'col4',
             title: '标签',
+            width: 200,
+            summary: (rows) => {
+                return <>col4</>
+            },
         },
         {
             name: 'col5',
             title: '标签',
+            width: 200,
+            summary: (rows) => {
+                return <>col5</>
+            },
         },
         {
             name: 'col6',
             title: '标签',
+            width: 200,
+            summary: (rows) => {
+                return <>col6</>
+            },
         },
     ])
 

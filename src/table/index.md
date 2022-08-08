@@ -71,3 +71,14 @@ group:
 | render                | 渲染单元格           | `(renderType: RenderType<T>) => ReactElement`                         | -      |
 | allowCellSelectBorder | 是否允许单元格被选中 | `((param: AllowCellSelectBorderParam<T>) => boolean) \| boolean`      |
 | hidden                | 是否隐藏此列         | `boolean`                                                             | -      |
+
+## CSS 变量
+
+| CSS 变量                                   | 描述                     | 默认值    |
+| ------------------------------------------ | ------------------------ | --------- |
+| `--rctbl-border-color`                     | 表格边框的颜色           | `#dddddd` |
+| `--rctbl-body-row-background-color`        | 表格行的颜色             | `#ffffff` |
+| `--rctbl-body-row-background-color-hover`  | 表格行的 `hover` 颜色    | `#f5f5f5` |
+| `--rctbl-body-row-select-background-color` | 表格选中的颜色           | `#f5f5f5` |
+| `--rctbl-body-cell-select-border-color`    | 表格单元格边框选中的颜色 | `#1890ff` |
+| `--rctbl-header-row-background-color`      | 表格头部行的颜色         | `#f9f9f9` |

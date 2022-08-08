@@ -72,7 +72,10 @@ function useBody<T>({
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 overflow: hidden;
-                background-color: var(--rc-table-background-color);
+                --rc-table-background-color: var(
+                    --rctbl-body-row-background-color,
+                    #fff
+                );
             `,
             row,
         })
@@ -328,7 +331,7 @@ function useBody<T>({
             [css`
                 > div {
                     background-color: var(
-                        --rc-table-select-background-color,
+                        --rctbl-body-row-select-background-color,
                         #f5f5f5
                     );
                 }
@@ -386,7 +389,7 @@ function useBody<T>({
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 overflow: hidden;
-                background-color: var(--rc-table-background-color);
+                background-color: var(--rctbl-body-row-background-color);
             `,
         })
     }
