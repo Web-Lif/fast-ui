@@ -55,7 +55,7 @@ export default () => {
             title: '邮箱地址',
             width: 200,
             summary: (rows) => {
-                return <>email</>
+                return <>共计: {rows.length} 条</>
             },
         },
         {
