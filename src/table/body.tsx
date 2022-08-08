@@ -67,11 +67,6 @@ function useBody<T>({
 
         let className = rowClassName?.({
             className: css`
-                width: 100%;
-                height: 100%;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                overflow: hidden;
                 --rc-table-background-color: var(
                     --rctbl-body-row-background-color,
                     #fff
@@ -384,11 +379,6 @@ function useBody<T>({
             key: 'rc-table-row-summary',
             sticky: 'bottom',
             className: css`
-                width: 100%;
-                height: 100%;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                overflow: hidden;
                 background-color: var(--rctbl-body-row-background-color);
             `,
         })
