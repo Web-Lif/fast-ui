@@ -367,7 +367,10 @@ function useHeader<T>({
                 sticky: col.fixed,
                 className: css`
                     padding: 0 8px;
-                    --rc-table-background-color: #f9f9f9;
+                    --rc-table-background-color: var(
+                        --rctbl-header-row-background-color,
+                        #f9f9f9
+                    );
                 `,
             }
         }
@@ -387,7 +390,10 @@ function useHeader<T>({
             ),
             sticky: col.fixed,
             className: css`
-                --rc-table-background-color: #f9f9f9;
+                --rc-table-background-color: var(
+                    --rctbl-header-row-background-color,
+                    #f9f9f9
+                );
             `,
         }
     })

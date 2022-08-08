@@ -48,10 +48,12 @@ export default () => {
             name: 'username',
             title: '人员名称',
             fixed: 'right',
+            width: 200,
         },
         {
             name: 'email',
             title: '邮箱地址',
+            width: 200,
             summary: (rows) => {
                 return <>共计: {rows.length} 条</>
             },
@@ -59,38 +61,47 @@ export default () => {
         {
             name: 'age',
             title: '年龄',
+            width: 200,
         },
         {
             name: 'tags',
             title: '标签0',
+            width: 200,
         },
         {
             name: 'col0',
             title: '标签1',
+            width: 200,
         },
         {
             name: 'col1',
             title: '标签2',
+            width: 200,
         },
         {
             name: 'col2',
             title: '标3',
+            width: 200,
         },
         {
             name: 'col3',
             title: '标签',
+            width: 200,
         },
         {
             name: 'col4',
             title: '标签',
+            width: 200,
         },
         {
             name: 'col5',
             title: '标签',
+            width: 200,
         },
         {
             name: 'col6',
             title: '标签',
+            width: 200,
         },
     ])
 

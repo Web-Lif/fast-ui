@@ -380,19 +380,19 @@ function InternalTable<T>({
                                     const htmlElement = element as HTMLElement
                                     if (
                                         htmlElement.style.getPropertyValue(
-                                            '--rc-table-background-color'
+                                            '--rctbl-body-row-background-color'
                                         )
                                     ) {
                                         htmlElement.style.removeProperty(
-                                            '--rc-table-background-color'
+                                            '--rctbl-body-row-background-color'
                                         )
                                     }
                                 })
 
                             elements.forEach((element) => {
                                 ;(element as HTMLElement).style.setProperty(
-                                    '--rc-table-background-color',
-                                    '#f5f5f5'
+                                    '--rctbl-body-row-background-color',
+                                    'var(--rctbl-body-row-background-color-hover,#f5f5f5)'
                                 )
                             })
                         }, 0)
@@ -472,9 +472,21 @@ function Table<T>({
         }
         return null
     }
+
+    const cssStyle = css`
+        --rc-table-border-color: var(--rctbl-border-color, #ddd);
+        --rc-table-cell-selection-color: var(
+            --rctbl-body-cell-select-border-color,
+            #1890ff
+        );
+    `
+
     return (
         <>
-            <AutoSize className={className} style={style}>
+            <AutoSize
+                className={`${className || ''} ${cssStyle}`}
+                style={style}
+            >
                 {({ width, height }) => (
                     <>
                         <InternalTable
