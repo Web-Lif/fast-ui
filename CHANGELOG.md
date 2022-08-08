@@ -3,7 +3,7 @@
 `2022-8-8`
 
 - Table
-  - 🐞 修复表格滚动的时候，单元格没有正常显示的问题 [#254](https://github.com/Web-Lif/fast-ui/pull/254) [@robothot](https://github.com/robothot)
+  - 🐞 修复表格滚动的时候，单元格没有正常显示的问题 [#255](https://github.com/Web-Lif/fast-ui/pull/255) [@robothot](https://github.com/robothot)
 
 ## 0.29.1
 
