@@ -8,6 +8,31 @@ group:
 ---
 
 ## Spin 加载中
+
+例子:
+- `Spin.setDefaultIndicator(indicator: ReactNode)`
+
+```tsx
+/**
+ * title: 执行耗时任务
+ * desc: 执行耗时任务可以自动进行防止多次点击按钮, 当执行成功后才让继续点击
+ */
+import React, { useState, useRef } from 'react'
+import { Spin, Button } from '@weblif/fast-ui'
+/** Mock 请求数据, 或则一些耗时操作 */
+const requestData = () => {
+  return new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve('模拟任务执行完成.')
+    }, 3000)
+  })
+}
+export default () => {
+  return <Spin />
+}
+```
+<br />
+
 ## API
 
 | 参数 | 说明 | 类型 | 默认值 |
