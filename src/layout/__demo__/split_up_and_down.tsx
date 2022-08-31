@@ -7,15 +7,16 @@ import React from 'react'
 
 const Simple = () => (
     <Layout.Fixed height={500}>
-        <Layout.TopResizable
-            size="40%"
-            style={{
-                backgroundColor: '#7dbcea',
-            }}
-        />
         <Layout.Fill
             style={{
                 backgroundColor: '#108ee9',
+            }}
+        />
+        <Layout.BottomResizable
+            size="40%"
+            maximumSize={200}
+            style={{
+                backgroundColor: '#7dbcea',
             }}
         />
     </Layout.Fixed>

@@ -5,10 +5,7 @@ import LoadingOutlined from '@ant-design/icons/LoadingOutlined'
 export interface SpinProps extends AntSpinProps {}
 
 const Spin = (props: SpinProps) => (
-    <AntSpin
-        indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />}
-        {...props}
-    />
+    <AntSpin indicator={<LoadingOutlined spin />} {...props} />
 )
 
 export default Spin
