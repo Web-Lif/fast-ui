@@ -317,30 +317,36 @@ function InternalTable<T>({
                             rowSelection?.clickModel === 'row' &&
                             rowSelection?.model === 'multiple'
                         ) {
-                            const key: Key = (row.object as any)[rowKey]
-
-                            if (selectedRows?.includes(key)) {
-                                onSelectedRowsChange?.(
-                                    selectedRows.filter(
-                                        (rowKey) => rowKey !== key
+                            const key: Key = (row?.object as any)?.[rowKey]
+                            if (key !== null && key !== undefined) {
+                                if (selectedRows?.includes(key)) {
+                                    onSelectedRowsChange?.(
+                                        selectedRows.filter(
+                                            (rowKey) => rowKey !== key
+                                        )
                                     )
-                                )
-                            } else {
-                                onSelectedRowsChange?.([...selectedRows, key])
+                                } else {
+                                    onSelectedRowsChange?.([
+                                        ...selectedRows,
+                                        key,
+                                    ])
+                                }
                             }
                         } else if (
                             rowSelection?.clickModel === 'row' &&
                             rowSelection?.model === 'single'
                         ) {
-                            const key: Key = (row.object as any)[rowKey]
-                            if (selectedRows?.includes(key)) {
-                                onSelectedRowsChange?.(
-                                    selectedRows.filter(
-                                        (rowKey) => rowKey !== key
+                            const key: Key = (row?.object as any)?.[rowKey]
+                            if (key !== null && key !== undefined) {
+                                if (selectedRows?.includes(key)) {
+                                    onSelectedRowsChange?.(
+                                        selectedRows.filter(
+                                            (rowKey) => rowKey !== key
+                                        )
                                     )
-                                )
-                            } else {
-                                onSelectedRowsChange?.([key])
+                                } else {
+                                    onSelectedRowsChange?.([key])
+                                }
                             }
                         }
 
