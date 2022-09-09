@@ -1,3 +1,10 @@
+## 0.29.3
+
+`2022-9-9`
+
+- Table
+  - 🐞 修复表格点击头部的时候会触发选择事件 [#275](https://github.com/Web-Lif/fast-ui/pull/275) [@robothot](https://github.com/robothot)
+
 ## 0.29.2
 
 `2022-8-8`
