@@ -313,39 +313,52 @@ function InternalTable<T>({
                         }
                     }}
                     onRowClick={({ row }) => {
-                        if (
-                            rowSelection?.clickModel === 'row' &&
-                            rowSelection?.model === 'multiple'
-                        ) {
-                            const key: Key = (row?.object as any)?.[rowKey]
-                            if (key !== null && key !== undefined) {
-                                if (selectedRows?.includes(key)) {
-                                    onSelectedRowsChange?.(
-                                        selectedRows.filter(
-                                            (rowKey) => rowKey !== key
+                        const rowSelectDisabled =
+                            rowSelection?.allowDisabledSelect?.(
+                                row?.object as any
+                            )
+                        if (rowSelectDisabled !== true) {
+                            if (
+                                rowSelection?.clickModel === 'row' &&
+                                rowSelection?.model === 'multiple'
+                            ) {
+                                const key: Key = (row?.object as any)?.[rowKey]
+                                if (key !== null && key !== undefined) {
+                                    if (selectedRows?.includes(key)) {
+                                        onSelectedRowsChange?.(
+                                            selectedRows.filter(
+                                                (rowKey) => rowKey !== key
+                                            )
                                         )
-                                    )
-                                } else {
-                                    onSelectedRowsChange?.([
-                                        ...selectedRows,
-                                        key,
-                                    ])
+                                    } else {
+                                        onSelectedRowsChange?.([
+                                            ...selectedRows,
+                                            key,
+                                        ])
+                                    }
                                 }
-                            }
-                        } else if (
-                            rowSelection?.clickModel === 'row' &&
-                            rowSelection?.model === 'single'
-                        ) {
-                            const key: Key = (row?.object as any)?.[rowKey]
-                            if (key !== null && key !== undefined) {
-                                if (selectedRows?.includes(key)) {
-                                    onSelectedRowsChange?.(
-                                        selectedRows.filter(
+                            } else if (
+                                rowSelection?.clickModel === 'row' &&
+                                rowSelection?.model === 'single'
+                            ) {
+                                const key: Key = (row?.object as any)?.[rowKey]
+                                if (key !== null && key !== undefined) {
+                                    if (selectedRows?.includes(key)) {
+                                        const data = selectedRows.filter(
                                             (rowKey) => rowKey !== key
                                         )
-                                    )
-                                } else {
-                                    onSelectedRowsChange?.([key])
+                                        debugger
+                                        if (
+                                            data.length !== 0 ||
+                                            (data.length === 0 &&
+                                                rowSelection?.allowSingleSelectNonEmpty !==
+                                                    true)
+                                        ) {
+                                            onSelectedRowsChange?.(data)
+                                        }
+                                    } else {
+                                        onSelectedRowsChange?.([key])
+                                    }
                                 }
                             }
                         }

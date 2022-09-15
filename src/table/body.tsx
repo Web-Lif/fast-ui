@@ -85,13 +85,14 @@ function useBody<T>({
         columns.forEach((col, index) => {
             // 是否是合法的字段信息
             let value = ''
-            if (/^[A-z_][A-z0-9_]+(\.[A-z_][A-z0-9_]+)+$/.test(col.name)) {
+            const colSplit = col.name.split('.')
+            if (colSplit.length > 0) {
                 let tempRowData = row as any
                 col.name.split('.').forEach((dataName) => {
                     tempRowData = tempRowData[dataName]
                 })
                 value = tempRowData
-            } else if (/^[A-z_][A-z0-9_]+/.test(col.name)) {
+            } else {
                 value = (row as any)[col.name]
             }
 
