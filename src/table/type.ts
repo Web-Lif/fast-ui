@@ -9,6 +9,9 @@ export interface RowSelectType<T> {
     /** 点击模式, row 表示点击表格行则进行选中 */
     clickModel?: 'row'
 
+    /** 是否允许单选不为空 */
+    allowSingleSelectNonEmpty?: boolean
+
     /** 允许禁用选择这一行 */
     allowDisabledSelect?: (row: T) => boolean
 }
