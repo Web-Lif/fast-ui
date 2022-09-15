@@ -347,7 +347,6 @@ function InternalTable<T>({
                                         const data = selectedRows.filter(
                                             (rowKey) => rowKey !== key
                                         )
-                                        debugger
                                         if (
                                             data.length !== 0 ||
                                             (data.length === 0 &&
