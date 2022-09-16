@@ -1,1 +1,3 @@
-export { default as Descriptions } from 'antd/es/descriptions'
+import Descriptions from 'antd/es/descriptions'
+
+export default Descriptions

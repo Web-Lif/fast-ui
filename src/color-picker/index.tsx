@@ -35,7 +35,7 @@ export interface ColorPickerProps {
     onChange?: ColorChangeHandler
 }
 
-const ColorPicker: FC<ColorPickerProps> = ({
+const InternalColorPicker: FC<ColorPickerProps> = ({
     value: color,
     width = '250px',
     onChange,
@@ -119,6 +119,14 @@ const ColorPicker: FC<ColorPickerProps> = ({
     )
 }
 
-export { SketchPicker as ColorPickerPanel }
+type InternalColorPickerType = typeof InternalColorPicker
+
+interface ColorPickerInterface extends InternalColorPickerType {
+    Panel: typeof SketchPicker
+}
+
+const ColorPicker = InternalColorPicker as ColorPickerInterface
+
+ColorPicker.Panel = SketchPicker
 
 export default ColorPicker

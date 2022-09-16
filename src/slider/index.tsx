@@ -1,1 +1,3 @@
-export { default as Slider } from 'antd/es/slider'
+import Slider from 'antd/es/slider'
+
+export default Slider

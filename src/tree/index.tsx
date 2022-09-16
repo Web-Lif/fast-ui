@@ -13,7 +13,7 @@ import React, {
     useMemo,
     useState,
 } from 'react'
-import { Menu } from '../menu'
+import Menu from '../menu'
 import Dropdown from '../dropdown'
 import AutoSize from '../autosize'
 

@@ -1,1 +1,3 @@
-export { default as Steps } from 'antd/es/steps'
+import Steps from 'antd/es/steps'
+
+export default Steps

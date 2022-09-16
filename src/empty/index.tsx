@@ -1,1 +1,3 @@
-export { default as Empty } from 'antd/es/empty'
+import Empty from 'antd/es/empty'
+
+export default Empty

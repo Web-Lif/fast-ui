@@ -1,1 +1,3 @@
-export { default as Breadcrumb } from 'antd/es/breadcrumb'
+import Breadcrumb from 'antd/es/breadcrumb'
+
+export default Breadcrumb

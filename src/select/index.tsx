@@ -1,1 +1,3 @@
-export { default as Select } from 'antd/es/select'
+import Select from 'antd/es/select'
+
+export default Select

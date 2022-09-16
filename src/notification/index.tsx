@@ -1,1 +1,3 @@
-export { default as notification } from 'antd/es/notification'
+import notification from 'antd/es/notification'
+
+export default notification

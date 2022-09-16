@@ -1,1 +1,3 @@
-export { default as List } from 'antd/es/list'
+import List from 'antd/es/list'
+
+export default List

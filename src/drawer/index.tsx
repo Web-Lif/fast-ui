@@ -1,1 +1,3 @@
-export { default as Drawer } from 'antd/es/drawer'
+import Drawer from 'antd/es/drawer'
+
+export default Drawer

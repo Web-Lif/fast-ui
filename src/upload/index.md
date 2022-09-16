@@ -117,7 +117,7 @@ export default () => {
  * title: 自定义上传
  * desc: 进行自定义的逻辑控制
  */
-import { Button, File, FileInstance } from '@weblif/fast-ui'
+import { Button, Upload, FileInstance } from '@weblif/fast-ui'
 import React, { useRef } from 'react'
 
 export default () => {
@@ -131,7 +131,7 @@ export default () => {
       >
         点击上传文件
       </Button>
-      <File
+      <Upload.File
         file={file}
         onSelectFiles={(file) => {
           console.log(file)
