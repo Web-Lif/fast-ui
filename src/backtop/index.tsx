@@ -1,1 +1,3 @@
-export { default as BackTop } from 'antd/es/back-top'
+import BackTop from 'antd/es/back-top'
+
+export default BackTop

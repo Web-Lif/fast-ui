@@ -1,1 +1,3 @@
-export { default as Tooltip } from 'antd/es/tooltip'
+import Tooltip from 'antd/es/tooltip'
+
+export default Tooltip

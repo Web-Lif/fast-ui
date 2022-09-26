@@ -1,1 +1,3 @@
-export { default as Alert } from 'antd/es/alert'
+import Alert from 'antd/es/alert'
+
+export default Alert

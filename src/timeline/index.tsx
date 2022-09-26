@@ -1,1 +1,3 @@
-export { default as Timeline } from 'antd/es/timeline'
+import Timeline from 'antd/es/timeline'
+
+export default Timeline

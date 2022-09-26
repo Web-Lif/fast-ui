@@ -1,1 +1,3 @@
-export { default as Typography } from 'antd/es/typography'
+import Typography from 'antd/es/typography'
+
+export default Typography

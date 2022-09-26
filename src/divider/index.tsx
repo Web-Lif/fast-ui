@@ -1,1 +1,3 @@
-export { default as Divider } from 'antd/es/divider'
+import Divider from 'antd/es/divider'
+
+export default Divider

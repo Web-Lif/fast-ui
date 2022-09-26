@@ -1,1 +1,3 @@
-export { default as Result } from 'antd/es/result'
+import Result from 'antd/es/result'
+
+export default Result

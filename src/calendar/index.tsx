@@ -9,8 +9,9 @@ const InternalCalendar = generateCalendar<Dayjs>(dayJSGenerateConfig)
 interface CalendarProps extends AntCalendarProps<Dayjs> {}
 
 export type { CalendarProps }
-export { Calendar }
 
 const Calendar = ({ ...restProps }: CalendarProps) => {
     return <InternalCalendar {...restProps} />
 }
+
+export default Calendar

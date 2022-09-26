@@ -1,1 +1,3 @@
-export { default as ConfigProvider } from 'antd/es/config-provider'
+import ConfigProvider from 'antd/es/config-provider'
+
+export default ConfigProvider

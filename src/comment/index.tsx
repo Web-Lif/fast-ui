@@ -1,1 +1,3 @@
-export { default as Comment } from 'antd/es/comment'
+import Comment from 'antd/es/comment'
+
+export default Comment

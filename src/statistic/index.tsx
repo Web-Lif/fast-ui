@@ -1,1 +1,3 @@
-export { default as Statistic } from 'antd/es/statistic'
+import Statistic from 'antd/es/statistic'
+
+export default Statistic

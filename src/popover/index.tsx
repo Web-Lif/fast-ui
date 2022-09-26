@@ -1,1 +1,3 @@
-export { default as Popover } from 'antd/es/popover'
+import Popover from 'antd/es/popover'
+
+export default Popover

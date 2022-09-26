@@ -22,12 +22,7 @@ interface FileProps {
     onSelectFiles?: (files: FileList | null) => void
 }
 
-export const File: FC<FileProps> = ({
-    accept,
-    multiple,
-    file,
-    onSelectFiles,
-}) => {
+const File: FC<FileProps> = ({ accept, multiple, file, onSelectFiles }) => {
     const fileRef = useRef<HTMLInputElement>(null)
 
     if (file) {
@@ -183,7 +178,7 @@ const UploadWrap: FC<UploadWrapProps> = ({ state, children, onClick }) => {
 /**
  * 图片上传
  */
-const Upload: FC<UploadProps> = ({
+const InternalUpload: FC<UploadProps> = ({
     accept = '',
     multiple,
     files,
@@ -327,5 +322,14 @@ const Upload: FC<UploadProps> = ({
         </>
     )
 }
+
+type InternalUploadType = typeof InternalUpload
+
+interface UploadInterface extends InternalUploadType {
+    File: typeof File
+}
+
+const Upload = InternalUpload as UploadInterface
+Upload.File = File
 
 export default Upload
