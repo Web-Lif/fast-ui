@@ -60,7 +60,7 @@ function InternalForm<T>({
             const { colSpan = 0, rowSpan, br, ...restProps } = element.props
             const { key } = element
 
-            before += (colSpan || 0) + 1
+            before += colSpan === 0 ? 1 : colSpan
 
             cell.push(
                 <td
