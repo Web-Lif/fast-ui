@@ -3,7 +3,7 @@ import { Row } from '@weblif/rc-table'
 import { Cell } from '@weblif/rc-table/es/types'
 import { Checkbox, Radio } from 'antd'
 import produce from 'immer'
-import React, {
+import {
     cloneElement,
     isValidElement,
     Key,

@@ -28,7 +28,7 @@ const requestData = () => {
   return new Promise<void>((resolve) => {
     setTimeout(() => {
       resolve('模拟任务执行完成.')
-    }, 0)
+    }, 1000)
   })
 }
 
@@ -47,9 +47,9 @@ export default () => {
         title="这是一个弹出框"
         visible={visible}
         // mask={false}
-        onOk={() => {
+        onOk={async () => {
           console.log('modal -> test')
-          // const msg = await requestData();
+          const msg = await requestData()
           // message.info(msg);
         }}
         onChangeVisible={setVisible}
