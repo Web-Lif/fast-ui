@@ -1,4 +1,5 @@
-import React, { useState, forwardRef } from 'react'
+import { useState, forwardRef, useRef } from 'react'
+import { css, cx } from '@emotion/css'
 import AButton, { ButtonProps as AButtonProps } from 'antd/es/button'
 
 export interface ButtonProps extends Omit<AButtonProps, 'onClick'> {
@@ -10,24 +11,59 @@ export interface ButtonProps extends Omit<AButtonProps, 'onClick'> {
 
 const Button = forwardRef<HTMLElement, ButtonProps>(
     (props: ButtonProps, refs) => {
-        const { onClick, disabled: dis, ...restProps } = props
+        const { onClick, className, type = 'default', ...restProps } = props
 
-        const [disabled, setDisabled] = useState(dis)
+        const [loading, setLoading] = useState<boolean>(false)
+        const buttonClickCount = useRef<number>(0)
 
+        const disabledCss = () => {
+            let cssText = `
+                color: #00000040;
+                text-shadow: none;
+                box-shadow: none;
+            `
+            if (type === 'default' || type === 'primary') {
+                cssText += `
+                    border-color: #d9d9d9;
+                    background: #f5f5f5;
+                `
+            }
+            if (type === 'ghost' || type === 'dashed') {
+                cssText += `
+                    border-color: #d9d9d9;
+                `
+            }
+            return cssText
+        }
         return (
             <AButton
                 ref={refs}
+                className={cx({
+                    [className || '']: typeof className === 'string',
+                    [css`
+                        ${disabledCss()}
+                        pointer-events:none;
+                        &hover,
+                        &:focus {
+                            ${disabledCss()}
+                        }
+                    `]: loading,
+                })}
+                type={type}
                 {...restProps}
-                disabled={dis === false || dis === true ? dis : disabled}
                 onClick={(e) => {
-                    setDisabled(true)
+                    if (buttonClickCount.current > 0) return
+                    buttonClickCount.current += 1
+                    setLoading(true)
                     const res = onClick?.(e)
                     if (res instanceof Promise) {
                         res?.finally(() => {
-                            setDisabled(false)
+                            setLoading(false)
+                            buttonClickCount.current = 0
                         })
                     } else {
-                        setDisabled(false)
+                        setLoading(false)
+                        buttonClickCount.current = 0
                     }
                 }}
             />
