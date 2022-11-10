@@ -42,6 +42,7 @@ const mockData = (page: number, pageSize: number) => {
     return data
 }
 
+const data = mockData(1, 201)
 export default () => {
     const [cols, setCols] = useState<Column<UserData>[]>([
         {
@@ -107,7 +108,7 @@ export default () => {
 
     const [page, setPage] = useState<number>(1)
     const [pageSize, setPageSize] = useState<number>(20)
-    const [rows, setRows] = useState<UserData[]>(mockData(1, pageSize))
+    const [rows, setRows] = useState<UserData[]>(data)
     return (
         <>
             <Table
