@@ -26,6 +26,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: sh .patch/react16/.scripts/startup.sh
+    - run: bash .patch/react16/.scripts/startup.sh
     - run: npm ci
     - run: npm run build --if-present
