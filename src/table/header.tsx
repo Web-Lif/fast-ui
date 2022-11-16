@@ -1,4 +1,4 @@
-import React, { Key, useEffect, useMemo, useRef, useState } from 'react'
+import { Key, useEffect, useMemo, useRef, useState } from 'react'
 import { css, cx } from '@emotion/css'
 import { Row } from '@weblif/rc-table'
 import { Cell } from '@weblif/rc-table/es/types'

@@ -8,7 +8,7 @@ import {
 import { restrictToWindowEdges } from '@dnd-kit/modifiers'
 import { CSS } from '@dnd-kit/utilities'
 import AntModal, { ModalProps as AntModalProps } from 'antd/es/modal'
-import React, { FC, useLayoutEffect, useRef, useState } from 'react'
+import { FC, forwardRef, useLayoutEffect, useRef, useState } from 'react'
 
 export interface ModalProps
     extends Omit<AntModalProps, 'onOk' | 'confirmLoading'> {
@@ -48,7 +48,7 @@ interface DraggableProps extends React.HTMLAttributes<HTMLDivElement> {
     disabled?: boolean
 }
 
-const Draggable = React.forwardRef<HTMLDivElement | null, DraggableProps>(
+const Draggable = forwardRef<HTMLDivElement | null, DraggableProps>(
     (
         { children, transform: transf, style, disabled, ...restProps },
         forwardref

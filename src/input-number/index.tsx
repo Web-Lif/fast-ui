@@ -1,7 +1,7 @@
 import AntInputNumber, {
     InputNumberProps as AntInputNumberProps,
 } from 'antd/es/input-number'
-import React, { forwardRef } from 'react'
+import { forwardRef } from 'react'
 
 export interface InputNumberProps extends Omit<AntInputNumberProps, ''> {}
 

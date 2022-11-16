@@ -2,13 +2,7 @@ import DeleteOutlined from '@ant-design/icons/DeleteOutlined'
 import LoadingOutlined from '@ant-design/icons/LoadingOutlined'
 import PlusOutlined from '@ant-design/icons/PlusOutlined'
 import { css } from '@emotion/css'
-import React, {
-    CSSProperties,
-    FC,
-    MutableRefObject,
-    ReactNode,
-    useRef,
-} from 'react'
+import { CSSProperties, FC, MutableRefObject, ReactNode, useRef } from 'react'
 
 export interface FileInstance {
     /** 显示文件夹选择器 */

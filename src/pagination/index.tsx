@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import AntPagination, {
     PaginationProps as AntPaginationProps,
 } from 'antd/es/pagination'

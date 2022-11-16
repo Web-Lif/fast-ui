@@ -4,7 +4,7 @@ import { DataNode, EventDataNode } from 'antd/lib/tree'
 import { ExpandAction } from 'antd/lib/tree/DirectoryTree'
 import { produce } from 'immer'
 import { MenuItemType } from 'rc-menu/lib/interface'
-import React, {
+import {
     Dispatch,
     Key,
     MutableRefObject,
