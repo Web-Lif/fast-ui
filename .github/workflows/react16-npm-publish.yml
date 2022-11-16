@@ -11,7 +11,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run:  mv .patch/react16/tsconfig.json tsconfig.json
+      - run: sh .patch/react16/.scripts/startup.sh
       - run:  npm install -g npm && npm ci
       - uses: JS-DevTools/npm-publish@v1
         with:
