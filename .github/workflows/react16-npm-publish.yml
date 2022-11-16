@@ -1,4 +1,4 @@
-name: NPM Publish
+name: React16 NPM Publish
 
 on:
   push:
