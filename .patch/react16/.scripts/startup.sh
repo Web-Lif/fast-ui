@@ -1,5 +1,5 @@
 #!/bin/bash
 
+sed -i -e 's/"jsx":\s*"react-jsx",/"jsx": "react",/g' tsconfig.json
 
-mv .patch/react16/tsconfig.json tsconfig.json
 bash .patch/react16/.scripts/addImportReact.sh
