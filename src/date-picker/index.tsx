@@ -5,7 +5,7 @@ import generatePicker, {
 } from 'antd/es/date-picker/generatePicker'
 import { Dayjs } from 'dayjs'
 import dayJSGenerateConfig from 'rc-picker/es/generate/dayjs'
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 const InternalDatePicker = generatePicker<Dayjs>(dayJSGenerateConfig)
 

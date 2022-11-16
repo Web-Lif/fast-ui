@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import AntDropdown, { DropDownProps } from 'antd/es/dropdown'
 
 interface InternalDropdownProps extends DropDownProps {

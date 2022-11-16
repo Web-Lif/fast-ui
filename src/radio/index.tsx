@@ -1,5 +1,5 @@
 import AntRadio, { RadioProps as AntRadioProps } from 'antd/es/radio'
-import React, { FC, forwardRef } from 'react'
+import { forwardRef } from 'react'
 
 interface RadioProps extends AntRadioProps {}
 

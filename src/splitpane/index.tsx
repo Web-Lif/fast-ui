@@ -1,5 +1,5 @@
 import { css, cx } from '@emotion/css'
-import React, { CSSProperties, FC, ReactNode } from 'react'
+import { CSSProperties, FC, ReactNode } from 'react'
 import * as ReactSpaces from 'react-spaces'
 import { IResizableProps } from 'react-spaces'
 import { SizeUnit } from 'react-spaces/dist/core-types'

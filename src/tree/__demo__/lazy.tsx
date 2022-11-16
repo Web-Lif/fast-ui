@@ -6,7 +6,7 @@ import { Tree } from '@weblif/fast-ui'
 import React, { useRef, useState } from 'react'
 
 export default () => {
-    const tree = useRef()
+    const tree = useRef<any>()
     const [treeData, setTreeData] = useState([])
     return (
         <Tree
@@ -48,7 +48,9 @@ export default () => {
                         key: 'delete',
                         label: '删除',
                         onClick: () => {
-                            tree.current.removeNodes([node.key])
+                            if (tree.current) {
+                                tree.current.removeNodes([node.key])
+                            }
                         },
                     },
                     {

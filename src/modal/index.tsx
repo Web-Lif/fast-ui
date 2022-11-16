@@ -8,7 +8,7 @@ import {
 import { restrictToWindowEdges } from '@dnd-kit/modifiers'
 import { CSS } from '@dnd-kit/utilities'
 import AntModal, { ModalProps as AntModalProps } from 'antd/es/modal'
-import React, { FC, useLayoutEffect, useRef, useState } from 'react'
+import { FC, useLayoutEffect, useRef, useState } from 'react'
 
 export interface ModalProps
     extends Omit<AntModalProps, 'onOk' | 'confirmLoading'> {

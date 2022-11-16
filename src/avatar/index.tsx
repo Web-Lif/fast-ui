@@ -1,4 +1,4 @@
-import React, { FC, forwardRef } from 'react'
+import { forwardRef } from 'react'
 import AntAvatar, { AvatarProps as AntAvatarProps } from 'antd/es/avatar'
 
 interface AvatarProps extends AntAvatarProps {}

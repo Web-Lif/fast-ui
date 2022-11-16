@@ -1,5 +1,5 @@
 import { css } from '@emotion/css'
-import React, {
+import {
     FC,
     HTMLAttributes,
     ReactNode,

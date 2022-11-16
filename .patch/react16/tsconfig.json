@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "outDir": "es",
+        "target": "es6",
+        "module": "CommonJS",
+        "moduleResolution": "node",
+        "jsx": "react",
+        "esModuleInterop": true,
+        "types": ["jest"],
+        "strict": true,
+        "skipLibCheck": true,
+        "declaration": true,
+        "lib": ["ESNext", "DOM"]
+    },
+    "include": ["src"],
+    "exclude": [
+        "node_modules",
+        "lib",
+        "es",
+        "dist",
+        "typings",
+        "**/__tests__",
+        "**/__test__",
+        "test",
+        "**/__demo__",
+        "**/__website__"
+    ]
+}

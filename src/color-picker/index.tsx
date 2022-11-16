@@ -1,5 +1,5 @@
 import { css } from '@emotion/css'
-import React, { CSSProperties, FC, useRef, useState } from 'react'
+import { CSSProperties, FC, useRef, useState } from 'react'
 import Dropdown from 'antd/es/dropdown'
 import {
     Color,

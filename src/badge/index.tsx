@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import AntBadge, { BadgeProps as AntBadgeProps } from 'antd/es/badge'
 
 interface BadgeProps extends AntBadgeProps {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import AntCascader, {
     CascaderProps as AntCascaderProps,
 } from 'antd/es/cascader'

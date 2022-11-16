@@ -1,6 +1,6 @@
 import { css, cx } from '@emotion/css'
 import AntCard, { CardProps } from 'antd/es/card'
-import React, { forwardRef } from 'react'
+import { forwardRef } from 'react'
 
 const InternalAntCard = forwardRef<HTMLDivElement, CardProps>(
     ({ className, ...props }, refs) => {

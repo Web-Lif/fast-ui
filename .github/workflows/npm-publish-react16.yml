@@ -1,0 +1,19 @@
+name: NPM Publish
+
+on:
+  push:
+    branches: [ "canary" ]
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run:  mv .patch/react16/tsconfig.json tsconfig.json
+      - run:  npm install -g npm && npm ci
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          tag: react16
