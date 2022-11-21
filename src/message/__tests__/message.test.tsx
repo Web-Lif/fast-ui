@@ -9,6 +9,6 @@ const TestMessage = () => {
 
 test('test message', async () => {
     const { baseElement, findAllByText } = render(<TestMessage />)
-    await findAllByText('testmessage')
-    expect(baseElement).toMatchSnapshot()
+    const element = await findAllByText('testmessage')
+    expect(element.length).toBe(1)
 })
