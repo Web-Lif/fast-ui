@@ -27,6 +27,7 @@ files=(
     src/upload/index.tsx
     src/calendar/index.tsx
     src/collapse/index.tsx
+    src/tabs/index.tsx
     src/tabs/__tests___/base.test.tsx
 )
 

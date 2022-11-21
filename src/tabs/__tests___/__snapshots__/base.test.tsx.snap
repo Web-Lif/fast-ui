@@ -1,16 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`snapshot 1`] = `
-.emotion-0 {
-  height: 100%;
-}
-
 <div>
   <div
     style="height: 500px;"
   >
     <div
-      class="ant-tabs ant-tabs-top emotion-0 emotion-1"
+      class="ant-tabs ant-tabs-top css-1f2cydt css-dev-only-do-not-override-1e67qka"
     >
       <div
         class="ant-tabs-nav"

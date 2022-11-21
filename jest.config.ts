@@ -136,13 +136,13 @@ export default {
     // setupFiles: [],
 
     // A list of paths to modules that run some code to configure or set up the testing framework before each test
-    setupFilesAfterEnv: ['./tests/setup.ts'],
+    setupFilesAfterEnv: ['./tests/setupAfterEnv.ts'],
 
     // The number of seconds after which a test is considered as slow and reported as such in the results.
     // slowTestThreshold: 5,
 
     // A list of paths to snapshot serializer modules Jest should use for snapshot testing
-    snapshotSerializers: ['@emotion/jest/serializer'],
+    // snapshotSerializers: [],
 
     // The test environment that will be used for testing
     testEnvironment: 'jsdom',
