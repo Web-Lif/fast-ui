@@ -1,7 +1,8 @@
-import AntTree, { TreeProps as AntTreeProps } from 'antd/es/tree'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
-import { DataNode, EventDataNode } from 'antd/lib/tree'
-import { ExpandAction } from 'antd/lib/tree/DirectoryTree'
+import AntTree, {
+    DataNode,
+    EventDataNode,
+    TreeProps as AntTreeProps,
+} from 'antd/es/tree'
 import { produce } from 'immer'
 import { MenuItemType } from 'rc-menu/lib/interface'
 import {
@@ -16,6 +17,8 @@ import {
 import Menu from '../menu'
 import Dropdown from '../dropdown'
 import AutoSize from '../autosize'
+import { ExpandAction } from 'antd/es/tree/DirectoryTree'
+import { ItemType } from 'antd/es/menu/hooks/useItems'
 
 type FunAddDataNodesParam = (nodes: DataNode[]) => DataNode[]
 
@@ -287,7 +290,7 @@ const Tree = ({
         }
     }
 
-    const [visible, setVisible] = useState<boolean>(false)
+    const [open, setOpen] = useState<boolean>(false)
 
     const [items, setItems] = useState<ItemType[]>([])
 
@@ -300,20 +303,20 @@ const Tree = ({
     return (
         <Dropdown
             trigger={['contextMenu']}
-            visible={visible}
-            onVisibleChange={(changeVisible) => {
-                setVisible((data) => {
-                    if (data !== changeVisible && changeVisible === true) {
+            open={open}
+            onOpenChange={(changeOpen) => {
+                setOpen((data) => {
+                    if (data !== changeOpen && changeOpen === true) {
                         setItems(contextMenuRender?.(null) || [])
                     }
-                    return changeVisible
+                    return changeOpen
                 })
             }}
             overlay={
                 <Menu
                     items={items}
                     onClick={() => {
-                        setVisible(false)
+                        setOpen(false)
                     }}
                 />
             }
@@ -325,7 +328,7 @@ const Tree = ({
                 expandedKeys={expandedKeys}
                 onRightClick={(info) => {
                     setItems(contextMenuRender?.(info.node) || [])
-                    setVisible(true)
+                    setOpen(true)
                 }}
                 onExpand={(eKeys, info) => {
                     setExpandedKeys(eKeys)

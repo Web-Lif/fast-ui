@@ -25,6 +25,11 @@ files=(
     src/table/index.tsx
     src/tree/index.tsx
     src/upload/index.tsx
+    src/calendar/index.tsx
+    src/collapse/index.tsx
+    src/tabs/index.tsx
+    src/tabs/__tests___/base.test.tsx
+    src/button/__tests__/button.test.tsx
 )
 
 for element in ${files[@]}

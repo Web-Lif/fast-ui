@@ -1,6 +1,5 @@
 import { css, cx } from '@emotion/css'
 import AntTabs, { TabsProps } from 'antd/es/tabs'
-import React from 'react'
 
 const InternalTabs = ({ className, ...restProps }: TabsProps) => {
     return (

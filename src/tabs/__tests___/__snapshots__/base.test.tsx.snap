@@ -1,12 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`snapshot 1`] = `
+.emotion-0 {
+  height: 100%;
+}
+
 <div>
   <div
     style="height: 500px;"
   >
     <div
-      class="ant-tabs ant-tabs-top css-1f2cydt"
+      class="ant-tabs ant-tabs-top emotion-0 emotion-1"
     >
       <div
         class="ant-tabs-nav"
@@ -23,10 +27,10 @@ exports[`snapshot 1`] = `
               class="ant-tabs-tab ant-tabs-tab-active"
             >
               <div
-                aria-controls="rc-tabs-test-panel-1"
+                aria-controls="rc-tabs-test-panel-item-1"
                 aria-selected="true"
                 class="ant-tabs-tab-btn"
-                id="rc-tabs-test-tab-1"
+                id="rc-tabs-test-tab-item-1"
                 role="tab"
                 tabindex="0"
               >
@@ -37,28 +41,14 @@ exports[`snapshot 1`] = `
               class="ant-tabs-tab"
             >
               <div
-                aria-controls="rc-tabs-test-panel-2"
+                aria-controls="rc-tabs-test-panel-item-2"
                 aria-selected="false"
                 class="ant-tabs-tab-btn"
-                id="rc-tabs-test-tab-2"
+                id="rc-tabs-test-tab-item-2"
                 role="tab"
                 tabindex="0"
               >
                 Tab 2
-              </div>
-            </div>
-            <div
-              class="ant-tabs-tab"
-            >
-              <div
-                aria-controls="rc-tabs-test-panel-3"
-                aria-selected="false"
-                class="ant-tabs-tab-btn"
-                id="rc-tabs-test-tab-3"
-                role="tab"
-                tabindex="0"
-              >
-                Tab 3
               </div>
             </div>
             <div
@@ -110,32 +100,14 @@ exports[`snapshot 1`] = `
         >
           <div
             aria-hidden="false"
-            aria-labelledby="rc-tabs-test-tab-1"
+            aria-labelledby="rc-tabs-test-tab-item-1"
             class="ant-tabs-tabpane ant-tabs-tabpane-active"
-            id="rc-tabs-test-panel-1"
+            id="rc-tabs-test-panel-item-1"
             role="tabpanel"
             tabindex="0"
           >
-            Content of Tab Pane 1
+            Content 1
           </div>
-          <div
-            aria-hidden="true"
-            aria-labelledby="rc-tabs-test-tab-2"
-            class="ant-tabs-tabpane"
-            id="rc-tabs-test-panel-2"
-            role="tabpanel"
-            style="display: none;"
-            tabindex="-1"
-          />
-          <div
-            aria-hidden="true"
-            aria-labelledby="rc-tabs-test-tab-3"
-            class="ant-tabs-tabpane"
-            id="rc-tabs-test-panel-3"
-            role="tabpanel"
-            style="display: none;"
-            tabindex="-1"
-          />
         </div>
       </div>
     </div>

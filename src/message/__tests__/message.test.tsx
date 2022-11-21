@@ -1,17 +1,14 @@
-import { render, fireEvent } from '@testing-library/react'
-import React, { useEffect, useState } from 'react'
+import { render } from '@testing-library/react'
+import React from 'react'
 import message from '..'
 
 const TestMessage = () => {
-    useEffect(() => {
-        message.info('testmessage')
-    }, [])
-
-    return <div />
+    const { _InternalPanelDoNotUseOrYouWillBeFired: InternalPanel } = message
+    return <InternalPanel content="testmessage" type="error" />
 }
 
 test('test message', async () => {
-    const { baseElement, findAllByText } = render(<TestMessage />)
-    await findAllByText('testmessage')
-    expect(baseElement).toMatchSnapshot()
+    const { findAllByText } = render(<TestMessage />)
+    const element = await findAllByText('testmessage')
+    expect(element.length).toBe(1)
 })
