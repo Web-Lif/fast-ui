@@ -8,7 +8,7 @@ const TestMessage = () => {
 }
 
 test('test message', async () => {
-    const { baseElement, findAllByText } = render(<TestMessage />)
+    const { findAllByText } = render(<TestMessage />)
     const element = await findAllByText('testmessage')
     expect(element.length).toBe(1)
 })
