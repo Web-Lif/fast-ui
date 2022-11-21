@@ -1,5 +1,4 @@
 import AntCollapse, { CollapseProps } from 'antd/es/collapse'
-import React from 'react'
 import { css, cx } from '@emotion/css'
 
 const InternalCollapse = ({ className, ...props }: CollapseProps) => {

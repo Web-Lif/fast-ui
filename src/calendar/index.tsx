@@ -1,4 +1,3 @@
-import React from 'react'
 import { CalendarProps as AntCalendarProps } from 'antd/es/calendar'
 import generateCalendar from 'antd/es/calendar/generateCalendar'
 import dayJSGenerateConfig from 'rc-picker/es/generate/dayjs'
