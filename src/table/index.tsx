@@ -184,7 +184,7 @@ function InternalTable<T>({
             setItems(contextMenuRender?.(null))
         }
     }, [])
-    const [visible, setVisible] = useState<boolean>(false)
+    const [open, setOpen] = useState<boolean>(false)
 
     return (
         <Dropdown
@@ -196,16 +196,16 @@ function InternalTable<T>({
                 },
             ])}
             trigger={['contextMenu']}
-            visible={visible}
-            onVisibleChange={(changeVisible) => {
+            open={open}
+            onOpenChange={(changeOpen) => {
                 if (loading) {
-                    setVisible(false)
+                    setOpen(false)
                 } else {
-                    setVisible((data) => {
-                        if (data !== changeVisible && changeVisible === true) {
+                    setOpen((data) => {
+                        if (data !== changeOpen && changeOpen === true) {
                             setItems(contextMenuRender?.(null) || [])
                         }
-                        return changeVisible
+                        return changeOpen
                     })
                 }
             }}
@@ -213,7 +213,7 @@ function InternalTable<T>({
                 <Menu
                     items={items}
                     onClick={() => {
-                        setVisible(false)
+                        setOpen(false)
                     }}
                 />
             }
@@ -369,7 +369,7 @@ function InternalTable<T>({
                             setItems(
                                 contextMenuRender?.(row.object as any) || []
                             )
-                            setVisible(true)
+                            setOpen(true)
                             onRowContextMenu?.(row.object as any, e)
                         }
                     }}

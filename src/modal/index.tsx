@@ -11,9 +11,9 @@ import AntModal, { ModalProps as AntModalProps } from 'antd/es/modal'
 import { FC, forwardRef, useLayoutEffect, useRef, useState } from 'react'
 
 export interface ModalProps
-    extends Omit<AntModalProps, 'onOk' | 'confirmLoading'> {
+    extends Omit<AntModalProps, 'onOk' | 'confirmLoading' | 'visible'> {
     /** 改变状态触发的事件 */
-    onChangeVisible: (disabled: boolean) => void
+    onOpenChange: (disabled: boolean) => void
 
     /** 点击完成按钮触发的事件, 返回一个 `Promise<void>` 对象 */
     onOk?: (
@@ -91,12 +91,12 @@ const Draggable = forwardRef<HTMLDivElement | null, DraggableProps>(
 const InternalModal: FC<ModalProps> = ({
     okText = '确定',
     cancelText = '取消',
-    visible,
+    open,
     title,
     destroyOnClose = true,
     onOk,
     onCancel,
-    onChangeVisible,
+    onOpenChange,
     onKeyDown,
     ...restProps
 }) => {
@@ -113,9 +113,9 @@ const InternalModal: FC<ModalProps> = ({
         const res = onOk?.(event)
         if (res instanceof Promise) {
             res!
-                .then((isVisible) => {
-                    if (isVisible !== false) {
-                        onChangeVisible(false)
+                .then((isOpen) => {
+                    if (isOpen !== false) {
+                        onOpenChange(false)
                     }
                     setLoading(false)
                 })
@@ -125,19 +125,19 @@ const InternalModal: FC<ModalProps> = ({
                 })
         } else {
             if (res !== false) {
-                onChangeVisible(false)
+                onOpenChange(false)
             }
             setLoading(false)
         }
     }
 
     useLayoutEffect(() => {
-        if (visible) {
+        if (open) {
             setTimeout(() => {
                 draggleRef.current?.focus()
             }, 0)
         }
-    }, [visible])
+    }, [open])
 
     const [delta, setDelta] = useState<{
         x: number
@@ -167,7 +167,7 @@ const InternalModal: FC<ModalProps> = ({
             }}
         >
             <AntModal
-                visible={visible}
+                open={open}
                 confirmLoading={loading}
                 okText={okText}
                 cancelText={cancelText}
@@ -213,9 +213,9 @@ const InternalModal: FC<ModalProps> = ({
                     const res = onCancel?.(event)
                     if (res instanceof Promise) {
                         res!
-                            .then((isVisible) => {
-                                if (isVisible !== false) {
-                                    onChangeVisible(false)
+                            .then((isOpen) => {
+                                if (isOpen !== false) {
+                                    onOpenChange(false)
                                 }
                             })
                             .catch((error) => {
@@ -223,7 +223,7 @@ const InternalModal: FC<ModalProps> = ({
                             })
                     } else {
                         if (res !== false) {
-                            onChangeVisible(false)
+                            onOpenChange(false)
                         }
                     }
                 }}

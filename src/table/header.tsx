@@ -40,13 +40,13 @@ function HeaderTitle<T>({
     } else if (sc && sc.direction === 'DESC') {
         iconDirection = <ArrowDownOutlined />
     }
-    const [visible, setVisible] = useState<boolean>(false)
+    const [open, setOpen] = useState<boolean>(false)
 
     const [openKeys, setOpenKeys] = useState<string[]>([])
 
     const divRef = useRef<HTMLDivElement>(null)
     useEffect(() => {
-        if (visible === true) {
+        if (open === true) {
             const taskid = setInterval(() => {
                 const className =
                     document.activeElement?.getAttribute('class') || ''
@@ -55,14 +55,14 @@ function HeaderTitle<T>({
                     className.indexOf('ant-checkbox-input') === -1
                 ) {
                     setOpenKeys([])
-                    setVisible(false)
+                    setOpen(false)
                 }
             }, 200)
             return () => {
                 clearInterval(taskid)
             }
         }
-    }, [visible])
+    }, [open])
 
     const items = [
         {
@@ -209,7 +209,7 @@ function HeaderTitle<T>({
                 >
                     <Dropdown
                         autoFocus
-                        visible={visible}
+                        open={open}
                         overlay={
                             <Menu
                                 multiple
@@ -237,7 +237,7 @@ function HeaderTitle<T>({
                                 [css`
                                     float: right;
                                     cursor: pointer;
-                                    opacity: ${visible ? 1 : 0};
+                                    opacity: ${open ? 1 : 0};
                                     transition: opacity 0.2s;
                                     margin-right: 5px;
                                     margin-left: 3px;
@@ -246,7 +246,7 @@ function HeaderTitle<T>({
                             })}
                             onClick={(e) => {
                                 e.stopPropagation()
-                                setVisible(true)
+                                setOpen(true)
                             }}
                         >
                             <MenuOutlined />

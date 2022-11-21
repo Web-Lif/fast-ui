@@ -3,14 +3,14 @@ import React, { useState } from 'react'
 import Modal from '..'
 
 const TestDoubleClick = (props: any) => {
-    const [visible, setVisible] = useState<boolean>(true)
+    const [open, setOpen] = useState<boolean>(true)
     return (
         <>
             <Modal
                 title="这是一个弹出框"
-                visible={visible}
+                open={open}
                 onOk={props.onOk}
-                onChangeVisible={setVisible}
+                onOpenChange={setOpen}
             >
                 async 请求远程数据
             </Modal>

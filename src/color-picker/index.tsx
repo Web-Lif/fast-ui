@@ -43,7 +43,7 @@ const InternalColorPicker: FC<ColorPickerProps> = ({
     const [colorValue, setColorValue] = useState<RGBColor>()
 
     const [value, setValue] = useState<Color>()
-    const [visible, setVisible] = useState<boolean>(false)
+    const [open, setOpen] = useState<boolean>(false)
 
     const style: CSSProperties = {}
 
@@ -57,14 +57,14 @@ const InternalColorPicker: FC<ColorPickerProps> = ({
     return (
         <Dropdown
             autoFocus
-            visible={visible}
+            open={open}
             overlay={
                 <div
                     ref={divRef}
                     tabIndex={-1}
                     onBlur={() => {
                         if (isMouseOut.current) {
-                            setVisible(false)
+                            setOpen(false)
                         }
                     }}
                     onMouseOut={() => {
@@ -102,7 +102,7 @@ const InternalColorPicker: FC<ColorPickerProps> = ({
                 `}
                 onClick={() => {
                     isMouseOut.current = true
-                    setVisible(true)
+                    setOpen(true)
                 }}
             >
                 <div
