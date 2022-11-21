@@ -6,7 +6,7 @@ exports[`snapshot 1`] = `
     style="height: 400px; width: 500px;"
   >
     <div
-      class="ant-card ant-card-bordered css-1ntqpz2"
+      class="ant-card ant-card-bordered css-1ntqpz2 css-dev-only-do-not-override-1dsa5t3"
     >
       <div
         class="ant-card-head"
