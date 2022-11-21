@@ -3,7 +3,7 @@
 exports[`snapshot 1`] = `
 <div>
   <button
-    class="ant-btn css-dev-only-do-not-override-1dsa5t3 ant-btn-default"
+    class="ant-btn css-dev-only-do-not-override-1e67qka ant-btn-default"
     type="button"
   >
     <span>
@@ -16,7 +16,7 @@ exports[`snapshot 1`] = `
 exports[`test disabled 1`] = `
 <div>
   <button
-    class="ant-btn css-dev-only-do-not-override-1dsa5t3 ant-btn-default"
+    class="ant-btn css-dev-only-do-not-override-1e67qka ant-btn-default"
     disabled=""
     type="button"
   >

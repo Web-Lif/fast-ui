@@ -6,11 +6,11 @@ exports[`test message 1`] = `
     <div />
   </div>
   <div
-    class="ant-message ant-message-top css-dev-only-do-not-override-1dsa5t3"
+    class="ant-message ant-message-top css-dev-only-do-not-override-1e67qka"
     style="left: 50%; transform: translateX(-50%); top: 8px;"
   >
     <div
-      class="ant-message-notice ant-message-notice-info css-dev-only-do-not-override-1dsa5t3"
+      class="ant-message-notice ant-message-notice-info css-dev-only-do-not-override-1e67qka"
     >
       <div
         class="ant-message-notice-content"
