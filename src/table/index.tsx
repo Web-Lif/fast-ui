@@ -1,5 +1,9 @@
 import { css, cx } from '@emotion/css'
-import { Table as RCTable } from '@weblif/rc-table'
+import {
+    Table as RCTable,
+    useTable as useRCTable,
+    TableProps as RCTableProps,
+} from '@weblif/rc-table'
 import { PaginationProps } from 'antd'
 import { ItemType } from 'antd/es/menu/hooks/useItems'
 import produce from 'immer'
@@ -18,6 +22,9 @@ export interface InternalTableProps<T> {
 
     /** 表格的高度信息 */
     height: number
+
+    /** 表格的信息 */
+    table: RCTableProps<T>['table']
 
     /** 实际表格的内容信息 */
     rows: T[]
@@ -80,6 +87,7 @@ export interface InternalTableProps<T> {
 function InternalTable<T>({
     width,
     height,
+    table,
     columns = [],
     rows = [],
     rowKey,
@@ -223,6 +231,7 @@ function InternalTable<T>({
                     width={width}
                     height={height}
                     rows={headers.concat(bodys)}
+                    table={table}
                     onMouseMove={(e) => {
                         moveOffset.current = {
                             x: e.clientX,
@@ -415,7 +424,7 @@ function InternalTable<T>({
 }
 
 export interface TableProps<T>
-    extends Omit<InternalTableProps<T>, 'width' | 'height'> {
+    extends Omit<InternalTableProps<T>, 'width' | 'height' | 'table'> {
     /**
      * 设置表格样式信息
      */
@@ -436,6 +445,8 @@ function Table<T>({
     pagination,
     ...restProps
 }: TableProps<T>) {
+    const rctable = useRCTable()
+
     const renderPagination = () => {
         if (pagination) {
             const {
@@ -444,6 +455,7 @@ function Table<T>({
                 showSizeChanger = true,
                 pageSizeOptions = ['50', '100', '200', '500'],
                 showTotal = (total) => `总数: ${total} 条`,
+                onChange,
                 ...paginationProps
             } = pagination
             return (
@@ -475,6 +487,13 @@ function Table<T>({
                         showSizeChanger={showSizeChanger}
                         pageSizeOptions={pageSizeOptions}
                         showTotal={showTotal}
+                        onChange={(page, pageSize) => {
+                            rctable.current?.scrollTo({
+                                left: 0,
+                                top: 0,
+                            })
+                            onChange?.(page, pageSize)
+                        }}
                         {...paginationProps}
                     />
                 </div>
@@ -502,6 +521,7 @@ function Table<T>({
                         <InternalTable
                             width={width}
                             height={height}
+                            table={rctable}
                             {...restProps}
                         />
                     </>

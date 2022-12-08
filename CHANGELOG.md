@@ -1,3 +1,11 @@
+## 0.30.0
+
+`2022-12-8`
+
+- 升级 `antd` 到 v5 的版本, 更新变化 [https://ant.design/docs/react/migration-v5-cn](https://ant.design/docs/react/migration-v5-cn)
+- Table
+  - 🐞 修复分页跳转后导致表格白屏的问题
+
 ## 0.29.8
 
 `2022-11-10`
