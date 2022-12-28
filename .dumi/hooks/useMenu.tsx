@@ -42,7 +42,6 @@ const useMenu = (
                 sidebarItems.unshift(...reactDocData)
             }
         }
-        debugger
         return (
             sidebarItems?.reduce<Exclude<MenuProps['items'], undefined>>(
                 (result, group) => {
