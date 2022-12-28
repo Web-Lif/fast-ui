@@ -18,9 +18,8 @@ group:
 ```tsx
 /**
  * title: 垂直分割线
- * desc: 使用 `type="vertical"` 设置为行内的垂直分割线。
+ * description: 使用 `type="vertical"` 设置为行内的垂直分割线。
  */
-import React, { useState, useRef } from 'react'
 import { Divider } from '@weblif/fast-ui'
 
 export default () => {

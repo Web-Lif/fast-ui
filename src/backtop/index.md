@@ -14,9 +14,8 @@ group:
 ```tsx
 /**
  * title: 基本
- * desc: 最简单的用法。
+ * description: 最简单的用法。
  */
-import React, { useState, useRef } from 'react'
 import { BackTop } from '@weblif/fast-ui'
 
 export default () => {

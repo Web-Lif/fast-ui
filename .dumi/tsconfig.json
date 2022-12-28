@@ -1,0 +1,13 @@
+{
+    "extends": "../.dumi/tmp/tsconfig.json",
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        "jsxImportSource": "@emotion/react",
+        "baseUrl": "../",
+        "paths": {
+            "@@/*": [".dumi/tmp/*"],
+            "@weblif/fast-ui": ["src/index.tsx"]
+        }
+    },
+    "include": ["./**/*", "../site/theme/template/Content"]
+}

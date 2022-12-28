@@ -18,10 +18,9 @@ group:
 ```tsx
 /**
  * title: 基本
- * desc: 基本的级联使用
+ * description: 基本的级联使用
  */
 import { Cascader } from '@weblif/fast-ui'
-import React from 'react'
 
 const options = [
   {
@@ -73,10 +72,10 @@ export default () => {
 ```tsx
 /**
  * title: 懒加载
- * desc: 通过远程服务器动态加载
+ * description: 通过远程服务器动态加载
  */
 import { Cascader } from '@weblif/fast-ui'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 const options = [
   {

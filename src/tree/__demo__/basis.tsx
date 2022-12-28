@@ -1,9 +1,9 @@
 /**
  * title: 全部加载
- * desc: 一次性加载节点数据, 可通过 `directoryTree` 来设置树的类型，在数据量大的时候存在性能问题
+ * description: 一次性加载节点数据, 可通过 `directoryTree` 来设置树的类型，在数据量大的时候存在性能问题
  */
 import { Tree } from '@weblif/fast-ui'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const mockTreeData = [
     {

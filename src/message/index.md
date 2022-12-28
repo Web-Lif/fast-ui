@@ -14,10 +14,10 @@ group:
 ```tsx
 /**
  * title: 基础
- * desc: 信息提醒反馈。
+ * description: 信息提醒反馈。
  */
-import React, { useState } from 'react'
-import { message, Button } from '@weblif/fast-ui'
+import { Button, message } from '@weblif/fast-ui'
+import { useState } from 'react'
 export default () => {
   const [selectKey, setSelectKey] = useState<string>('mail')
   return (

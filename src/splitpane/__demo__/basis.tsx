@@ -1,9 +1,9 @@
 /**
  * title: 分割面板
- * desc: 可简单的对页面进行分割布局
+ * description: 可简单的对页面进行分割布局
  */
 import { Button, SplitPane, Tree } from '@weblif/fast-ui'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const mockTreeData = [
     {

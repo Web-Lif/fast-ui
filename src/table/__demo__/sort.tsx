@@ -1,9 +1,9 @@
 /**
  * title: 本地排序
- * desc: 可通过 `useTableLocalSort` 来进行本地排序, 可点击表格头部进行排序, 可通过 `Column` 的 `sort` 属性来进行控制， 默认不排序
+ * description: 可通过 `useTableLocalSort` 来进行本地排序, 可点击表格头部进行排序, 可通过 `Column` 的 `sort` 属性来进行控制， 默认不排序
  */
 import { Column, Table, useTableLocalSort } from '@weblif/fast-ui'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 interface UserData {
     username: string

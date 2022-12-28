@@ -19,9 +19,8 @@ group:
 ```tsx
 /**
  * title: 基础
- * desc: 基础的轮播图
+ * description: 基础的轮播图
  */
-import React from 'react'
 import { Carousel } from '@weblif/fast-ui'
 
 export default () => {

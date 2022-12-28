@@ -22,10 +22,9 @@ group:
 ```tsx
 /**
  * title: 基本
- * desc: 最简单的用法
+ * description: 最简单的用法
  */
 import { Checkbox } from '@weblif/fast-ui'
-import React from 'react'
 
 export default () => {
   return (
@@ -49,10 +48,9 @@ export default () => {
 ```tsx
 /**
  * title: 不可用
- * desc: Checkbox 不可用
+ * description: Checkbox 不可用
  */
 import { Checkbox } from '@weblif/fast-ui'
-import React from 'react'
 
 export default () => {
   return (

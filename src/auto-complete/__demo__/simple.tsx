@@ -1,9 +1,9 @@
 /**
  * title: 基本使用
- * desc: 基础用法信息
+ * description: 基础用法信息
  */
-import React, { useState } from 'react'
 import { AutoComplete } from '@weblif/fast-ui'
+import { useState } from 'react'
 
 const { Option } = AutoComplete
 

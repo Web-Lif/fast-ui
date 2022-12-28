@@ -19,10 +19,9 @@ group:
 ```tsx
 /**
  * title: 基础使用
- * desc: 最简单的用法。
+ * description: 最简单的用法。
  */
-import React from 'react'
-import { Row, Col, Statistic, Button } from '@weblif/fast-ui'
+import { Button, Col, Row, Statistic } from '@weblif/fast-ui'
 
 export default () => {
   return (

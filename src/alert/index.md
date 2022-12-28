@@ -15,16 +15,11 @@ group:
 
 例子:
 
-<div class="fu-code-block-row">
-
-<div class="fu-code-block-col-2-1">
-
 ```tsx
 /**
  * title: 基本
- * desc: 最简单的用法，适用于简短的警告提示。
+ * description: 最简单的用法，适用于简短的警告提示。
  */
-import React, { useState, useRef } from 'react'
 import { Alert } from '@weblif/fast-ui'
 
 export default () => {
@@ -36,16 +31,11 @@ export default () => {
 }
 ```
 
-</div>
-
-<div class="fu-code-block-col-2-1">
-
 ```tsx
 /**
  * title: 四种样式
- * desc: 共有四种样式 `success`, `info`, `warning`, `error`
+ * description: 共有四种样式 `success`, `info`, `warning`, `error`
  */
-import React, { useState, useRef } from 'react'
 import { Alert, Space } from '@weblif/fast-ui'
 
 export default () => {
@@ -59,9 +49,6 @@ export default () => {
   )
 }
 ```
-
-</div>
-</div>
 
 ## API
 

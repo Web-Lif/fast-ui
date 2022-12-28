@@ -18,10 +18,9 @@ group:
 ```tsx
 /**
  * title: 基本
- * desc: 最简单的下拉菜单。
+ * description: 最简单的下拉菜单。
  */
-import React from 'react'
-import { Menu, Dropdown } from '@weblif/fast-ui'
+import { Dropdown, Menu } from '@weblif/fast-ui'
 
 export default () => {
   const menu = (

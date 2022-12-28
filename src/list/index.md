@@ -19,10 +19,9 @@ group:
 ```tsx
 /**
  * title: 基础列表
- * desc: 基础列表。
+ * description: 基础列表。
  */
-import React, { useState, useRef } from 'react'
-import { List, Avatar } from '@weblif/fast-ui'
+import { Avatar, List } from '@weblif/fast-ui'
 
 const data = [
   {

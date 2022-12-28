@@ -19,10 +19,9 @@ group:
 ```tsx
 /**
  * title: 基础使用
- * desc: 最简单的用法，浮层的大小由内容区域决定。
+ * description: 最简单的用法，浮层的大小由内容区域决定。
  */
-import React from 'react'
-import { Popover, Button } from '@weblif/fast-ui'
+import { Button, Popover } from '@weblif/fast-ui'
 
 export default () => {
   return (

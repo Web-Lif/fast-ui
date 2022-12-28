@@ -18,10 +18,9 @@ group:
 ```tsx
 /**
  * title: 基本
- * desc: 最简单的用法，在浮层中可以选择或者输入日期。
+ * description: 最简单的用法，在浮层中可以选择或者输入日期。
  */
-import React, { useState, useRef } from 'react'
-import { Space, Button } from '@weblif/fast-ui'
+import { Button, Space } from '@weblif/fast-ui'
 
 export default () => {
   return (
@@ -38,9 +37,8 @@ export default () => {
 ```tsx
 /**
  * title: 垂直间距
- * desc: 相邻组件垂直间距。
+ * description: 相邻组件垂直间距。
  */
-import React, { useState, useRef } from 'react'
 import { Space } from '@weblif/fast-ui'
 import { Card } from 'antd'
 

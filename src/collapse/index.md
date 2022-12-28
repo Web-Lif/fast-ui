@@ -19,9 +19,8 @@ group:
 ```tsx
 /**
  * title: 折叠面板
- * desc: 可以同时展开多个面板
+ * description: 可以同时展开多个面板
  */
-import React, { useState, useRef } from 'react'
 import { Collapse } from '@weblif/fast-ui'
 
 const { Panel } = Collapse

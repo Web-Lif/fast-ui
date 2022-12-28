@@ -1,9 +1,9 @@
 /**
  * title: 基础
- * desc: 简单的表格信息
+ * description: 简单的表格信息
  */
-import { Column, Table, useTableLocalSort, Switch } from '@weblif/fast-ui'
-import React, { useState } from 'react'
+import { Column, Switch, Table, useTableLocalSort } from '@weblif/fast-ui'
+import { useState } from 'react'
 
 interface UserData {
     username: string

@@ -22,9 +22,8 @@ group:
 ```tsx
 /**
  * title: 基础使用
- * desc: 这是一个简单使用的例子
+ * description: 这是一个简单使用的例子
  */
-import React, { useState, useRef } from 'react'
 import { Input } from '@weblif/fast-ui'
 
 export default () => {
@@ -43,9 +42,8 @@ export default () => {
 ```tsx
 /**
  * title: 密码输入框
- * desc: 用来输入密码的信息
+ * description: 用来输入密码的信息
  */
-import React, { useState, useRef } from 'react'
 import { Input } from '@weblif/fast-ui'
 
 export default () => {
@@ -64,9 +62,8 @@ export default () => {
 ```tsx
 /**
  * title: 无边框
- * desc: 没有边框。
+ * description: 没有边框。
  */
-import React, { useState, useRef } from 'react'
 import { Input } from '@weblif/fast-ui'
 
 export default () => {
@@ -90,9 +87,8 @@ export default () => {
 ```tsx
 /**
  * title: 文本域
- * desc: 用于多行输入。
+ * description: 用于多行输入。
  */
-import React, { useState, useRef } from 'react'
 import { Input } from '@weblif/fast-ui'
 
 export default () => {
@@ -113,9 +109,8 @@ export default () => {
 ```tsx
 /**
  * title: 搜索框
- * desc: 带有搜索按钮的输入框。
+ * description: 带有搜索按钮的输入框。
  */
-import React, { useState, useRef } from 'react'
 import { Input } from '@weblif/fast-ui'
 
 export default () => {

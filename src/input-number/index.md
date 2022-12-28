@@ -22,10 +22,9 @@ group:
 ```tsx
 /**
  * title: 基本
- * desc: 数字输入框。
+ * description: 数字输入框。
  */
 import { InputNumber } from '@weblif/fast-ui'
-import React from 'react'
 
 export default () => {
   return (
@@ -47,10 +46,9 @@ export default () => {
 ```tsx
 /**
  * title: 禁用
- * desc: 禁用数字输入框。
+ * description: 禁用数字输入框。
  */
 import { InputNumber } from '@weblif/fast-ui'
-import React from 'react'
 
 export default () => {
   return (

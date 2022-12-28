@@ -1,9 +1,9 @@
 /**
  * title: 选中行信息
- * desc: 可以使用 `rowSelection` 来设置选中模式, 使用 `allowSingleSelectNonEmpty` 来控制单选是否允许不为空
+ * description: 可以使用 `rowSelection` 来设置选中模式, 使用 `allowSingleSelectNonEmpty` 来控制单选是否允许不为空
  */
-import { Column, Table, useTableLocalSort, Button } from '@weblif/fast-ui'
-import React, { Key, useState } from 'react'
+import { Button, Column, Table, useTableLocalSort } from '@weblif/fast-ui'
+import { Key, useState } from 'react'
 
 interface UserData {
     username: string

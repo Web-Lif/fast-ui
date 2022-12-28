@@ -18,14 +18,14 @@ group:
 ```tsx
 /**
  * title: 执行耗时任务
- * desc: 执行耗时任务可以自动进行防止多次点击按钮, 当执行成功后才让继续点击
+ * description: 执行耗时任务可以自动进行防止多次点击按钮, 当执行成功后才让继续点击
  */
 import { Button, Modal } from '@weblif/fast-ui'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 /** Mock 请求数据, 或则一些耗时操作 */
 const requestData = () => {
-  return new Promise<void>((resolve) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve('模拟任务执行完成.')
     }, 1000)
@@ -33,26 +33,26 @@ const requestData = () => {
 }
 
 export default () => {
-  const [visible, setVisible] = useState<boolean>(false)
+  const [open, setOpen] = useState<boolean>(false)
   return (
     <>
       <Button
         onClick={() => {
-          setVisible(true)
+          setOpen(true)
         }}
       >
         点击显示弹出框
       </Button>
       <Modal
         title="这是一个弹出框"
-        visible={visible}
+        open={open}
         // mask={false}
         onOk={async () => {
           console.log('modal -> test')
           const msg = await requestData()
           // message.info(msg);
         }}
-        onChangeVisible={setVisible}
+        onOpenChange={setOpen}
       >
         async 请求远程数据
       </Modal>
@@ -64,10 +64,9 @@ export default () => {
 ```tsx
 /**
  * title: 快速创建提示
- * desc: 可采用 `Modal` 的方法快速创建对话框
+ * description: 可采用 `Modal` 的方法快速创建对话框
  */
 import { Button, Modal, Space } from '@weblif/fast-ui'
-import React from 'react'
 
 export default () => {
   return (
@@ -95,18 +94,18 @@ export default () => {
 ```tsx
 /**
  * title: 事件冒泡
- * desc: 对回车事件的冒泡处理
+ * description: 对回车事件的冒泡处理
  */
 import { Button, Input, Modal, Space } from '@weblif/fast-ui'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 export default () => {
-  const [visible, setVisible] = useState<boolean>(false)
+  const [open, setOpen] = useState<boolean>(false)
   return (
     <Space>
       <Button
         onClick={() => {
-          setVisible(true)
+          setOpen(true)
         }}
       >
         显示弹出框
@@ -114,14 +113,14 @@ export default () => {
 
       <Modal
         title="这是一个弹出框"
-        visible={visible}
+        open={open}
         // mask={false}
         onOk={() => {
           console.log('modal -> test')
           // const msg = await requestData();
           // message.info(msg);
         }}
-        onChangeVisible={setVisible}
+        onOpenChange={setOpen}
       >
         <Input
           onKeyDown={(e) => {
@@ -161,9 +160,10 @@ export default () => {
 | okType                 | 确认按钮类型                                               | `string`                                                       | `primary`           |
 | style                  | 可用于设置浮层的样式，调整浮层位置等                       | `CSSProperties`                                                | -                   |
 | title                  | 标题                                                       | `ReactNode`                                                    | -                   |
-| visible                | 对话框是否可见                                             | `boolean`                                                      | -                   |
+| open                   | 对话框是否打开                                             | `boolean`                                                      | -                   |
 | width                  | 宽度                                                       | `string` \| `number`                                           | 520                 |
 | wrapClassName          | 对话框外层容器的类名                                       | `string`                                                       | -                   |
 | zIndex                 | 设置 Modal 的 `z-index`                                    | `number`                                                       | 1000                |
 | onCancel               | 点击遮罩层或右上角叉或取消按钮的回调                       | `function(e)`                                                  | -                   |
 | onOk                   | 点击确定回调                                               | `function(e)`                                                  | -                   |
+| onOpenChange           | 改变弹出框触发的事件                                       | `function(e)`                                                  | -                   |

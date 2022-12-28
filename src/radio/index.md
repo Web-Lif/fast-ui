@@ -22,10 +22,9 @@ group:
 ```tsx
 /**
  * title: 基本
- * desc: 最简单的用法
+ * description: 最简单的用法
  */
 import { Radio } from '@weblif/fast-ui'
-import React from 'react'
 
 export default () => {
   return (
@@ -43,10 +42,9 @@ export default () => {
 ```tsx
 /**
  * title: 不可用
- * desc: Radio 不可用。
+ * description: Radio 不可用。
  */
 import { Radio } from '@weblif/fast-ui'
-import React from 'react'
 
 export default () => {
   return <Radio disabled>不可用</Radio>

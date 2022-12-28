@@ -18,9 +18,8 @@ group:
 ```tsx
 /**
  * title: 基础
- * desc: 最简单的用法。
+ * description: 最简单的用法。
  */
-import React, { useState, useRef } from 'react'
 import { Anchor } from '@weblif/fast-ui'
 
 const { Link } = Anchor

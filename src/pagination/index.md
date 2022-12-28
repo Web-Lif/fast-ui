@@ -18,9 +18,8 @@ group:
 ```tsx
 /**
  * title: 基本
- * desc: 基础分页。
+ * description: 基础分页。
  */
-import React from 'react'
 import { Pagination } from '@weblif/fast-ui'
 
 export default () => {
@@ -31,9 +30,8 @@ export default () => {
 ```tsx
 /**
  * title: 迷你
- * desc: 迷你版本的分页信息
+ * description: 迷你版本的分页信息
  */
-import React from 'react'
 import { Pagination } from '@weblif/fast-ui'
 
 export default () => {

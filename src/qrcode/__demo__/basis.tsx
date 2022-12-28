@@ -1,9 +1,8 @@
 /**
  * title: 基础
- * desc: 简单的生成一个二维码信息
+ * description: 简单的生成一个二维码信息
  */
 
-import React from 'react'
 import { QRCode } from '@weblif/fast-ui'
 
 export default () => {
