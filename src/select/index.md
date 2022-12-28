@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Select
+subtitle: 选择器
 ---
 
 ## Select 选择器

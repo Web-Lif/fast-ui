@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/feedback
   title: 反馈
+title: Modal
+subtitle: 对话框
 ---
 
 ## Modal 对话框

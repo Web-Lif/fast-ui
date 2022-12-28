@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Pagination
+subtitle: 分页
 ---
 
 ## Pagination 分页

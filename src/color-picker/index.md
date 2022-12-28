@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: ColorPicker
+subtitle: 颜色选择器
 ---
 
 ## ColorPicker 颜色选择器

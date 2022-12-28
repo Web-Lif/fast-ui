@@ -6,6 +6,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Calendar
+subtitle: 日历
 ---
 
 ## Calendar 日历

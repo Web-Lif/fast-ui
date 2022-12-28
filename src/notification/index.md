@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/feedback
   title: 反馈
+title: Notification
+subtitle: 通知提醒框
 ---
 
 ## Notification 通知提醒框

@@ -42,7 +42,6 @@ const useMenu = (
                 sidebarItems.unshift(...reactDocData)
             }
         }
-
         return (
             sidebarItems?.reduce<Exclude<MenuProps['items'], undefined>>(
                 (result, group) => {
@@ -104,6 +103,7 @@ const useMenu = (
                                     }
                                 }
                             )
+
                             result.push({
                                 label: group?.title,
                                 key: group?.title,

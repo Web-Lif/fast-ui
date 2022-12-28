@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Tree
+subtitle: 树形控件
 ---
 
 ## Tree 树形控件

@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/navigation
   title: 导航
+title: BackTop
+subtitle: 回到顶部
 ---
 
 ## BackTop 回到顶部

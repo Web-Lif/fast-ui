@@ -6,6 +6,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Avatar
+subtitle: 头像
 ---
 
 ## Avatar 头像

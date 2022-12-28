@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: InputNumber
+subtitle: 数字输入框
 ---
 
 ## InputNumber 数字输入框

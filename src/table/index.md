@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Table
+subtitle: 表格
 ---
 
 ## Table 表格

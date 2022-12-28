@@ -6,6 +6,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Tag
+subtitle: 标签
 ---
 
 ## Tag 标签

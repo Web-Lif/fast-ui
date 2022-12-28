@@ -1,3 +1,3 @@
-import { QRCodeSVG as QRCode } from 'qrcode.react'
+import { QRCode } from 'antd'
 
 export default QRCode

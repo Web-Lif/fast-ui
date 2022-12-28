@@ -6,6 +6,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Statistic
+subtitle: 统计数值
 ---
 
 ## Statistic 统计数值

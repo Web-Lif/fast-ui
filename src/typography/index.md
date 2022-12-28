@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/universal
   title: 通用
+title: Typography
+subtitle: 排版
 ---
 
 ## Typography 排版

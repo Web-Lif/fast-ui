@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: DatePicker
+subtitle: 日期选择框
 ---
 
 ## DatePicker 日期选择框

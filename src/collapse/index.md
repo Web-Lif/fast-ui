@@ -6,6 +6,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Collapse
+subtitle: 折叠面板
 ---
 
 ## Collapse 折叠面板

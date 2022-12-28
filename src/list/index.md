@@ -6,6 +6,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: List
+subtitle: 列表
 ---
 
 ## List 列表

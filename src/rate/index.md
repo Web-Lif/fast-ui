@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Rate
+subtitle: 评分
 ---
 
 ## Rate 评分

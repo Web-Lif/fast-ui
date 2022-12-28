@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/feedback
   title: 反馈
+title: Alert
+subtitle: 警告提示
 ---
 
 ## Alert 警告提示

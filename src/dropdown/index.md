@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/navigation
   title: 导航
+title: Dropdown
+subtitle: 下拉菜单
 ---
 
 ## Dropdown 下拉菜单

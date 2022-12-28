@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/navigation
   title: 导航
+title: Steps
+subtitle: 步骤条
 ---
 
 ## Steps 步骤条

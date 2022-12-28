@@ -6,6 +6,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Carousel
+subtitle: 轮播图
 ---
 
 ## Carousel 轮播图

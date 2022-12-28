@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Empty
+subtitle: 空状态
 ---
 
 ## Empty 空状态

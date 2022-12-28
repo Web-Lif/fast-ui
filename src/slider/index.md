@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Slider
+subtitle: 滑动输入条
 ---
 
 ## Slider 滑动输入条

@@ -6,6 +6,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Drawer
+subtitle: 抽屉
 ---
 
 ## Drawer 抽屉

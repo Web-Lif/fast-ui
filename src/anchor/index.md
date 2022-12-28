@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/navigation
   title: 导航
+title: Anchor
+subtitle: 锚点
 ---
 
 ## Anchor 锚点

@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/layout
   title: 布局
+title: Divider
+subtitle: 分割线
 ---
 
 ## Divider 分割线
