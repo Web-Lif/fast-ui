@@ -48,7 +48,7 @@
         ]
     },
     "devDependencies": {
-        "@emotion/jest": "11.10.5",
+        "@emotion/react": "^11.10.5",
         "@testing-library/react": "13.4.0",
         "@types/jest": "29.2.3",
         "@types/react-color": "3.0.6",

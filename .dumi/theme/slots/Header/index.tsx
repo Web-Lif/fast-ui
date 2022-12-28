@@ -1,20 +1,19 @@
-import { css } from '@emotion/css'
-
 import { GithubOutlined } from '@ant-design/icons'
+import { css } from '@emotion/css'
 import { Button, Col, Row, Tooltip } from 'antd'
 import Logo from 'dumi/theme/slots/Logo'
 import SearchBar from 'dumi/theme/slots/SearchBar'
+import Navbar from '../Navbar'
 
 const Header = () => {
     return (
         <header
             className={css`
                 position: sticky;
-                z-index: 10;
+                z-index: 100;
                 max-width: 100%;
                 background: #fff;
                 top: 0px;
-
                 box-shadow: 0 1px 2px 0 rgb(0 0 0 / 3%),
                     0 1px 6px -1px rgb(0 0 0 / 2%), 0 2px 4px 0 rgb(0 0 0 / 2%);
             `}
@@ -77,7 +76,11 @@ const Header = () => {
                             flex: 1;
                         `}
                     />
+                    <Navbar />
                     <a
+                        className={css`
+                            margin-left: 1rem;
+                        `}
                         href="https://github.com/Web-Lif/fast-ui"
                         target="_blank"
                     >
