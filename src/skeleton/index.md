@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/feedback
   title: 反馈
+title: Skeleton
+subtitle: 骨架屏
 ---
 
 ## Skeleton 骨架屏

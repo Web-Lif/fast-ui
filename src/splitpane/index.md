@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/layout
   title: 布局
+title: SplitPane
+subtitle: 分割面板
 ---
 
 ## SplitPane 分割面板

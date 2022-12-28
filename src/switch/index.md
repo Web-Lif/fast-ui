@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Switch
+subtitle: 开关
 ---
 
 ## Switch 开关

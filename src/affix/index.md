@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/navigation
   title: 导航
+title: Affix
+subtitle: 固钉
 ---
 
 ## Affix 固钉

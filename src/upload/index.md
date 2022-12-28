@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Upload
+subtitle: 上传组件
 ---
 
 ## Upload 上传组件

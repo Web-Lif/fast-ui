@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Checkbox
+subtitle: 多选框
 ---
 
 ## Checkbox 多选框

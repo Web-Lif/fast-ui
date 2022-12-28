@@ -6,6 +6,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Tooltip
+subtitle: 文字提示
 ---
 
 ## Tooltip 文字提示

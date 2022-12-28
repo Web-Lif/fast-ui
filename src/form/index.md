@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Form
+subtitle: 表单
 ---
 
 ## Form 表单

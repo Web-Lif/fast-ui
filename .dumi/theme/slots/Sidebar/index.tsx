@@ -128,7 +128,6 @@ const Sidebar = () => {
 
     const [menuItems, selectedKey] = useMenu()
 
-    console.log(menuItems)
     const menuChild = (
         <Menu
             className={styles.asideContainer}

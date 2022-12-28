@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Image
+subtitle: 图片
 ---
 
 ## Image 图片

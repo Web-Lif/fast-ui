@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/layout
   title: 布局
+title: Card
+subtitle: 卡片
 ---
 
 ## Card 卡片

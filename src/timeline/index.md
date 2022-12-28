@@ -6,6 +6,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Timeline
+subtitle: 时间轴
 ---
 
 ## Timeline 时间轴

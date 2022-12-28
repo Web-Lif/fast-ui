@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/other
   title: 其他
+title: ConfigProvider
+subtitle: 全局化配置
 ---
 
 ## ConfigProvider 全局化配置

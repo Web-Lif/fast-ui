@@ -6,6 +6,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Popover
+subtitle: 气泡卡片
 ---
 
 ## Popover 气泡卡片

@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/navigation
   title: 导航
+title: Menu
+subtitle: 导航菜单
 ---
 
 ## Menu 导航菜单

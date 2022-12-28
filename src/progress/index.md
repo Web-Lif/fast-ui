@@ -6,6 +6,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Progress
+subtitle: 进度条
 ---
 
 ## Progress 进度条

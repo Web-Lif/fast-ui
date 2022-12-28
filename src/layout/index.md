@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/layout
   title: 布局
+title: Layout
+subtitle: 布局
 ---
 
 ## Layout 布局

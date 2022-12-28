@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/feedback
   title: 反馈
+title: Message
+subtitle: 全局提示
 ---
 
 ## Message 全局提示

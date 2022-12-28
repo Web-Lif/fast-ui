@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Result
+subtitle: 结果
 ---
 
 ## Result 结果

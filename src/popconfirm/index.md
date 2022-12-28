@@ -6,6 +6,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Popconfirm
+subtitle: 气泡确认框
 ---
 
 ## Popconfirm 气泡确认框

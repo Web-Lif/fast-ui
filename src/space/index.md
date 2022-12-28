@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/layout
   title: 布局
+title: Space
+subtitle: 间距
 ---
 
 ## Space 间距

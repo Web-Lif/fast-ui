@@ -6,6 +6,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: Badge
+subtitle: 徽标数
 ---
 
 ## Badge 徽标数

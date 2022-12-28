@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/data
   title: 数据
+title: TimePicker
+subtitle: 时间选择框
 ---
 
 ## TimePicker 时间选择框

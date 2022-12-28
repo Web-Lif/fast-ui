@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/navigation
   title: 导航
+title: Breadcrumb
+subtitle: 面包屑
 ---
 
 ## Breadcrumb 面包屑

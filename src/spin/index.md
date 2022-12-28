@@ -5,6 +5,8 @@ nav:
 group:
   path: /components/feedback
   title: 反馈
+title: Spin
+subtitle: 加载中
 ---
 
 ## Spin 加载中

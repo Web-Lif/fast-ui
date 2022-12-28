@@ -5,7 +5,9 @@ nav:
 group:
   path: /components/universal
   title: 通用
-  order: 10
+  order: -10
+title: Button
+subtitle: 按钮
 ---
 
 ## Button 按钮
