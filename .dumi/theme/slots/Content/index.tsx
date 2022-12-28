@@ -3,6 +3,7 @@ import { useOutlet } from 'dumi'
 
 const Content = () => {
     const outlet = useOutlet()
+
     return (
         <div
             className={css`

@@ -1,4 +1,4 @@
-import { Affix, Menu } from 'antd'
+import { Menu } from 'antd'
 import { useSidebarData } from 'dumi'
 
 import { css } from '@emotion/css'
@@ -128,6 +128,7 @@ const Sidebar = () => {
 
     const [menuItems, selectedKey] = useMenu()
 
+    console.log(menuItems)
     const menuChild = (
         <Menu
             className={styles.asideContainer}
@@ -144,11 +145,9 @@ const Sidebar = () => {
     )
 
     return (
-        <Affix>
-            <section style={{ width: '100%' }} className="main-menu-inner">
-                {menuChild}
-            </section>
-        </Affix>
+        <section style={{ width: '100%' }} className="main-menu-inner">
+            {menuChild}
+        </section>
     )
 }
 
