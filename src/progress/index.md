@@ -23,9 +23,8 @@ group:
 ```tsx
 /**
  * title: 基础
- * desc: 基本的时间轴。
+ * description: 基本的时间轴。
  */
-import React, { useState, useRef } from 'react'
 import { Progress } from '@weblif/fast-ui'
 
 export default () => {

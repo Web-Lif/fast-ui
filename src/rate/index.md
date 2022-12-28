@@ -23,9 +23,8 @@ group:
 ```tsx
 /**
  * title: 基础使用
- * desc: 最简单的用法。
+ * description: 最简单的用法。
  */
-import React from 'react'
 import { Rate } from '@weblif/fast-ui'
 
 export default () => {
@@ -36,9 +35,8 @@ export default () => {
 ```tsx
 /**
  * title: 只读
- * desc: 只读，无法进行鼠标交互。
+ * description: 只读，无法进行鼠标交互。
  */
-import React from 'react'
 import { Rate } from '@weblif/fast-ui'
 
 export default () => {
@@ -53,9 +51,8 @@ export default () => {
 ```tsx
 /**
  * title: 半星
- * desc: 支持选中半星。
+ * description: 支持选中半星。
  */
-import React from 'react'
 import { Rate } from '@weblif/fast-ui'
 
 export default () => {

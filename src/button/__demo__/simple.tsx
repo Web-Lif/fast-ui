@@ -1,8 +1,7 @@
 /**
  * title: 执行耗时任务
- * desc: 执行耗时任务可以自动进行防止多次点击按钮, 当执行成功后才让继续点击
+ * description: 执行耗时任务可以自动进行防止多次点击按钮, 当执行成功后才让继续点击
  */
-import React from 'react'
 import { Button, Space } from '@weblif/fast-ui'
 
 /** Mock 请求数据, 或则一些耗时操作 */

@@ -18,9 +18,8 @@ group:
 ```tsx
 /**
  * title: 标题组件
- * desc: 展示不同级别的标题。
+ * description: 展示不同级别的标题。
  */
-import React from 'react'
 import { Typography } from '@weblif/fast-ui'
 
 export default () => {

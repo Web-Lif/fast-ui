@@ -1,9 +1,9 @@
 /**
  * title: 空数据
- * desc: 显示空数据信息
+ * description: 显示空数据信息
  */
 import { Column, Table, useTableLocalSort } from '@weblif/fast-ui'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 export default () => {
     const [cols, setCols] = useState<Column<any>[]>([

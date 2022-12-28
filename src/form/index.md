@@ -18,10 +18,9 @@ group:
 ```tsx
 /**
  * title: Form 基础用法
- * desc: 通过 `cols` 和 `colSpan` 以及 `rowSpan` 作为表单的简单布局
+ * description: 通过 `cols` 和 `colSpan` 以及 `rowSpan` 作为表单的简单布局
  */
 import { Form, Input } from '@weblif/fast-ui'
-import React from 'react'
 
 export default () => {
   return (
@@ -61,10 +60,9 @@ export default () => {
 ```tsx
 /**
  * title: 用 key 替代 name
- * desc:  默认情况下根据 React 要求需要给 Item 设置 key, 如果已经设置 key, name 没有设置，那么默认会使用 key 作为 name 的值
+ * description:  默认情况下根据 React 要求需要给 Item 设置 key, 如果已经设置 key, name 没有设置，那么默认会使用 key 作为 name 的值
  */
 import { Form, Input } from '@weblif/fast-ui'
-import React from 'react'
 
 export default () => {
   return (
@@ -91,10 +89,9 @@ export default () => {
 ```tsx
 /**
  * title: label 对齐
- * desc:  使用 `labelWidth` 可以将 Form 的 label 进行对齐
+ * description:  使用 `labelWidth` 可以将 Form 的 label 进行对齐
  */
 import { Form, Input } from '@weblif/fast-ui'
-import React from 'react'
 
 export default () => {
   return (
@@ -122,10 +119,9 @@ export default () => {
 ```tsx
 /**
  * title: 强制换行
- * desc: 可通过 Form.Item 属性中的 `br` 进行强制换行
+ * description: 可通过 Form.Item 属性中的 `br` 进行强制换行
  */
 import { Form, Input } from '@weblif/fast-ui'
-import React from 'react'
 
 export default () => {
   return (
@@ -150,10 +146,10 @@ export default () => {
 ```tsx
 /**
  * title: JSON Form
- * desc: 通过 `JSON` 数据动态生成表单
+ * description: 通过 `JSON` 数据动态生成表单
  */
 import { Button, Form, Input, InputNumber, Modal } from '@weblif/fast-ui'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 const JSON_DATA = {
   cols: 4,

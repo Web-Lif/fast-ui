@@ -19,10 +19,10 @@ group:
 ```tsx
 /**
  * title: 基础
- * desc: 基础抽屉，点击触发按钮抽屉从右滑出，点击遮罩区关闭。
+ * description: 基础抽屉，点击触发按钮抽屉从右滑出，点击遮罩区关闭。
  */
-import React, { useState } from 'react'
-import { Drawer, Button } from '@weblif/fast-ui'
+import { Button, Drawer } from '@weblif/fast-ui'
+import { useState } from 'react'
 export default () => {
   const [visible, setVisible] = useState(false)
   const showDrawer = () => {

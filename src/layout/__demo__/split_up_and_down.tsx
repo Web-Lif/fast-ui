@@ -1,9 +1,8 @@
 /**
  * title: 上下切割
- * desc: 简单的上下切割的例子
+ * description: 简单的上下切割的例子
  */
 import { Layout } from '@weblif/fast-ui'
-import React from 'react'
 
 const Simple = () => (
     <Layout.Fixed height={500}>

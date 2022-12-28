@@ -14,10 +14,9 @@ group:
 ```tsx
 /**
  * title: 基础
- * desc: 信息提醒反馈。
+ * description: 信息提醒反馈。
  */
-import React, { useState } from 'react'
-import { notification, Button } from '@weblif/fast-ui'
+import { Button, notification } from '@weblif/fast-ui'
 export default () => {
   const openNotification = () => {
     notification.open({

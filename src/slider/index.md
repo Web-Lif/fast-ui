@@ -22,9 +22,8 @@ group:
 ```tsx
 /**
  * title: 基本
- * desc: 简单的展示。
+ * description: 简单的展示。
  */
-import React, { useState, useRef } from 'react'
 import { Slider } from '@weblif/fast-ui'
 
 export default () => {

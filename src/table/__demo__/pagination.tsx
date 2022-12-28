@@ -1,9 +1,9 @@
 /**
  * title: 分页
- * desc: 带分页的表格信息
+ * description: 带分页的表格信息
  */
 import { Column, Table } from '@weblif/fast-ui'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 interface UserData {
     username: string

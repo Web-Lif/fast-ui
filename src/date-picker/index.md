@@ -22,10 +22,9 @@ group:
 ```tsx
 /**
  * title: 基本
- * desc: 最简单的用法，在浮层中可以选择或者输入日期。
+ * description: 最简单的用法，在浮层中可以选择或者输入日期。
  */
 import { DatePicker } from '@weblif/fast-ui'
-import React from 'react'
 
 export default () => {
   return (
@@ -43,10 +42,9 @@ export default () => {
 ```tsx
 /**
  * title: 范围选择器
- * desc: 通过设置 `picker` 属性，指定范围选择器类型。
+ * description: 通过设置 `picker` 属性，指定范围选择器类型。
  */
 import { DatePicker } from '@weblif/fast-ui'
-import React from 'react'
 
 export default () => {
   return (
@@ -138,8 +136,8 @@ import locale from 'antd/lib/locale/zh_CN'
 
 ### DatePicker
 
-| 属性                  | 说明                                                                           | 类型                                                | 默认值                        
-| --------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------- | ----------------------------- 
+| 属性                  | 说明                                                                           | 类型                                                | 默认值                        |
+| --------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------- | ----------------------------- | ------------ |
 | defaultPickerValue    | 默认面板日期                                                                   | `Date`                                              | -                             |
 | defaultValue          | 默认日期，如果开始时间或结束时间为 null 或者 undefined，日期范围将是一个开区间 | `Date`                                              | -                             |
 | disabledTime          | 不可选择的时间                                                                 | `string`                                            | -                             |

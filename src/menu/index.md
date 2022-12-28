@@ -16,15 +16,15 @@ group:
 ```tsx
 /**
  * title: 顶部导航
- * desc: 水平的顶部导航菜单。
+ * description: 水平的顶部导航菜单。
  */
-import React, { useState } from 'react'
-import { Menu, Dropdown } from '@weblif/fast-ui'
 import {
-  MailOutlined,
   AppstoreOutlined,
+  MailOutlined,
   SettingOutlined,
 } from '@ant-design/icons'
+import { Menu } from '@weblif/fast-ui'
+import { useState } from 'react'
 
 export default () => {
   const [selectKey, setSelectKey] = useState<string>('mail')

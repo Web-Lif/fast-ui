@@ -15,10 +15,9 @@ group:
 ```tsx
 /**
  * title: 基础使用
- * desc: 最简单的用法。
+ * description: 最简单的用法。
  */
 import { Calendar } from '@weblif/fast-ui'
-import React from 'react'
 
 export default () => {
   return <Calendar />

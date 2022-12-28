@@ -1,8 +1,7 @@
 /**
  * title: 经典卡片
- * desc: 包含标题、内容、操作区域。
+ * description: 包含标题、内容、操作区域。
  */
-import React from 'react'
 import { Card } from '@weblif/fast-ui'
 
 export default () => {

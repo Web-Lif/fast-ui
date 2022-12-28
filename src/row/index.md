@@ -16,10 +16,9 @@ group:
 ```tsx
 /**
  * title: 基本
- * desc: 典型的页面布局。
+ * description: 典型的页面布局。
  */
-import React, { useState, useRef } from 'react'
-import { Row, Col } from '@weblif/fast-ui'
+import { Col, Row } from '@weblif/fast-ui'
 
 export default () => {
   const style = { background: '#7dbcea', height: 100 }

@@ -18,10 +18,9 @@ group:
 ```tsx
 /**
  * title: 基本
- * desc: 简单的展示。
+ * description: 简单的展示。
  */
-import React, { useState, useRef } from 'react'
-import { Result, Button } from '@weblif/fast-ui'
+import { Button, Result } from '@weblif/fast-ui'
 
 export default () => {
   return (

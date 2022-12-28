@@ -18,9 +18,8 @@ group:
 ```tsx
 /**
  * title: 基础使用
- * desc: 简单的步骤条。
+ * description: 简单的步骤条。
  */
-import React, { useState, useRef } from 'react'
 import { Steps } from '@weblif/fast-ui'
 
 const { Step } = Steps

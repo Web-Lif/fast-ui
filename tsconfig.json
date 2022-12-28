@@ -11,7 +11,11 @@
         "skipLibCheck": true,
         "declaration": true,
         "allowJs": true,
-        "lib": ["ESNext", "DOM"]
+        "baseUrl": "./",
+        "lib": ["ESNext", "DOM"],
+        "paths": {
+            "@@/*": [".dumi/tmp/*"]
+        }
     },
     "include": ["src"],
     "exclude": [

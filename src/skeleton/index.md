@@ -18,9 +18,8 @@ group:
 ```tsx
 /**
  * title: 基本
- * desc: 最简单的占位效果。
+ * description: 最简单的占位效果。
  */
-import React from 'react'
 import { Skeleton } from '@weblif/fast-ui'
 
 export default () => {

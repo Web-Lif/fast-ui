@@ -1,6 +1,6 @@
 /**
  * title: 行编辑
- * desc: 行编辑模式
+ * description: 行编辑模式
  */
 import {
     Button,
@@ -9,7 +9,7 @@ import {
     Table,
     useTableLocalSort,
 } from '@weblif/fast-ui'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface UserData {
     username: string

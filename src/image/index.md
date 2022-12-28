@@ -18,9 +18,8 @@ group:
 ```tsx
 /**
  * title: 基本
- * desc: 图片的基础用法
+ * description: 图片的基础用法
  */
-import React from 'react'
 import { Image } from '@weblif/fast-ui'
 
 export default () => {

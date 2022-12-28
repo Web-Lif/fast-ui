@@ -1,9 +1,9 @@
 /**
  * title: 虚拟滚动
- * desc: 1000条表格数据信息进行测试
+ * description: 1000条表格数据信息进行测试
  */
 import { Table } from '@weblif/fast-ui'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 /** Mock 数据 */
 const mockData = () => {

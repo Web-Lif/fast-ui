@@ -16,10 +16,9 @@ group:
 ```tsx
 /**
  * title: 基本使用。
- * desc: 基础选择器
+ * description: 基础选择器
  */
 import { Select } from '@weblif/fast-ui'
-import React from 'react'
 
 const { Option } = Select
 

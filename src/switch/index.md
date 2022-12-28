@@ -22,10 +22,9 @@ group:
 ```tsx
 /**
  * title: 基础使用
- * desc: 这是一个简单使用的例子
+ * description: 这是一个简单使用的例子
  */
 import { Switch } from '@weblif/fast-ui'
-import React from 'react'
 
 export default () => {
   return (
@@ -43,10 +42,9 @@ export default () => {
 ```tsx
 /**
  * title: 不可用
- * desc: Switch 失效状态。
+ * description: Switch 失效状态。
  */
 import { Switch } from '@weblif/fast-ui'
-import React from 'react'
 
 export default () => {
   return (
@@ -60,10 +58,9 @@ export default () => {
 ```tsx
 /**
  * title: 两种大小
- * desc: size="small" 表示小号开关。
+ * description: size="small" 表示小号开关。
  */
 import { Switch } from '@weblif/fast-ui'
-import React from 'react'
 
 export default () => {
   return (
@@ -83,10 +80,9 @@ export default () => {
 ```tsx
 /**
  * title: 加载中
- * desc: 标识开关操作仍在执行中。
+ * description: 标识开关操作仍在执行中。
  */
 import { Switch } from '@weblif/fast-ui'
-import React from 'react'
 
 export default () => {
   return (
@@ -102,10 +98,9 @@ export default () => {
 ```tsx
 /**
  * title: 文字
- * desc: 带有文字的开关
+ * description: 带有文字的开关
  */
 import { Switch } from '@weblif/fast-ui'
-import React from 'react'
 
 export default () => {
   return (
