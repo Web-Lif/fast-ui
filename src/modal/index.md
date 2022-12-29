@@ -56,7 +56,7 @@ export default () => {
         }}
         onOpenChange={setOpen}
       >
-        async 请求远程数据
+        <div>async 请求远程数据</div>
       </Modal>
     </>
   )

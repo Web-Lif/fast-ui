@@ -1,3 +1,4 @@
+import type { Modifier } from '@dnd-kit/core'
 import {
     DndContext,
     PointerSensor,
@@ -5,10 +6,49 @@ import {
     useSensor,
     useSensors,
 } from '@dnd-kit/core'
-import { restrictToWindowEdges } from '@dnd-kit/modifiers'
-import { CSS } from '@dnd-kit/utilities'
 import AntModal, { ModalProps as AntModalProps } from 'antd/es/modal'
 import { FC, forwardRef, useLayoutEffect, useRef, useState } from 'react'
+
+const restrictToWindowEdges: Modifier = ({
+    transform,
+    draggingNodeRect,
+    windowRect,
+    scrollableAncestors,
+}) => {
+    const target = scrollableAncestors?.[0] as HTMLElement
+    if (!draggingNodeRect || !windowRect || !target) {
+        return transform
+    }
+
+    const value = {
+        ...transform,
+    }
+
+    if (draggingNodeRect.top + transform.y <= windowRect.top) {
+        value.y = windowRect.top - draggingNodeRect.top
+    } else if (
+        draggingNodeRect.bottom + transform.y >=
+            windowRect.top + windowRect.height &&
+        draggingNodeRect.height < windowRect.height
+    ) {
+        value.y = windowRect.top + windowRect.height - draggingNodeRect.bottom
+    }
+
+    if (draggingNodeRect.left + transform.x <= windowRect.left) {
+        value.x = windowRect.left - draggingNodeRect.left
+    } else if (
+        draggingNodeRect.left + transform.x + draggingNodeRect.width >=
+        windowRect.left + windowRect.width
+    ) {
+        value.x =
+            windowRect.left +
+            windowRect.width -
+            draggingNodeRect.right -
+            (target.offsetWidth - target.scrollWidth)
+    }
+
+    return value
+}
 
 export interface ModalProps
     extends Omit<AntModalProps, 'onOk' | 'confirmLoading' | 'visible'> {
@@ -62,12 +102,9 @@ const Draggable = forwardRef<HTMLDivElement | null, DraggableProps>(
             <div
                 style={{
                     width: '100%',
-                    transform: CSS.Translate.toString({
-                        x: (transform?.x || 0) + transf.x,
-                        y: (transform?.y || 0) + transf.y,
-                        scaleX: 0,
-                        scaleY: 0,
-                    }),
+                    position: 'absolute',
+                    top: (transform?.y || 0) + transf.y,
+                    left: (transform?.x || 0) + transf.x,
                     ...style,
                 }}
                 ref={(ref) => {
@@ -102,7 +139,7 @@ const InternalModal: FC<ModalProps> = ({
 }) => {
     const [loading, setLoading] = useState(false)
     const [disabled, setDisabled] = useState(true)
-    const draggleRef = useRef<HTMLDivElement>(null)
+    const draggleRef = useRef<HTMLDivElement | null>(null)
 
     const onOkFunction = (
         event:
