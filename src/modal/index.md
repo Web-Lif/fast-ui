@@ -56,13 +56,7 @@ export default () => {
         }}
         onOpenChange={setOpen}
       >
-        <div
-          style={{
-            height: 1500,
-          }}
-        >
-          async 请求远程数据
-        </div>
+        <div>async 请求远程数据</div>
       </Modal>
     </>
   )

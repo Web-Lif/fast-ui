@@ -6,7 +6,6 @@ import {
     useSensor,
     useSensors,
 } from '@dnd-kit/core'
-import {} from '@weblif/rc-table'
 import AntModal, { ModalProps as AntModalProps } from 'antd/es/modal'
 import { FC, forwardRef, useLayoutEffect, useRef, useState } from 'react'
 
