@@ -54,7 +54,7 @@
         "@types/jest": "29.2.4",
         "@types/react-color": "3.0.6",
         "@weblif/react-top-loading-bar": "2.1.2",
-        "core-js": "3.27.0",
+        "core-js": "3.27.1",
         "cross-env": "7.0.3",
         "dumi": "2.0.18",
         "html-webpack-plugin": "4.5.2",
