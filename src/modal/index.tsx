@@ -78,6 +78,22 @@ export interface ModalProps
     ) => void
 }
 
+interface DraggableHandleProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+const DraggableHandle: FC<DraggableHandleProps> = ({
+    children,
+    ...restProps
+}) => {
+    const { attributes, listeners } = useDraggable({
+        id: 'draggable-title',
+    })
+    return (
+        <div {...listeners} {...attributes} {...restProps}>
+            {children}
+        </div>
+    )
+}
+
 interface DraggableProps extends React.HTMLAttributes<HTMLDivElement> {
     transform: {
         x: number
@@ -85,17 +101,12 @@ interface DraggableProps extends React.HTMLAttributes<HTMLDivElement> {
         scaleX: number
         scaleY: number
     }
-    disabled?: boolean
 }
 
 const Draggable = forwardRef<HTMLDivElement | null, DraggableProps>(
-    (
-        { children, transform: transf, style, disabled, ...restProps },
-        forwardref
-    ) => {
-        const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    ({ children, transform: transf, style, ...restProps }, forwardref) => {
+        const { setNodeRef, transform } = useDraggable({
             id: 'draggable-title',
-            disabled,
         })
 
         return (
@@ -115,8 +126,6 @@ const Draggable = forwardRef<HTMLDivElement | null, DraggableProps>(
                         forwardref.current = ref
                     }
                 }}
-                {...listeners}
-                {...attributes}
                 {...restProps}
             >
                 {children}
@@ -138,8 +147,15 @@ const InternalModal: FC<ModalProps> = ({
     ...restProps
 }) => {
     const [loading, setLoading] = useState(false)
-    const [disabled, setDisabled] = useState(true)
     const draggleRef = useRef<HTMLDivElement | null>(null)
+
+    const sensors = useSensors(
+        useSensor(PointerSensor, {
+            activationConstraint: {
+                distance: 8,
+            },
+        })
+    )
 
     const onOkFunction = (
         event:
@@ -188,8 +204,6 @@ const InternalModal: FC<ModalProps> = ({
         scaleY: 0,
     })
 
-    const sensors = useSensors(useSensor(PointerSensor))
-
     return (
         <DndContext
             sensors={sensors}
@@ -208,24 +222,12 @@ const InternalModal: FC<ModalProps> = ({
                 confirmLoading={loading}
                 okText={okText}
                 cancelText={cancelText}
-                title={
-                    <div
-                        onMouseMove={() => {
-                            setDisabled(false)
-                        }}
-                        onMouseOut={() => {
-                            setDisabled(true)
-                        }}
-                    >
-                        {title}
-                    </div>
-                }
+                title={<DraggableHandle>{title}</DraggableHandle>}
                 modalRender={(dom) => {
                     return (
                         <Draggable
                             ref={draggleRef}
                             tabIndex={-1}
-                            disabled={disabled}
                             transform={delta}
                             onKeyDown={(e) => {
                                 if (onKeyDown) {
