@@ -196,7 +196,7 @@ export default () => {
   const [loading, setLoading] = useState<boolean>(true)
   const [data, setData] = useState<string>(JSON_DATA)
 
-  const [visible, setVisible] = useState<boolean>(false)
+  const [open, setOpen] = useState<boolean>(false)
 
   return (
     <>
@@ -219,11 +219,7 @@ export default () => {
           },
         ]}
       />
-      <Modal
-        title="输入的JSON数据"
-        visible={visible}
-        onChangeVisible={setVisible}
-      >
+      <Modal title="输入的JSON数据" open={open} onOpenChange={setOpen}>
         <Input.TextArea
           defaultValue={JSON.stringify(data, null, 2)}
           style={{
