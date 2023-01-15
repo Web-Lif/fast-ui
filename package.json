@@ -74,7 +74,7 @@
         "@dnd-kit/core": "6.0.7",
         "@dnd-kit/modifiers": "6.0.1",
         "@dnd-kit/utilities": "3.2.1",
-        "antd": "5.1.4",
+        "antd": "5.1.5",
         "dayjs": "1.11.7",
         "immer": "9.0.17",
         "rc-picker": "3.1.4",
