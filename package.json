@@ -64,7 +64,7 @@
         "prettier": "2.8.3",
         "react-markdown": "8.0.5",
         "react-test-renderer": "18.2.0",
-        "rimraf": "4.1.1",
+        "rimraf": "4.1.2",
         "ts-jest": "29.0.5",
         "ts-node-dev": "2.0.0",
         "yorkie": "2.0.0"
