@@ -82,7 +82,7 @@
         "react-dom": "18.2.0"
     },
     "dependencies": {
-        "@emotion/css": "11.10.5",
+        "@emotion/css": "11.13.5",
         "@weblif/rc-table": "0.8.5",
         "qrcode.react": "3.1.0",
         "react-color": "2.19.3",
